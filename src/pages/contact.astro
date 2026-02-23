@@ -5,6 +5,7 @@ import SiteFooter from "../components/SiteFooter.astro";
 import profile from "../content/profile.json";
 
 const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your-linkedin-handle"));
+const primaryEmail = "contact@aliuyar.dev";
 ---
 
 <BaseLayout title="Contact | Ali Uyar" canonicalPath="/contact" description="Contact Ali Uyar for consulting, product, and AI systems engagements.">
@@ -17,7 +18,7 @@ const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your
       <article class="card p-6">
         <h2 class="text-lg font-semibold tracking-tight">Email</h2>
         <ul class="mt-3 space-y-2 text-sm text-[rgb(var(--muted))]">
-          {profile.emails.map((email) => <li><a class="focus-ring hover:underline" href={`mailto:${email}`}>{email}</a></li>)}
+          <li><a class="focus-ring hover:underline" href={`mailto:${primaryEmail}`}>{primaryEmail}</a></li>
         </ul>
       </article>
       <article class="card p-6">

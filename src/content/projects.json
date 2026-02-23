@@ -11,7 +11,7 @@
   },
   {
     "name": "SchemaPilot",
-    "description": "",
+    "description": "Reduces schema drift in evolving data pipelines by providing a guided schema validation and migration workflow.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/SchemaPilot",
     "updatedAt": "2026-02-19T03:07:18Z",
@@ -41,7 +41,7 @@
   },
   {
     "name": "cyclelens-ssot",
-    "description": "",
+    "description": "Keeps cross-team process docs aligned by centralizing lifecycle decisions in a single source of truth repository.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/cyclelens-ssot",
     "updatedAt": "2026-02-17T11:42:55Z",
@@ -81,7 +81,7 @@
   },
   {
     "name": "cost-watchdog",
-    "description": "",
+    "description": "Controls runaway API and infrastructure spend by monitoring usage in real time and triggering budget guardrail alerts.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/cost-watchdog",
     "updatedAt": "2026-02-13T13:25:51Z",
@@ -91,7 +91,7 @@
   },
   {
     "name": "VeilPack",
-    "description": "",
+    "description": "Protects sensitive artifacts in transit by packaging files with encryption, integrity checks, and reproducible manifests.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/VeilPack",
     "updatedAt": "2026-02-10T09:36:50Z",
@@ -101,7 +101,7 @@
   },
   {
     "name": "ContextGraph",
-    "description": "",
+    "description": "Prevents context loss in complex workflows by modeling entities, links, and retrieval paths as a navigable graph.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/ContextGraph",
     "updatedAt": "2026-02-08T09:43:40Z",
@@ -111,7 +111,7 @@
   },
   {
     "name": "incitape",
-    "description": "",
+    "description": "Improves auditability of agent behavior by recording immutable, replayable traces of prompts, actions, and outcomes.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/incitape",
     "updatedAt": "2026-02-04T16:57:25Z",
@@ -131,7 +131,7 @@
   },
   {
     "name": "Veil",
-    "description": "",
+    "description": "Reduces accidental data exposure by enforcing runtime redaction and policy checks on sensitive content flows.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/Veil",
     "updatedAt": "2026-01-29T17:34:47Z",
@@ -141,7 +141,7 @@
   },
   {
     "name": "PropertyRAG",
-    "description": "",
+    "description": "Cuts hallucinations in property workflows by grounding answers in retrieval over structured real-estate documents.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/PropertyRAG",
     "updatedAt": "2026-01-12T14:24:37Z",
@@ -151,7 +151,7 @@
   },
   {
     "name": "foerderungsradar",
-    "description": "",
+    "description": "Helps teams find relevant grant programs faster by aggregating and ranking funding opportunities in one place.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/foerderungsradar",
     "updatedAt": "2026-01-12T14:24:35Z",
@@ -171,7 +171,7 @@
   },
   {
     "name": "austrian-business-infrastructure",
-    "description": "",
+    "description": "Simplifies Austrian market integrations by bundling core business registry and compliance infrastructure components.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/austrian-business-infrastructure",
     "updatedAt": "2026-01-12T14:24:32Z",
@@ -181,7 +181,7 @@
   },
   {
     "name": "egress-lockfile",
-    "description": "",
+    "description": "Prevents unapproved outbound network calls by versioning allowed egress destinations in an auditable lockfile.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/egress-lockfile",
     "updatedAt": "2026-01-12T14:24:29Z",
@@ -232,7 +232,7 @@
   },
   {
     "name": "AnnexOps",
-    "description": "",
+    "description": "Streamlines compliance annex management by structuring, tracking, and validating required supporting documents.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AnnexOps",
     "updatedAt": "2026-01-12T14:24:23Z",
@@ -282,7 +282,7 @@
   },
   {
     "name": "DealGuard",
-    "description": "",
+    "description": "Reduces contract risk before signature by running automated checks against deal terms, obligations, and policy rules.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/DealGuard",
     "updatedAt": "2025-12-24T22:58:48Z",
@@ -312,7 +312,7 @@
   },
   {
     "name": "intake-routing-engine",
-    "description": "",
+    "description": "Eliminates manual triage bottlenecks by routing inbound requests to the right queue using rule-based scoring.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/intake-routing-engine",
     "updatedAt": "2026-01-19T14:22:16Z",
