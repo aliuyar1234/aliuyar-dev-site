@@ -1,7 +1,7 @@
 [
   {
     "name": "DecisionGraph",
-    "description": "Event-sourced decision audit trail for AI agents",
+    "description": "AI decisions can be opaque across runs; DecisionGraph is an event-sourced audit trail for agent choices; it gives teams traceable and replayable accountability.",
     "stargazerCount": 2,
     "url": "https://github.com/aliuyar1234/DecisionGraph",
     "updatedAt": "2026-01-30T17:38:14Z",
@@ -11,7 +11,7 @@
   },
   {
     "name": "SchemaPilot",
-    "description": "Reduces schema drift in evolving data pipelines by providing a guided schema validation and migration workflow.",
+    "description": "Schema drift breaks data pipelines over time; SchemaPilot is a guided schema validation and migration toolchain; it keeps integrations stable with fewer breakages.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/SchemaPilot",
     "updatedAt": "2026-02-19T03:07:18Z",
@@ -21,7 +21,7 @@
   },
   {
     "name": "PECR",
-    "description": "PECR target implementation repo",
+    "description": "Compliance requirements are hard to operationalize consistently; PECR is a reference implementation repository for the PECR framework; it accelerates adoption with production-ready patterns.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/PECR",
     "updatedAt": "2026-02-19T00:22:42Z",
@@ -31,7 +31,7 @@
   },
   {
     "name": "retokenization-invariance-atlas",
-    "description": "Audits whether semantics-preserving prompt reformatting changes LLM answers through deterministic retokenization tests.",
+    "description": "Prompt reformatting can silently change model outputs; retokenization-invariance-atlas is a deterministic benchmark for retokenization effects; it helps teams validate robustness before deployment.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
     "updatedAt": "2026-02-18T15:34:24Z",
@@ -41,7 +41,7 @@
   },
   {
     "name": "ScrubID",
-    "description": "ScrubID: identifiability-aware auditing for mechanistic interpretability (artifact pack v1.0.3)",
+    "description": "Interpretability claims are often hard to verify; ScrubID is an identifiability-aware auditing toolkit for mechanistic studies; it supports evidence-based and reproducible conclusions.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/ScrubID",
     "updatedAt": "2026-02-17T11:42:52Z",
@@ -51,7 +51,7 @@
   },
   {
     "name": "certipatch",
-    "description": "Reproducible framework for specification repair of frozen language models with replayable empirical certificates.",
+    "description": "Frozen models can fail specs without safe retraining paths; certipatch is a reproducible specification-repair framework with replayable certificates; it enables fix-and-verify workflows teams can trust.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/certipatch",
     "updatedAt": "2026-02-17T11:42:15Z",
@@ -61,7 +61,7 @@
   },
   {
     "name": "discover-then-distill-paper",
-    "description": "Compute-matched study of test-time discovery and self-distillation consolidation for language models",
+    "description": "Adaptation gains can be confused with distillation gains; discover-then-distill-paper is a compute-matched experimental framework separating both effects; it yields clearer tuning decisions.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/discover-then-distill-paper",
     "updatedAt": "2026-02-13T20:03:17Z",
@@ -71,7 +71,7 @@
   },
   {
     "name": "cost-watchdog",
-    "description": "Controls runaway API and infrastructure spend by monitoring usage in real time and triggering budget guardrail alerts.",
+    "description": "LLM and API spend can spike before teams notice; cost-watchdog is a real-time usage and budget guardrail monitor; it prevents surprise overruns.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/cost-watchdog",
     "updatedAt": "2026-02-13T13:25:51Z",
@@ -81,7 +81,7 @@
   },
   {
     "name": "VeilPack",
-    "description": "Protects sensitive artifacts in transit by packaging files with encryption, integrity checks, and reproducible manifests.",
+    "description": "Sensitive artifacts are risky to share across teams; VeilPack is a secure packaging system with encryption and integrity manifests; it enables safer transfer and verification.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/VeilPack",
     "updatedAt": "2026-02-10T09:36:50Z",
@@ -91,7 +91,7 @@
   },
   {
     "name": "ContextGraph",
-    "description": "Prevents context loss in complex workflows by modeling entities, links, and retrieval paths as a navigable graph.",
+    "description": "Context gets fragmented across tools and sessions; ContextGraph is a graph-based context model linking entities and retrieval paths; it improves continuity and recall.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/ContextGraph",
     "updatedAt": "2026-02-08T09:43:40Z",
@@ -101,7 +101,7 @@
   },
   {
     "name": "incitape",
-    "description": "Improves auditability of agent behavior by recording immutable, replayable traces of prompts, actions, and outcomes.",
+    "description": "Agent runs are hard to audit after the fact; incitape is an immutable trace recorder for prompts, actions, and outputs; it enables reliable replay and review.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/incitape",
     "updatedAt": "2026-02-04T16:57:25Z",
@@ -111,7 +111,7 @@
   },
   {
     "name": "AvalancheLLM",
-    "description": "Token–Layer activation event cascades in LLMs (SSOT artifact pack)",
+    "description": "Activation cascades can create unstable model behavior under scaling; AvalancheLLM is an experimental analysis suite for token-layer event cascades; it helps detect brittleness earlier.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AvalancheLLM",
     "updatedAt": "2026-01-30T20:14:47Z",
@@ -121,7 +121,7 @@
   },
   {
     "name": "Veil",
-    "description": "Reduces accidental data exposure by enforcing runtime redaction and policy checks on sensitive content flows.",
+    "description": "Sensitive data can leak through normal processing paths; Veil is a runtime redaction and policy enforcement layer; it reduces exposure risk in production workflows.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/Veil",
     "updatedAt": "2026-01-29T17:34:47Z",
@@ -131,7 +131,7 @@
   },
   {
     "name": "egress-lockfile",
-    "description": "Prevents unapproved outbound network calls by versioning allowed egress destinations in an auditable lockfile.",
+    "description": "Uncontrolled outbound traffic creates compliance and security risk; egress-lockfile is a versioned allowlist for egress destinations; it enforces predictable network boundaries.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/egress-lockfile",
     "updatedAt": "2026-01-12T14:24:29Z",
@@ -141,7 +141,7 @@
   },
   {
     "name": "AgentGate",
-    "description": "Policy- and Approval-Gateway for AI Agents in Enterprise environments",
+    "description": "Autonomous agents need controlled approvals in enterprise environments; AgentGate is a policy and approval gateway for agent actions; it keeps automation compliant and governable.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AgentGate",
     "updatedAt": "2026-01-12T14:24:26Z",
@@ -151,7 +151,7 @@
   },
   {
     "name": "AnnexOps",
-    "description": "Streamlines compliance annex management by structuring, tracking, and validating required supporting documents.",
+    "description": "Compliance annexes become messy across owners and versions; AnnexOps is an operations workflow for tracking and validating annex documents; it improves audit readiness.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AnnexOps",
     "updatedAt": "2026-01-12T14:24:23Z",
@@ -161,7 +161,7 @@
   },
   {
     "name": "flakeguard",
-    "description": "CI Flake Detection System - Automatically detect flaky tests from GitHub Actions reruns",
+    "description": "Flaky tests hide real regressions and waste CI time; flakeguard is a GitHub Actions rerun analyzer for flake detection; it improves signal quality in pipelines.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/flakeguard",
     "updatedAt": "2026-01-12T14:24:23Z",
@@ -171,7 +171,7 @@
   },
   {
     "name": "BatteryPassportCompiler",
-    "description": "Deterministic compiler for Battery Passports with cryptographic proofs, ED25519 signatures, and audit replay",
+    "description": "Battery passport data is hard to validate and prove; BatteryPassportCompiler is a deterministic compiler with cryptographic proofs and signatures; it provides verifiable compliance outputs.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/BatteryPassportCompiler",
     "updatedAt": "2026-01-12T14:24:16Z",
@@ -181,7 +181,7 @@
   },
   {
     "name": "cis-technical-report",
-    "description": "Documents the CIS reliability methodology, evaluation criteria, and implementation guidance for production AI systems.",
+    "description": "Reliability practices are often documented inconsistently; cis-technical-report is a structured technical report on the CIS methodology; it gives teams a practical implementation reference.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cis-technical-report",
     "updatedAt": "2026-02-23T19:21:44Z",
@@ -191,7 +191,7 @@
   },
   {
     "name": "cachemedicpp-research",
-    "description": "Studies reproducible KV-cache failure modes and stabilization strategies for more reliable LLM inference.",
+    "description": "KV-cache failures can be hard to reproduce and fix; cachemedicpp-research is an experimental toolkit for cache corruption and stabilization studies; it supports more reliable inference.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cachemedicpp-research",
     "updatedAt": "2026-02-17T10:44:33Z",
@@ -201,7 +201,7 @@
   },
   {
     "name": "intake-routing-engine",
-    "description": "Eliminates manual triage bottlenecks by routing inbound requests to the right queue using rule-based scoring.",
+    "description": "Manual intake triage slows response times; intake-routing-engine is a rule-based request routing system; it directs work to the right queue faster.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/intake-routing-engine",
     "updatedAt": "2026-01-19T14:22:16Z",
