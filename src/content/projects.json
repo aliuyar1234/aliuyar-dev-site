@@ -40,16 +40,6 @@
     "repositoryTopics": []
   },
   {
-    "name": "cyclelens-ssot",
-    "description": "Keeps cross-team process docs aligned by centralizing lifecycle decisions in a single source of truth repository.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/cyclelens-ssot",
-    "updatedAt": "2026-02-17T11:42:55Z",
-    "primaryLanguage": "PowerShell",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
     "name": "ScrubID",
     "description": "ScrubID: identifiability-aware auditing for mechanistic interpretability (artifact pack v1.0.3)",
     "stargazerCount": 1,
@@ -140,83 +130,12 @@
     "repositoryTopics": []
   },
   {
-    "name": "PropertyRAG",
-    "description": "Cuts hallucinations in property workflows by grounding answers in retrieval over structured real-estate documents.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/PropertyRAG",
-    "updatedAt": "2026-01-12T14:24:37Z",
-    "primaryLanguage": "Python",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "foerderungsradar",
-    "description": "Helps teams find relevant grant programs faster by aggregating and ranking funding opportunities in one place.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/foerderungsradar",
-    "updatedAt": "2026-01-12T14:24:35Z",
-    "primaryLanguage": "TypeScript",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "Foundry",
-    "description": "Enterprise AI-First Operations Platform",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/Foundry",
-    "updatedAt": "2026-01-12T14:24:33Z",
-    "primaryLanguage": "TypeScript",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "austrian-business-infrastructure",
-    "description": "Simplifies Austrian market integrations by bundling core business registry and compliance infrastructure components.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/austrian-business-infrastructure",
-    "updatedAt": "2026-01-12T14:24:32Z",
-    "primaryLanguage": "Go",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
     "name": "egress-lockfile",
     "description": "Prevents unapproved outbound network calls by versioning allowed egress destinations in an auditable lockfile.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/egress-lockfile",
     "updatedAt": "2026-01-12T14:24:29Z",
     "primaryLanguage": "Rust",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "datatrust",
-    "description": "LLM-powered data integration via MCP. Connect Excel, Odoo, HubSpot, PostgreSQL. Trust Layer for consistency, audit, reconciliation.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/datatrust",
-    "updatedAt": "2026-01-12T14:24:28Z",
-    "primaryLanguage": "TypeScript",
-    "homepageUrl": "",
-    "repositoryTopics": [
-      "audit-trail",
-      "data-integration",
-      "enterprise",
-      "hubspot",
-      "llm",
-      "mcp",
-      "odoo",
-      "postgresql",
-      "reconciliation",
-      "typescript"
-    ]
-  },
-  {
-    "name": "datev-lint",
-    "description": "DATEV export file validator and linter for German accounting",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/datev-lint",
-    "updatedAt": "2026-01-12T14:24:27Z",
-    "primaryLanguage": "Python",
     "homepageUrl": "",
     "repositoryTopics": []
   },
@@ -251,42 +170,12 @@
     "repositoryTopics": []
   },
   {
-    "name": "OrderFlow",
-    "description": "B2B order automation platform for DACH wholesale/distribution. Automates PDF/Excel/CSV order intake, SKU matching, validation, and ERP push.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/OrderFlow",
-    "updatedAt": "2026-01-12T14:24:19Z",
-    "primaryLanguage": "Python",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "Axiom",
-    "description": "Axiom programming language specification",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/Axiom",
-    "updatedAt": "2026-01-12T14:24:17Z",
-    "primaryLanguage": "",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
     "name": "BatteryPassportCompiler",
     "description": "Deterministic compiler for Battery Passports with cryptographic proofs, ED25519 signatures, and audit replay",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/BatteryPassportCompiler",
     "updatedAt": "2026-01-12T14:24:16Z",
     "primaryLanguage": "Haskell",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "DealGuard",
-    "description": "Reduces contract risk before signature by running automated checks against deal terms, obligations, and policy rules.",
-    "stargazerCount": 1,
-    "url": "https://github.com/aliuyar1234/DealGuard",
-    "updatedAt": "2025-12-24T22:58:48Z",
-    "primaryLanguage": "Python",
     "homepageUrl": "",
     "repositoryTopics": []
   },
@@ -318,26 +207,6 @@
     "updatedAt": "2026-01-19T14:22:16Z",
     "primaryLanguage": "Python",
     "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "ssot-dashboard",
-    "description": "SSOT Dashboard - Document Management System",
-    "stargazerCount": 0,
-    "url": "https://github.com/aliuyar1234/ssot-dashboard",
-    "updatedAt": "2026-01-14T14:57:41Z",
-    "primaryLanguage": "Python",
-    "homepageUrl": "",
-    "repositoryTopics": []
-  },
-  {
-    "name": "claude-code-skill-factory",
-    "description": "Claude Code Skill Factory — A powerful open-source toolkit for building and deploying production-ready Claude Skills, Code Agents, custom Slash Commands, and LLM Prompts at scale. Easily generate structured skill templates, automate workflow integration, and accelerate AI agent development with a clean, developer-friendly setup.",
-    "stargazerCount": 0,
-    "url": "https://github.com/aliuyar1234/claude-code-skill-factory",
-    "updatedAt": "2025-12-09T17:57:22Z",
-    "primaryLanguage": "Python",
-    "homepageUrl": "https://medium.com/@alirezarezvani/the-claude-skills-factory-how-you-can-generate-production-ready-ai-tools-in-15-minutes-eb0b86087f31?sk=4c0f7e762b9d7caf49d4234a978f3b0a",
     "repositoryTopics": []
   }
 ]

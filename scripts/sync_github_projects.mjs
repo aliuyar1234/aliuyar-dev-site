@@ -5,6 +5,20 @@ import { dirname, resolve } from "node:path";
 
 const outputPath = resolve("src/content/projects.json");
 const owner = "aliuyar1234";
+const excludedRepos = new Set([
+  "cyclelens-ssot",
+  "claude-code-skill-factory",
+  "ssot-dashboard",
+  "DealGuard",
+  "Axiom",
+  "OrderFlow",
+  "datatrust",
+  "datev-lint",
+  "austrian-business-infrastructure",
+  "foerderungsradar",
+  "Foundry",
+  "PropertyRAG"
+]);
 
 function runGh() {
   const cmd = [
@@ -24,6 +38,7 @@ function normalize(repos) {
     .filter((repo) => !repo.isFork)
     .filter((repo) => repo.isPrivate !== true)
     .filter((repo) => (repo.diskUsage || 0) > 0)
+    .filter((repo) => !excludedRepos.has(repo.name))
     .map((repo) => ({
       name: repo.name,
       description: repo.description || "",
