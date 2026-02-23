@@ -31,7 +31,7 @@
   },
   {
     "name": "retokenization-invariance-atlas",
-    "description": "",
+    "description": "Audits whether semantics-preserving prompt reformatting changes LLM answers through deterministic retokenization tests.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
     "updatedAt": "2026-02-18T15:34:24Z",
@@ -181,7 +181,7 @@
   },
   {
     "name": "cis-technical-report",
-    "description": "",
+    "description": "Documents the CIS reliability methodology, evaluation criteria, and implementation guidance for production AI systems.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cis-technical-report",
     "updatedAt": "2026-02-23T19:21:44Z",
@@ -191,7 +191,7 @@
   },
   {
     "name": "cachemedicpp-research",
-    "description": "",
+    "description": "Studies reproducible KV-cache failure modes and stabilization strategies for more reliable LLM inference.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cachemedicpp-research",
     "updatedAt": "2026-02-17T10:44:33Z",
