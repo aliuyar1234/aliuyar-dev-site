@@ -6,7 +6,8 @@
   "description": "Minimal personal site for Ali Uyar built with Astro + Tailwind",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "check:copy": "node scripts/check_placeholder_copy.mjs",
+    "build": "npm run check:copy && astro build",
     "preview": "astro preview",
     "sync:projects": "node scripts/sync_github_projects.mjs",
     "sync:research-pdfs": "node scripts/sync_research_pdfs.mjs"

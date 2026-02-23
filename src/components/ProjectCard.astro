@@ -27,7 +27,7 @@ const updated = new Date(project.updatedAt).toLocaleDateString("en-US", {
     </h3>
   </div>
 
-  <p class="mt-3 text-sm leading-relaxed text-[rgb(var(--muted))]">{project.description || "Project details available in repository."}</p>
+  {project.description && <p class="mt-3 text-sm leading-relaxed text-[rgb(var(--muted))]">{project.description}</p>}
 
   <div class="mt-4 flex flex-wrap gap-2">
     {project.primaryLanguage && (
