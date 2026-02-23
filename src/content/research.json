@@ -1,0 +1,135 @@
+[
+  {
+    "title": "CertiPatch: Specification Repair for Frozen Language Models with Replayable Empirical Certificates",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18541322",
+    "abstract": "Train-certify-verify pipeline with counterexample-guided constrained repair and reproducibility gates for fail-closed evidence in production sign-off.",
+    "whyItMatters": "Turns model repair into a verifiable workflow teams can trust during production sign-off.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18541322",
+    "pdfUrl": "/papers/certipatch-specification-repair-for-frozen-language-models-with-replayable-empirical-certificates.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/certipatch",
+    "tags": [
+      "llm-reliability",
+      "reproducibility",
+      "certification"
+    ]
+  },
+  {
+    "title": "AvalancheLLM: Token-Layer Activation Event Cascades in LLMs under Gain Scaling",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18435925",
+    "abstract": "Rate-matched diagnostics with strong controls and deterministic artifact packaging to detect instability under gain and scaling changes.",
+    "whyItMatters": "Helps teams detect brittle model behavior before it becomes a production incident.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18435925",
+    "pdfUrl": "/papers/avalanchellm-token-layer-activation-event-cascades-in-llms-under-gain-scaling.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/AvalancheLLM",
+    "tags": [
+      "mechanistic-analysis",
+      "llm",
+      "stability"
+    ]
+  },
+  {
+    "title": "RIA: Retokenization Invariance Atlas",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18682875",
+    "abstract": "Deterministic audits for semantics-preserving formatting effects in LLM QA with no-truncation and semantics gates.",
+    "whyItMatters": "Provides auditable reliability evidence when prompt formatting changes could alter outcomes.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18682875",
+    "pdfUrl": "/papers/ria-retokenization-invariance-atlas.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
+    "tags": [
+      "tokenization",
+      "evaluation",
+      "auditability"
+    ]
+  },
+  {
+    "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18330420",
+    "abstract": "Claim auditing with non-identifiability certificates to provide verifiable interpretability evidence and reduce overclaiming.",
+    "whyItMatters": "Reduces interpretability overclaims by requiring evidence that can be independently checked.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18330420",
+    "pdfUrl": "/papers/scrubid-identifiability-aware-auditing-for-mechanistic-interpretability.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/ScrubID",
+    "tags": [
+      "interpretability",
+      "auditing",
+      "safety"
+    ]
+  },
+  {
+    "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18669268",
+    "abstract": "Deterministic KV-cache corruption protocols and distillation-driven repair operators with seed/holdout replication and bootstrap confidence intervals.",
+    "whyItMatters": "Improves serving stability by making KV-cache failures reproducible, diagnosable, and repairable.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18669268",
+    "pdfUrl": "/papers/cachemedic-robust-kv-cache-stabilization-via-self-distillation.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/cachemedicpp-research",
+    "tags": [
+      "kv-cache",
+      "distillation",
+      "robustness"
+    ]
+  },
+  {
+    "title": "CIS Technical Report",
+    "venue": "Technical Report",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18234776",
+    "abstract": "Technical report documenting the CIS reliability approach, evaluation criteria, and implementation notes for production-grade AI systems.",
+    "whyItMatters": "Translates deterministic reliability design into a practical report teams can adopt in real delivery environments.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18234776",
+    "pdfUrl": "/papers/cis-technical-report.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/cis-technical-report",
+    "tags": [
+      "technical-report",
+      "reliability",
+      "systems"
+    ]
+  },
+  {
+    "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18634022",
+    "abstract": "Compute-matched discover-then-distill pipeline with ablation suite and retention-transfer diagnostics for clear separation of adaptation and consolidation effects.",
+    "whyItMatters": "Clarifies how to separate short-term adaptation from durable model improvement in production tuning loops.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18634022",
+    "pdfUrl": "/papers/discover-then-distill-separating-test-time-adaptation-from-self-distillation-consolidation.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/discover-then-distill-paper",
+    "tags": [
+      "test-time-adaptation",
+      "distillation",
+      "evaluation"
+    ]
+  }
+]

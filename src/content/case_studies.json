@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Policy-Enforced Context Runtime",
+    "projectName": "PECR",
+    "projectUrl": "https://github.com/aliuyar1234/PECR",
+    "problem": "Teams needed reliable, governed context handling for AI workflows in sensitive environments.",
+    "build": "Designed a deterministic runtime with policy/time constraints, typed operator controls, and immutable evidence units.",
+    "result": "Enabled auditable decision trails and safer production rollouts with clearer go/no-go signals."
+  },
+  {
+    "title": "SchemaPilot",
+    "projectName": "SchemaPilot",
+    "projectUrl": "https://github.com/aliuyar1234/SchemaPilot",
+    "problem": "Teams struggled to keep evolving schemas consistent across tools, services, and delivery workflows.",
+    "build": "Built a schema-first workflow for aligning definitions, validation, and implementation touchpoints.",
+    "result": "Reduced schema drift and made contract changes easier to coordinate across engineering systems."
+  },
+  {
+    "title": "ContextGraph",
+    "projectName": "ContextGraph",
+    "projectUrl": "https://github.com/aliuyar1234/ContextGraph",
+    "problem": "Context dependencies in AI workflows were hard to trace, explain, and debug at scale.",
+    "build": "Created a graph-oriented context model to map relationships, surface dependencies, and improve observability.",
+    "result": "Improved debugging speed and decision transparency by making context flow explicit and inspectable."
+  }
+]

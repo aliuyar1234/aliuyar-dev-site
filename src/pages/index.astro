@@ -1,0 +1,140 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import projects from "../content/projects.json";
+import featured from "../content/featured.json";
+import profile from "../content/profile.json";
+import research from "../content/research.json";
+import caseStudies from "../content/case_studies.json";
+import { filterProductProjects } from "../utils/researchSplit";
+
+const featuredNames = new Set(featured.map((item) => item.name));
+const nonResearchProjects = filterProductProjects(projects, research);
+const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.name)).slice(0, 6);
+const fallbackProjects = nonResearchProjects.slice(0, 6);
+const cards = featuredProjects.length > 0 ? featuredProjects : fallbackProjects;
+const topResearch = research.slice(0, 3);
+---
+
+<BaseLayout title="Ali Uyar | AI Systems & Product" canonicalPath="/">
+  <SiteHeader />
+
+  <main id="main" class="page-wrap">
+    <section id="work" class="reveal pt-16 md:pt-24">
+      <p class="text-sm tracking-tight text-[rgb(var(--muted))]">Ali Uyar · AI Systems / Technical Product</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-7xl">AI Systems & Product, built for reliability.</h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-[rgb(var(--muted))] md:text-lg">I help teams move from prototypes to dependable AI products with clear evidence, deterministic execution where it matters, and architecture decisions that age well.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/projects" class="btn-primary">View Projects</a>
+        <a href="/research" class="btn-secondary">View Research</a>
+        <a href="/contact" class="btn-secondary">Discuss a Sprint</a>
+      </div>
+    </section>
+
+    <section class="reveal mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Deterministic workflows where reliability matters</div>
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Auditability and traceability by design</div>
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Privacy-first architecture decisions</div>
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Practical evaluation harnesses and quality gates</div>
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Product outcomes over model hype</div>
+      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Clear documentation for handover and scale</div>
+    </section>
+
+    <section class="mt-20">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Featured Projects</h2>
+        <a href="/projects" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">See all</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        {cards.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section class="mt-20 section-shell">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Selected Outcomes</h2>
+        <a href="/projects" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">View work</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {caseStudies.map((item) => (
+          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+            <h3 class="text-lg font-semibold tracking-tight">{item.title}</h3>
+            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">Problem</p>
+            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.problem}</p>
+            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">What I Built</p>
+            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.build}</p>
+            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">Result</p>
+            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.result}</p>
+            <a href={item.projectUrl} target="_blank" rel="noreferrer" class="focus-ring mt-4 inline-flex text-sm font-medium text-accent-500 hover:underline">
+              {item.projectName}
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-20 section-shell">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Research</h2>
+        <a href="/research" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">See all</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {topResearch.map((paper) => {
+          const showVenue = paper.venue && !/^technical paper/i.test(paper.venue);
+          return (
+          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+            <p class="text-xs text-[rgb(var(--muted))]">{showVenue ? `${paper.venue} · ${paper.year}` : paper.year}</p>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight">{paper.title}</h3>
+            <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.whyItMatters || paper.abstract}</p>
+          </article>
+        )})}
+      </div>
+    </section>
+
+    <section class="mt-20 section-shell">
+      <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Services</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+          <h3 class="text-lg font-semibold tracking-tight">Assessment Sprint</h3>
+          <p class="mt-2 text-sm text-[rgb(var(--muted))]">1-2 weeks. Audit architecture, risk, and readiness.</p>
+        </article>
+        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+          <h3 class="text-lg font-semibold tracking-tight">Build Sprint</h3>
+          <p class="mt-2 text-sm text-[rgb(var(--muted))]">3-6 weeks. Production-ready delivery with measurable quality gates.</p>
+        </article>
+        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+          <h3 class="text-lg font-semibold tracking-tight">Advisor</h3>
+          <p class="mt-2 text-sm text-[rgb(var(--muted))]">Monthly strategic and technical guidance for leadership teams.</p>
+        </article>
+      </div>
+      <a href="/services" class="focus-ring mt-6 inline-flex text-sm font-medium text-accent-500 hover:underline">Explore services</a>
+    </section>
+
+    <section class="mt-20 grid gap-6 md:grid-cols-5">
+      <div class="md:col-span-3">
+        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">About</h2>
+        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-[rgb(var(--muted))]">
+          <li>Experienced in AI systems, technical product strategy, and delivery alignment.</li>
+          <li>Focused on measurable impact: lead time, quality, reliability, and user trust.</li>
+          <li>Comfortable bridging engineering depth and executive-level communication.</li>
+          <li>Available for selective consulting engagements across Europe and remote.</li>
+        </ul>
+      </div>
+      <aside class="card md:col-span-2 p-6">
+        <h3 class="text-xl font-semibold tracking-tight">Let’s build something dependable.</h3>
+        <p class="mt-3 text-sm text-[rgb(var(--muted))]">Best for teams that need to ship AI responsibly without losing velocity.</p>
+        <a href="/contact" class="btn-primary mt-5">Contact Ali</a>
+      </aside>
+    </section>
+
+    <section class="mt-20 mb-6 section-shell text-center">
+      <p class="text-sm text-[rgb(var(--muted))]">Need a concise profile for hiring workflows?</p>
+      <a href="/cv" class="focus-ring mt-3 inline-block text-2xl font-semibold tracking-tight hover:underline">Download CV</a>
+      <p class="mt-2 text-sm text-[rgb(var(--muted))]">Direct domain: {profile.brand}</p>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>

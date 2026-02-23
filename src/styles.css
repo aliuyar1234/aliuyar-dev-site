@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 245 247;
+  --fg: 23 23 27;
+  --muted: 99 99 109;
+  --card: 255 255 255;
+  --border: 223 223 230;
+}
+
+.dark {
+  --bg: 7 8 10;
+  --fg: 245 245 247;
+  --muted: 159 159 169;
+  --card: 16 17 20;
+  --border: 49 51 57;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans antialiased;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+}
+
+::selection {
+  background: rgba(0, 113, 227, 0.2);
+}
+
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-surface-950;
+}
+
+.page-wrap {
+  @apply mx-auto w-full max-w-5xl px-5;
+}
+
+.card {
+  @apply rounded-[1.25rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.94] shadow-soft transition-all duration-300 dark:shadow-softDark;
+}
+
+.section-shell {
+  @apply rounded-[1.5rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.75] p-6 md:p-8;
+}
+
+.btn-primary {
+  @apply focus-ring inline-flex items-center rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-600;
+}
+
+.btn-secondary {
+  @apply focus-ring inline-flex items-center rounded-full border border-[rgb(var(--border))] px-5 py-2.5 text-sm font-semibold text-[rgb(var(--fg))] transition-colors hover:bg-surface-100 dark:hover:bg-surface-900;
+}
+
+.reveal {
+  animation: reveal 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    animation: none;
+  }
+}

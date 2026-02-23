@@ -1,0 +1,14 @@
+[
+  {
+    "name": "example-ai-eval-harness",
+    "reason": "Evidence-based eval and reliability tooling"
+  },
+  {
+    "name": "example-private-rag-pipeline",
+    "reason": "Privacy-first retrieval pipeline"
+  },
+  {
+    "name": "example-agent-observability",
+    "reason": "Auditability and tracing for AI agents"
+  }
+]

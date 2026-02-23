@@ -1,0 +1,343 @@
+[
+  {
+    "name": "DecisionGraph",
+    "description": "Event-sourced decision audit trail for AI agents",
+    "stargazerCount": 2,
+    "url": "https://github.com/aliuyar1234/DecisionGraph",
+    "updatedAt": "2026-01-30T17:38:14Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "SchemaPilot",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/SchemaPilot",
+    "updatedAt": "2026-02-19T03:07:18Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "PECR",
+    "description": "PECR target implementation repo",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/PECR",
+    "updatedAt": "2026-02-19T00:22:42Z",
+    "primaryLanguage": "Rust",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "retokenization-invariance-atlas",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
+    "updatedAt": "2026-02-18T15:34:24Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "cyclelens-ssot",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/cyclelens-ssot",
+    "updatedAt": "2026-02-17T11:42:55Z",
+    "primaryLanguage": "PowerShell",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "ScrubID",
+    "description": "ScrubID: identifiability-aware auditing for mechanistic interpretability (artifact pack v1.0.3)",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/ScrubID",
+    "updatedAt": "2026-02-17T11:42:52Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "certipatch",
+    "description": "Reproducible framework for specification repair of frozen language models with replayable empirical certificates.",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/certipatch",
+    "updatedAt": "2026-02-17T11:42:15Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "https://doi.org/10.5281/zenodo.18541322",
+    "repositoryTopics": []
+  },
+  {
+    "name": "discover-then-distill-paper",
+    "description": "Compute-matched study of test-time discovery and self-distillation consolidation for language models",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/discover-then-distill-paper",
+    "updatedAt": "2026-02-13T20:03:17Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "cost-watchdog",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/cost-watchdog",
+    "updatedAt": "2026-02-13T13:25:51Z",
+    "primaryLanguage": "TypeScript",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "VeilPack",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/VeilPack",
+    "updatedAt": "2026-02-10T09:36:50Z",
+    "primaryLanguage": "Rust",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "ContextGraph",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/ContextGraph",
+    "updatedAt": "2026-02-08T09:43:40Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "incitape",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/incitape",
+    "updatedAt": "2026-02-04T16:57:25Z",
+    "primaryLanguage": "Rust",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "AvalancheLLM",
+    "description": "Token–Layer activation event cascades in LLMs (SSOT artifact pack)",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/AvalancheLLM",
+    "updatedAt": "2026-01-30T20:14:47Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "Veil",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/Veil",
+    "updatedAt": "2026-01-29T17:34:47Z",
+    "primaryLanguage": "Rust",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "PropertyRAG",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/PropertyRAG",
+    "updatedAt": "2026-01-12T14:24:37Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "foerderungsradar",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/foerderungsradar",
+    "updatedAt": "2026-01-12T14:24:35Z",
+    "primaryLanguage": "TypeScript",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "Foundry",
+    "description": "Enterprise AI-First Operations Platform",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/Foundry",
+    "updatedAt": "2026-01-12T14:24:33Z",
+    "primaryLanguage": "TypeScript",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "austrian-business-infrastructure",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/austrian-business-infrastructure",
+    "updatedAt": "2026-01-12T14:24:32Z",
+    "primaryLanguage": "Go",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "egress-lockfile",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/egress-lockfile",
+    "updatedAt": "2026-01-12T14:24:29Z",
+    "primaryLanguage": "Rust",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "datatrust",
+    "description": "LLM-powered data integration via MCP. Connect Excel, Odoo, HubSpot, PostgreSQL. Trust Layer for consistency, audit, reconciliation.",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/datatrust",
+    "updatedAt": "2026-01-12T14:24:28Z",
+    "primaryLanguage": "TypeScript",
+    "homepageUrl": "",
+    "repositoryTopics": [
+      "audit-trail",
+      "data-integration",
+      "enterprise",
+      "hubspot",
+      "llm",
+      "mcp",
+      "odoo",
+      "postgresql",
+      "reconciliation",
+      "typescript"
+    ]
+  },
+  {
+    "name": "datev-lint",
+    "description": "DATEV export file validator and linter for German accounting",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/datev-lint",
+    "updatedAt": "2026-01-12T14:24:27Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "AgentGate",
+    "description": "Policy- and Approval-Gateway for AI Agents in Enterprise environments",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/AgentGate",
+    "updatedAt": "2026-01-12T14:24:26Z",
+    "primaryLanguage": "Go",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "AnnexOps",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/AnnexOps",
+    "updatedAt": "2026-01-12T14:24:23Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "flakeguard",
+    "description": "CI Flake Detection System - Automatically detect flaky tests from GitHub Actions reruns",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/flakeguard",
+    "updatedAt": "2026-01-12T14:24:23Z",
+    "primaryLanguage": "Go",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "OrderFlow",
+    "description": "B2B order automation platform for DACH wholesale/distribution. Automates PDF/Excel/CSV order intake, SKU matching, validation, and ERP push.",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/OrderFlow",
+    "updatedAt": "2026-01-12T14:24:19Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "Axiom",
+    "description": "Axiom programming language specification",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/Axiom",
+    "updatedAt": "2026-01-12T14:24:17Z",
+    "primaryLanguage": "",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "BatteryPassportCompiler",
+    "description": "Deterministic compiler for Battery Passports with cryptographic proofs, ED25519 signatures, and audit replay",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/BatteryPassportCompiler",
+    "updatedAt": "2026-01-12T14:24:16Z",
+    "primaryLanguage": "Haskell",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "DealGuard",
+    "description": "",
+    "stargazerCount": 1,
+    "url": "https://github.com/aliuyar1234/DealGuard",
+    "updatedAt": "2025-12-24T22:58:48Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "cis-technical-report",
+    "description": "",
+    "stargazerCount": 0,
+    "url": "https://github.com/aliuyar1234/cis-technical-report",
+    "updatedAt": "2026-02-23T19:21:44Z",
+    "primaryLanguage": "",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "cachemedicpp-research",
+    "description": "",
+    "stargazerCount": 0,
+    "url": "https://github.com/aliuyar1234/cachemedicpp-research",
+    "updatedAt": "2026-02-17T10:44:33Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "intake-routing-engine",
+    "description": "",
+    "stargazerCount": 0,
+    "url": "https://github.com/aliuyar1234/intake-routing-engine",
+    "updatedAt": "2026-01-19T14:22:16Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "ssot-dashboard",
+    "description": "SSOT Dashboard - Document Management System",
+    "stargazerCount": 0,
+    "url": "https://github.com/aliuyar1234/ssot-dashboard",
+    "updatedAt": "2026-01-14T14:57:41Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "",
+    "repositoryTopics": []
+  },
+  {
+    "name": "claude-code-skill-factory",
+    "description": "Claude Code Skill Factory — A powerful open-source toolkit for building and deploying production-ready Claude Skills, Code Agents, custom Slash Commands, and LLM Prompts at scale. Easily generate structured skill templates, automate workflow integration, and accelerate AI agent development with a clean, developer-friendly setup.",
+    "stargazerCount": 0,
+    "url": "https://github.com/aliuyar1234/claude-code-skill-factory",
+    "updatedAt": "2025-12-09T17:57:22Z",
+    "primaryLanguage": "Python",
+    "homepageUrl": "https://medium.com/@alirezarezvani/the-claude-skills-factory-how-you-can-generate-production-ready-ai-tools-in-15-minutes-eb0b86087f31?sk=4c0f7e762b9d7caf49d4234a978f3b0a",
+    "repositoryTopics": []
+  }
+]

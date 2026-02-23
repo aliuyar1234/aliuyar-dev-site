@@ -1,0 +1,108 @@
+ALI UYAR
+AI Systems Engineer | TPM | Solution Architect
+♂¶ap-¶arker-altWien, Österreich ♂phone-alt+43 660 738 9740 /githubgithub.com/aliuyar1234
+/envel⌢peali.uyar1@hotmail.com /linkedin-inlinkedin.com/in/ali-uyar1 /flagAT (EU)
+Proﬁl: AI Systems Engineer & TPM mit Fokus auf verlässliche LLM-Systeme in Produktion
+(Agentic RAG / Knowledge Grounding, Tool-Orchestration, strukturierte Outputs, Evaluation
+& Audit Trails) sowie Enterprise Delivery (SSOT, Daten-/Integrationsarchitektur,
+ERP/Datenplattformen).
+Stil: hands-on (Rust/Python/SQL) + Architektur + E2E Delivery (Discovery →Go-Live).
+Impact (Auswahl): –90% QA/Audit-Fehler• –60% Reporting-/Entscheidungszyklus •
++340% Umsatz in 90 Tagen • 24+ Projektmandate
+/cogsLLM Systems /codeEngineering /char◎-lineDelivery
+• Agentic RAG / Grounding
+• Tool-Orchestration & Workﬂows
+• Eval, Monitoring, Auditability
+• Rust • Python • SQL
+• Service APIs (REST) • Data Pipelines
+• PostgreSQL • Redis • SQLite
+• Program Ownership E2E
+• Stakeholder/Vendor Mgmt
+• Governance/SSOT & Go-Live
+KERNKOMPETENZEN
+/chevron-righ◎Production LLM Systems (RAG/Agents):Mehrstuﬁges Retrieval & Tool-Use, strukturierte Outputs, Fail-Closed/Fallback-Design,
+Logging & revisionsfähige Run Records (Audit Trail).
+/chevron-righ◎Reliability & Evaluation: reproduzierbare Evals, Regression-/Drift-Gates, Quality & Safety Checks, deterministische Artefakte
+(Evidence Packs) für Abnahme/Compliance.
+/chevron-righ◎Data/Integration Architecture: SSOT/Information Standards, Datenmodelle, Migration, Schnittstellen-Design (REST),
+Datenqualität, KPI/Reporting und Decision Support.
+/chevron-righ◎End-to-End Delivery: Discovery/Requirements, Architekturentscheidungen, Release-/Risikomanagement, Abnahmen,
+Hypercare; Steuerung bis C-Level inkl. Vendor Management.
+BERUFSERFAHRUNG
+Immovate Realita GmbH Wien
+Asset Manager | AI & Data Strategy Lead (befristet) • 06/2025 – 12/2025
+/chevron-righ◎Agentic RAG Decision Support aufgebaut & ausgerollt: mehrstuﬁges Retrieval (Grounding), Tool-Orchestration & Self-Checks
+für belastbare Risikoanalysen/Empfehlungen – –60% Cycle-Time (Reporting/Entscheidung).
+/chevron-righ◎LLM-Dokumentenautomation produktiv ausgerollt: Klassiﬁkation/Benennung/Routing mit Conﬁdence-Logging, Audit Trail,
+Fallback – –90% Fehlerquote (QA/Audit) und ∼40% weniger Suchaufwand ( 25+ Nutzer).
+/chevron-righ◎AI- & Digitalisierungsinitiative (Portfolio € 350 Mio.) geführt: Roadmap/Value-Priorisierung, SSOT-Standards, Steering mit
+Geschäftsführung (Risiko, Abnahme, Takt).
+/chevron-righ◎Vendor Delivery geführt (Budget/Scope/Timeline/Qualität): Speziﬁkationen, Abnahmekriterien, Release-Planung; Reduktion
+von Schatten-IT durch konsolidierte Daten- und Prozessﬂüsse.
+Datenpol GmbH Wien
+Technical Program Manager & Solution Architect 08/2023 – 10/2024
+/chevron-righ◎ERP-Programme (Odoo) End-to-End geliefert (Team 5) für KMU bis Enterprise ( 500+ MA): Discovery/Requirements →
+Go-Live & Hypercare.
+/chevron-righ◎Target & Integration Architecture: Datenmodelle, Migration, Integrationen, REST-APIs; klare Schnittstellenverträge +
+Abnahme/Test.
+/chevron-righ◎Parallel Streams skaliert: Scope, Risiko/Release, standardisierte Abnahmen, Übergaben an Betrieb/Support.
+/chevron-righ◎Ergebnisse: 6+ Go-Lives mit ∼40% Prozessverbesserung; ROI-Break-even i.d.R. <6 Monate.
+Liliputbahn im Prater GmbH Wien
+Business Development Manager | Operations Lead (befristet) • 03/2023 – 06/2023
+/chevron-righ◎Multi-Site Operations: 3 Betriebe (stellv. Leitung weiterer 3), KPI/Reporting neu; 15+ Mitarbeitende standortübergreifend.
+/chevron-righ◎B2B-Expansion E2E: Partnerkanal aufgebaut (Angebote, Pricing/Yield, Akquise) und 11 Corporate-Partnerschaften
+geschlossen.
+/chevron-righ◎Umsatzturnaround: +340% in 90 Tagen (1 Betrieb) via Pricing/Yield; interne Software für Sonderfahrten/Backoﬃce
+implementiert.
+/chevron-righ◎ERP-Readiness: Prozessaufnahme, Soll-Prozesse, Daten-/Stammdatenanforderungen.
+Digital Automation Engineering Wien
+Principal TPM & Solution Architect (AI/Data) Honorar (Projektmandate) • 2021 – heute
+/chevron-righ◎24+ Projektmandate (15+ Auftraggeber) als Single Point of Accountability von Discovery bis Go-Live gesteuert: Requirements,
+Architektur, Delivery/Release, Abnahme, Hypercare.
+/chevron-righ◎Multi-System-Integrationen (typ. 3–5 Systeme/Mandat): ERP, Datenplattformen & APIs; Schnittstellen-Design, Datenqualität
+sowie Test-/Abnahmeprozesse verantwortet.
+/chevron-righ◎LLM-Automation (RAG/Agents) & Auditability by Design: Dokumenten-/Datenworkﬂows mit Knowledge Grounding
++ Tool-Orchestration (Alerts, Dashboards) – 50–80% weniger manueller Aufwand; deterministische Evidence Packs &
+reproduzierbare RCA/Regression-Gates.
+WEITERE STATIONEN (AUSW AHL)
+/chevron-righ◎((schwingung)) multimedia solutions GmbH – IoT Infrastructure Engineer (befristet, 2022)
+/chevron-righ◎Flügel & Klement GmbH – Technical Project Manager (befristet, 2022)
+TECHNISCHE PROJEKT-HIGHLIGHTS (OPEN SOURCE)
+PECR - Policy-Enforced Context Runtime : Governance plane für Context (policy/time), typed Operator Allowlist, immutable
+Evidence Units + Claim-to-Evidence Veriﬁcation, deterministische Terminal Modes (fail-closed). Tech:Rust, OPA, PostgreSQL
+Open Context Graph — Privacy-ﬁrst AI Process Intelligence (self-hosted): Governance/SSOT, Prozessinferenz,
+Next-Step-Scoring. Tech:FastAPI, Next.js, PostgreSQL, Redis
+IncidentTape— Reproduzierbare Incident-Artefakte für RCA & Regression-Gating (deterministisch, oﬄine-ﬁrst, fail-closed) inkl.
+Redaction + Secret/PII-Leakage-Scan. Tech:Rust
+VeilPack — Oﬄine-ﬁrst Privacy-Gate für Datenpipelines: policy-basierte Erkennung/Redaktion sensibler Inhalte,
+revisionssichere Evidence-Packs. Tech:Rust, SQLite, CLI
+DecisionGraph — Compliance-grade Agent Governance: Event-Sourced Audit Trail & immutable Run Records →
+deterministische Reproduktion für Audits/Abnahme. Tech:Python, SQLite/PostgreSQL
+FORSCHUNGSARBEITEN & PUBLIKATIONEN (LLM RELIABILITY & REPRODUCIBILITY)
+DOI-archivierte Technical Papers (Zenodo) + reproduzierbare Artifact Packs: deterministische Runs (manifest-veriﬁziert), kontrollierte
+Evaluation (Null-/Kontrolltests, compute-matched Ablations) und auditierbare Claims.
+CertiPatch: Speciﬁcation Repair for Frozen Language Models with Replayable Empirical Certiﬁcates. DOI • Repo
+Train–certify–verify pipeline • counterexample-guided constrained repair • reproducibility gates • Production: fail-closed Evidence für
+Abnahme/Audit.
+AvalancheLLM: Token–Layer Activation Event Cascades in LLMs under Gain Scaling. DOI • Repo
+Rate-matched metrics (branching, Δ𝑏, 𝜒) • starke Nullkontrollen • deterministischer Artifact Pack • Production: Diagnostik für Instabilitäten
+unter Gain/Scaling.
+RIA: Retokenization Invariance Atlas. DOI • Repo
+Deterministic audit for semantics-preserving formatting eﬀects in LLM QA • no-truncation/semantics gates, precommitted analysis,
+reproducible artifact pack • Production: auditable reliability evidence for evaluation sign-oﬀ.
+ScrubID: Identiﬁability-Aware Auditing for Mechanistic Interpretability. DOI • Repo
+Claim auditing mit non-identiﬁability certiﬁcates (RR/SSS/CC) • Production: überprüfbare Interpretability-Evidence statt Overclaiming.
+CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation. DOI • Repo
+Deterministische KV-Cache-Korruptionsprotokolle • distillation-getriebene Reparaturoperatoren • seed/holdout replication + bootstrap CIs •
+manifest-veriﬁzierter Artifact Pack • Production: reproduzierbare Debug/Repair-Pipeline für Serving-Stabilität.
+Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation. DOI • Repo
+Compute-matched discover→distill pipeline • ablation suite • retention/transfer diagnostics • Production: klare Trennung von Test-Time
+Adaptation vs Konsolidierung.
+Engineering Takeaways: Fail-Closed Guardrails • Deterministic Evidence Packs • Control-First Evaluation
+AUSBILDUNG & ZERTIFIZIERUNGEN
+FH Technikum Wien – Wirtschaftsingenieurwesen (2. Semester abgeschlossen, Ø 2,0) 2021
+HTL Wien 10 – Matura Mechatronik: Automatisierung, Informatik, Embedded Systems 2018
+Odoo 17 Functional Certiﬁcation (07/2024) • Six Sigma Yellow Belt • Google Certs (07/2023): Project Management, Business Intelligence,
+Data, Cybersecurity
+SPRACHEN
+Deutsch (nativ) • Englisch (C1) • Türkisch (B1)

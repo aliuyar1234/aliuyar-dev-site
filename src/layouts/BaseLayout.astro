@@ -1,0 +1,88 @@
+﻿---
+import "../styles.css";
+import profile from "../content/profile.json";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description = profile.summary,
+  canonicalPath = "/",
+  jsonLd = []
+} = Astro.props as Props;
+
+const canonicalUrl = new URL(canonicalPath, Astro.site).toString();
+const ogImage = new URL("/og-default.svg", Astro.site).toString();
+const socialProfiles = [profile.github, profile.linkedin]
+  .filter(Boolean)
+  .filter((url) => !String(url).includes("your-linkedin-handle"));
+
+const baseJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: Astro.site?.toString() || canonicalUrl,
+    jobTitle: "AI Systems Engineer",
+    knowsAbout: ["AI Systems", "Technical Product", "LLM Reliability", "Agentic Systems"],
+    sameAs: socialProfiles
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: profile.brand,
+    url: Astro.site?.toString() || canonicalUrl
+  }
+];
+
+const pageJsonLd = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const allJsonLd = [...baseJsonLd, ...pageJsonLd].filter(Boolean);
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#0071e3" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={profile.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    {allJsonLd.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
+
+    <script is:inline>
+      (() => {
+        const key = "theme";
+        const stored = localStorage.getItem(key);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body class="min-h-full">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus-ring rounded-md border border-[rgb(var(--border))] bg-[rgb(var(--card))] px-3 py-2 text-sm text-[rgb(var(--fg))]">Skip to content</a>
+    <slot />
+  </body>
+</html>

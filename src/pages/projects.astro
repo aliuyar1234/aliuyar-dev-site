@@ -1,0 +1,77 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import projects from "../content/projects.json";
+import research from "../content/research.json";
+import { filterProductProjects } from "../utils/researchSplit";
+
+const productProjects = filterProductProjects(projects, research);
+const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filter(Boolean))].sort();
+---
+
+<BaseLayout title="Projects | Ali Uyar" canonicalPath="/projects">
+  <SiteHeader />
+  <main id="main" class="page-wrap py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>
+    <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[rgb(var(--muted))]">Product and engineering projects only. Research work is now separated on the Research page.</p>
+    <a href="/research" class="focus-ring mt-3 inline-flex text-sm font-medium text-accent-500 hover:underline">Go to Research</a>
+
+    <section class="section-shell mt-8 grid gap-3 md:grid-cols-3">
+      <label class="text-sm md:col-span-2">
+        <span class="mb-1 block text-[rgb(var(--muted))]">Search</span>
+        <input id="project-search" type="search" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5" placeholder="Search by name or description" />
+      </label>
+      <label class="text-sm">
+        <span class="mb-1 block text-[rgb(var(--muted))]">Language</span>
+        <select id="project-language" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5">
+          <option value="all">All</option>
+          {languages.map((lang) => <option value={lang}>{lang}</option>)}
+        </select>
+      </label>
+    </section>
+
+    <div id="project-grid" class="mt-8 grid gap-4 md:grid-cols-2">
+      {productProjects.map((project) => (
+        <div class="project-item" data-project={JSON.stringify(project)}>
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+
+    <p id="project-empty" class="mt-6 hidden text-sm text-[rgb(var(--muted))]">No projects match your filters.</p>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const search = document.getElementById("project-search");
+    const language = document.getElementById("project-language");
+    const nodes = [...document.querySelectorAll(".project-item")];
+    const empty = document.getElementById("project-empty");
+
+    const run = () => {
+      const q = (search.value || "").toLowerCase().trim();
+      const lang = language.value;
+      let visible = 0;
+
+      for (const node of nodes) {
+        const project = JSON.parse(node.dataset.project || "{}");
+        const haystack = [project.name, project.description].join(" ").toLowerCase();
+        const languageMatch = lang === "all" || project.primaryLanguage === lang;
+        const queryMatch = !q || haystack.includes(q);
+
+        const show = languageMatch && queryMatch;
+        node.classList.toggle("hidden", !show);
+        if (show) visible += 1;
+      }
+
+      empty.classList.toggle("hidden", visible > 0);
+    };
+
+    [search, language].forEach((el) => el?.addEventListener("input", run));
+    run();
+  })();
+</script>

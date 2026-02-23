@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout title="Services | Ali Uyar" canonicalPath="/services" description="Consulting packages for AI systems and technical product delivery.">
+  <SiteHeader />
+  <main id="main" class="page-wrap py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Services</h1>
+    <p class="mt-3 max-w-2xl text-sm text-[rgb(var(--muted))]">Structured consulting engagements for teams that need practical AI outcomes with engineering discipline.</p>
+
+    <section class="mt-10 grid gap-4 md:grid-cols-3">
+      <article class="card p-6">
+        <h2 class="text-xl font-semibold tracking-tight">Assessment Sprint</h2>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Typical timeline: 1-2 weeks</p>
+        <h3 class="mt-4 text-sm font-semibold">Deliverables</h3>
+        <ul class="mt-2 space-y-2 text-sm text-[rgb(var(--muted))]">
+          <li>System and product maturity review</li>
+          <li>Risk and reliability map</li>
+          <li>Prioritized implementation roadmap</li>
+        </ul>
+        <h3 class="mt-4 text-sm font-semibold">I need from client</h3>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Architecture access, product goals, and stakeholder alignment.</p>
+      </article>
+
+      <article class="card p-6">
+        <h2 class="text-xl font-semibold tracking-tight">Build Sprint</h2>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Typical timeline: 3-6 weeks</p>
+        <h3 class="mt-4 text-sm font-semibold">Deliverables</h3>
+        <ul class="mt-2 space-y-2 text-sm text-[rgb(var(--muted))]">
+          <li>Production-grade AI workflow implementation</li>
+          <li>Evaluation harness with measurable gates</li>
+          <li>Operational handover documentation</li>
+        </ul>
+        <h3 class="mt-4 text-sm font-semibold">I need from client</h3>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Dedicated point of contact, technical context, and decision turnaround.</p>
+      </article>
+
+      <article class="card p-6">
+        <h2 class="text-xl font-semibold tracking-tight">Advisor</h2>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Typical timeline: Monthly retainer</p>
+        <h3 class="mt-4 text-sm font-semibold">Deliverables</h3>
+        <ul class="mt-2 space-y-2 text-sm text-[rgb(var(--muted))]">
+          <li>Architecture and roadmap reviews</li>
+          <li>Hiring and team capability guidance</li>
+          <li>Leadership-level AI strategy support</li>
+        </ul>
+        <h3 class="mt-4 text-sm font-semibold">I need from client</h3>
+        <p class="mt-2 text-sm text-[rgb(var(--muted))]">Recurring cadence, strategic context, and clear decision owner.</p>
+      </article>
+    </section>
+
+    <section class="section-shell mt-14">
+      <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">Engagement Process</h2>
+      <ol class="mt-4 space-y-3 text-sm text-[rgb(var(--muted))]">
+        <li>1. Discovery call to clarify goals, constraints, and expected evidence.</li>
+        <li>2. Scope note with timeline, deliverables, and success criteria.</li>
+        <li>3. Execution with weekly progress checkpoints.</li>
+        <li>4. Final handover with docs, recommendations, and next-step options.</li>
+      </ol>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

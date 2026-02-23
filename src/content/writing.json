@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Designing Reliable AI Systems",
+    "date": "2026-01-12",
+    "summary": "A framework for turning prototype AI features into production systems with guardrails and observability.",
+    "slug": "reliable-ai-systems"
+  },
+  {
+    "title": "From Model Demo to Product Signal",
+    "date": "2025-11-20",
+    "summary": "How to define evidence and success metrics before shipping ML-powered product features.",
+    "slug": "model-demo-to-product-signal"
+  }
+]

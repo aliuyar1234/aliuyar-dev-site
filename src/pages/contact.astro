@@ -1,0 +1,33 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import profile from "../content/profile.json";
+
+const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your-linkedin-handle"));
+---
+
+<BaseLayout title="Contact | Ali Uyar" canonicalPath="/contact" description="Contact Ali Uyar for consulting, product, and AI systems engagements.">
+  <SiteHeader />
+  <main id="main" class="page-wrap py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Contact</h1>
+    <p class="mt-3 max-w-2xl text-sm text-[rgb(var(--muted))]">For consulting inquiries, hiring conversations, or collaboration opportunities.</p>
+
+    <section class="mt-10 grid gap-4 md:grid-cols-2">
+      <article class="card p-6">
+        <h2 class="text-lg font-semibold tracking-tight">Email</h2>
+        <ul class="mt-3 space-y-2 text-sm text-[rgb(var(--muted))]">
+          {profile.emails.map((email) => <li><a class="focus-ring hover:underline" href={`mailto:${email}`}>{email}</a></li>)}
+        </ul>
+      </article>
+      <article class="card p-6">
+        <h2 class="text-lg font-semibold tracking-tight">Profiles</h2>
+        <ul class="mt-3 space-y-2 text-sm text-[rgb(var(--muted))]">
+          <li><a class="focus-ring hover:underline" href={profile.github} target="_blank" rel="noreferrer">GitHub</a></li>
+          {hasLinkedIn && <li><a class="focus-ring hover:underline" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>}
+        </ul>
+      </article>
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
