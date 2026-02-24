@@ -1,2 +1,3 @@
-Place your final CV file here as public/cv.pdf.
-Recommended original filename: CV_AliUyar.pdf
+Place your CV files in this folder as:
+- CV_AliUyar_English.pdf
+- CV_AliUyar_German.pdf

@@ -76,11 +76,12 @@ Edit `src/content/profile.json` once to update:
 - Email aliases
 - Name/brand text
 
-## CV PDF
+## CV PDFs
 
-- Put your PDF at `public/cv.pdf`
-- Recommended source filename: `CV_AliUyar.pdf`
-- `/cv` page links directly to `/cv.pdf`
+- Put both files in `public/`:
+  - `CV_AliUyar_English.pdf`
+  - `CV_AliUyar_German.pdf`
+- `/cv` page provides separate download links for English and German versions.
 
 ## Cloudflare Pages Deployment
 
