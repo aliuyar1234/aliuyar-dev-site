@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AU favicon">
+  <style>
+    .bg { fill: #0071e3; }
+    .fg { fill: #ffffff; }
+
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #dce8ff; }
+      .fg { fill: #10213f; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14" />
+  <text
+    class="fg"
+    x="50%"
+    y="51%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="-1"
+  >
+    AU
+  </text>
+</svg>

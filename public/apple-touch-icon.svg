@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="AU apple touch icon">
+  <rect width="180" height="180" rx="40" fill="#0071e3" />
+  <text
+    x="50%"
+    y="52%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-size="84"
+    font-weight="700"
+    letter-spacing="-2"
+    fill="#ffffff"
+  >
+    AU
+  </text>
+</svg>
