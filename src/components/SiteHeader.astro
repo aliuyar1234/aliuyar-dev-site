@@ -5,7 +5,7 @@ const links = [
   { href: "/research", label: "Research" },
   { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
-  { href: "/cv", label: "Download CV" }
+  { href: "/cv", label: "Download CV", newTab: true }
 ];
 
 const currentPathRaw = Astro.url.pathname || "/";
@@ -42,7 +42,15 @@ const mobileLinkClass = (href: string) =>
     <ul class="hidden items-center gap-1 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.72] px-2 py-1 md:flex">
       {links.map((link) => (
         <li>
-          <a class={desktopLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>{link.label}</a>
+          <a
+            class={desktopLinkClass(link.href)}
+            href={link.href}
+            target={link.newTab ? "_blank" : undefined}
+            rel={link.newTab ? "noopener noreferrer" : undefined}
+            aria-current={isActiveLink(link.href) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
         </li>
       ))}
     </ul>
@@ -66,7 +74,13 @@ const mobileLinkClass = (href: string) =>
   <div id="mobile-menu" class="hidden border-t border-[rgb(var(--border))] md:hidden">
     <div class="page-wrap flex flex-col gap-2 py-3">
       {links.map((link) => (
-        <a class={mobileLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
+        <a
+          class={mobileLinkClass(link.href)}
+          href={link.href}
+          target={link.newTab ? "_blank" : undefined}
+          rel={link.newTab ? "noopener noreferrer" : undefined}
+          aria-current={isActiveLink(link.href) ? "page" : undefined}
+        >
           {link.label}
         </a>
       ))}
