@@ -6,7 +6,7 @@ const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your
 
 <footer class="mt-24 border-t border-[rgb(var(--border))]">
   <div class="page-wrap flex flex-col items-start justify-between gap-3 py-8 text-sm text-[rgb(var(--muted))] md:flex-row md:items-center">
-    <p>© {new Date().getFullYear()} {profile.name}. Crafted with Astro.</p>
+    <p>© {new Date().getFullYear()} {profile.name}.</p>
     <div class="flex items-center gap-4">
       <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
       {hasLinkedIn && (
