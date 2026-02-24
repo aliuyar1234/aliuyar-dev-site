@@ -4,7 +4,8 @@ const links = [
   { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research" },
   { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" }
+  { href: "/contact", label: "Contact" },
+  { href: "/cv", label: "Download CV" }
 ];
 ---
 
@@ -24,7 +25,6 @@ const links = [
       <button id="theme-toggle" type="button" class="focus-ring rounded-full border border-[rgb(var(--border))] px-3.5 py-2 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))]" aria-label="Toggle color theme" aria-pressed="false">
         Theme
       </button>
-      <a href="/cv" class="btn-secondary hidden text-xs sm:inline-flex">Download CV</a>
       <button
         id="mobile-menu-toggle"
         type="button"
@@ -44,7 +44,6 @@ const links = [
           {link.label}
         </a>
       ))}
-      <a href="/cv" class="btn-secondary mt-1 w-fit text-xs">Download CV</a>
     </div>
   </div>
 </header>
