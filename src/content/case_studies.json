@@ -3,24 +3,24 @@
     "title": "Policy-Enforced Context Runtime",
     "projectName": "PECR",
     "projectUrl": "https://github.com/aliuyar1234/PECR",
-    "problem": "Teams needed reliable, governed context handling for AI workflows in sensitive environments.",
-    "build": "Designed a deterministic runtime with policy/time constraints, typed operator controls, and immutable evidence units.",
-    "result": "Enabled auditable decision trails and safer production rollouts with clearer go/no-go signals."
+    "problem": "Plain RAG pipelines left governance gaps around policy, provenance, and deterministic failure handling.",
+    "build": "Built a two-plane runtime with a non-privileged controller, policy-enforcing gateway, immutable evidence units, and deterministic terminal modes.",
+    "result": "Delivered replayable, auditable AI retrieval runs with clear permission and evidence outcomes for safer production deployment."
   },
   {
     "title": "SchemaPilot",
     "projectName": "SchemaPilot",
     "projectUrl": "https://github.com/aliuyar1234/SchemaPilot",
-    "problem": "Teams struggled to keep evolving schemas consistent across tools, services, and delivery workflows.",
-    "build": "Built a schema-first workflow for aligning definitions, validation, and implementation touchpoints.",
-    "result": "Reduced schema drift and made contract changes easier to coordinate across engineering systems."
+    "problem": "Enterprise data lived across inconsistent sources, making AI usage hard to govern, trust, and operationalize.",
+    "build": "Built a governance-first data platform with gateway-enforced access controls, deterministic bronze/silver/gold pipelines, and operator-grade tooling.",
+    "result": "Created an AI-ready, queryable data foundation with stronger auditability, safer defaults, and more predictable delivery workflows."
   },
   {
     "title": "ContextGraph",
     "projectName": "ContextGraph",
     "projectUrl": "https://github.com/aliuyar1234/ContextGraph",
-    "problem": "Context dependencies in AI workflows were hard to trace, explain, and debug at scale.",
-    "build": "Created a graph-oriented context model to map relationships, surface dependencies, and improve observability.",
-    "result": "Improved debugging speed and decision transparency by making context flow explicit and inspectable."
+    "problem": "Teams lacked trustworthy process visibility across Slack, Jira, and GitHub without creating surveillance risk.",
+    "build": "Built a self-hosted process intelligence platform with fail-closed permissions, private personal timelines, and k-anonymous analytics.",
+    "result": "Improved process insight and next-step guidance while preserving privacy boundaries and policy-first controls."
   }
 ]

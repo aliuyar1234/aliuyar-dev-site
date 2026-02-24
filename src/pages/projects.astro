@@ -31,9 +31,9 @@ const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filt
       </label>
     </section>
 
-    <div id="project-grid" class="mt-8 grid gap-4 md:grid-cols-2">
+    <div id="project-grid" class="mt-6 grid gap-4 md:grid-cols-2">
       {productProjects.map((project) => (
-        <div class="project-item" data-project={JSON.stringify(project)}>
+        <div class="project-item h-full" data-project={JSON.stringify(project)}>
           <ProjectCard project={project} />
         </div>
       ))}
