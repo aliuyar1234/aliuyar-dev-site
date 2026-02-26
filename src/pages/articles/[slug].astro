@@ -1,0 +1,221 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import writing from "../../content/writing.json";
+
+interface BlogPost {
+  title: string;
+  date: string;
+  summary: string;
+  slug: string;
+  content?: string[];
+  tags?: string[];
+  readMinutes?: number;
+}
+
+type ContentBlock =
+  | { kind: "heading"; text: string }
+  | { kind: "paragraph"; text: string }
+  | { kind: "list"; items: string[] };
+
+export function getStaticPaths() {
+  return [...(writing as BlogPost[])]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
+}
+
+const { post } = Astro.props as { post: BlogPost };
+const rawContent = post.content && post.content.length > 0 ? post.content : [post.summary];
+const contentBlocks: ContentBlock[] = [];
+let listBuffer: string[] = [];
+let paragraphBuffer: string[] = [];
+
+const flushParagraph = () => {
+  if (paragraphBuffer.length === 0) return;
+  contentBlocks.push({ kind: "paragraph", text: paragraphBuffer.join(" ") });
+  paragraphBuffer = [];
+};
+
+const flushList = () => {
+  if (listBuffer.length === 0) return;
+  contentBlocks.push({ kind: "list", items: listBuffer });
+  listBuffer = [];
+};
+
+for (const rawLine of rawContent) {
+  const line = rawLine.trim();
+  if (!line) {
+    flushParagraph();
+    flushList();
+    continue;
+  }
+
+  if (line.startsWith("## ")) {
+    flushParagraph();
+    flushList();
+    contentBlocks.push({ kind: "heading", text: line.slice(3).trim() });
+    continue;
+  }
+
+  if (line.startsWith("- ")) {
+    flushParagraph();
+    listBuffer.push(line.slice(2).trim());
+    continue;
+  }
+
+  flushList();
+  paragraphBuffer.push(line);
+}
+
+flushParagraph();
+flushList();
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
+
+const articleUrl = `https://aliuyar.dev/articles/${post.slug}`;
+const copyArticleText = [post.title, "", post.summary, "", `URL: ${articleUrl}`, "", ...rawContent].join("\n");
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  datePublished: new Date(post.date).toISOString(),
+  description: post.summary,
+  url: articleUrl,
+  isPartOf: {
+    "@type": "Blog",
+    name: "Ali Uyar Articles",
+    url: "https://aliuyar.dev/articles"
+  }
+};
+---
+
+<BaseLayout
+  title={`${post.title} | Articles | Ali Uyar`}
+  canonicalPath={`/articles/${post.slug}`}
+  description={post.summary}
+  jsonLd={articleJsonLd}
+>
+  <SiteHeader />
+  <main id="main" class="page-wrap py-14">
+    <div class="flex flex-wrap items-center gap-2">
+      <a href="/articles" class="focus-ring inline-flex text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Back to Articles</a>
+      <button
+        id="copy-article-button"
+        type="button"
+        class="focus-ring inline-flex rounded-full border border-[rgb(var(--border))] px-3 py-1.5 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))]"
+      >
+        Copy article
+      </button>
+      <span id="copy-article-status" class="sr-only" aria-live="polite"></span>
+    </div>
+    <pre id="copy-article-source" class="hidden">{copyArticleText}</pre>
+
+    <article class="mx-auto mt-5 max-w-3xl">
+      <header class="rounded-[1.75rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.94] p-6 shadow-soft dark:shadow-softDark md:p-8">
+        <p class="text-xs uppercase tracking-wide text-[rgb(var(--muted))]">
+          {formatDate(post.date)}
+          {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}
+        </p>
+        <h1 class="title-balance mt-4 text-3xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
+        <p class="copy-pretty mt-4 text-base leading-relaxed text-[rgb(var(--muted))] md:text-lg">{post.summary}</p>
+
+        {(post.tags || []).length > 0 && (
+          <div class="mt-5 flex flex-wrap gap-2">
+            {(post.tags || []).map((tag) => (
+              <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="mt-5 rounded-[1.75rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.88] p-6 shadow-soft dark:shadow-softDark md:p-8">
+        {contentBlocks.map((block) => {
+          if (block.kind === "heading") {
+            return <h2 class="title-balance mt-8 text-2xl font-semibold tracking-tight first:mt-0 md:text-3xl">{block.text}</h2>;
+          }
+
+          if (block.kind === "list") {
+            return (
+              <ul class="mt-3 list-disc space-y-1.5 pl-5 text-base leading-relaxed marker:text-accent-500">
+                {block.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            );
+          }
+
+          return <p class="copy-pretty mt-3 text-base leading-relaxed text-[rgb(var(--fg))]">{block.text}</p>;
+        })}
+      </div>
+    </article>
+
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const button = document.getElementById("copy-article-button");
+    const source = document.getElementById("copy-article-source");
+    const status = document.getElementById("copy-article-status");
+    if (!button || !source) return;
+
+    const originalLabel = button.textContent?.trim() || "Copy article";
+
+    const setStatus = (message) => {
+      if (!status) return;
+      status.textContent = message;
+    };
+
+    const fallbackCopy = (text) => {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "true");
+      area.style.position = "fixed";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      return ok;
+    };
+
+    const copyToClipboard = async (text) => {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          return fallbackCopy(text);
+        }
+      }
+      return fallbackCopy(text);
+    };
+
+    button.addEventListener("click", async () => {
+      const text = source.textContent?.trim();
+      if (!text) return;
+      const ok = await copyToClipboard(text);
+      button.textContent = ok ? "Copied" : "Copy failed";
+      setStatus(ok ? "Article copied to clipboard" : "Failed to copy article");
+      window.setTimeout(() => {
+        button.textContent = originalLabel;
+      }, 1800);
+    });
+  })();
+</script>
