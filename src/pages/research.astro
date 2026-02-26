@@ -2,11 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-import projects from "../content/projects.json";
 import research from "../content/research.json";
-import { filterResearchProjects } from "../utils/researchSplit";
-
-const researchRepos = filterResearchProjects(projects, research);
 const researchJsonLd = research.map((paper) => ({
   "@context": "https://schema.org",
   "@type": "ScholarlyArticle",
@@ -75,19 +71,6 @@ const researchJsonLd = research.map((paper) => ({
             </div>
           </article>
         )})}
-      </div>
-    </section>
-
-    <section class="mt-14">
-      <h2 class="text-2xl font-semibold tracking-tight">Research Repositories</h2>
-      <p class="mt-2 text-sm text-[rgb(var(--muted))]">Related code and experiment repositories.</p>
-      <div class="mt-4 grid gap-3 md:grid-cols-2">
-        {researchRepos.map((repo) => (
-          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
-            <h3 class="text-lg font-semibold tracking-tight"><a class="focus-ring hover:underline" href={repo.url} target="_blank" rel="noreferrer">{repo.name}</a></h3>
-            <p class="mt-2 text-sm text-[rgb(var(--muted))]">{repo.description || "No description provided."}</p>
-          </article>
-        ))}
       </div>
     </section>
   </main>
