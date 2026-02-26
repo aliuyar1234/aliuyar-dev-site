@@ -42,7 +42,23 @@ const topResearch = research.slice(0, 3);
       <div class="card p-4 text-sm text-[rgb(var(--muted))]">Clear documentation for handover and scale</div>
     </section>
 
-    <section class="mt-20">
+    <section class="mt-20 section-shell">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Research</h2>
+        <a href="/research" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">See all</a>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {topResearch.map((paper) => {
+          return (
+          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+            <h3 class="mt-2 text-lg font-semibold tracking-tight">{paper.title}</h3>
+            <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.whyItMatters || paper.abstract}</p>
+          </article>
+        )})}
+      </div>
+    </section>
+
+    <section class="mt-20 section-shell">
       <div class="mb-6 flex items-end justify-between gap-4">
         <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Featured Projects</h2>
         <a href="/projects" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">See all</a>
@@ -72,24 +88,6 @@ const topResearch = research.slice(0, 3);
             </a>
           </article>
         ))}
-      </div>
-    </section>
-
-    <section class="mt-20 section-shell">
-      <div class="mb-6 flex items-end justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Research</h2>
-        <a href="/research" class="focus-ring text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">See all</a>
-      </div>
-      <div class="grid gap-4 md:grid-cols-3">
-        {topResearch.map((paper) => {
-          const showVenue = paper.venue && !/^technical paper/i.test(paper.venue);
-          return (
-          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
-            <p class="text-xs text-[rgb(var(--muted))]">{showVenue ? `${paper.venue} · ${paper.year}` : paper.year}</p>
-            <h3 class="mt-2 text-lg font-semibold tracking-tight">{paper.title}</h3>
-            <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.whyItMatters || paper.abstract}</p>
-          </article>
-        )})}
       </div>
     </section>
 

@@ -46,10 +46,13 @@ const researchJsonLd = research.map((paper) => ({
         {research.map((paper) => {
           return (
           <article class="card p-6">
-            <p class="text-xs text-[rgb(var(--muted))]">{paper.year}</p>
-            <h3 class="mt-2 text-2xl font-semibold tracking-tight">{paper.title}</h3>
+            <h3 class="text-2xl font-semibold tracking-tight">{paper.title}</h3>
             <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.abstract}</p>
-            {paper.whyItMatters && <p class="mt-2 text-sm text-[rgb(var(--fg))]"><span class="font-medium">Operational relevance:</span> {paper.whyItMatters}</p>}
+            {paper.whyItMatters && (
+              <p class="mt-3 rounded-xl border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.6] px-3 py-2 text-sm text-[rgb(var(--fg))]">
+                <span class="font-semibold">Operational relevance:</span> {paper.whyItMatters}
+              </p>
+            )}
             <p class="mt-3 text-xs text-[rgb(var(--muted))]">Authors: {paper.authors.join(", ")}</p>
             <div class="mt-4 flex flex-wrap gap-2">
               {(paper.tags || []).map((tag) => <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>)}
