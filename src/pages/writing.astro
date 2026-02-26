@@ -2,23 +2,17 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-import writing from "../content/writing.json";
 ---
 
-<BaseLayout title="Writing | Ali Uyar" canonicalPath="/writing" description="Notes on AI systems, product strategy, and reliable delivery.">
+<BaseLayout title="Blog | Ali Uyar" canonicalPath="/blog" description="The writing page has moved to /blog.">
   <SiteHeader />
   <main id="main" class="page-wrap py-14">
-    <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Writing</h1>
-    <p class="mt-3 max-w-2xl text-sm text-[rgb(var(--muted))]">Short notes and essays on reliable AI systems, technical product work, and decision quality.</p>
-
-    <section class="mt-10 grid gap-4">
-      {writing.map((entry) => (
-        <article class="card p-6">
-          <p class="text-xs text-[rgb(var(--muted))]">{new Date(entry.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</p>
-          <h2 class="mt-2 text-2xl font-semibold tracking-tight">{entry.title}</h2>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">{entry.summary}</p>
-        </article>
-      ))}
+    <section class="section-shell max-w-3xl">
+      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Blog has moved</h1>
+      <p class="copy-pretty mt-4 text-sm leading-relaxed text-[rgb(var(--muted))]">
+        The updated blog now lives at <a class="focus-ring underline" href="/blog">/blog</a>, with individual article pages for each post.
+      </p>
+      <a href="/blog" class="btn-primary mt-6">Go to Blog</a>
     </section>
   </main>
   <SiteFooter />

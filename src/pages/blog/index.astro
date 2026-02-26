@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import writing from "../../content/writing.json";
+
+interface BlogPost {
+  title: string;
+  date: string;
+  summary: string;
+  slug: string;
+  tags?: string[];
+  readMinutes?: number;
+}
+
+const posts = [...(writing as BlogPost[])].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
+
+const blogJsonLd = posts.map((post) => ({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  datePublished: new Date(post.date).toISOString(),
+  description: post.summary,
+  url: `https://aliuyar.dev/blog/${post.slug}`,
+  isPartOf: {
+    "@type": "Blog",
+    name: "Ali Uyar Blog",
+    url: "https://aliuyar.dev/blog"
+  }
+}));
+---
+
+<BaseLayout
+  title="Blog | Ali Uyar"
+  canonicalPath="/blog"
+  description="Articles on reliable AI systems, product strategy, and practical delivery."
+  jsonLd={blogJsonLd}
+>
+  <SiteHeader />
+  <main id="main" class="page-wrap py-14">
+    <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Blog</h1>
+    <p class="copy-pretty mt-3 max-w-2xl text-sm text-[rgb(var(--muted))]">
+      Notes on AI systems, product strategy, and reliable delivery.
+    </p>
+
+    <section class="mt-10 grid gap-4">
+      {posts.map((post) => (
+        <article class="card p-6">
+          <p class="text-xs text-[rgb(var(--muted))]">
+            {formatDate(post.date)}
+            {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}
+          </p>
+          <h2 class="mt-2 text-2xl font-semibold tracking-tight">
+            <a class="focus-ring hover:underline" href={`/blog/${post.slug}`}>
+              {post.title}
+            </a>
+          </h2>
+          <p class="mt-2 text-sm text-[rgb(var(--muted))]">{post.summary}</p>
+          {(post.tags || []).length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-2">
+              {(post.tags || []).map((tag) => (
+                <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </section>
+  </main>
+  <SiteFooter />
+</BaseLayout>
