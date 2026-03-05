@@ -11,7 +11,11 @@ const productProjects = filterProductProjects(projects, research);
 const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filter(Boolean))].sort();
 ---
 
-<BaseLayout title="Projects | Ali Uyar" canonicalPath="/projects">
+<BaseLayout
+  title="Projects | Ali Uyar"
+  canonicalPath="/projects"
+  description="Selected AI systems and technical product projects with a focus on reliability, governance, and practical execution."
+>
   <SiteHeader />
   <main id="main" class="page-wrap py-14">
     <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>

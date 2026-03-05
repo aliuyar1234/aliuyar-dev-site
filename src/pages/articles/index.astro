@@ -30,11 +30,11 @@ const articlesJsonLd = posts.map((post) => ({
   headline: post.title,
   datePublished: new Date(post.date).toISOString(),
   description: post.summary,
-  url: `https://aliuyar.dev/articles/${post.slug}`,
+  url: `https://aliuyar.dev/articles/${post.slug}/`,
   isPartOf: {
     "@type": "Blog",
     name: "Ali Uyar Articles",
-    url: "https://aliuyar.dev/articles"
+    url: "https://aliuyar.dev/articles/"
   }
 }));
 ---

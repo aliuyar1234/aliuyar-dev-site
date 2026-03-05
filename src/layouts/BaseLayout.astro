@@ -16,7 +16,20 @@ const {
   jsonLd = []
 } = Astro.props as Props;
 
-const canonicalUrl = new URL(canonicalPath, Astro.site).toString();
+const normalizeCanonicalPath = (path: string) => {
+  const match = path.match(/^([^?#]*)(.*)$/);
+  const pathname = match?.[1] || path;
+  const suffix = match?.[2] || "";
+
+  if (pathname === "/" || pathname.endsWith("/") || /\.[a-z0-9]+$/i.test(pathname)) {
+    return `${pathname}${suffix}`;
+  }
+
+  return `${pathname}/${suffix}`;
+};
+
+const canonicalPathname = canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`;
+const canonicalUrl = new URL(normalizeCanonicalPath(canonicalPathname), Astro.site).toString();
 const ogImage = new URL("/og-default.svg", Astro.site).toString();
 const socialProfiles = [profile.github, profile.linkedin]
   .filter(Boolean)
