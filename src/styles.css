@@ -7,7 +7,7 @@
   --fg: 23 23 27;
   --muted: 99 99 109;
   --card: 255 255 255;
-  --border: 223 223 230;
+  --border: 230 230 236;
 }
 
 .dark {
@@ -41,15 +41,15 @@ body {
 }
 
 .card {
-  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.82] bg-[rgb(var(--card))/0.97] transition-all duration-300;
+  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.72] bg-[rgb(var(--card))/0.97] transition-all duration-300;
 }
 
 .section-shell {
-  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.82] bg-[rgb(var(--card))/0.8] p-6 md:p-8;
+  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.72] bg-[rgb(var(--card))/0.8] p-6 md:p-8;
 }
 
 .btn-primary {
-  @apply focus-ring inline-flex items-center rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-600;
+  @apply focus-ring inline-flex items-center rounded-full border border-[rgb(var(--border))/0.9] bg-surface-100 px-5 py-2.5 text-sm font-semibold text-[rgb(var(--fg))] transition-colors hover:bg-surface-200 dark:border-transparent dark:bg-accent-500 dark:text-white dark:hover:bg-accent-600;
 }
 
 .btn-secondary {
@@ -65,11 +65,11 @@ body {
 }
 
 .text-link {
-  @apply focus-ring inline-flex items-center text-sm font-medium text-accent-500 transition-colors hover:text-accent-600 hover:underline;
+  @apply focus-ring inline-flex items-center text-sm font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] hover:underline dark:text-accent-500 dark:hover:text-accent-600;
 }
 
 .home-principles {
-  @apply grid gap-8 border-y border-[rgb(var(--border))/0.82] py-8 md:grid-cols-3 md:gap-10;
+  @apply grid gap-8 border-y border-[rgb(var(--border))/0.72] py-8 md:grid-cols-3 md:gap-10;
 }
 
 .home-principle {
@@ -82,6 +82,14 @@ body {
 
 .home-principle p {
   @apply mt-3 text-sm leading-7 text-[rgb(var(--muted))];
+}
+
+.article-list {
+  @apply mt-3 list-disc space-y-1.5 pl-5 text-base leading-relaxed;
+}
+
+.article-list li::marker {
+  color: rgb(var(--muted));
 }
 
 .reveal {
