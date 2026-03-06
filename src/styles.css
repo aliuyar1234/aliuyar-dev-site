@@ -29,11 +29,11 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 113, 227, 0.2);
+  background: rgba(128, 128, 138, 0.22);
 }
 
 .focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-surface-950;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-surface-200 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-surface-950;
 }
 
 .page-wrap {
@@ -49,7 +49,7 @@ body {
 }
 
 .btn-primary {
-  @apply focus-ring inline-flex items-center rounded-full border border-[rgb(var(--border))/0.9] bg-surface-100 px-5 py-2.5 text-sm font-semibold text-[rgb(var(--fg))] transition-colors hover:bg-surface-200 dark:border-transparent dark:bg-accent-500 dark:text-white dark:hover:bg-accent-600;
+  @apply focus-ring inline-flex items-center rounded-full border border-[rgb(var(--border))/0.9] bg-surface-100 px-5 py-2.5 text-sm font-semibold text-[rgb(var(--fg))] transition-colors hover:bg-surface-200 dark:border-surface-100 dark:bg-surface-100 dark:text-surface-950 dark:hover:bg-white;
 }
 
 .btn-secondary {
@@ -65,7 +65,7 @@ body {
 }
 
 .text-link {
-  @apply focus-ring inline-flex items-center text-sm font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] hover:underline dark:text-accent-500 dark:hover:text-accent-600;
+  @apply focus-ring inline-flex items-center text-sm font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] hover:underline;
 }
 
 .home-principles {
