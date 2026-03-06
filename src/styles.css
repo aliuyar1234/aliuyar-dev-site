@@ -91,11 +91,31 @@ body {
 }
 
 .article-list {
-  @apply mt-3 list-disc space-y-1.5 pl-5 text-base leading-relaxed;
+  @apply mt-4 list-disc space-y-2 pl-6 text-[1.05rem] leading-8 md:text-[1.08rem];
 }
 
 .article-list li::marker {
   color: rgb(var(--muted));
+}
+
+.article-prose {
+  @apply mt-10 border-t border-[rgb(var(--border))/0.72] pt-8;
+}
+
+.article-prose h2 {
+  @apply title-balance mt-12 text-[1.7rem] font-semibold tracking-tight first:mt-0 md:text-[2rem];
+}
+
+.article-prose p {
+  @apply copy-pretty mt-5 text-[1.06rem] leading-8 text-[rgb(var(--fg))] md:text-[1.1rem];
+}
+
+.article-meta {
+  @apply text-xs uppercase tracking-[0.18em] text-[rgb(var(--muted))];
+}
+
+.article-summary {
+  @apply copy-pretty mt-5 text-[1.1rem] leading-8 text-[rgb(var(--muted))] md:text-[1.2rem];
 }
 
 .reveal {

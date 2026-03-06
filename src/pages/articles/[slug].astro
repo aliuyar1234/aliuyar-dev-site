@@ -106,7 +106,7 @@ const articleJsonLd = {
   jsonLd={articleJsonLd}
 >
   <SiteHeader />
-  <main id="main" class="page-wrap py-14">
+  <main id="main" class="page-wrap py-14 md:py-16">
     <div class="flex flex-wrap items-center gap-2">
       <a href="/articles" class="focus-ring inline-flex text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Back to Articles</a>
       <button
@@ -120,17 +120,17 @@ const articleJsonLd = {
     </div>
     <pre id="copy-article-source" class="hidden">{copyArticleText}</pre>
 
-    <article class="mx-auto mt-5 max-w-3xl">
-      <header class="rounded-[1.75rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.94] p-6 shadow-soft dark:shadow-softDark md:p-8">
-        <p class="text-xs uppercase tracking-wide text-[rgb(var(--muted))]">
+    <article class="mx-auto mt-6 max-w-[46rem]">
+      <header class="rounded-[1.75rem] border border-[rgb(var(--border))/0.72] bg-[rgb(var(--card))/0.82] p-7 md:p-9">
+        <p class="article-meta">
           {formatDate(post.date)}
           {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}
         </p>
-        <h1 class="title-balance mt-4 text-3xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
-        <p class="copy-pretty mt-4 text-base leading-relaxed text-[rgb(var(--muted))] md:text-lg">{post.summary}</p>
+        <h1 class="title-balance mt-5 text-4xl font-semibold tracking-tight md:text-6xl">{post.title}</h1>
+        <p class="article-summary">{post.summary}</p>
 
         {(post.tags || []).length > 0 && (
-          <div class="mt-5 flex flex-wrap gap-2">
+          <div class="mt-6 flex flex-wrap gap-2">
             {(post.tags || []).map((tag) => (
               <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>
             ))}
@@ -138,10 +138,10 @@ const articleJsonLd = {
         )}
       </header>
 
-      <div class="mt-5 rounded-[1.75rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.88] p-6 shadow-soft dark:shadow-softDark md:p-8">
+      <div class="article-prose">
         {contentBlocks.map((block) => {
           if (block.kind === "heading") {
-            return <h2 class="title-balance mt-8 text-2xl font-semibold tracking-tight first:mt-0 md:text-3xl">{block.text}</h2>;
+            return <h2>{block.text}</h2>;
           }
 
           if (block.kind === "list") {
@@ -154,7 +154,7 @@ const articleJsonLd = {
             );
           }
 
-          return <p class="copy-pretty mt-3 text-base leading-relaxed text-[rgb(var(--fg))]">{block.text}</p>;
+          return <p>{block.text}</p>;
         })}
       </div>
     </article>
