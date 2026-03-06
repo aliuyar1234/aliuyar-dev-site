@@ -5,7 +5,6 @@ import SiteFooter from "../components/SiteFooter.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import projects from "../content/projects.json";
 import featured from "../content/featured.json";
-import profile from "../content/profile.json";
 import research from "../content/research.json";
 import caseStudies from "../content/case_studies.json";
 import { filterProductProjects } from "../utils/researchSplit";
@@ -30,20 +29,26 @@ const topResearch = research.slice(0, 3);
       <p class="text-sm tracking-tight text-[rgb(var(--muted))]">Ali Uyar · AI Systems / Technical Product</p>
       <h1 class="title-balance mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-7xl">AI Systems & Product, built for reliability.</h1>
       <p class="copy-pretty mt-6 max-w-2xl text-base leading-relaxed text-[rgb(var(--muted))] md:text-lg">I help teams move from prototypes to dependable AI products with clear evidence, deterministic execution where it matters, and architecture decisions that age well.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/projects" class="btn-secondary">View Projects</a>
-        <a href="/research" class="btn-secondary">View Research</a>
-        <a href="/contact" class="btn-secondary">Discuss a Sprint</a>
+      <div class="mt-8 flex flex-wrap items-center gap-5">
+        <a href="/contact" class="btn-primary">Discuss a Sprint</a>
+        <a href="/projects" class="text-link">View Projects</a>
+        <a href="/research" class="text-link">View Research</a>
       </div>
     </section>
 
-    <section class="reveal mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Deterministic workflows where reliability matters</div>
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Auditability and traceability by design</div>
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Privacy-first architecture decisions</div>
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Practical evaluation harnesses and quality gates</div>
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Product outcomes over model hype</div>
-      <div class="card p-4 text-sm text-[rgb(var(--muted))]">Clear documentation for handover and scale</div>
+    <section class="reveal mt-14 home-principles">
+      <article class="home-principle">
+        <h2>Reliability where it matters</h2>
+        <p>Deterministic workflows, clearer failure modes, and decisions that hold up once the system is under real pressure.</p>
+      </article>
+      <article class="home-principle">
+        <h2>Evidence built into delivery</h2>
+        <p>Evaluation, traceability, and auditability are part of the product, not extras added once confidence is already missing.</p>
+      </article>
+      <article class="home-principle">
+        <h2>Less theatre, more product sense</h2>
+        <p>Useful AI systems need strong architecture and practical product judgement, not just a more polished demo.</p>
+      </article>
     </section>
 
     <section class="mt-20 section-shell">
@@ -95,25 +100,6 @@ const topResearch = research.slice(0, 3);
       </div>
     </section>
 
-    <section class="mt-20 section-shell">
-      <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Services</h2>
-      <div class="mt-6 grid gap-4 md:grid-cols-3">
-        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
-          <h3 class="text-lg font-semibold tracking-tight">Assessment Sprint</h3>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">1-2 weeks. Audit architecture, risk, and readiness.</p>
-        </article>
-        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
-          <h3 class="text-lg font-semibold tracking-tight">Build Sprint</h3>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">3-6 weeks. Production-ready delivery with measurable quality gates.</p>
-        </article>
-        <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
-          <h3 class="text-lg font-semibold tracking-tight">Advisor</h3>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">Monthly strategic and technical guidance for leadership teams.</p>
-        </article>
-      </div>
-      <a href="/services" class="focus-ring mt-6 inline-flex text-sm font-medium text-accent-500 hover:underline">Explore services</a>
-    </section>
-
     <section class="mt-20 grid gap-6 md:grid-cols-5">
       <div class="md:col-span-3">
         <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">About</h2>
@@ -129,12 +115,6 @@ const topResearch = research.slice(0, 3);
         <p class="mt-3 text-sm text-[rgb(var(--muted))]">Best for teams that need to ship AI responsibly without losing velocity.</p>
         <a href="/contact" class="btn-primary mt-5">Contact Ali</a>
       </aside>
-    </section>
-
-    <section class="mt-20 mb-6 section-shell text-center">
-      <p class="text-sm text-[rgb(var(--muted))]">Need a concise profile for hiring workflows?</p>
-      <a href="/cv" class="focus-ring mt-3 inline-block text-2xl font-semibold tracking-tight hover:underline">Download CV</a>
-      <p class="mt-2 text-sm text-[rgb(var(--muted))]">Direct domain: {profile.brand}</p>
     </section>
   </main>
 

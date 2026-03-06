@@ -41,11 +41,11 @@ body {
 }
 
 .card {
-  @apply rounded-[1.25rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.94] shadow-soft transition-all duration-300 dark:shadow-softDark;
+  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.82] bg-[rgb(var(--card))/0.97] transition-all duration-300;
 }
 
 .section-shell {
-  @apply rounded-[1.5rem] border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.75] p-6 md:p-8;
+  @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.82] bg-[rgb(var(--card))/0.8] p-6 md:p-8;
 }
 
 .btn-primary {
@@ -62,6 +62,26 @@ body {
 
 .copy-pretty {
   text-wrap: pretty;
+}
+
+.text-link {
+  @apply focus-ring inline-flex items-center text-sm font-medium text-accent-500 transition-colors hover:text-accent-600 hover:underline;
+}
+
+.home-principles {
+  @apply grid gap-8 border-y border-[rgb(var(--border))/0.82] py-8 md:grid-cols-3 md:gap-10;
+}
+
+.home-principle {
+  @apply max-w-sm;
+}
+
+.home-principle h2 {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.home-principle p {
+  @apply mt-3 text-sm leading-7 text-[rgb(var(--muted))];
 }
 
 .reveal {
