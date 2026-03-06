@@ -81,7 +81,7 @@ const formatDate = (date: string) =>
     day: "numeric"
   });
 
-const articleUrl = `https://aliuyar.dev/articles/${post.slug}/`;
+const articleUrl = `https://aliuyar.dev/articles/${post.slug}`;
 const copyArticleText = [post.title, "", post.summary, "", `URL: ${articleUrl}`, "", ...rawContent].join("\n");
 
 const articleJsonLd = {
@@ -94,7 +94,7 @@ const articleJsonLd = {
   isPartOf: {
     "@type": "Blog",
     name: "Ali Uyar Articles",
-    url: "https://aliuyar.dev/articles/"
+    url: "https://aliuyar.dev/articles"
   }
 };
 ---

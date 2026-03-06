@@ -5,5 +5,5 @@ export default defineConfig({
   site: "https://aliuyar.dev",
   integrations: [sitemap()],
   output: "static",
-  trailingSlash: "always"
+  trailingSlash: "never"
 });
