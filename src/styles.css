@@ -40,6 +40,14 @@ body {
   @apply mx-auto w-full max-w-5xl px-5;
 }
 
+.page-intro {
+  @apply max-w-3xl;
+}
+
+.page-lede {
+  @apply copy-pretty mt-4 max-w-2xl text-base leading-8 text-[rgb(var(--muted))] md:text-[1.12rem];
+}
+
 .card {
   @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.72] bg-[rgb(var(--card))/0.97] transition-all duration-300;
 }
@@ -74,8 +82,12 @@ body {
   @apply focus-ring inline-flex items-center text-sm font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] hover:underline;
 }
 
+.section-link {
+  @apply focus-ring text-sm text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))];
+}
+
 .home-principles {
-  @apply grid gap-8 border-y border-[rgb(var(--border))/0.72] py-8 md:grid-cols-3 md:gap-10;
+  @apply grid gap-8 border-y border-[rgb(var(--border))/0.72] py-8 md:grid-cols-3 md:gap-12;
 }
 
 .home-principle {
@@ -88,6 +100,10 @@ body {
 
 .home-principle p {
   @apply mt-3 text-sm leading-7 text-[rgb(var(--muted))];
+}
+
+.home-note p {
+  @apply copy-pretty text-[1.02rem] leading-8 text-[rgb(var(--muted))];
 }
 
 .article-list {

@@ -47,10 +47,12 @@ const articlesJsonLd = posts.map((post) => ({
 >
   <SiteHeader />
   <main id="main" class="page-wrap py-14">
-    <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Articles</h1>
-    <p class="copy-pretty mt-3 max-w-2xl text-sm text-[rgb(var(--muted))]">
-      Notes on AI systems, product strategy, and reliable delivery.
-    </p>
+    <section class="page-intro">
+      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Articles</h1>
+      <p class="page-lede">
+        Essays on AI systems, product decisions, and the constraints that shape them.
+      </p>
+    </section>
 
     <section class="mt-10 grid gap-4">
       {posts.map((post) => (

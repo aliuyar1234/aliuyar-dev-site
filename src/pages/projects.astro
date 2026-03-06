@@ -18,8 +18,11 @@ const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filt
 >
   <SiteHeader />
   <main id="main" class="page-wrap py-14">
-    <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>
-    <a href="/research" class="focus-ring mt-3 inline-flex text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--fg))]">Explore Research</a>
+    <section class="page-intro">
+      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>
+      <p class="page-lede">Selected systems work where the technical choices had real product consequences, not just a prototype that happened to run.</p>
+      <a href="/research" class="text-link mt-4">Research</a>
+    </section>
 
     <section class="mt-8 grid gap-3 md:grid-cols-3">
       <label class="text-sm md:col-span-2">
