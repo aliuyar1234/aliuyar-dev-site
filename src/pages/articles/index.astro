@@ -54,7 +54,7 @@ const articlesJsonLd = posts.map((post) => ({
 
     <section class="mt-10 grid gap-4">
       {posts.map((post) => (
-        <article class="card p-6">
+        <article class="subtle-card p-6">
           <p class="text-xs text-[rgb(var(--muted))]">
             {formatDate(post.date)}
             {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}

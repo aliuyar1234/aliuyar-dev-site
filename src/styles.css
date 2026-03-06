@@ -5,7 +5,7 @@
 :root {
   --bg: 245 245 247;
   --fg: 23 23 27;
-  --muted: 99 99 109;
+  --muted: 86 86 96;
   --card: 255 255 255;
   --border: 230 230 236;
 }
@@ -46,6 +46,12 @@ body {
 
 .section-shell {
   @apply rounded-[1.5rem] border border-[rgb(var(--border))/0.72] bg-[rgb(var(--card))/0.8] p-6 md:p-8;
+}
+
+.subtle-card {
+  border: 1px solid rgb(var(--border) / 0.72);
+  border-radius: 1rem;
+  background: transparent;
 }
 
 .btn-primary {

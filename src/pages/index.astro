@@ -58,7 +58,7 @@ const topResearch = research.slice(0, 3);
       <div class="grid gap-4 md:grid-cols-3">
         {topResearch.map((paper) => {
           return (
-          <article class="rounded-2xl border border-[rgb(var(--border))] p-5">
+          <article class="subtle-card p-5">
             <h3 class="text-lg font-semibold tracking-tight">{paper.title}</h3>
             <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.whyItMatters || paper.abstract}</p>
           </article>

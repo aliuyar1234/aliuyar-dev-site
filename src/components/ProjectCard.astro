@@ -20,7 +20,7 @@ const updated = new Date(project.updatedAt).toLocaleDateString("en-US", {
 });
 ---
 
-<article class="project-card reveal flex h-full flex-col p-5">
+<article class="subtle-card reveal flex h-full flex-col p-5">
   <div class="flex items-start">
     <h3 class="project-title text-base font-semibold leading-tight tracking-tight">
       <a class="focus-ring hover:underline" href={project.url} target="_blank" rel="noreferrer">{project.name}</a>
@@ -45,12 +45,6 @@ const updated = new Date(project.updatedAt).toLocaleDateString("en-US", {
 </article>
 
 <style>
-  .project-card {
-    border: 1px solid rgb(var(--border) / 0.72);
-    border-radius: 1rem;
-    background: transparent;
-  }
-
   .project-title {
     display: -webkit-box;
     -webkit-line-clamp: 2;

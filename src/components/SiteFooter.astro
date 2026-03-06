@@ -1,7 +1,6 @@
 ﻿---
 import profile from "../content/profile.json";
 
-const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your-linkedin-handle"));
 ---
 
 <footer class="mt-24 border-t border-[rgb(var(--border))]">
@@ -9,10 +8,7 @@ const hasLinkedIn = Boolean(profile.linkedin && !profile.linkedin.includes("your
     <p>© {new Date().getFullYear()} {profile.name}.</p>
     <div class="flex items-center gap-4">
       <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-      {hasLinkedIn && (
-        <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-      )}
-      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href="/cv">CV</a>
+      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href="/contact#cv">CV</a>
       <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href="/contact">Contact</a>
     </div>
   </div>

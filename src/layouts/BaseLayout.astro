@@ -31,9 +31,7 @@ const normalizeCanonicalPath = (path: string) => {
 const canonicalPathname = canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`;
 const canonicalUrl = new URL(normalizeCanonicalPath(canonicalPathname), Astro.site).toString();
 const ogImage = new URL("/og-default.svg", Astro.site).toString();
-const socialProfiles = [profile.github, profile.linkedin]
-  .filter(Boolean)
-  .filter((url) => !String(url).includes("your-linkedin-handle"));
+const socialProfiles = [profile.github].filter(Boolean);
 
 const baseJsonLd = [
   {
