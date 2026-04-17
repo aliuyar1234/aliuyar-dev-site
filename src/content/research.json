@@ -1,57 +1,5 @@
 [
   {
-    "title": "Surgical Post-Training Diffing: Partial Recovery Without Clean Small-Mask Separation",
-    "venue": "Zenodo",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19347477",
-    "abstract": "Paired answer-phase sparse surrogate over two residual-stream layers of Gemma 3 4B PT/IT cuts answer-token KL by 28.3% and recovers 0.186 of the PT-to-IT capability gap, while frozen 5-feature capability masks collapse to the null and verbosity-subtraction masks lengthen outputs instead of shortening them. Includes matched baselines, ablations, and prompt-level paired bootstrap intervals.",
-    "whyItMatters": "Sets a held-out, bootstrap-bounded standard for separating capability from verbosity in instruction-tuning interventions before they ship.",
-    "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19347477",
-    "pdfUrl": "/papers/surgical-post-training-diffing-partial-recovery-without-clean-small-mask-separation.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/surgical-posttraining-diffing",
-    "tags": ["instruction-tuning", "sparse-interventions", "held-out-eval"]
-  },
-  {
-    "title": "When Accuracy Hides Path Dependence: Criterion Fidelity in LLM Judges",
-    "venue": "Zenodo",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19332783",
-    "abstract": "Introduces criterion fidelity as a distinct validity axis for LLM judges using criterion families (base, meaning-preserving paraphrases, counterfactuals) that dissociate from ordinary accuracy, with strict criterion-emphasis prompting shown to be an unreliable fix.",
-    "whyItMatters": "Gives evaluation teams a concrete probe to detect when judge pipelines are tracking surface wording instead of the stated criterion before shipping them as reviewers.",
-    "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19332783",
-    "pdfUrl": "/papers/when-accuracy-hides-path-dependence-criterion-fidelity-in-llm-judges.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/criterion-fidelity-llm-judges",
-    "tags": ["llm-evaluation", "judge-validity", "reliability"]
-  },
-  {
-    "title": "Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models",
-    "venue": "TMLR",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19313240",
-    "abstract": "Semantics-fixed protocol that separates operational output contracts (strict JSON, exact quotation) from shared QA semantics via dense-delta residualization on top of a frozen model, recovering deployable single-overlay adapters that match direct-trained behavior on schema validity and quote exactness without degrading answer F1.",
-    "whyItMatters": "Lets teams ship and audit reusable output-contract adapters as residuals on a frozen base instead of re-training whole behaviors from scratch.",
-    "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19313240",
-    "pdfUrl": "/papers/overlay-algebra-causal-composition-of-operational-behaviors-in-frozen-language-models.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/overlay-algebra",
-    "tags": ["frozen-models", "adapter-residuals", "auditable-evaluation"]
-  },
-  {
-    "title": "Same-Size Capability Transfer Reveals a Performance-Localization Tradeoff in Deterministic Function Calling",
-    "venue": "Zenodo",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19226753",
-    "abstract": "Locked within-family Gemma testbed for transplanting single-turn function-calling behavior via fixed sparse, dense, and steering modules under frozen manifests and exact JSON grading. Sparse transfer is real and partially localized, but a parameter-matched dense module wins the multiseed primary metric (0.2177 vs 0.1658 strict success).",
-    "whyItMatters": "Gives teams a deterministic, claim-audited harness for measuring post-training capability edits without LLM judges or retraining recipients.",
-    "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19226753",
-    "pdfUrl": "/papers/same-size-capability-transfer-reveals-a-performance-localization-tradeoff-in-deterministic-function-calling.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/sparse-capability-transplants",
-    "tags": ["function-calling", "deterministic-eval", "model-editing"]
-  },
-  {
     "title": "Inside the Multilingual Transformer: Computational Neuroanatomy of Shared and Language-Specific Brain Alignment",
     "venue": "Zenodo",
     "year": 2026,
@@ -78,30 +26,17 @@
     "tags": ["multilingual-nlp", "fmri-encoding", "representation-analysis"]
   },
   {
-    "title": "Structured Yet Fragile: Signed Intervention Geometry of Matched ORF and CRISPR Cell Painting Profiles",
-    "venue": "Zenodo",
+    "title": "Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models",
+    "venue": "TMLR",
     "year": 2026,
-    "doi": "10.5281/zenodo.19185214",
-    "abstract": "Locked, auditable pipeline analyzing 5,332 same-gene ORF/CRISPR Cell Painting pairs under fixed preprocessing, bootstrap consensus, and prespecified robustness checks. Regime map is dominated by asymmetric and ambiguous states, shifts with effect-magnitude deciles, and yields null retrieval utility despite 536 significant Reactome terms.",
-    "whyItMatters": "Demonstrates an auditable locked-pipeline protocol that bounds what morphology-derived perturbation claims can be defended when analytic flexibility is removed.",
+    "doi": "10.5281/zenodo.19313240",
+    "abstract": "Semantics-fixed protocol that separates operational output contracts (strict JSON, exact quotation) from shared QA semantics via dense-delta residualization on top of a frozen model, recovering deployable single-overlay adapters that match direct-trained behavior on schema validity and quote exactness without degrading answer F1.",
+    "whyItMatters": "Lets teams ship and audit reusable output-contract adapters as residuals on a frozen base instead of re-training whole behaviors from scratch.",
     "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19185214",
-    "pdfUrl": "/papers/structured-yet-fragile-signed-intervention-geometry-of-matched-orf-and-crispr-cell-painting-profiles.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/signed-intervention-geometry-cell-painting",
-    "tags": ["locked-pipeline", "robustness", "negative-result"]
-  },
-  {
-    "title": "ProbeRoute: Probes as Routing Priors for Frozen-Backbone Multi-Token Prediction",
-    "venue": "Zenodo",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19022709",
-    "abstract": "Offline future-token probes across transformer depth initialize a sparse top-m layer router for multi-token prediction on a frozen backbone, beating the strongest screening-selected dense finalist on held-out top-1 and speculative-draft acceptance under a stage-gated protocol with mandatory probes and a final 1B rerun.",
-    "whyItMatters": "Turns a cheap one-time probe pass into a routing prior that improves speculative-draft acceptance on a frozen backbone without unfreezing or growing the adaptation recipe.",
-    "authors": ["Ali Uyar"],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19022709",
-    "pdfUrl": "/papers/proberoute-probes-as-routing-priors-for-frozen-backbone-multi-token-prediction.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/proberoute",
-    "tags": ["frozen-backbone", "multi-token-prediction", "speculative-decoding"]
+    "paperUrl": "https://doi.org/10.5281/zenodo.19313240",
+    "pdfUrl": "/papers/overlay-algebra-causal-composition-of-operational-behaviors-in-frozen-language-models.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/overlay-algebra",
+    "tags": ["frozen-models", "adapter-residuals", "auditable-evaluation"]
   },
   {
     "title": "Selective Revocation and Replay: Post-Compromise Recovery of Explicit Persisted State in Memory-Augmented LLM Agents",
@@ -117,6 +52,58 @@
     "tags": ["prompt-injection-recovery", "agent-memory", "provenance"]
   },
   {
+    "title": "Same-Size Capability Transfer Reveals a Performance-Localization Tradeoff in Deterministic Function Calling",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.19226753",
+    "abstract": "Locked within-family Gemma testbed for transplanting single-turn function-calling behavior via fixed sparse, dense, and steering modules under frozen manifests and exact JSON grading. Sparse transfer is real and partially localized, but a parameter-matched dense module wins the multiseed primary metric (0.2177 vs 0.1658 strict success).",
+    "whyItMatters": "Gives teams a deterministic, claim-audited harness for measuring post-training capability edits without LLM judges or retraining recipients.",
+    "authors": ["Ali Uyar"],
+    "paperUrl": "https://doi.org/10.5281/zenodo.19226753",
+    "pdfUrl": "/papers/same-size-capability-transfer-reveals-a-performance-localization-tradeoff-in-deterministic-function-calling.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/sparse-capability-transplants",
+    "tags": ["function-calling", "deterministic-eval", "model-editing"]
+  },
+  {
+    "title": "Surgical Post-Training Diffing: Partial Recovery Without Clean Small-Mask Separation",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.19347477",
+    "abstract": "Paired answer-phase sparse surrogate over two residual-stream layers of Gemma 3 4B PT/IT cuts answer-token KL by 28.3% and recovers 0.186 of the PT-to-IT capability gap, while frozen 5-feature capability masks collapse to the null and verbosity-subtraction masks lengthen outputs instead of shortening them. Includes matched baselines, ablations, and prompt-level paired bootstrap intervals.",
+    "whyItMatters": "Sets a held-out, bootstrap-bounded standard for separating capability from verbosity in instruction-tuning interventions before they ship.",
+    "authors": ["Ali Uyar"],
+    "paperUrl": "https://doi.org/10.5281/zenodo.19347477",
+    "pdfUrl": "/papers/surgical-post-training-diffing-partial-recovery-without-clean-small-mask-separation.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/surgical-posttraining-diffing",
+    "tags": ["instruction-tuning", "sparse-interventions", "held-out-eval"]
+  },
+  {
+    "title": "ProbeRoute: Probes as Routing Priors for Frozen-Backbone Multi-Token Prediction",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.19022709",
+    "abstract": "Offline future-token probes across transformer depth initialize a sparse top-m layer router for multi-token prediction on a frozen backbone, beating the strongest screening-selected dense finalist on held-out top-1 and speculative-draft acceptance under a stage-gated protocol with mandatory probes and a final 1B rerun.",
+    "whyItMatters": "Turns a cheap one-time probe pass into a routing prior that improves speculative-draft acceptance on a frozen backbone without unfreezing or growing the adaptation recipe.",
+    "authors": ["Ali Uyar"],
+    "paperUrl": "https://doi.org/10.5281/zenodo.19022709",
+    "pdfUrl": "/papers/proberoute-probes-as-routing-priors-for-frozen-backbone-multi-token-prediction.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/proberoute",
+    "tags": ["frozen-backbone", "multi-token-prediction", "speculative-decoding"]
+  },
+  {
+    "title": "When Accuracy Hides Path Dependence: Criterion Fidelity in LLM Judges",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.19332783",
+    "abstract": "Introduces criterion fidelity as a distinct validity axis for LLM judges using criterion families (base, meaning-preserving paraphrases, counterfactuals) that dissociate from ordinary accuracy, with strict criterion-emphasis prompting shown to be an unreliable fix.",
+    "whyItMatters": "Gives evaluation teams a concrete probe to detect when judge pipelines are tracking surface wording instead of the stated criterion before shipping them as reviewers.",
+    "authors": ["Ali Uyar"],
+    "paperUrl": "https://doi.org/10.5281/zenodo.19332783",
+    "pdfUrl": "/papers/when-accuracy-hides-path-dependence-criterion-fidelity-in-llm-judges.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/criterion-fidelity-llm-judges",
+    "tags": ["llm-evaluation", "judge-validity", "reliability"]
+  },
+  {
     "title": "Binary Evidence Sufficiency Dissociation in Reasoning-Model Hidden States",
     "venue": "Zenodo",
     "year": 2026,
@@ -130,17 +117,30 @@
     "tags": ["interpretability", "multi-hop-qa", "hidden-state-probes"]
   },
   {
-    "title": "What Survives Control Calibration? A Full-Scope Negative Result for a Locked Minimum-Description Acceptance Criterion",
-    "venue": "arXiv",
+    "title": "Structured Yet Fragile: Signed Intervention Geometry of Matched ORF and CRISPR Cell Painting Profiles",
+    "venue": "Zenodo",
+    "year": 2026,
+    "doi": "10.5281/zenodo.19185214",
+    "abstract": "Locked, auditable pipeline analyzing 5,332 same-gene ORF/CRISPR Cell Painting pairs under fixed preprocessing, bootstrap consensus, and prespecified robustness checks. Regime map is dominated by asymmetric and ambiguous states, shifts with effect-magnitude deciles, and yields null retrieval utility despite 536 significant Reactome terms.",
+    "whyItMatters": "Demonstrates an auditable locked-pipeline protocol that bounds what morphology-derived perturbation claims can be defended when analytic flexibility is removed.",
+    "authors": ["Ali Uyar"],
+    "paperUrl": "https://doi.org/10.5281/zenodo.19185214",
+    "pdfUrl": "/papers/structured-yet-fragile-signed-intervention-geometry-of-matched-orf-and-crispr-cell-painting-profiles.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/signed-intervention-geometry-cell-painting",
+    "tags": ["locked-pipeline", "robustness", "negative-result"]
+  },
+  {
+    "title": "Outcome Is Not Verification: Auditing Hidden-State Verifiers with Counterfactual Local Validity",
+    "venue": "TMLR",
     "year": 2026,
     "doi": "",
-    "abstract": "Full-scope evaluation of a locked control-calibrated acceptance rule for top-down causal abstractions across a planted symbolic generator, a miniature IOI transformer, and GPT-2-small IOI. Across primary and quantized robustness codebooks, no supported abstraction class is certified, with structured failure modes in eligibility geometry and null-gap retention.",
-    "whyItMatters": "Gives interpretability teams an audited negative-result template and concrete reporting rules (frontier-domain exclusions, configured-versus-realized coverage) before claiming a model implements a proposed algorithm.",
+    "abstract": "Audit that separates outcome readout from process verification for hidden-state verifiers by holding the extractor family and scorer class fixed and varying only the supervision target across arithmetic DAG execution and grounded Horn-style logic. Strict same-step flips and PVS show LocalValidity supervision improves process-verification evidence while first-invalid-step localization remains metric-dependent and transfer-sensitive.",
+    "whyItMatters": "Gives evaluation teams a measurement-first audit object for step-level verifiers so trace-level outcome readout cannot be mistaken for reliable process verification in production reasoning pipelines.",
     "authors": ["Ali Uyar"],
     "paperUrl": "",
-    "pdfUrl": "/papers/what-survives-control-calibration-full-scope-negative-result-locked-mdl-acceptance.pdf",
+    "pdfUrl": "/papers/outcome-is-not-verification-auditing-hidden-state-verifiers-counterfactual-local-validity.pdf",
     "codeUrl": "",
-    "tags": ["mechanistic-interpretability", "acceptance-criteria", "null-calibration"]
+    "tags": ["hidden-state-verifiers", "process-verification", "counterfactual-audit"]
   },
   {
     "title": "First-Unsafe-Step Counterfactual DPO for KPI-Gaming in Autonomous LLM Agents: Held-Out Evaluation Under a Capability-Safety Bottleneck",
@@ -156,17 +156,36 @@
     "tags": ["agent-safety", "preference-optimization", "held-out-evaluation"]
   },
   {
-    "title": "Outcome Is Not Verification: Auditing Hidden-State Verifiers with Counterfactual Local Validity",
-    "venue": "TMLR",
+    "title": "What Survives Control Calibration? A Full-Scope Negative Result for a Locked Minimum-Description Acceptance Criterion",
+    "venue": "arXiv",
     "year": 2026,
     "doi": "",
-    "abstract": "Audit that separates outcome readout from process verification for hidden-state verifiers by holding the extractor family and scorer class fixed and varying only the supervision target across arithmetic DAG execution and grounded Horn-style logic. Strict same-step flips and PVS show LocalValidity supervision improves process-verification evidence while first-invalid-step localization remains metric-dependent and transfer-sensitive.",
-    "whyItMatters": "Gives evaluation teams a measurement-first audit object for step-level verifiers so trace-level outcome readout cannot be mistaken for reliable process verification in production reasoning pipelines.",
+    "abstract": "Full-scope evaluation of a locked control-calibrated acceptance rule for top-down causal abstractions across a planted symbolic generator, a miniature IOI transformer, and GPT-2-small IOI. Across primary and quantized robustness codebooks, no supported abstraction class is certified, with structured failure modes in eligibility geometry and null-gap retention.",
+    "whyItMatters": "Gives interpretability teams an audited negative-result template and concrete reporting rules (frontier-domain exclusions, configured-versus-realized coverage) before claiming a model implements a proposed algorithm.",
     "authors": ["Ali Uyar"],
     "paperUrl": "",
-    "pdfUrl": "/papers/outcome-is-not-verification-auditing-hidden-state-verifiers-counterfactual-local-validity.pdf",
+    "pdfUrl": "/papers/what-survives-control-calibration-full-scope-negative-result-locked-mdl-acceptance.pdf",
     "codeUrl": "",
-    "tags": ["hidden-state-verifiers", "process-verification", "counterfactual-audit"]
+    "tags": ["mechanistic-interpretability", "acceptance-criteria", "null-calibration"]
+  },
+  {
+    "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18669268",
+    "abstract": "Deterministic KV-cache corruption protocols and distillation-driven repair operators with seed/holdout replication and bootstrap confidence intervals.",
+    "whyItMatters": "Improves serving stability by making KV-cache failures reproducible, diagnosable, and repairable.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18669268",
+    "pdfUrl": "/papers/cachemedic-robust-kv-cache-stabilization-via-self-distillation.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/cachemedicpp-research",
+    "tags": [
+      "kv-cache",
+      "distillation",
+      "robustness"
+    ]
   },
   {
     "title": "CertiPatch: Specification Repair for Frozen Language Models with Replayable Empirical Certificates",
@@ -185,6 +204,44 @@
       "llm-reliability",
       "reproducibility",
       "certification"
+    ]
+  },
+  {
+    "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18330420",
+    "abstract": "Claim auditing with non-identifiability certificates to provide verifiable interpretability evidence and reduce overclaiming.",
+    "whyItMatters": "Reduces interpretability overclaims by requiring evidence that can be independently checked.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18330420",
+    "pdfUrl": "/papers/scrubid-identifiability-aware-auditing-for-mechanistic-interpretability.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/ScrubID",
+    "tags": [
+      "interpretability",
+      "auditing",
+      "safety"
+    ]
+  },
+  {
+    "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
+    "venue": "Technical Paper",
+    "year": 2026,
+    "doi": "10.5281/zenodo.18634022",
+    "abstract": "Compute-matched discover-then-distill pipeline with ablation suite and retention-transfer diagnostics for clear separation of adaptation and consolidation effects.",
+    "whyItMatters": "Clarifies how to separate short-term adaptation from durable model improvement in production tuning loops.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://doi.org/10.5281/zenodo.18634022",
+    "pdfUrl": "/papers/discover-then-distill-separating-test-time-adaptation-from-self-distillation-consolidation.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/discover-then-distill-paper",
+    "tags": [
+      "test-time-adaptation",
+      "distillation",
+      "evaluation"
     ]
   },
   {
@@ -226,44 +283,6 @@
     ]
   },
   {
-    "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
-    "venue": "Technical Paper",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18330420",
-    "abstract": "Claim auditing with non-identifiability certificates to provide verifiable interpretability evidence and reduce overclaiming.",
-    "whyItMatters": "Reduces interpretability overclaims by requiring evidence that can be independently checked.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18330420",
-    "pdfUrl": "/papers/scrubid-identifiability-aware-auditing-for-mechanistic-interpretability.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/ScrubID",
-    "tags": [
-      "interpretability",
-      "auditing",
-      "safety"
-    ]
-  },
-  {
-    "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
-    "venue": "Technical Paper",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18669268",
-    "abstract": "Deterministic KV-cache corruption protocols and distillation-driven repair operators with seed/holdout replication and bootstrap confidence intervals.",
-    "whyItMatters": "Improves serving stability by making KV-cache failures reproducible, diagnosable, and repairable.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18669268",
-    "pdfUrl": "/papers/cachemedic-robust-kv-cache-stabilization-via-self-distillation.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/cachemedicpp-research",
-    "tags": [
-      "kv-cache",
-      "distillation",
-      "robustness"
-    ]
-  },
-  {
     "title": "CIS Technical Report",
     "venue": "Technical Report",
     "year": 2026,
@@ -280,25 +299,6 @@
       "technical-report",
       "reliability",
       "systems"
-    ]
-  },
-  {
-    "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
-    "venue": "Technical Paper",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18634022",
-    "abstract": "Compute-matched discover-then-distill pipeline with ablation suite and retention-transfer diagnostics for clear separation of adaptation and consolidation effects.",
-    "whyItMatters": "Clarifies how to separate short-term adaptation from durable model improvement in production tuning loops.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18634022",
-    "pdfUrl": "/papers/discover-then-distill-separating-test-time-adaptation-from-self-distillation-consolidation.pdf",
-    "codeUrl": "https://github.com/aliuyar1234/discover-then-distill-paper",
-    "tags": [
-      "test-time-adaptation",
-      "distillation",
-      "evaluation"
     ]
   }
 ]
