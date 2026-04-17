@@ -27,7 +27,7 @@
   },
   {
     "title": "Overlay Algebra: Causal Composition of Operational Behaviors in Frozen Language Models",
-    "venue": "TMLR",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.19313240",
     "abstract": "Semantics-fixed protocol that separates operational output contracts (strict JSON, exact quotation) from shared QA semantics via dense-delta residualization on top of a frozen model, recovering deployable single-overlay adapters that match direct-trained behavior on schema validity and quote exactness without degrading answer F1.",
@@ -131,7 +131,7 @@
   },
   {
     "title": "Outcome Is Not Verification: Auditing Hidden-State Verifiers with Counterfactual Local Validity",
-    "venue": "TMLR",
+    "venue": "Research",
     "year": 2026,
     "doi": "",
     "abstract": "Audit that separates outcome readout from process verification for hidden-state verifiers by holding the extractor family and scorer class fixed and varying only the supervision target across arithmetic DAG execution and grounded Horn-style logic. Strict same-step flips and PVS show LocalValidity supervision improves process-verification evidence while first-invalid-step localization remains metric-dependent and transfer-sensitive.",
@@ -144,7 +144,7 @@
   },
   {
     "title": "First-Unsafe-Step Counterfactual DPO for KPI-Gaming in Autonomous LLM Agents: Held-Out Evaluation Under a Capability-Safety Bottleneck",
-    "venue": "Technical Report",
+    "venue": "Research",
     "year": 2026,
     "doi": "",
     "abstract": "ODCV-Bench study on Qwen2.5-7B-Instruct that localizes the earliest severity-3 executed step, rewrites it into a minimal safe counterfactual, and trains LoRA-DPO and chosen-only SFT adapters on next-turn pairs. Held-out evaluation exposes a capability-safety bottleneck where sparse unsafe train support limits what localized preference post-training can learn.",
@@ -157,7 +157,7 @@
   },
   {
     "title": "What Survives Control Calibration? A Full-Scope Negative Result for a Locked Minimum-Description Acceptance Criterion",
-    "venue": "arXiv",
+    "venue": "Research",
     "year": 2026,
     "doi": "",
     "abstract": "Full-scope evaluation of a locked control-calibrated acceptance rule for top-down causal abstractions across a planted symbolic generator, a miniature IOI transformer, and GPT-2-small IOI. Across primary and quantized robustness codebooks, no supported abstraction class is certified, with structured failure modes in eligibility geometry and null-gap retention.",
@@ -170,7 +170,7 @@
   },
   {
     "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
-    "venue": "Technical Paper",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18669268",
     "abstract": "Deterministic KV-cache corruption protocols and distillation-driven repair operators with seed/holdout replication and bootstrap confidence intervals.",
@@ -208,7 +208,7 @@
   },
   {
     "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
-    "venue": "Technical Paper",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18330420",
     "abstract": "Claim auditing with non-identifiability certificates to provide verifiable interpretability evidence and reduce overclaiming.",
@@ -227,7 +227,7 @@
   },
   {
     "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
-    "venue": "Technical Paper",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18634022",
     "abstract": "Compute-matched discover-then-distill pipeline with ablation suite and retention-transfer diagnostics for clear separation of adaptation and consolidation effects.",
@@ -246,7 +246,7 @@
   },
   {
     "title": "AvalancheLLM: Token-Layer Activation Event Cascades in LLMs under Gain Scaling",
-    "venue": "Technical Paper",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18435925",
     "abstract": "Rate-matched diagnostics with strong controls and deterministic artifact packaging to detect instability under gain and scaling changes.",
@@ -265,7 +265,7 @@
   },
   {
     "title": "RIA: Retokenization Invariance Atlas",
-    "venue": "Technical Paper",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18682875",
     "abstract": "Deterministic audits for semantics-preserving formatting effects in LLM QA with no-truncation and semantics gates.",
@@ -284,7 +284,7 @@
   },
   {
     "title": "CIS Technical Report",
-    "venue": "Technical Report",
+    "venue": "Research",
     "year": 2026,
     "doi": "10.5281/zenodo.18234776",
     "abstract": "Technical report documenting the CIS reliability approach, evaluation criteria, and implementation notes for production-grade AI systems.",
