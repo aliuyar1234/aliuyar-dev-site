@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="aliuyar.dev">
+  <rect width="64" height="64" rx="10" fill="#0a0a09"/>
+  <text
+    x="50%"
+    y="52%"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    font-size="42"
+    font-weight="800"
+    letter-spacing="-2"
+    fill="#edece9"
+  >AU</text>
+  <rect x="14" y="52" width="36" height="4" fill="#d4a017"/>
+</svg>
