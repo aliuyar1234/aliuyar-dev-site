@@ -101,7 +101,7 @@ const researchJsonLd = research.map((paper) => ({
           </div>
 
           <div class="meta">
-            <div>{paper.venue}</div>
+            {paper.doi && <div class="tabnum">DOI</div>}
           </div>
         </article>
       ))}
