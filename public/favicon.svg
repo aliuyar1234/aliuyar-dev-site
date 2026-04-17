@@ -2,14 +2,14 @@
   <rect width="64" height="64" rx="10" fill="#0a0a09"/>
   <text
     x="50%"
-    y="44%"
+    y="52%"
     text-anchor="middle"
     dominant-baseline="central"
     font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-    font-size="30"
-    font-weight="700"
-    letter-spacing="-1.5"
+    font-size="42"
+    font-weight="800"
+    letter-spacing="-2"
     fill="#edece9"
-  >au</text>
-  <rect x="20" y="46" width="24" height="5" fill="#d4a017"/>
+  >AU</text>
+  <rect x="14" y="52" width="36" height="4" fill="#d4a017"/>
 </svg>
