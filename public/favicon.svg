@@ -1,16 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AU favicon">
-  <rect width="64" height="64" rx="14" fill="#ffffff" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="aliuyar.dev">
+  <rect width="64" height="64" rx="10" fill="#0a0a09"/>
   <text
     x="50%"
-    y="51%"
+    y="44%"
     text-anchor="middle"
-    dominant-baseline="middle"
-    font-family="Segoe UI, Arial, sans-serif"
+    dominant-baseline="central"
+    font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
     font-size="30"
     font-weight="700"
-    letter-spacing="-1"
-    fill="#111111"
-  >
-    AU
-  </text>
+    letter-spacing="-1.5"
+    fill="#edece9"
+  >au</text>
+  <rect x="20" y="46" width="24" height="5" fill="#d4a017"/>
 </svg>
