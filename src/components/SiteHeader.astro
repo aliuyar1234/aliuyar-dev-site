@@ -1,10 +1,11 @@
 ---
 const links = [
-  { href: "/projects", label: "Projects" },
-  { href: "/research", label: "Research" },
-  { href: "/articles", label: "Articles" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" }
+  { href: "/", label: "Index", key: "i" },
+  { href: "/projects", label: "Projects", key: "p" },
+  { href: "/research", label: "Research", key: "r" },
+  { href: "/articles", label: "Articles", key: "a" },
+  { href: "/services", label: "Services", key: "s" },
+  { href: "/contact", label: "Contact", key: "c" }
 ];
 
 const currentPathRaw = Astro.url.pathname || "/";
@@ -16,58 +17,64 @@ const normalizeHref = (href: string) => {
 };
 
 const isActiveLink = (href: string) => currentPath === normalizeHref(href);
-
-const desktopLinkClass = (href: string) =>
-  [
-    "focus-ring rounded-full px-3 py-1.5 text-sm transition-colors",
-    isActiveLink(href)
-      ? "bg-surface-100 text-[rgb(var(--fg))] dark:bg-surface-900"
-      : "text-[rgb(var(--muted))] hover:bg-surface-100 hover:text-[rgb(var(--fg))] dark:hover:bg-surface-900"
-  ].join(" ");
-
-const mobileLinkClass = (href: string) =>
-  [
-    "focus-ring rounded-lg px-3 py-2 text-sm transition-colors",
-    isActiveLink(href)
-      ? "bg-surface-100 text-[rgb(var(--fg))] dark:bg-surface-900"
-      : "text-[rgb(var(--muted))] hover:bg-surface-100 hover:text-[rgb(var(--fg))] dark:hover:bg-surface-900"
-  ].join(" ");
 ---
 
-<header class="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.85] backdrop-blur-xl">
-  <nav class="page-wrap flex items-center justify-between py-4" aria-label="Main">
-    <a class="focus-ring text-sm font-semibold tracking-tight" href="/">aliuyar.dev</a>
+<header class="sticky top-0 z-50 border-b rule" style="background: rgb(var(--bg) / 0.82); backdrop-filter: blur(14px) saturate(1.1); -webkit-backdrop-filter: blur(14px) saturate(1.1);">
+  <div class="page-wrap flex items-center justify-between py-4" aria-label="Main">
+    <a class="focus-ring group inline-flex items-baseline gap-2" href="/" aria-label="Home">
+      <span class="font-display text-[1.2rem] leading-none" style="font-weight: 440; letter-spacing: -0.02em;">Ali Uyar</span>
+      <span class="font-mono text-[0.64rem] uppercase tracking-[0.22em]" style="color: rgb(var(--muted));">— aliuyar.dev</span>
+    </a>
 
-    <ul class="hidden items-center gap-1 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.72] px-2 py-1 md:flex">
+    <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
       {links.map((link) => (
-        <li>
-          <a class={desktopLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        </li>
+        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
+          {link.label}
+        </a>
       ))}
-    </ul>
+    </nav>
 
-    <div class="flex items-center gap-2">
-      <button id="theme-toggle" type="button" class="focus-ring rounded-full border border-[rgb(var(--border))] px-3.5 py-2 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))]" aria-label="Toggle color theme" aria-pressed="false">
-        Theme
+    <div class="flex items-center gap-3">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors"
+        style="border-color: var(--rule-strong); color: rgb(var(--muted));"
+        aria-label="Toggle color theme"
+        aria-pressed="false"
+      >
+        <svg class="theme-icon theme-icon--sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06" />
+        </svg>
+        <svg class="theme-icon theme-icon--moon h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+        </svg>
       </button>
+
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="focus-ring rounded-full border border-[rgb(var(--border))] px-3.5 py-2 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] md:hidden"
+        class="focus-ring md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border"
+        style="border-color: var(--rule-strong); color: rgb(var(--muted));"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        Menu
+        <svg class="menu-icon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M4 8h16M4 16h16" />
+        </svg>
+        <svg class="close-icon h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M5 5l14 14M5 19L19 5" />
+        </svg>
       </button>
     </div>
-  </nav>
-  <div id="mobile-menu" class="hidden border-t border-[rgb(var(--border))] md:hidden">
-    <div class="page-wrap flex flex-col gap-2 py-3">
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t rule md:hidden">
+    <div class="page-wrap flex flex-col gap-1 py-4">
       {links.map((link) => (
-        <a class={mobileLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
+        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
           {link.label}
         </a>
       ))}
@@ -82,18 +89,23 @@ const mobileLinkClass = (href: string) =>
 
     const key = "theme";
     const root = document.documentElement;
+    const sun = button.querySelector(".theme-icon--sun");
+    const moon = button.querySelector(".theme-icon--moon");
     const getTheme = () => (root.classList.contains("dark") ? "dark" : "light");
 
     const update = () => {
       const theme = getTheme();
       button.setAttribute("aria-pressed", String(theme === "dark"));
-      button.textContent = theme === "dark" ? "Light" : "Dark";
+      if (sun && moon) {
+        sun.classList.toggle("hidden", theme === "dark");
+        moon.classList.toggle("hidden", theme !== "dark");
+      }
     };
 
     button.addEventListener("click", () => {
       const next = getTheme() === "dark" ? "light" : "dark";
       root.classList.toggle("dark", next === "dark");
-      localStorage.setItem(key, next);
+      try { localStorage.setItem(key, next); } catch {}
       update();
     });
 
@@ -104,23 +116,27 @@ const mobileLinkClass = (href: string) =>
     const menu = document.getElementById("mobile-menu");
     const toggle = document.getElementById("mobile-menu-toggle");
     if (!menu || !toggle) return;
+    const menuIcon = toggle.querySelector(".menu-icon");
+    const closeIcon = toggle.querySelector(".close-icon");
 
     const closeMenu = () => {
       menu.classList.add("hidden");
       toggle.setAttribute("aria-expanded", "false");
-      toggle.textContent = "Menu";
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
     };
 
     toggle.addEventListener("click", () => {
       const isOpen = !menu.classList.contains("hidden");
-      if (isOpen) {
-        closeMenu();
-        return;
-      }
-
+      if (isOpen) { closeMenu(); return; }
       menu.classList.remove("hidden");
       toggle.setAttribute("aria-expanded", "true");
-      toggle.textContent = "Close";
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      }
     });
 
     menu.querySelectorAll("a").forEach((link) => {

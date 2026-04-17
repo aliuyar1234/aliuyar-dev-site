@@ -40,40 +40,57 @@ const articlesJsonLd = posts.map((post) => ({
 ---
 
 <BaseLayout
-  title="Articles | Ali Uyar"
+  title="Articles — Ali Uyar"
   canonicalPath="/articles"
   description="Articles on reliable AI systems, product strategy, and practical delivery."
   jsonLd={articlesJsonLd}
 >
   <SiteHeader />
-  <main id="main" class="page-wrap py-14">
-    <section class="page-intro">
-      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Articles</h1>
-      <p class="page-lede">
-        Essays on AI systems, product decisions, and the constraints that shape them.
-      </p>
+  <main id="main" class="page-wrap py-16 md:py-24">
+    <section class="grid items-end gap-10 md:grid-cols-12">
+      <div class="md:col-span-9">
+        <p class="edition">№ 05 / Writing</p>
+        <h1 class="display title-balance mt-6 text-[clamp(2.5rem,7vw,6rem)]">
+          Articles<span class="display-italic" style="color: rgb(var(--muted));">.</span>
+        </h1>
+        <p class="page-lede">
+          Essays on AI systems, product decisions, and the constraints that shape them.
+        </p>
+      </div>
+      <div class="md:col-span-3">
+        <div class="border-t rule pt-6">
+          <p class="eyebrow">Count</p>
+          <div class="mt-4 flex items-baseline justify-between">
+            <span class="font-mono text-[0.72rem] uppercase tracking-[0.2em]" style="color: rgb(var(--muted));">Essays</span>
+            <span class="font-display tabnum text-[1.5rem]" style="font-weight: 440;">{String(posts.length).padStart(2, "0")}</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="mt-10 grid gap-4">
-      {posts.map((post) => (
-        <article class="subtle-card p-6">
-          <p class="text-xs text-[rgb(var(--muted))]">
-            {formatDate(post.date)}
-            {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}
-          </p>
-          <h2 class="mt-2 text-2xl font-semibold tracking-tight">
-            <a class="focus-ring hover:underline" href={`/articles/${post.slug}`}>
-              {post.title}
-            </a>
-          </h2>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">{post.summary}</p>
-          {(post.tags || []).length > 0 && (
-            <div class="mt-4 flex flex-wrap gap-2">
-              {(post.tags || []).map((tag) => (
-                <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>
-              ))}
-            </div>
-          )}
+    <section class="mt-14">
+      {posts.map((post, i) => (
+        <article class="row reveal">
+          <div class="idx tabnum">№ {String(i + 1).padStart(2, "0")}</div>
+          <div>
+            <h2 class="title">
+              <a class="focus-ring title-link" href={`/articles/${post.slug}`}>
+                {post.title}
+              </a>
+            </h2>
+            <p class="desc">{post.summary}</p>
+            {(post.tags || []).length > 0 && (
+              <div class="mt-4 flex flex-wrap gap-2">
+                {(post.tags || []).map((tag) => <span class="chip">{tag}</span>)}
+              </div>
+            )}
+          </div>
+          <div class="meta">
+            <div>{formatDate(post.date)}</div>
+            {post.readMinutes && (
+              <div class="mt-1 tabnum" style="color: rgb(var(--muted-2));">{post.readMinutes} min</div>
+            )}
+          </div>
         </article>
       ))}
     </section>

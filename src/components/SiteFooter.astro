@@ -1,14 +1,57 @@
-﻿---
+---
 import profile from "../content/profile.json";
-
+const year = new Date().getFullYear();
 ---
 
-<footer class="mt-24 border-t border-[rgb(var(--border))]">
-  <div class="page-wrap flex flex-col items-start justify-between gap-3 py-8 text-sm text-[rgb(var(--muted))] md:flex-row md:items-center">
-    <p>© {new Date().getFullYear()} {profile.name}.</p>
-    <div class="flex items-center gap-4">
-      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href="/contact">Contact</a>
+<footer class="mt-32 border-t rule">
+  <div class="page-wrap pt-16 pb-10">
+
+    <div class="grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <p class="eyebrow">Say hello</p>
+        <a
+          class="focus-ring display mt-5 inline-block text-[2rem] leading-[1.05] md:text-[2.6rem]"
+          style="font-weight: 440; letter-spacing: -0.025em;"
+          href="/contact"
+        >
+          contact@aliuyar.dev
+          <span class="display-italic" aria-hidden="true"> →</span>
+        </a>
+        <p class="mt-5 max-w-md text-[0.98rem] leading-[1.7]" style="color: rgb(var(--muted));">
+          A short note with context is enough. Real problems preferred over polished pitches.
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="eyebrow">Work</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="nav-link focus-ring !p-0" href="/projects">Projects</a></li>
+          <li><a class="nav-link focus-ring !p-0" href="/research">Research</a></li>
+          <li><a class="nav-link focus-ring !p-0" href="/articles">Articles</a></li>
+          <li><a class="nav-link focus-ring !p-0" href="/services">Services</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="eyebrow">Elsewhere</p>
+        <ul class="mt-4 space-y-2.5">
+          <li><a class="nav-link focus-ring !p-0" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a></li>
+          <li><a class="nav-link focus-ring !p-0" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">CV (English)</a></li>
+          <li><a class="nav-link focus-ring !p-0" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">CV (Deutsch)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-20 overflow-x-hidden">
+      <div class="wordmark" aria-hidden="true">
+        Ali<span class="italic-piece"> Uyar</span>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t rule pt-6">
+      <p class="font-mono text-[0.68rem] uppercase tracking-[0.22em]" style="color: rgb(var(--muted));">
+        © {year} — {profile.location}
+      </p>
     </div>
   </div>
 </footer>

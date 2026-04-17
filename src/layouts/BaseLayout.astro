@@ -1,4 +1,4 @@
-﻿---
+---
 import "../styles.css";
 import profile from "../content/profile.json";
 
@@ -62,12 +62,21 @@ const allJsonLd = [...baseJsonLd, ...pageJsonLd].filter(Boolean);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a08" media="(prefers-color-scheme: dark)" />
+
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,30..100,0..1;1,9..144,300..700,30..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={profile.brand} />
@@ -97,7 +106,7 @@ const allJsonLd = [...baseJsonLd, ...pageJsonLd].filter(Boolean);
     <title>{title}</title>
   </head>
   <body class="min-h-full">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus-ring rounded-md border border-[rgb(var(--border))] bg-[rgb(var(--card))] px-3 py-2 text-sm text-[rgb(var(--fg))]">Skip to content</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus-ring rounded-md border border-[rgb(var(--border))/0.2] bg-[rgb(var(--card))] px-3 py-2 text-sm text-[rgb(var(--fg))]">Skip to content</a>
     <slot />
   </body>
 </html>

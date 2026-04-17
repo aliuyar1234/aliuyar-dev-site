@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -12,41 +12,69 @@ const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filt
 ---
 
 <BaseLayout
-  title="Projects | Ali Uyar"
+  title="Projects — Ali Uyar"
   canonicalPath="/projects"
   description="Selected AI systems and technical product projects with a focus on reliability, governance, and practical execution."
 >
   <SiteHeader />
-  <main id="main" class="page-wrap py-14">
-    <section class="page-intro">
-      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>
-      <p class="page-lede">Selected AI and technical product work, from substantial personal projects to systems shaped by reliability, evaluation, and delivery constraints.</p>
-      <a href="/research" class="text-link mt-4">Research</a>
+  <main id="main" class="page-wrap py-16 md:py-24">
+    <section class="grid items-end gap-10 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <p class="edition">№ 02 / Work</p>
+        <h1 class="display title-balance mt-6 text-[clamp(2.5rem,7vw,6rem)]">
+          Projects<span class="display-italic" style="color: rgb(var(--muted));">.</span>
+        </h1>
+        <p class="page-lede">
+          Selected AI and technical product work — from substantial personal projects to systems shaped by reliability, evaluation, and delivery constraints.
+        </p>
+      </div>
+      <div class="md:col-span-4">
+        <div class="border-t rule pt-6">
+          <p class="eyebrow">Index</p>
+          <div class="mt-4 flex items-baseline justify-between">
+            <span class="font-mono text-[0.72rem] uppercase tracking-[0.2em]" style="color: rgb(var(--muted));">Total</span>
+            <span class="font-display tabnum text-[1.5rem]" style="font-weight: 440;">{String(productProjects.length).padStart(2, "0")}</span>
+          </div>
+          <a href="/research" class="text-link mt-5">Research papers →</a>
+        </div>
+      </div>
     </section>
 
-    <section class="mt-8 grid gap-3 md:grid-cols-3">
-      <label class="text-sm md:col-span-2">
-        <span class="mb-1 block text-[rgb(var(--muted))]">Search</span>
-        <input id="project-search" type="search" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5" placeholder="Search by name or description" />
+    <section class="mt-14 grid gap-4 md:grid-cols-[1fr_auto] md:items-end md:gap-8">
+      <label class="block">
+        <span class="eyebrow block mb-3">Search</span>
+        <input
+          id="project-search"
+          type="search"
+          class="focus-ring w-full border-0 border-b bg-transparent py-3 text-[1.1rem] font-display outline-none"
+          style="border-color: var(--rule-strong); font-weight: 420; letter-spacing: -0.015em;"
+          placeholder="by name or description…"
+        />
       </label>
-      <label class="text-sm">
-        <span class="mb-1 block text-[rgb(var(--muted))]">Language</span>
-        <select id="project-language" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5">
+      <label class="block md:min-w-[14rem]">
+        <span class="eyebrow block mb-3">Language</span>
+        <select
+          id="project-language"
+          class="focus-ring w-full cursor-pointer appearance-none border-0 border-b bg-transparent py-3 font-mono text-[0.85rem] uppercase tracking-[0.14em] outline-none"
+          style="border-color: var(--rule-strong);"
+        >
           <option value="all">All</option>
           {languages.map((lang) => <option value={lang}>{lang}</option>)}
         </select>
       </label>
     </section>
 
-    <div id="project-grid" class="mt-6 grid gap-4 md:grid-cols-2">
-      {productProjects.map((project) => (
-        <div class="project-item h-full" data-project={JSON.stringify(project)}>
-          <ProjectCard project={project} />
+    <div id="project-grid" class="mt-10">
+      {productProjects.map((project, i) => (
+        <div class="project-item" data-project={JSON.stringify(project)}>
+          <ProjectCard project={project} index={i} />
         </div>
       ))}
     </div>
 
-    <p id="project-empty" class="mt-6 hidden text-sm text-[rgb(var(--muted))]">No projects match your filters.</p>
+    <p id="project-empty" class="mt-10 hidden font-mono text-[0.78rem] uppercase tracking-[0.2em]" style="color: rgb(var(--muted));">
+      No projects match your filters.
+    </p>
   </main>
   <SiteFooter />
 </BaseLayout>
