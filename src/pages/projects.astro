@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -12,41 +12,65 @@ const languages = [...new Set(productProjects.map((p) => p.primaryLanguage).filt
 ---
 
 <BaseLayout
-  title="Projects | Ali Uyar"
+  title="ali uyar // projects"
   canonicalPath="/projects"
   description="Selected AI systems and technical product projects with a focus on reliability, governance, and practical execution."
 >
   <SiteHeader />
-  <main id="main" class="page-wrap py-14">
-    <section class="page-intro">
-      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Projects</h1>
-      <p class="page-lede">Selected AI and technical product work, from substantial personal projects to systems shaped by reliability, evaluation, and delivery constraints.</p>
-      <a href="/research" class="text-link mt-4">Research</a>
+  <main id="main" class="page-wrap py-14 md:py-16">
+
+    <section class="reveal">
+      <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
+        ls -la ~/projects
+      </p>
+      <h1 class="page-title mt-6">projects<span class="caret" aria-hidden="true"></span></h1>
+      <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
+        Selected AI and technical product work — from substantial personal projects to systems shaped by reliability, evaluation, and delivery constraints.
+      </p>
+
+      <dl class="kv mt-8 max-w-sm">
+        <dt>COUNT</dt>
+        <dd class="tabnum accent">{String(productProjects.length).padStart(2, "0")}</dd>
+        <dt>FILTERS</dt>
+        <dd>query + language</dd>
+        <dt>RELATED</dt>
+        <dd><a class="link" href="/research">→ /research</a></dd>
+      </dl>
     </section>
 
-    <section class="mt-8 grid gap-3 md:grid-cols-3">
-      <label class="text-sm md:col-span-2">
-        <span class="mb-1 block text-[rgb(var(--muted))]">Search</span>
-        <input id="project-search" type="search" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5" placeholder="Search by name or description" />
+    {/* FILTERS */}
+    <section class="mt-12 grid gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
+      <label class="block">
+        <span class="label block mb-2">search</span>
+        <span class="inline-flex w-full items-baseline gap-2">
+          <span class="accent mono-sm">›</span>
+          <input id="project-search" type="search" class="input" placeholder="by name or description…" />
+        </span>
       </label>
-      <label class="text-sm">
-        <span class="mb-1 block text-[rgb(var(--muted))]">Language</span>
-        <select id="project-language" class="focus-ring w-full rounded-xl border border-[rgb(var(--border))] bg-transparent px-3 py-2.5">
-          <option value="all">All</option>
+      <label class="block md:min-w-[14rem]">
+        <span class="label block mb-2">language</span>
+        <select id="project-language" class="input cursor-pointer appearance-none">
+          <option value="all">all</option>
           {languages.map((lang) => <option value={lang}>{lang}</option>)}
         </select>
       </label>
     </section>
 
-    <div id="project-grid" class="mt-6 grid gap-4 md:grid-cols-2">
-      {productProjects.map((project) => (
-        <div class="project-item h-full" data-project={JSON.stringify(project)}>
-          <ProjectCard project={project} />
+    <div class="divider-ascii mt-12" aria-hidden="true">
+      ────────────────────────────────────────────────────────────────────────────
+    </div>
+
+    <div id="project-grid" class="mt-4">
+      {productProjects.map((project, i) => (
+        <div class="project-item" data-project={JSON.stringify(project)}>
+          <ProjectCard project={project} index={i} />
         </div>
       ))}
     </div>
 
-    <p id="project-empty" class="mt-6 hidden text-sm text-[rgb(var(--muted))]">No projects match your filters.</p>
+    <p id="project-empty" class="mt-8 hidden label-accent">
+      // no projects match your filters
+    </p>
   </main>
   <SiteFooter />
 </BaseLayout>

@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -7,109 +7,213 @@ import projects from "../content/projects.json";
 import featured from "../content/featured.json";
 import research from "../content/research.json";
 import caseStudies from "../content/case_studies.json";
+import profile from "../content/profile.json";
 import { filterProductProjects } from "../utils/researchSplit";
 
 const featuredNames = new Set(featured.map((item) => item.name));
 const nonResearchProjects = filterProductProjects(projects, research);
-const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.name)).slice(0, 6);
-const fallbackProjects = nonResearchProjects.slice(0, 6);
+const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.name)).slice(0, 5);
+const fallbackProjects = nonResearchProjects.slice(0, 5);
 const cards = featuredProjects.length > 0 ? featuredProjects : fallbackProjects;
 const topResearch = research.slice(0, 3);
+
+const principles = [
+  {
+    k: "01",
+    t: "Built for pressure",
+    b: "Deterministic workflows, clearer failure modes, and decisions that do not collapse once the system has real users and real stakes."
+  },
+  {
+    k: "02",
+    t: "Evidence before confidence",
+    b: "Evaluation, traceability, and auditability belong in the product itself, not as reassurance added later."
+  },
+  {
+    k: "03",
+    t: "Judgment over theatre",
+    b: "Useful AI systems come from better sequencing, better constraints, and clearer choices — not just a more polished demo."
+  }
+];
 ---
 
 <BaseLayout
-  title="Ali Uyar | AI Systems & Product"
+  title="ali uyar // ai systems & technical product"
   canonicalPath="/"
   description="AI systems and technical product work focused on reliability, evidence, and decisions that age well."
 >
   <SiteHeader />
 
-  <main id="main" class="page-wrap">
-    <section id="work" class="reveal pt-16 md:pt-24">
-      <p class="text-sm tracking-tight text-[rgb(var(--muted))]">Ali Uyar / AI systems / technical product</p>
-      <h1 class="title-balance mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-7xl">I build AI products that hold up in practice.</h1>
-      <p class="page-lede max-w-3xl">My work focuses on reliability, evaluation, and technical decisions that still make sense once a prototype meets real constraints.</p>
-      <div class="mt-8 flex flex-wrap items-center gap-5">
-        <a href="/projects" class="text-link">Projects</a>
-        <a href="/research" class="text-link">Research</a>
+  <main id="main">
+    {/* ═════════ HERO / boot sequence ═════════ */}
+    <section class="page-wrap pt-12 md:pt-16 pb-14">
+      <div class="reveal-stagger">
+        <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">// initialising …</p>
+        <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">// session ok</p>
+
+        <div class="mt-10">
+          <dl class="kv max-w-xl">
+            <dt>NAME</dt>
+            <dd>Ali Uyar</dd>
+            <dt>ROLE</dt>
+            <dd>AI Systems Engineer</dd>
+            <dt>LOCUS</dt>
+            <dd>{profile.location} · UTC+01</dd>
+            <dt>STATE</dt>
+            <dd><span class="accent">●</span> Available for select work</dd>
+          </dl>
+        </div>
+
+        <div class="mt-12">
+          <p class="prompt-plain mono-xs tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--accent));">objective</p>
+          <h1 class="hero-title mt-5">
+            I build <span class="glyph">AI products</span> that hold up in practice —<br />
+            retrieval, agents, and model-reliant workflows where<br />
+            reliability, evidence, and technical judgment matter<br />
+            more than the demo.<span class="caret" aria-hidden="true"></span>
+          </h1>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <a href="/projects" class="btn-accent">run projects</a>
+          <a href="/contact" class="btn">send email</a>
+        </div>
       </div>
     </section>
 
-    <section class="reveal mt-14 home-principles">
-      <article class="home-principle">
-        <h2>Built for pressure</h2>
-        <p>Deterministic workflows, clearer failure modes, and decisions that do not collapse once the system has real users and real stakes.</p>
-      </article>
-      <article class="home-principle">
-        <h2>Evidence before confidence</h2>
-        <p>Evaluation, traceability, and auditability belong in the product itself, not as reassurance added later.</p>
-      </article>
-      <article class="home-principle">
-        <h2>Product judgment over theatre</h2>
-        <p>Useful AI systems come from better sequencing, better constraints, and clearer choices, not just a more polished demo.</p>
-      </article>
-    </section>
-
-    <section class="mt-20 section-shell">
-      <div class="mb-6 flex items-end justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Research</h2>
-        <a href="/research" class="section-link">See all</a>
+    {/* ═════════ DIVIDER ═════════ */}
+    <div class="page-wrap">
+      <div class="divider-ascii" aria-hidden="true">
+        ════════════════════════════════════════════════════════════════════════════
       </div>
-      <div class="grid gap-4 md:grid-cols-3">
-        {topResearch.map((paper) => {
-          return (
-          <article class="subtle-card p-5">
-            <h3 class="text-lg font-semibold tracking-tight">{paper.title}</h3>
-            <p class="mt-2 text-sm text-[rgb(var(--muted))]">{paper.whyItMatters || paper.abstract}</p>
+    </div>
+
+    {/* ═════════ § 01 · PRINCIPLES ═════════ */}
+    <section class="page-wrap mt-14">
+      <div class="section-head">
+        <span class="section-num">§ 01</span>
+        <span class="section-name">Principles</span>
+        <span class="section-meta">[ 03 · invariant ]</span>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3 md:gap-10 reveal">
+        {principles.map((p) => (
+          <article>
+            <p class="mono-xs tabnum" style="color: rgb(var(--accent));">{p.k}/03</p>
+            <h3 class="mt-3 font-mono text-[1.02rem]" style="font-weight: 500; letter-spacing: -0.005em;">{p.t}</h3>
+            <p class="mt-3 text-[0.92rem] leading-[1.7]" style="color: rgb(var(--muted));">{p.b}</p>
           </article>
-        )})}
+        ))}
       </div>
     </section>
 
-    <section class="mt-20 section-shell">
-      <div class="mb-6 flex items-end justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Featured Projects</h2>
-        <a href="/projects" class="section-link">See all</a>
+    {/* ═════════ § 02 · RESEARCH ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 02</span>
+        <span class="section-name">Research</span>
+        <a href="/research" class="section-meta link-muted">[ all papers → ]</a>
       </div>
-      <div class="grid gap-4 md:grid-cols-2">
-        {cards.map((project) => <ProjectCard project={project} />)}
+      <div>
+        {topResearch.map((paper, i) => (
+          <article class="row reveal">
+            <div class="idx">№ {String(i + 1).padStart(2, "0")}</div>
+            <div>
+              <h3 class="title">
+                <a class="link-accent" href={paper.pdfUrl || paper.paperUrl} target="_blank" rel="noreferrer">
+                  {paper.title}.pdf
+                </a>
+              </h3>
+              <p class="desc">{paper.whyItMatters || paper.abstract}</p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {(paper.tags || []).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+            <div class="meta">
+              <div>{paper.year}</div>
+              <div class="mt-1">{paper.venue}</div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
 
-    <section class="mt-20 section-shell">
-      <div class="mb-6 flex items-end justify-between gap-4">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">Selected Outcomes</h2>
-        <a href="/projects" class="section-link">View work</a>
+    {/* ═════════ § 03 · PROJECTS ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 03</span>
+        <span class="section-name">Selected projects</span>
+        <a href="/projects" class="section-meta link-muted">[ ls /projects → ]</a>
       </div>
-      <div class="grid gap-4 md:grid-cols-3">
-        {caseStudies.map((item) => (
-          <article class="subtle-card p-5">
-            <h3 class="text-lg font-semibold tracking-tight">{item.title}</h3>
-            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">Problem</p>
-            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.problem}</p>
-            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">What I Built</p>
-            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.build}</p>
-            <p class="mt-3 text-xs font-medium uppercase tracking-wide text-[rgb(var(--muted))]">Result</p>
-            <p class="mt-1 text-sm text-[rgb(var(--muted))]">{item.result}</p>
-            <a href={item.projectUrl} target="_blank" rel="noreferrer" class="text-link mt-4">
-              {item.projectName}
+      <div>
+        {cards.map((project, i) => <ProjectCard project={project} index={i} />)}
+      </div>
+    </section>
+
+    {/* ═════════ § 04 · OUTCOMES ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 04</span>
+        <span class="section-name">Outcomes</span>
+        <span class="section-meta">[ problem · build · result ]</span>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3 md:gap-8">
+        {caseStudies.map((item, i) => (
+          <article class="reveal" style="border: 1px solid var(--rule); padding: 1.25rem;">
+            <p class="mono-xs tabnum" style="color: rgb(var(--accent));">case_{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-4 font-mono text-[1.05rem]" style="font-weight: 500; letter-spacing: -0.005em;">{item.title}</h3>
+            <dl class="mt-5 space-y-4 text-[0.88rem] leading-[1.7]">
+              <div>
+                <dt class="label">problem</dt>
+                <dd class="mt-1" style="color: rgb(var(--muted));">{item.problem}</dd>
+              </div>
+              <div>
+                <dt class="label">build</dt>
+                <dd class="mt-1" style="color: rgb(var(--muted));">{item.build}</dd>
+              </div>
+              <div>
+                <dt class="label">result</dt>
+                <dd class="mt-1" style="color: rgb(var(--muted));">{item.result}</dd>
+              </div>
+            </dl>
+            <a href={item.projectUrl} target="_blank" rel="noreferrer" class="mt-5 inline-flex link-accent mono-sm">
+              → {item.projectName}
             </a>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="mt-20 grid gap-6 md:grid-cols-5">
-      <div class="home-note md:col-span-3">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-4xl">What I focus on</h2>
-        <p class="mt-4 max-w-2xl">When a team is past the demo stage and trying to make something dependable: what the system should be trusted to do, where evidence should exist, and which trade-offs are worth making.</p>
-        <p class="mt-4 max-w-2xl">That tends to sit between engineering, product, and delivery. I like small teams, clear questions, and work that leaves a system easier to understand than it was before.</p>
+    {/* ═════════ § 05 · FOCUS ═════════ */}
+    <section class="page-wrap mt-24">
+      <div class="section-head">
+        <span class="section-num">§ 05</span>
+        <span class="section-name">Focus</span>
+        <span class="section-meta">[ how i work ]</span>
       </div>
-      <aside class="subtle-card md:col-span-2 p-6">
-        <h3 class="text-xl font-semibold tracking-tight">If this seems relevant, write to me.</h3>
-        <p class="mt-3 text-sm leading-7 text-[rgb(var(--muted))]">A short note with context is enough. I read everything myself and prefer starting from a real problem, not a polished pitch.</p>
-        <a href="/contact" class="text-link mt-5">Contact</a>
-      </aside>
+      <div class="grid gap-10 md:grid-cols-12 md:gap-12">
+        <div class="md:col-span-7 measure">
+          <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
+            // past the demo, into the weather
+          </p>
+          <p class="mt-5 text-[1rem] leading-[1.75]">
+            When a team is past the demo stage and trying to make something dependable — what the system should be trusted to do, where evidence should exist, and which trade-offs are worth making.
+          </p>
+          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+            That tends to sit between engineering, product, and delivery. I like small teams, clear questions, and work that leaves a system easier to understand than it was before.
+          </p>
+        </div>
+        <aside class="md:col-span-5">
+          <div style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
+            <p class="label">[ if this seems relevant ]</p>
+            <h3 class="mt-3 font-mono text-[1.05rem]" style="font-weight: 500; line-height: 1.5;">
+              Write to me. A short note with context is enough.
+            </h3>
+            <p class="mt-4 text-[0.9rem] leading-[1.7]" style="color: rgb(var(--muted));">
+              I read everything myself and prefer starting from a real problem, not a polished pitch.
+            </p>
+            <a href="/contact" class="btn-accent mt-6">open thread</a>
+          </div>
+        </aside>
+      </div>
     </section>
   </main>
 

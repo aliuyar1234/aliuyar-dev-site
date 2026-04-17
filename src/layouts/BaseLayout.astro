@@ -1,4 +1,4 @@
-﻿---
+---
 import "../styles.css";
 import profile from "../content/profile.json";
 
@@ -62,12 +62,21 @@ const allJsonLd = [...baseJsonLd, ...pageJsonLd].filter(Boolean);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#0a0a09" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={profile.brand} />
@@ -85,19 +94,20 @@ const allJsonLd = [...baseJsonLd, ...pageJsonLd].filter(Boolean);
     ))}
 
     <script is:inline>
+      // Terminal default = dark. '.light' class overrides to paper.
       (() => {
         const key = "theme";
         const stored = localStorage.getItem(key);
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = stored || (prefersDark ? "dark" : "light");
-        document.documentElement.classList.toggle("dark", theme === "dark");
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        const theme = stored || (prefersLight ? "light" : "dark");
+        document.documentElement.classList.toggle("light", theme === "light");
       })();
     </script>
 
     <title>{title}</title>
   </head>
   <body class="min-h-full">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus-ring rounded-md border border-[rgb(var(--border))] bg-[rgb(var(--card))] px-3 py-2 text-sm text-[rgb(var(--fg))]">Skip to content</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 btn">Skip to content</a>
     <slot />
   </body>
 </html>

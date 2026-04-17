@@ -7,34 +7,53 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        mono: [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace"
+        ],
         sans: [
-          "SF Pro Display",
-          "SF Pro Text",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif"
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace"
         ]
       },
       colors: {
-        surface: {
-          50: "#f5f5f7",
-          100: "#ececf0",
-          200: "#dbdbe1",
-          900: "#101114",
-          950: "#07080a"
+        carbon: {
+          50: "#edece9",
+          100: "#c9c7c1",
+          200: "#8e8a82",
+          400: "#48463f",
+          700: "#1b1a17",
+          800: "#111110",
+          900: "#0a0a09",
+          950: "#050504"
         },
-        accent: {
-          500: "#0071e3",
-          600: "#0062c7"
+        cream: {
+          50: "#faf8f3",
+          100: "#f0eee8",
+          200: "#e0ddd5",
+          400: "#9c9a93"
+        },
+        amber: {
+          DEFAULT: "#d4a017",
+          soft: "#e6b93f",
+          dim: "#8a6910"
         }
       },
-      boxShadow: {
-        soft: "0 10px 40px rgba(16, 17, 20, 0.06)",
-        softDark: "0 10px 36px rgba(0, 0, 0, 0.38)"
+      letterSpacing: {
+        tight: "-0.01em",
+        micro: "0.08em",
+        wide: "0.12em",
+        mega: "0.2em"
       }
     }
   },

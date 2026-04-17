@@ -17,12 +17,10 @@ const posts = [...(writing as BlogPost[])].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 );
 
-const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric"
-  });
+const formatDate = (date: string) => {
+  const d = new Date(date);
+  return d.toLocaleDateString("en-GB", { year: "numeric", month: "2-digit", day: "2-digit" }).replace(/\//g, ".");
+};
 
 const articlesJsonLd = posts.map((post) => ({
   "@context": "https://schema.org",
@@ -40,40 +38,57 @@ const articlesJsonLd = posts.map((post) => ({
 ---
 
 <BaseLayout
-  title="Articles | Ali Uyar"
+  title="ali uyar // articles"
   canonicalPath="/articles"
   description="Articles on reliable AI systems, product strategy, and practical delivery."
   jsonLd={articlesJsonLd}
 >
   <SiteHeader />
-  <main id="main" class="page-wrap py-14">
-    <section class="page-intro">
-      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">Articles</h1>
-      <p class="page-lede">
+  <main id="main" class="page-wrap py-14 md:py-16">
+
+    <section class="reveal">
+      <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
+        ls ~/writing
+      </p>
+      <h1 class="page-title mt-6">articles<span class="caret" aria-hidden="true"></span></h1>
+      <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
         Essays on AI systems, product decisions, and the constraints that shape them.
       </p>
+      <dl class="kv mt-8 max-w-sm">
+        <dt>COUNT</dt>
+        <dd class="tabnum accent">{String(posts.length).padStart(2, "0")}</dd>
+        <dt>FORMAT</dt>
+        <dd>long-form · essay</dd>
+      </dl>
     </section>
 
-    <section class="mt-10 grid gap-4">
-      {posts.map((post) => (
-        <article class="subtle-card p-6">
-          <p class="text-xs text-[rgb(var(--muted))]">
-            {formatDate(post.date)}
-            {post.readMinutes ? ` - ${post.readMinutes} min read` : ""}
-          </p>
-          <h2 class="mt-2 text-2xl font-semibold tracking-tight">
-            <a class="focus-ring hover:underline" href={`/articles/${post.slug}`}>
-              {post.title}
-            </a>
-          </h2>
-          <p class="mt-2 text-sm text-[rgb(var(--muted))]">{post.summary}</p>
-          {(post.tags || []).length > 0 && (
-            <div class="mt-4 flex flex-wrap gap-2">
-              {(post.tags || []).map((tag) => (
-                <span class="rounded-full border border-[rgb(var(--border))] px-2.5 py-1 text-xs text-[rgb(var(--muted))]">{tag}</span>
-              ))}
-            </div>
-          )}
+    <div class="divider-ascii mt-12" aria-hidden="true">
+      ────────────────────────────────────────────────────────────────────────────
+    </div>
+
+    <section class="mt-2">
+      {posts.map((post, i) => (
+        <article class="row reveal">
+          <div class="idx">
+            № {String(i + 1).padStart(2, "0")}<br />
+            <span style="color: rgb(var(--dim));">{formatDate(post.date)}</span>
+          </div>
+          <div>
+            <h2 class="title">
+              <a class="link-accent" href={`/articles/${post.slug}`}>
+                {post.title}
+              </a>
+            </h2>
+            <p class="desc">{post.summary}</p>
+            {(post.tags || []).length > 0 && (
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {(post.tags || []).map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            )}
+          </div>
+          <div class="meta">
+            {post.readMinutes && <div>~ {post.readMinutes}m</div>}
+          </div>
         </article>
       ))}
     </section>

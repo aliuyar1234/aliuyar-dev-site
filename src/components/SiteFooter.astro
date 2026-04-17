@@ -1,14 +1,58 @@
-﻿---
+---
 import profile from "../content/profile.json";
-
+const year = new Date().getFullYear();
 ---
 
-<footer class="mt-24 border-t border-[rgb(var(--border))]">
-  <div class="page-wrap flex flex-col items-start justify-between gap-3 py-8 text-sm text-[rgb(var(--muted))] md:flex-row md:items-center">
-    <p>© {new Date().getFullYear()} {profile.name}.</p>
-    <div class="flex items-center gap-4">
-      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-      <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href="/contact">Contact</a>
+<footer class="mt-28" style="border-top: 1px solid var(--rule);">
+  <div class="page-wrap pt-12 pb-10">
+
+    <div class="divider-ascii mb-8" aria-hidden="true">
+      ──────── EOF ────────────────────────────────────────────────────────────
+    </div>
+
+    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+      <section class="md:col-span-6">
+        <p class="label">[ contact ]</p>
+        <a
+          class="font-mono mt-4 inline-block text-[1.25rem] md:text-[1.5rem] link-accent"
+          href="/contact"
+        >
+          contact@aliuyar.dev
+        </a>
+        <p class="mt-4 max-w-md" style="color: rgb(var(--muted)); font-size: 0.92rem; line-height: 1.7;">
+          // a short note with context is enough. real problems preferred over polished pitches.
+        </p>
+      </section>
+
+      <section class="md:col-span-3">
+        <p class="label">[ work ]</p>
+        <ul class="mt-4 space-y-1.5 font-mono text-[0.86rem]">
+          <li><a class="link-muted" href="/projects">→ projects</a></li>
+          <li><a class="link-muted" href="/research">→ research</a></li>
+          <li><a class="link-muted" href="/articles">→ articles</a></li>
+          <li><a class="link-muted" href="/services">→ services</a></li>
+        </ul>
+      </section>
+
+      <section class="md:col-span-3">
+        <p class="label">[ elsewhere ]</p>
+        <ul class="mt-4 space-y-1.5 font-mono text-[0.86rem]">
+          <li><a class="link-muted" href={profile.github} target="_blank" rel="noreferrer">→ github.com/aliuyar1234</a></li>
+          <li><a class="link-muted" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">→ cv.en.pdf</a></li>
+          <li><a class="link-muted" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">→ cv.de.pdf</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="mt-14 pt-6" style="border-top: 1px solid var(--rule);">
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p class="mono-xs tabnum" style="color: rgb(var(--muted));">
+          © {year} · {profile.location}
+        </p>
+        <p class="mono-xs tabnum" style="color: rgb(var(--muted));">
+          EXIT 0
+        </p>
+      </div>
     </div>
   </div>
 </footer>

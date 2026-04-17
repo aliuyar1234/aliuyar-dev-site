@@ -1,10 +1,11 @@
 ---
 const links = [
-  { href: "/projects", label: "Projects" },
-  { href: "/research", label: "Research" },
-  { href: "/articles", label: "Articles" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" }
+  { href: "/", label: "~" },
+  { href: "/projects", label: "projects" },
+  { href: "/research", label: "research" },
+  { href: "/articles", label: "articles" },
+  { href: "/services", label: "services" },
+  { href: "/contact", label: "contact" }
 ];
 
 const currentPathRaw = Astro.url.pathname || "/";
@@ -16,59 +17,79 @@ const normalizeHref = (href: string) => {
 };
 
 const isActiveLink = (href: string) => currentPath === normalizeHref(href);
-
-const desktopLinkClass = (href: string) =>
-  [
-    "focus-ring rounded-full px-3 py-1.5 text-sm transition-colors",
-    isActiveLink(href)
-      ? "bg-surface-100 text-[rgb(var(--fg))] dark:bg-surface-900"
-      : "text-[rgb(var(--muted))] hover:bg-surface-100 hover:text-[rgb(var(--fg))] dark:hover:bg-surface-900"
-  ].join(" ");
-
-const mobileLinkClass = (href: string) =>
-  [
-    "focus-ring rounded-lg px-3 py-2 text-sm transition-colors",
-    isActiveLink(href)
-      ? "bg-surface-100 text-[rgb(var(--fg))] dark:bg-surface-900"
-      : "text-[rgb(var(--muted))] hover:bg-surface-100 hover:text-[rgb(var(--fg))] dark:hover:bg-surface-900"
-  ].join(" ");
+const pwdPath = currentPath === "/" ? "~" : `~${currentPath}`;
 ---
 
-<header class="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-[rgb(var(--bg))/0.85] backdrop-blur-xl">
-  <nav class="page-wrap flex items-center justify-between py-4" aria-label="Main">
-    <a class="focus-ring text-sm font-semibold tracking-tight" href="/">aliuyar.dev</a>
+{/* STATUS BAR */}
+<div class="statusbar" role="presentation">
+  <div class="inner">
+    <span class="chunk">
+      <span class="led" aria-hidden="true"></span>
+      <span>READY</span>
+      <span class="sep">·</span>
+      <span>aliuyar.dev</span>
+      <span class="sep">·</span>
+      <span>v 2026.I</span>
+    </span>
+    <span class="chunk">
+      <span class="tabnum" id="clock-utc">—— UTC+01</span>
+      <span class="sep">·</span>
+      <span>VIENNA</span>
+      <span class="sep hidden md:inline">·</span>
+      <span class="hidden md:inline">SESSION 01</span>
+    </span>
+  </div>
+</div>
 
-    <ul class="hidden items-center gap-1 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--card))/0.72] px-2 py-1 md:flex">
+{/* PRIMARY HEADER */}
+<header class="sticky top-0 z-50" style="background: rgb(var(--bg) / 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule);">
+  <div class="page-wrap flex items-center justify-between py-3.5" aria-label="Main">
+    <a class="focus-ring inline-flex items-baseline gap-2" href="/" aria-label="Home">
+      <span class="accent font-mono text-[0.82rem]">user@aliuyar.dev</span>
+      <span class="font-mono text-[0.82rem] dim">:</span>
+      <span class="font-mono text-[0.82rem]">{pwdPath}</span>
+      <span class="font-mono text-[0.82rem] dim">$</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
       {links.map((link) => (
-        <li>
-          <a class={desktopLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
-            {link.label}
-          </a>
-        </li>
+        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
+          <span>{link.label}</span>
+        </a>
       ))}
-    </ul>
+    </nav>
 
     <div class="flex items-center gap-2">
-      <button id="theme-toggle" type="button" class="focus-ring rounded-full border border-[rgb(var(--border))] px-3.5 py-2 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))]" aria-label="Toggle color theme" aria-pressed="false">
-        Theme
+      <button
+        id="theme-toggle"
+        type="button"
+        class="focus-ring font-mono text-[0.72rem]"
+        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
+        aria-label="Toggle color theme"
+        aria-pressed="false"
+      >
+        <span id="theme-label">DARK</span>
       </button>
+
       <button
         id="mobile-menu-toggle"
         type="button"
-        class="focus-ring rounded-full border border-[rgb(var(--border))] px-3.5 py-2 text-xs font-medium text-[rgb(var(--muted))] transition-colors hover:text-[rgb(var(--fg))] md:hidden"
+        class="focus-ring md:hidden font-mono text-[0.72rem]"
+        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        Menu
+        <span class="menu-word">MENU</span>
       </button>
     </div>
-  </nav>
-  <div id="mobile-menu" class="hidden border-t border-[rgb(var(--border))] md:hidden">
-    <div class="page-wrap flex flex-col gap-2 py-3">
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden" style="border-top: 1px solid var(--rule);">
+    <div class="page-wrap flex flex-col gap-1 py-4">
       {links.map((link) => (
-        <a class={mobileLinkClass(link.href)} href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
-          {link.label}
+        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
+          <span>{link.label}</span>
         </a>
       ))}
     </div>
@@ -76,51 +97,65 @@ const mobileLinkClass = (href: string) =>
 </header>
 
 <script is:inline>
+  // Clock — UTC+01
+  (() => {
+    const el = document.getElementById("clock-utc");
+    if (!el) return;
+    const tick = () => {
+      const now = new Date();
+      // Vienna time (UTC+1 in standard, +2 in DST). Use built-in.
+      const h = now.toLocaleTimeString("en-GB", { timeZone: "Europe/Vienna", hour: "2-digit", minute: "2-digit", hour12: false });
+      el.textContent = `${h} UTC+01`;
+    };
+    tick();
+    setInterval(tick, 30 * 1000);
+  })();
+
+  // Theme
   (() => {
     const button = document.getElementById("theme-toggle");
     if (!button) return;
 
     const key = "theme";
     const root = document.documentElement;
-    const getTheme = () => (root.classList.contains("dark") ? "dark" : "light");
+    const label = document.getElementById("theme-label");
+    const getTheme = () => (root.classList.contains("light") ? "light" : "dark");
 
     const update = () => {
-      const theme = getTheme();
-      button.setAttribute("aria-pressed", String(theme === "dark"));
-      button.textContent = theme === "dark" ? "Light" : "Dark";
+      const t = getTheme();
+      button.setAttribute("aria-pressed", String(t === "dark"));
+      if (label) label.textContent = t === "dark" ? "DARK" : "LIGHT";
     };
 
     button.addEventListener("click", () => {
       const next = getTheme() === "dark" ? "light" : "dark";
-      root.classList.toggle("dark", next === "dark");
-      localStorage.setItem(key, next);
+      root.classList.toggle("light", next === "light");
+      try { localStorage.setItem(key, next); } catch {}
       update();
     });
 
     update();
   })();
 
+  // Mobile menu
   (() => {
     const menu = document.getElementById("mobile-menu");
     const toggle = document.getElementById("mobile-menu-toggle");
     if (!menu || !toggle) return;
+    const word = toggle.querySelector(".menu-word");
 
     const closeMenu = () => {
       menu.classList.add("hidden");
       toggle.setAttribute("aria-expanded", "false");
-      toggle.textContent = "Menu";
+      if (word) word.textContent = "MENU";
     };
 
     toggle.addEventListener("click", () => {
       const isOpen = !menu.classList.contains("hidden");
-      if (isOpen) {
-        closeMenu();
-        return;
-      }
-
+      if (isOpen) { closeMenu(); return; }
       menu.classList.remove("hidden");
       toggle.setAttribute("aria-expanded", "true");
-      toggle.textContent = "Close";
+      if (word) word.textContent = "CLOSE";
     });
 
     menu.querySelectorAll("a").forEach((link) => {

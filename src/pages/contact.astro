@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -7,44 +7,87 @@ import profile from "../content/profile.json";
 const primaryEmail = "contact@aliuyar.dev";
 ---
 
-<BaseLayout title="Contact | Ali Uyar" canonicalPath="/contact" description="Contact Ali Uyar for serious product, research, and AI systems conversations.">
+<BaseLayout title="ali uyar // contact" canonicalPath="/contact" description="Contact Ali Uyar for serious product, research, and AI systems conversations.">
   <SiteHeader />
-  <main id="main" class="page-wrap max-w-4xl py-16 md:py-20">
-    <section class="page-intro">
-      <h1 class="title-balance text-4xl font-semibold tracking-tight md:text-6xl">Email is the best way to reach me.</h1>
-      <p class="page-lede">
+  <main id="main" class="page-wrap py-14 md:py-20">
+
+    <section class="reveal">
+      <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
+        mail -s "hello" contact@aliuyar.dev
+      </p>
+      <h1 class="page-title mt-6">open a thread<span class="caret" aria-hidden="true"></span></h1>
+      <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
         The best emails are clear about the question, the context, and where the technical or product tension sits.
       </p>
     </section>
 
-    <section class="mt-14 border-t border-[rgb(var(--border))/0.72] pt-8 md:grid md:grid-cols-5 md:gap-8">
-      <div class="md:col-span-3">
-        <a class="focus-ring text-2xl font-semibold tracking-tight hover:underline md:text-4xl" href={`mailto:${primaryEmail}`}>{primaryEmail}</a>
-        <p class="mt-4 max-w-xl text-sm leading-7 text-[rgb(var(--muted))]">
-          A short note with context, what you are building, and where the technical or product bottleneck sits is enough to start.
+    <div class="divider-ascii mt-12" aria-hidden="true">
+      ════════════════════════════════════════════════════════════════════════════
+    </div>
+
+    <section class="mt-10 grid gap-12 md:grid-cols-12 md:gap-14">
+      <div class="md:col-span-7">
+        <p class="label">[ primary address ]</p>
+        <a
+          class="font-mono mt-5 inline-block link-accent"
+          style="font-size: clamp(1.5rem, 4.5vw, 2.6rem); letter-spacing: -0.01em; line-height: 1.2;"
+          href={`mailto:${primaryEmail}`}
+        >
+          {primaryEmail}
+        </a>
+        <p class="mt-6 max-w-xl text-[0.98rem] leading-[1.75]" style="color: rgb(var(--muted));">
+          A short note with context — what you are building and where the technical or product bottleneck sits — is enough to start.
         </p>
-      </div>
 
-      <div class="mt-8 md:col-span-2 md:mt-0">
-        <p class="text-xs font-medium uppercase tracking-[0.18em] text-[rgb(var(--muted))]">Best for</p>
-        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-[rgb(var(--muted))]">
-          <li>AI systems that need sharper reliability, evaluation, or architecture decisions.</li>
-          <li>Product work where technical depth and delivery judgment both matter.</li>
-          <li>Research, writing, or collaboration inquiries with a clear shared question.</li>
-        </ul>
-
-        <div class="mt-6 flex items-center gap-4 text-sm text-[rgb(var(--muted))]">
-          <a class="focus-ring transition-colors hover:text-[rgb(var(--fg))]" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+        <div class="mt-10 pt-6" style="border-top: 1px solid var(--rule);">
+          <p class="label">[ elsewhere ]</p>
+          <ul class="mt-4 space-y-2 mono-sm">
+            <li><a class="link-muted" href={profile.github} target="_blank" rel="noreferrer">→ github.com/aliuyar1234</a></li>
+            <li><a class="link-muted" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">→ cv.en.pdf</a></li>
+            <li><a class="link-muted" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">→ cv.de.pdf</a></li>
+          </ul>
         </div>
       </div>
+
+      <aside class="md:col-span-5">
+        <div style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
+          <p class="label">[ best for ]</p>
+          <ul class="mt-4 space-y-4 font-mono text-[0.9rem] leading-[1.7]">
+            <li class="flex gap-3">
+              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">i.</span>
+              <span style="color: rgb(var(--muted));">AI systems that need sharper reliability, evaluation, or architecture decisions.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">ii.</span>
+              <span style="color: rgb(var(--muted));">Product work where technical depth and delivery judgment both matter.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">iii.</span>
+              <span style="color: rgb(var(--muted));">Research, writing, or collaboration inquiries with a clear shared question.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6" style="border: 1px solid var(--rule); padding: 1.25rem;">
+          <p class="label">[ locus ]</p>
+          <dl class="kv mt-3">
+            <dt>PLACE</dt>
+            <dd>{profile.location}</dd>
+            <dt>TZ</dt>
+            <dd class="tabnum"><span class="accent">●</span> UTC+01 Europe/Vienna</dd>
+            <dt>STATE</dt>
+            <dd>Available for select work</dd>
+          </dl>
+        </div>
+      </aside>
     </section>
 
-    <section id="cv" class="mt-10 border-t border-[rgb(var(--border))/0.72] pt-5 text-sm text-[rgb(var(--muted))]">
-      <p>
-        If useful, my CV is available in
-        <a class="focus-ring ml-1 transition-colors hover:text-[rgb(var(--fg))] hover:underline" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">English</a>
+    <section id="cv" class="mt-20 pt-6" style="border-top: 1px solid var(--rule);">
+      <p class="comment max-w-3xl text-[0.95rem] leading-[1.75]">
+        my CV is available in
+        <a class="link" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">English</a>
         and
-        <a class="focus-ring ml-1 transition-colors hover:text-[rgb(var(--fg))] hover:underline" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">German</a>.
+        <a class="link" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">German</a>.
         I am also open to the right full-time role when the work is technically serious and product-minded.
       </p>
     </section>

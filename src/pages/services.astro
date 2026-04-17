@@ -2,89 +2,131 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+
+const services = [
+  {
+    num: "01",
+    slug: "system_review",
+    title: "System Review",
+    kicker: "For teams that need clarity on architecture, reliability, and what to fix first.",
+    outcomes: [
+      "A clearer picture of the main technical risks.",
+      "A practical list of what matters now and what can wait.",
+      "A sharper direction for the next steps."
+    ]
+  },
+  {
+    num: "02",
+    slug: "implementation",
+    title: "Implementation",
+    kicker: "For teams that know the direction and need the work to become disciplined and reliable.",
+    outcomes: [
+      "AI workflows that are more stable and easier to evaluate.",
+      "Checks and measurement built into the work.",
+      "A handover the team can actually use."
+    ]
+  },
+  {
+    num: "03",
+    slug: "advisory",
+    title: "Advisory",
+    kicker: "For teams that want sharper product, architecture, or sequencing decisions before committing further.",
+    outcomes: [
+      "Clearer decisions before time and money are spent in the wrong place.",
+      "Less confusion about where AI helps and where it does not.",
+      "Technical product input that works for both builders and decision-makers."
+    ]
+  }
+];
+
+const method = [
+  { k: "i.",   h: "Understand the problem.",   b: "Get clear on the real issue, not the symptoms around it." },
+  { k: "ii.",  h: "Keep the scope tight.",     b: "Decide what is worth doing now and what can wait." },
+  { k: "iii.", h: "Leave something useful.",   b: "The result should still help the team after the engagement ends." }
+];
 ---
 
-<BaseLayout title="Services | Ali Uyar" canonicalPath="/services" description="Ways Ali Uyar helps teams with AI systems, technical product decisions, and reliable delivery.">
+<BaseLayout
+  title="ali uyar // services"
+  canonicalPath="/services"
+  description="Ways Ali Uyar helps teams with AI systems, technical product decisions, and reliable delivery."
+>
   <SiteHeader />
-  <main id="main" class="page-wrap max-w-5xl py-14 md:py-18">
-    <section class="page-intro">
-      <h1 class="title-balance text-3xl font-semibold tracking-tight md:text-5xl">What I do</h1>
-      <p class="page-lede">
-        I help teams get clear on the real problem, whether it is already visible or only starting to show up.
+  <main id="main" class="page-wrap py-14 md:py-16">
+
+    <section class="reveal">
+      <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
+        man aliuyar.services
+      </p>
+      <h1 class="page-title mt-6">what i do<span class="caret" aria-hidden="true"></span></h1>
+      <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
+        I help teams get clear on the real problem — whether it is already visible, or only starting to show up.
       </p>
     </section>
 
-    <section class="mt-12 grid gap-4 md:grid-cols-3">
-      <article class="subtle-card p-6">
-        <h2 class="text-xl font-semibold tracking-tight">System Review</h2>
-        <p class="mt-3 text-sm leading-7 text-[rgb(var(--muted))]">
-          System Review is for teams that need clarity on architecture, reliability, and what to fix first.
-        </p>
-        <p class="mt-5 text-xs font-medium uppercase tracking-[0.18em] text-[rgb(var(--muted))]">Typical outcomes</p>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-[rgb(var(--muted))]">
-          <li>A clearer picture of the main technical risks.</li>
-          <li>A practical list of what matters now and what can wait.</li>
-          <li>A sharper direction for the next steps.</li>
-        </ul>
-      </article>
+    <div class="divider-ascii mt-14" aria-hidden="true">
+      ── SYNOPSIS ────────────────────────────────────────────────────────────────
+    </div>
 
-      <article class="subtle-card p-6">
-        <h2 class="text-xl font-semibold tracking-tight">Implementation</h2>
-        <p class="mt-3 text-sm leading-7 text-[rgb(var(--muted))]">
-          Implementation is for teams that know the direction and need the work to become more disciplined and reliable.
-        </p>
-        <p class="mt-5 text-xs font-medium uppercase tracking-[0.18em] text-[rgb(var(--muted))]">Typical outcomes</p>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-[rgb(var(--muted))]">
-          <li>AI workflows that are more stable and easier to evaluate.</li>
-          <li>Checks and measurement built into the work.</li>
-          <li>A handover the team can actually use.</li>
-        </ul>
-      </article>
-
-      <article class="subtle-card p-6">
-        <h2 class="text-xl font-semibold tracking-tight">Advisory</h2>
-        <p class="mt-3 text-sm leading-7 text-[rgb(var(--muted))]">
-          Advisory is for teams that want sharper product, architecture, or sequencing decisions before committing further.
-        </p>
-        <p class="mt-5 text-xs font-medium uppercase tracking-[0.18em] text-[rgb(var(--muted))]">Typical outcomes</p>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-[rgb(var(--muted))]">
-          <li>Clearer decisions before time and money are spent in the wrong place.</li>
-          <li>Less confusion about where AI helps and where it does not.</li>
-          <li>Technical product input that works for both builders and decision-makers.</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="mt-14 border-t border-[rgb(var(--border))/0.72] pt-8 md:grid md:grid-cols-5 md:gap-8">
-      <div class="md:col-span-3">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">How I work</h2>
-        <p class="mt-4 max-w-2xl text-sm leading-7 text-[rgb(var(--muted))]">
-          I prefer small engagements with a clear question or bottleneck.
-        </p>
-      </div>
-
-      <div class="mt-8 md:col-span-2 md:mt-0">
-        <ol class="space-y-4 text-sm leading-relaxed text-[rgb(var(--muted))]">
-          <li>
-            <span class="font-medium text-[rgb(var(--fg))]">1. Understand the problem.</span>
-            We get clear on the real issue, not just the symptoms around it.
-          </li>
-          <li>
-            <span class="font-medium text-[rgb(var(--fg))]">2. Keep the scope tight.</span>
-            We decide what is worth doing now and what can wait.
-          </li>
-          <li>
-            <span class="font-medium text-[rgb(var(--fg))]">3. Leave something useful behind.</span>
-            The result should still help the team after the engagement ends.
-          </li>
-        </ol>
+    <section class="mt-8">
+      <div class="grid gap-8 md:grid-cols-3 md:gap-10">
+        {services.map((s) => (
+          <article class="reveal" style="border: 1px solid var(--rule); padding: 1.5rem;">
+            <p class="mono-xs tabnum" style="color: rgb(var(--accent));">mode.{s.num}</p>
+            <h2 class="mt-4 font-mono text-[1.15rem]" style="font-weight: 500; letter-spacing: -0.005em;">
+              {s.title}
+            </h2>
+            <p class="mt-4 text-[0.92rem] leading-[1.7]" style="color: rgb(var(--muted));">
+              {s.kicker}
+            </p>
+            <p class="mt-6 label">[ typical outcomes ]</p>
+            <ul class="mt-3 space-y-2 font-mono text-[0.88rem] leading-[1.65]" style="color: rgb(var(--muted));">
+              {s.outcomes.map((out) => (
+                <li class="flex gap-2">
+                  <span class="accent">›</span>
+                  <span>{out}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </section>
 
-    <section class="mt-10 border-t border-[rgb(var(--border))/0.72] pt-5">
-      <p class="text-sm leading-relaxed text-[rgb(var(--muted))]">
-        If this seems relevant, the easiest way to start is an email on the
-        <a href="/contact" class="focus-ring ml-1 transition-colors hover:text-[rgb(var(--fg))] hover:underline">contact page</a>.
+    <div class="divider-ascii mt-20" aria-hidden="true">
+      ── METHOD ──────────────────────────────────────────────────────────────────
+    </div>
+
+    <section class="mt-8 grid gap-10 md:grid-cols-12 md:gap-12">
+      <div class="md:col-span-5">
+        <p class="prompt-plain mono-xs tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
+          how i work
+        </p>
+        <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+          // small engagements with a clear question or bottleneck. less theatre, more signal.
+        </p>
+      </div>
+
+      <ol class="md:col-span-7 space-y-6">
+        {method.map((p) => (
+          <li class="pl-5 pt-5" style="border-top: 1px solid var(--rule);">
+            <div class="flex items-baseline gap-3">
+              <span class="mono-xs tabnum" style="color: rgb(var(--accent));">{p.k}</span>
+              <span class="font-mono text-[1.02rem]" style="font-weight: 500;">{p.h}</span>
+            </div>
+            <p class="mt-2 text-[0.92rem] leading-[1.7]" style="color: rgb(var(--muted));">
+              {p.b}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="mt-20 pt-6" style="border-top: 1px solid var(--rule);">
+      <p class="text-[0.98rem] leading-[1.75]" style="color: rgb(var(--muted));">
+        // if this seems relevant, the easiest way to start is an email on the
+        <a href="/contact" class="link">/contact</a>
+        page.
       </p>
     </section>
   </main>
