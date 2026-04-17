@@ -1,7 +1,7 @@
 [
   {
     "title": "Inside the Multilingual Transformer: Computational Neuroanatomy of Shared and Language-Specific Brain Alignment",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19185601",
     "abstract": "State-level, token-attribution, and deletion-validation analysis of XLM-R and NLLB-200 encoder internals against multilingual naturalistic fMRI (LPPC, English/French/Chinese) isolates attention-side rather than FFN-semantic computations behind SHARED-greater-than-SPECIFIC alignment, including extension into auditory cortex.",
@@ -14,7 +14,7 @@
   },
   {
     "title": "Language-Neutral or Language-Specific? Disentangling Multilingual LLM Subspaces with Naturalistic fMRI",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19185476",
     "abstract": "ROI-first encoding analysis on the Le Petit Prince multilingual fMRI corpus decomposes XLM-R and NLLB-200 encoder features into leave-target-out SHARED and orthogonalized SPECIFIC components, with SHARED-greater-than-SPECIFIC holding semantically across all six model-by-language tests under Holm correction.",
@@ -40,7 +40,7 @@
   },
   {
     "title": "Selective Revocation and Replay: Post-Compromise Recovery of Explicit Persisted State in Memory-Augmented LLM Agents",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.18967061",
     "abstract": "Provenance-tracked runtime that revokes persisted descendants of suspicious roots and replays only dirty state-writing events, with coarse-rollback fallback; in a frozen 8-chain matrix and a live qwen2.5:14b confirmation it is the only method that drives residual explicit attack success to zero while retaining benign state, cutting post-detection cost from 17 to 9 extra LLM calls versus rollback on retrieval memory.",
@@ -53,7 +53,7 @@
   },
   {
     "title": "Same-Size Capability Transfer Reveals a Performance-Localization Tradeoff in Deterministic Function Calling",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19226753",
     "abstract": "Locked within-family Gemma testbed for transplanting single-turn function-calling behavior via fixed sparse, dense, and steering modules under frozen manifests and exact JSON grading. Sparse transfer is real and partially localized, but a parameter-matched dense module wins the multiseed primary metric (0.2177 vs 0.1658 strict success).",
@@ -66,7 +66,7 @@
   },
   {
     "title": "Surgical Post-Training Diffing: Partial Recovery Without Clean Small-Mask Separation",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19347477",
     "abstract": "Paired answer-phase sparse surrogate over two residual-stream layers of Gemma 3 4B PT/IT cuts answer-token KL by 28.3% and recovers 0.186 of the PT-to-IT capability gap, while frozen 5-feature capability masks collapse to the null and verbosity-subtraction masks lengthen outputs instead of shortening them. Includes matched baselines, ablations, and prompt-level paired bootstrap intervals.",
@@ -79,7 +79,7 @@
   },
   {
     "title": "ProbeRoute: Probes as Routing Priors for Frozen-Backbone Multi-Token Prediction",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19022709",
     "abstract": "Offline future-token probes across transformer depth initialize a sparse top-m layer router for multi-token prediction on a frozen backbone, beating the strongest screening-selected dense finalist on held-out top-1 and speculative-draft acceptance under a stage-gated protocol with mandatory probes and a final 1B rerun.",
@@ -92,7 +92,7 @@
   },
   {
     "title": "When Accuracy Hides Path Dependence: Criterion Fidelity in LLM Judges",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19332783",
     "abstract": "Introduces criterion fidelity as a distinct validity axis for LLM judges using criterion families (base, meaning-preserving paraphrases, counterfactuals) that dissociate from ordinary accuracy, with strict criterion-emphasis prompting shown to be an unreliable fix.",
@@ -105,7 +105,7 @@
   },
   {
     "title": "Binary Evidence Sufficiency Dissociation in Reasoning-Model Hidden States",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.18921977",
     "abstract": "Linear probes on mid-reasoning hidden states in fixed-question, changed-context multi-hop QA recover a binary evidence-sufficiency signal distinct from final-answer correctness and pre-generation query uncertainty, supported by title-masked robustness with mixed cross-model replication.",
@@ -118,7 +118,7 @@
   },
   {
     "title": "Structured Yet Fragile: Signed Intervention Geometry of Matched ORF and CRISPR Cell Painting Profiles",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.19185214",
     "abstract": "Locked, auditable pipeline analyzing 5,332 same-gene ORF/CRISPR Cell Painting pairs under fixed preprocessing, bootstrap consensus, and prespecified robustness checks. Regime map is dominated by asymmetric and ambiguous states, shifts with effect-magnitude deciles, and yields null retrieval utility despite 536 significant Reactome terms.",
@@ -189,7 +189,7 @@
   },
   {
     "title": "CertiPatch: Specification Repair for Frozen Language Models with Replayable Empirical Certificates",
-    "venue": "Zenodo",
+    "venue": "Preprint",
     "year": 2026,
     "doi": "10.5281/zenodo.18541322",
     "abstract": "Train-certify-verify pipeline with counterexample-guided constrained repair and reproducibility gates for fail-closed evidence in production sign-off.",
