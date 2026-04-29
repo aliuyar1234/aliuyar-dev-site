@@ -7,6 +7,7 @@ import projects from "../content/projects.json";
 import featured from "../content/featured.json";
 import research from "../content/research.json";
 import caseStudies from "../content/case_studies.json";
+import writing from "../content/writing.json";
 import profile from "../content/profile.json";
 import { filterProductProjects } from "../utils/researchSplit";
 
@@ -16,6 +17,7 @@ const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.n
 const fallbackProjects = nonResearchProjects.slice(0, 5);
 const cards = featuredProjects.length > 0 ? featuredProjects : fallbackProjects;
 const topResearch = research.slice(0, 3);
+const startHere = writing.find((post) => post.slug === "the-demo-is-not-the-product") || writing[0];
 
 const principles = [
   {
@@ -33,6 +35,23 @@ const principles = [
     t: "Good judgment beats theatre",
     b: "Sometimes the answer is a better eval, sometimes a smaller workflow, and sometimes not using AI for that part at all. Annoying, but usually true."
   }
+];
+
+const thinking = [
+  "Look upstream before adding layers.",
+  "Do not fix a data problem with a prompt.",
+  "Do not fix a workflow problem by hiding it behind RAG.",
+  "Evals should answer product questions, not decorate dashboards.",
+  "If nobody can inspect the decision later, the system is not ready.",
+  "Complexity is a cost. Spend it on purpose."
+];
+
+const notItems = [
+  "Not an AI hype guy.",
+  "Not a just-add-agents person.",
+  "Not pretending every problem needs a model.",
+  "Not an agency machine.",
+  "Not impressed by demos that cannot explain their own failures."
 ];
 ---
 
@@ -105,10 +124,56 @@ const principles = [
       </div>
     </section>
 
-    {/* ═════════ § 02 · RESEARCH ═════════ */}
+    {/* ═════════ § 02 · HOW I THINK ═════════ */}
     <section class="page-wrap mt-20">
       <div class="section-head">
         <span class="section-num">§ 02</span>
+        <span class="section-name">How I think</span>
+        <span class="section-meta">[ operating notes ]</span>
+      </div>
+      <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
+        <div class="md:col-span-5 measure">
+          <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
+            // the shape underneath the symptom
+          </p>
+          <p class="mt-5 text-[1rem] leading-[1.75]">
+            I get suspicious when a system is impressive but nobody can explain what happens when it is wrong.
+          </p>
+          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+            Most of my work starts there: trace the constraint, find the layer where the problem actually lives, and avoid adding clever machinery before the basics are defensible.
+          </p>
+        </div>
+        <div class="md:col-span-7 grid gap-3">
+          {thinking.map((item, i) => (
+            <div class="flex gap-3" style="border-top: 1px solid var(--rule); padding-top: 0.85rem;">
+              <span class="mono-xs tabnum" style="color: rgb(var(--accent));">{String(i + 1).padStart(2, "0")}</span>
+              <p class="font-mono text-[0.95rem] leading-[1.6]" style="color: rgb(var(--muted));">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ═════════ § 03 · START HERE ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 03</span>
+        <span class="section-name">Start here</span>
+        <a href={`/articles/${startHere.slug}`} class="section-meta link-muted">[ read article → ]</a>
+      </div>
+      <article class="reveal" style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
+        <p class="label">[ flagship note ]</p>
+        <h2 class="mt-4 font-mono text-[1.35rem] md:text-[1.7rem]" style="font-weight: 500; letter-spacing: -0.01em; line-height: 1.35;">
+          <a class="link-accent" href={`/articles/${startHere.slug}`}>{startHere.title}</a>
+        </h2>
+        <p class="mt-4 max-w-2xl text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">{startHere.summary}</p>
+      </article>
+    </section>
+
+    {/* ═════════ § 04 · RESEARCH ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 04</span>
         <span class="section-name">Research</span>
         <a href="/research" class="section-meta link-muted">[ all papers → ]</a>
       </div>
@@ -139,7 +204,7 @@ const principles = [
     {/* ═════════ § 03 · PROJECTS ═════════ */}
     <section class="page-wrap mt-20">
       <div class="section-head">
-        <span class="section-num">§ 03</span>
+        <span class="section-num">§ 05</span>
         <span class="section-name">Selected projects</span>
         <a href="/projects" class="section-meta link-muted">[ ls /projects → ]</a>
       </div>
@@ -151,7 +216,7 @@ const principles = [
     {/* ═════════ § 04 · OUTCOMES ═════════ */}
     <section class="page-wrap mt-20">
       <div class="section-head">
-        <span class="section-num">§ 04</span>
+        <span class="section-num">§ 06</span>
         <span class="section-name">Outcomes</span>
         <span class="section-meta">[ problem · build · result ]</span>
       </div>
@@ -185,7 +250,7 @@ const principles = [
     {/* ═════════ § 05 · FOCUS ═════════ */}
     <section class="page-wrap mt-24">
       <div class="section-head">
-        <span class="section-num">§ 05</span>
+        <span class="section-num">§ 07</span>
         <span class="section-name">Focus</span>
         <span class="section-meta">[ how i work ]</span>
       </div>
@@ -213,6 +278,32 @@ const principles = [
             <a href="/contact" class="btn-accent mt-6">open thread</a>
           </div>
         </aside>
+      </div>
+    </section>
+
+    {/* ═════════ § 08 · NOT THIS ═════════ */}
+    <section class="page-wrap mt-20">
+      <div class="section-head">
+        <span class="section-num">§ 08</span>
+        <span class="section-name">What I am not</span>
+        <span class="section-meta">[ useful boundaries ]</span>
+      </div>
+      <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
+        <div class="md:col-span-5 measure">
+          <p class="text-[1rem] leading-[1.75]">
+            This is partly taste and partly self-defense. The AI space rewards confident nonsense too easily.
+          </p>
+          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+            I would rather be useful, precise, and occasionally annoying than sound important while making the system worse.
+          </p>
+        </div>
+        <div class="md:col-span-7 grid gap-3">
+          {notItems.map((item) => (
+            <p class="font-mono text-[0.95rem] leading-[1.6]" style="border-top: 1px solid var(--rule); padding-top: 0.85rem; color: rgb(var(--muted));">
+              <span class="accent">›</span> {item}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   </main>
