@@ -17,28 +17,28 @@ const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.n
 const fallbackProjects = nonResearchProjects.slice(0, 5);
 const cards = featuredProjects.length > 0 ? featuredProjects : fallbackProjects;
 const topResearch = research.slice(0, 3);
-const startHere = writing.find((post) => post.slug === "the-demo-is-not-the-product") || writing[0];
+const startHere = writing.find((post) => post.slug === "the-first-answer-is-usually-not-the-real-one") || writing[0];
 
 const principles = [
   {
     k: "01",
-    t: "Find the layer",
-    b: "The visible problem is often downstream. A model fails because the workflow is unclear. A dashboard is noisy because the question is vague. A strategy gets complex because nobody wants to make the tradeoff."
+    t: "Find the constraint",
+    b: "A model problem may be a data problem. A dashboard problem may be a question problem. A strategy problem may be an avoided tradeoff. I like getting to the layer where the work actually changes."
   },
   {
     k: "02",
-    t: "Name the constraint",
-    b: "Before adding machinery, find what is actually limiting the system: data, ownership, incentives, evidence, trust, time, or taste. The fix should match the constraint."
+    t: "Keep the evidence close",
+    b: "If a system makes a claim, routes a case, blocks an action, or changes a workflow, there should be something to inspect afterwards. Otherwise people are guessing politely."
   },
   {
     k: "03",
-    t: "Make the output simple",
-    b: "Complexity is allowed in the thinking, not in the thing people have to use. The best work makes a hard decision easier to see, inspect, and act on."
+    t: "Cut the machinery",
+    b: "Complexity has to earn its place. Sometimes the right move is a model, sometimes cleaner data, sometimes a better decision loop, and sometimes not adding AI at all."
   }
 ];
 
 const thinking = [
-  "Most hard problems are solved at the wrong layer.",
+  "The first answer is useful, but it is often incomplete.",
   "Do not fix a data problem with a prompt.",
   "Do not fix an ownership problem with a dashboard.",
   "Do not fix a judgment problem by adding more automation.",
@@ -58,7 +58,7 @@ const notItems = [
 <BaseLayout
   title="ali uyar // ai systems & technical product"
   canonicalPath="/"
-  description="Finding the real constraint in AI systems, product work, evaluation, governance, and the parts people actually have to use."
+  description="AI systems, product decisions, workflows, evaluation, governance, and the judgment that connects them."
 >
   <SiteHeader />
 
@@ -85,10 +85,10 @@ const notItems = [
         <div class="mt-12">
           <p class="prompt-plain mono-xs tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--accent));">objective</p>
           <h1 class="hero-title mt-5">
-            <span class="glyph">I care about the layer</span><br />
-            beneath the obvious problem.<br />
-            Find the real constraint, then make the output<br />
-            simple enough to use.<span class="caret" aria-hidden="true"></span>
+            <span class="glyph">I work on messy problems</span><br />
+            where the first answer is usually not the real one.<br />
+            AI systems, product decisions, workflows, evaluation,<br />
+            governance, and the judgment that connects them.<span class="caret" aria-hidden="true"></span>
           </h1>
         </div>
 
@@ -134,13 +134,13 @@ const notItems = [
       <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
         <div class="md:col-span-5 measure">
           <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
-            // find the layer underneath
+            // the layer where the problem lives
           </p>
           <p class="mt-5 text-[1rem] leading-[1.75]">
-            Most hard problems are not hard because nobody has ideas. They are hard because people keep solving them at the wrong layer.
+            I care about the layer where the problem actually lives.
           </p>
           <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
-            Sometimes the answer is a model. Sometimes it is cleaner data, a better workflow, a decision the team has avoided, or less machinery altogether.
+            The visible failure might be the model, the data, the workflow, the metric, the incentive, or the decision nobody wants to make. The work is finding the real constraint, then making the answer simple enough to use.
           </p>
         </div>
         <div class="md:col-span-7 grid gap-3">
