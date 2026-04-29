@@ -22,28 +22,28 @@ const startHere = writing.find((post) => post.slug === "the-demo-is-not-the-prod
 const principles = [
   {
     k: "01",
-    t: "Past the demo",
-    b: "Demos are easy. The hard part is what happens after: messy data, unclear ownership, weird failures, and users who do not care about your architecture diagram."
+    t: "Find the layer",
+    b: "The visible problem is often downstream. A model fails because the workflow is unclear. A dashboard is noisy because the question is vague. A strategy gets complex because nobody wants to make the tradeoff."
   },
   {
     k: "02",
-    t: "Show the evidence",
-    b: "If a system makes a claim, routes a case, or blocks an action, there should be something you can inspect afterwards. Otherwise everyone is just guessing politely."
+    t: "Name the constraint",
+    b: "Before adding machinery, find what is actually limiting the system: data, ownership, incentives, evidence, trust, time, or taste. The fix should match the constraint."
   },
   {
     k: "03",
-    t: "Good judgment beats theatre",
-    b: "Sometimes the answer is a better eval, sometimes a smaller workflow, and sometimes not using AI for that part at all. Annoying, but usually true."
+    t: "Make the output simple",
+    b: "Complexity is allowed in the thinking, not in the thing people have to use. The best work makes a hard decision easier to see, inspect, and act on."
   }
 ];
 
 const thinking = [
-  "Look upstream before adding layers.",
+  "Most hard problems are solved at the wrong layer.",
   "Do not fix a data problem with a prompt.",
-  "Do not fix a workflow problem by hiding it behind RAG.",
+  "Do not fix an ownership problem with a dashboard.",
+  "Do not fix a judgment problem by adding more automation.",
   "Evals should answer product questions, not decorate dashboards.",
-  "If nobody can inspect the decision later, the system is not ready.",
-  "Complexity is a cost. Spend it on purpose."
+  "Find the real constraint, then make the output simple enough to use."
 ];
 
 const notItems = [
@@ -58,7 +58,7 @@ const notItems = [
 <BaseLayout
   title="ali uyar // ai systems & technical product"
   canonicalPath="/"
-  description="AI products after the demo: reliability, evaluation, governance, and the parts that need to survive real use."
+  description="Finding the real constraint in AI systems, product work, evaluation, governance, and the parts people actually have to use."
 >
   <SiteHeader />
 
@@ -85,10 +85,10 @@ const notItems = [
         <div class="mt-12">
           <p class="prompt-plain mono-xs tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--accent));">objective</p>
           <h1 class="hero-title mt-5">
-            <span class="glyph">AI products</span> after the demo.<br />
-            The part where models touch real users, real data,<br />
-            real failure modes, and someone has to decide what<br />
-            is actually safe to ship.<span class="caret" aria-hidden="true"></span>
+            <span class="glyph">I care about the layer</span><br />
+            beneath the obvious problem.<br />
+            Find the real constraint, then make the output<br />
+            simple enough to use.<span class="caret" aria-hidden="true"></span>
           </h1>
         </div>
 
@@ -134,13 +134,13 @@ const notItems = [
       <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
         <div class="md:col-span-5 measure">
           <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
-            // the shape underneath the symptom
+            // find the layer underneath
           </p>
           <p class="mt-5 text-[1rem] leading-[1.75]">
-            I get suspicious when a system is impressive but nobody can explain what happens when it is wrong.
+            Most hard problems are not hard because nobody has ideas. They are hard because people keep solving them at the wrong layer.
           </p>
           <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
-            Most of my work starts there: trace the constraint, find the layer where the problem actually lives, and avoid adding clever machinery before the basics are defensible.
+            Sometimes the answer is a model. Sometimes it is cleaner data, a better workflow, a decision the team has avoided, or less machinery altogether.
           </p>
         </div>
         <div class="md:col-span-7 grid gap-3">
