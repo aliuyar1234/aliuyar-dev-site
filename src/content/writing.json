@@ -2,7 +2,7 @@
   {
     "title": "The First Answer Is Usually Not the Real One",
     "date": "2026-04-29",
-    "summary": "Most teams do not need a more sophisticated answer at first. They need a better read on the constraint: the model, the data, the workflow, the metric, the incentive, or the decision nobody wants to make.",
+    "summary": "The first answer is often useful, but incomplete. The real constraint may be the model, the data, the workflow, the metric, the incentive, or the decision nobody wants to make.",
     "slug": "the-first-answer-is-usually-not-the-real-one",
     "tags": [
       "Product Judgment",
@@ -99,7 +99,7 @@
       "",
       "The useful posture is sharper than that: take the first answer seriously, then test whether it is the real constraint. Follow the failure. Look for the layer where a change would actually matter. Keep the evidence close. Cut the machinery that has not earned its place.",
       "",
-      "Most teams do not need a more sophisticated answer at first.",
+      "The first answer is often useful, but incomplete.",
       "",
       "They need a better read on the problem.",
       "",
