@@ -7,49 +7,49 @@ const services = [
   {
     num: "01",
     slug: "system_review",
-    title: "System Review",
-    kicker: "For teams that need clarity on architecture, reliability, and what to fix first.",
+    title: "Reality Check",
+    kicker: "For teams with an AI workflow that looks promising but feels a bit too fragile to trust.",
     outcomes: [
-      "A clearer picture of the main technical risks.",
-      "A practical list of what matters now and what can wait.",
-      "A sharper direction for the next steps."
+      "A clear view of what is actually risky, not just what is loud.",
+      "A short list of what to fix now, what to ignore, and what to stop pretending is fine.",
+      "A next step that does not require a religious debate about architecture."
     ]
   },
   {
     num: "02",
     slug: "implementation",
     title: "Implementation",
-    kicker: "For teams that know the direction and need the work to become disciplined and reliable.",
+    kicker: "For teams that know roughly what they want, but need the workflow to stop being a pile of clever exceptions.",
     outcomes: [
-      "AI workflows that are more stable and easier to evaluate.",
-      "Checks and measurement built into the work.",
-      "A handover the team can actually use."
+      "Workflows with fewer magic corners and better failure boundaries.",
+      "Checks, evals, and traces built into the thing itself.",
+      "A handover that does not require archaeology three weeks later."
     ]
   },
   {
     num: "03",
     slug: "advisory",
     title: "Advisory",
-    kicker: "For teams that want sharper product, architecture, or sequencing decisions before committing further.",
+    kicker: "For teams deciding whether to build, cut, simplify, or move the problem somewhere less painful.",
     outcomes: [
-      "Clearer decisions before time and money are spent in the wrong place.",
-      "Less confusion about where AI helps and where it does not.",
-      "Technical product input that works for both builders and decision-makers."
+      "Clearer decisions before the team spends another month polishing the wrong layer.",
+      "Less confusion about where AI helps, where it hurts, and where plain workflow design wins.",
+      "Product judgment that builders can use and decision-makers can understand."
     ]
   }
 ];
 
 const method = [
-  { k: "i.",   h: "Understand the problem.",   b: "Get clear on the real issue, not the symptoms around it." },
-  { k: "ii.",  h: "Keep the scope tight.",     b: "Decide what is worth doing now and what can wait." },
-  { k: "iii.", h: "Leave something useful.",   b: "The result should still help the team after the engagement ends." }
+  { k: "i.",   h: "Understand the problem.",   b: "Find the actual constraint, not the impressive-looking symptom around it." },
+  { k: "ii.",  h: "Keep the scope tight.",     b: "Keep the loop small enough that the team can learn something real." },
+  { k: "iii.", h: "Leave something useful.",   b: "Leave behind something inspectable: notes, checks, decisions, or a cleaner system." }
 ];
 ---
 
 <BaseLayout
   title="ali uyar // services"
   canonicalPath="/services"
-  description="Ways Ali Uyar helps teams with AI systems, technical product decisions, and reliable delivery."
+  description="How Ali Uyar helps teams get AI systems out of demo-land and into something safer, clearer, and easier to judge."
 >
   <SiteHeader />
   <main id="main" class="page-wrap py-14 md:py-16">
@@ -60,7 +60,7 @@ const method = [
       </p>
       <h1 class="page-title mt-6">what i do<span class="caret" aria-hidden="true"></span></h1>
       <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
-        I help teams get clear on the real problem — whether it is already visible, or only starting to show up.
+        I help teams get out of demo-land: what is actually broken, what needs evidence, and what should probably be simpler before anyone adds more AI.
       </p>
     </section>
 
