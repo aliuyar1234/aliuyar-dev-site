@@ -29,7 +29,7 @@ const researchJsonLd = research.map((paper) => ({
 <BaseLayout
   title="ali uyar // research"
   canonicalPath="/research"
-  description="Research papers and related research repositories by Ali Uyar."
+  description="Research notes and papers on AI reliability, evaluation, interpretability, and model behavior under pressure."
   jsonLd={researchJsonLd}
 >
   <SiteHeader />
@@ -41,7 +41,7 @@ const researchJsonLd = research.map((paper) => ({
       </p>
       <h1 class="page-title mt-6">research<span class="caret" aria-hidden="true"></span></h1>
       <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
-        Papers that came out of questions I keep returning to — around reliability, evaluation, and how to make AI systems easier to inspect and reason about.
+        Research from the same itch: models are impressive, but the interesting questions start when they are brittle, overconfident, hard to inspect, or quietly wrong.
       </p>
 
       <dl class="kv mt-8 max-w-sm">
@@ -77,7 +77,7 @@ const researchJsonLd = research.map((paper) => ({
 
             {paper.whyItMatters && (
               <div class="mt-4 pl-4" style="border-left: 2px solid rgb(var(--accent));">
-                <p class="label-accent">// operational relevance</p>
+                <p class="label-accent">// why i care</p>
                 <p class="mt-1 text-[0.95rem] leading-[1.7]">{paper.whyItMatters}</p>
               </div>
             )}

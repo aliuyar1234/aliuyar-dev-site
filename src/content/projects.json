@@ -1,7 +1,7 @@
 [
   {
     "name": "DecisionGraph",
-    "description": "DecisionGraph is a local-first library for immutable AI decision traces. It is used for audit-ready records and deterministic replays in compliance and approval workflows.",
+    "description": "A small local-first library for keeping AI decisions replayable. Useful when someone asks, later, 'why did the system do that?' and hand-waving is not enough.",
     "stargazerCount": 2,
     "url": "https://github.com/aliuyar1234/DecisionGraph",
     "updatedAt": "2026-01-30T17:38:14Z",
@@ -11,7 +11,7 @@
   },
   {
     "name": "SchemaPilot",
-    "description": "SchemaPilot is a governance-first data platform for building AI-ready datasets. It is used to control schema quality, access policies, and deterministic pipelines.",
+    "description": "A data-quality control layer for AI datasets. It keeps schemas, access rules, and pipeline steps boringly explicit before anyone tries to put a model on top.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/SchemaPilot",
     "updatedAt": "2026-02-19T03:07:18Z",
@@ -21,7 +21,7 @@
   },
   {
     "name": "PECR",
-    "description": "PECR is a policy-enforced runtime for AI context retrieval. It is used to produce deterministic responses with auditable evidence and clear permission outcomes.",
+    "description": "A retrieval runtime with policy checks built in. The point is simple: if the model cannot see it, it should not pretend it did.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/PECR",
     "updatedAt": "2026-02-19T00:22:42Z",
@@ -31,7 +31,7 @@
   },
   {
     "name": "retokenization-invariance-atlas",
-    "description": "retokenization-invariance-atlas is a deterministic evaluation framework for prompt-format sensitivity. It is used to test how formatting changes affect QA robustness before production.",
+    "description": "A test harness for checking whether tiny prompt-format changes break QA behavior. Because if a newline changes the answer, you probably want to know before launch.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
     "updatedAt": "2026-02-18T15:34:24Z",
@@ -41,7 +41,7 @@
   },
   {
     "name": "ScrubID",
-    "description": "ScrubID is an identifiability-aware audit pipeline for mechanistic interpretability claims. It is used to verify whether interpretability conclusions are reproducible and evidence-backed.",
+    "description": "An audit pipeline for interpretability claims. It asks whether the evidence actually identifies what people say it identifies, not just whether the chart looks convincing.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/ScrubID",
     "updatedAt": "2026-02-17T11:42:52Z",
@@ -51,7 +51,7 @@
   },
   {
     "name": "certipatch",
-    "description": "certipatch is a reproducible specification-repair framework for frozen language models. It is used to patch failing behaviors and verify fixes with deterministic certificates.",
+    "description": "A repair loop for frozen language models. It patches failing behaviors and leaves behind replayable evidence instead of a hopeful note in a changelog.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/certipatch",
     "updatedAt": "2026-02-17T11:42:15Z",
@@ -61,7 +61,7 @@
   },
   {
     "name": "discover-then-distill-paper",
-    "description": "discover-then-distill-paper is a research implementation separating LoRA adaptation from self-distillation. It is used to compare short-term adaptation versus durable model improvement under matched compute.",
+    "description": "A research implementation that separates quick adaptation from durable model improvement. Basically: did the model learn something, or did it just cope for a moment?",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/discover-then-distill-paper",
     "updatedAt": "2026-02-13T20:03:17Z",
@@ -71,7 +71,7 @@
   },
   {
     "name": "cost-watchdog",
-    "description": "Cost Watchdog is a self-hosted cost monitoring and anomaly detection platform. It is used to ingest cost data, detect anomalies automatically, and notify teams before overspend appears in monthly or yearly reporting.",
+    "description": "A self-hosted cost monitor that catches weird spend before the monthly report ruins someone's morning.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/cost-watchdog",
     "updatedAt": "2026-02-13T13:25:51Z",
@@ -81,7 +81,7 @@
   },
   {
     "name": "VeilPack",
-    "description": "VeilPack is an offline, fail-closed privacy gate for enterprise data pipelines. It is used to detect sensitive values, redact outputs, and ship verifiable data packs.",
+    "description": "An offline privacy gate for data pipelines. It catches sensitive values, redacts them, and packages the result so teams can prove what happened.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/VeilPack",
     "updatedAt": "2026-02-10T09:36:50Z",
@@ -91,7 +91,7 @@
   },
   {
     "name": "ContextGraph",
-    "description": "ContextGraph is a self-hosted, privacy-aware process intelligence platform from Slack, Jira, and GitHub metadata. It is used to improve execution visibility without violating privacy boundaries.",
+    "description": "A privacy-aware process map built from Slack, Jira, and GitHub metadata. It tries to show where work gets stuck without turning people into surveillance objects.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/ContextGraph",
     "updatedAt": "2026-02-08T09:43:40Z",
@@ -101,7 +101,7 @@
   },
   {
     "name": "incitape",
-    "description": "incitape is a telemetry tape system for reproducible incident replay. It is used to debug failures and run consistent postmortems.",
+    "description": "A telemetry tape for replaying incidents. Less folklore in postmortems, more 'here is what actually happened'.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/incitape",
     "updatedAt": "2026-02-04T16:57:25Z",
@@ -111,7 +111,7 @@
   },
   {
     "name": "AvalancheLLM",
-    "description": "AvalancheLLM is a reproducibility pack for analyzing gated-MLP activation cascades. It is used to study instability patterns and test controlled gain interventions.",
+    "description": "A reproducibility pack for studying activation cascades in LLMs. It looks for instability patterns before they become mysterious production behavior.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AvalancheLLM",
     "updatedAt": "2026-01-30T20:14:47Z",
@@ -121,7 +121,7 @@
   },
   {
     "name": "Veil",
-    "description": "Veil is a local-first PII detection and redaction toolkit for text and documents. It is used to sanitize sensitive content offline before sharing or processing.",
+    "description": "A local PII detection and redaction toolkit for text and documents. For cases where sending sensitive content to yet another cloud tool is exactly the wrong move.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/Veil",
     "updatedAt": "2026-01-29T17:34:47Z",
@@ -131,7 +131,7 @@
   },
   {
     "name": "egress-lockfile",
-    "description": "egress-lockfile is a versioned network egress policy lockfile. It is used to control and audit allowed outbound destinations like dependency management.",
+    "description": "A versioned lockfile for outbound network access. Boring on purpose: make egress explicit, reviewable, and hard to quietly drift.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/egress-lockfile",
     "updatedAt": "2026-01-12T14:24:29Z",
@@ -141,7 +141,7 @@
   },
   {
     "name": "AgentGate",
-    "description": "AgentGate is a policy and approval gateway for enterprise AI agents. It is used to enforce action controls before autonomous workflows execute.",
+    "description": "A policy and approval gateway for AI agents. Agents can move fast; this gives teams somewhere sane to put the brakes.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AgentGate",
     "updatedAt": "2026-01-12T14:24:26Z",
@@ -151,7 +151,7 @@
   },
   {
     "name": "AnnexOps",
-    "description": "AnnexOps is an Evidence-Pack-as-Code platform for EU AI Act compliance. It is used to prepare, version, and validate workforce-AI evidence packages.",
+    "description": "Evidence packs as code for EU AI Act-style compliance work. Less spreadsheet archaeology, more versioned proof.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/AnnexOps",
     "updatedAt": "2026-01-12T14:24:23Z",
@@ -161,7 +161,7 @@
   },
   {
     "name": "flakeguard",
-    "description": "flakeguard is a GitHub Actions flake detection and monitoring system. It is used to identify unstable tests and improve CI signal quality.",
+    "description": "A CI flake detector for GitHub Actions. It helps separate real breakage from tests that just enjoy wasting everyone's time.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/flakeguard",
     "updatedAt": "2026-01-12T14:24:23Z",
@@ -171,7 +171,7 @@
   },
   {
     "name": "BatteryPassportCompiler",
-    "description": "BatteryPassportCompiler is a deterministic compiler for Battery Passport artifacts. It is used to generate signed proof objects, QR payloads, and replayable audit outputs.",
+    "description": "A deterministic compiler for Battery Passport artifacts. It turns compliance data into signed, replayable proof objects.",
     "stargazerCount": 1,
     "url": "https://github.com/aliuyar1234/BatteryPassportCompiler",
     "updatedAt": "2026-01-12T14:24:16Z",
@@ -181,7 +181,7 @@
   },
   {
     "name": "cis-technical-report",
-    "description": "cis-technical-report is a technical report and reproducibility package for the CIS methodology. It is used to translate determinism-first reliability design into deployable guidance.",
+    "description": "The written version of my reliability approach: deterministic checks, evidence boundaries, and the parts teams should decide before production pressure hits.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cis-technical-report",
     "updatedAt": "2026-02-23T19:21:44Z",
@@ -191,7 +191,7 @@
   },
   {
     "name": "cachemedicpp-research",
-    "description": "cachemedicpp-research is a research package for deterministic KV-cache corruption and repair studies. It is used to reproduce failures and validate robust recovery strategies.",
+    "description": "A research package for breaking and repairing KV-cache behavior in a controlled way. If the serving layer fails, I want the failure to be reproducible.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/cachemedicpp-research",
     "updatedAt": "2026-02-17T10:44:33Z",
@@ -201,7 +201,7 @@
   },
   {
     "name": "intake-routing-engine",
-    "description": "intake-routing-engine is a self-hosted email intake and routing engine. It is used to extract structured facts and route requests with deterministic, auditable rules.",
+    "description": "A self-hosted email intake router. It extracts the facts, applies explicit rules, and avoids turning every incoming request into a vibe check.",
     "stargazerCount": 0,
     "url": "https://github.com/aliuyar1234/intake-routing-engine",
     "updatedAt": "2026-01-19T14:22:16Z",

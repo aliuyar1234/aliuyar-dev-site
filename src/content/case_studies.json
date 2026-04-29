@@ -3,24 +3,24 @@
     "title": "Policy-Enforced Context Runtime",
     "projectName": "PECR",
     "projectUrl": "https://github.com/aliuyar1234/PECR",
-    "problem": "Plain RAG pipelines left governance gaps around policy, provenance, and deterministic failure handling.",
-    "build": "Built a two-plane runtime with a non-privileged controller, policy-enforcing gateway, immutable evidence units, and deterministic terminal modes.",
-    "result": "Delivered replayable, auditable AI retrieval runs with clear permission and evidence outcomes for safer production deployment."
+    "problem": "Plain RAG pipelines made it too easy to blur policy, provenance, and failure handling. Fine for a demo. Not fine when permissions and evidence matter.",
+    "build": "Built a two-plane runtime with a non-privileged controller, a policy-enforcing gateway, immutable evidence units, and deterministic terminal modes.",
+    "result": "Made retrieval runs replayable and auditable, with permission and evidence outcomes people can actually inspect."
   },
   {
     "title": "SchemaPilot",
     "projectName": "SchemaPilot",
     "projectUrl": "https://github.com/aliuyar1234/SchemaPilot",
-    "problem": "Enterprise data lived across inconsistent sources, making AI usage hard to govern, trust, and operationalize.",
+    "problem": "The data was scattered, inconsistent, and not really ready for AI, no matter how nice the model layer looked on top.",
     "build": "Built a governance-first data platform with gateway-enforced access controls, deterministic bronze/silver/gold pipelines, and operator-grade tooling.",
-    "result": "Created an AI-ready, queryable data foundation with stronger auditability, safer defaults, and more predictable delivery workflows."
+    "result": "Turned the mess into a queryable data foundation with safer defaults and fewer surprises downstream."
   },
   {
     "title": "ContextGraph",
     "projectName": "ContextGraph",
     "projectUrl": "https://github.com/aliuyar1234/ContextGraph",
-    "problem": "Teams lacked trustworthy process visibility across Slack, Jira, and GitHub without creating surveillance risk.",
+    "problem": "Teams wanted better process visibility across Slack, Jira, and GitHub without accidentally building a surveillance machine.",
     "build": "Built a self-hosted process intelligence platform with fail-closed permissions, private personal timelines, and k-anonymous analytics.",
-    "result": "Improved process insight and next-step guidance while preserving privacy boundaries and policy-first controls."
+    "result": "Improved visibility into work and next steps while keeping privacy boundaries explicit."
   }
 ]
