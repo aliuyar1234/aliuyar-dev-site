@@ -1,0 +1,1020 @@
+---
+const signals = [
+  "constraint core",
+  "evidence close",
+  "judgment visible",
+  "execution simple",
+  "failure readable",
+  "eval feedback"
+];
+---
+
+<section class="page-wrap pretext-atlas-section" aria-labelledby="constraint-atlas-title">
+  <div class="constraint-atlas reveal" data-constraint-atlas>
+    <div class="atlas-bar" aria-hidden="true">
+      <span class="atlas-led"></span>
+      <span>constraint_gravity.sys</span>
+      <span class="atlas-fill">····················································</span>
+      <span>PRETEXT / ORBITAL BANDS</span>
+    </div>
+
+    <div class="atlas-grid">
+      <div class="atlas-copy">
+        <p class="label-accent">[ signature interaction ]</p>
+        <h2 id="constraint-atlas-title">
+          The constraint is gravity. Everything else orbits it.
+        </h2>
+        <p>
+          Three authored Pretext bands orbit the same constraint. Evidence keeps receipts,
+          judgment names the tradeoff, and execution stays usable after the handoff.
+        </p>
+        <p>
+          Drag the amber core. The prose does not follow it; each lane parts, tightens,
+          and breathes like field material around the thing that actually matters.
+        </p>
+
+        <div class="atlas-command" aria-hidden="true">
+          <span>$</span>
+          <span>route brief --around constraint --preserve evidence judgment execution</span>
+        </div>
+
+        <ul class="atlas-signals" aria-label="Signals represented in the atlas">
+          {signals.map((signal) => <li>{signal}</li>)}
+        </ul>
+      </div>
+
+      <div class="atlas-stage-wrap">
+        <canvas class="atlas-stage" aria-hidden="true"></canvas>
+        <div class="atlas-readout" aria-hidden="true">
+          <span>drag core</span>
+          <span>pretext: routed bands</span>
+          <span>motion: trails + contours</span>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <p class="atlas-noscript">
+        Constraints, evidence, and judgment reshape real systems after the demo.
+      </p>
+    </noscript>
+  </div>
+</section>
+
+<script>
+  import {
+    prepareWithSegments,
+    layoutNextLineRange,
+    materializeLineRange
+  } from "@chenglou/pretext";
+
+  const TEXT_BANDS = [
+    {
+      key: "evidence",
+      label: "evidence band",
+      code: "01 / receipts",
+      y: 0.3,
+      rows: 5,
+      tone: "accent",
+      text: "Every claim leaves a trace: source, confidence, dissent. Receipts stay close; only inspected material can hold the system up."
+    },
+    {
+      key: "judgment",
+      label: "judgment band",
+      code: "02 / tradeoffs",
+      y: 0.52,
+      rows: 5,
+      tone: "fg",
+      text: "Judgment names the expensive tradeoff: choose the layer, cut cleverness, and keep failure visible before the system hides it."
+    },
+    {
+      key: "execution",
+      label: "execution band",
+      code: "03 / handoff",
+      y: 0.74,
+      rows: 5,
+      tone: "muted",
+      text: "Execution is the audit: usable tomorrow, easy to spot when it drifts, and light enough to feed the next loop."
+    }
+  ];
+
+  const ORBITS = [
+    { key: "evidence", label: "evidence", rx: 0.22, ry: 0.12, speed: 0.00018, phase: 0.35, radius: 11, tone: "accent" },
+    { key: "judgment", label: "judgment", rx: 0.32, ry: 0.19, speed: -0.00014, phase: 2.35, radius: 12, tone: "fg" },
+    { key: "execution", label: "execution", rx: 0.42, ry: 0.27, speed: 0.0001, phase: 4.3, radius: 10, tone: "muted" }
+  ];
+
+  const initAtlas = (root) => {
+    const canvas = root.querySelector("canvas");
+    if (!(canvas instanceof HTMLCanvasElement)) return;
+
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const rootStyle = () => getComputedStyle(document.documentElement);
+
+    const core = {
+      xRatio: 0.54,
+      yRatio: 0.62,
+      px: 0,
+      py: 0,
+      dragDx: 0,
+      dragDy: 0,
+      spinBias: 0
+    };
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let font = "";
+    let microFont = "";
+    let labelFont = "";
+    let titleFont = "";
+    let fontSize = 15;
+    let lineHeight = 26;
+    let preparedBands = [];
+    let flowLines = [];
+    let raf = 0;
+    let booted = false;
+    let dragging = false;
+    let hoverCore = false;
+    let pointer = { x: 0, y: 0, active: false };
+
+    const cssRgb = (name, alpha = 1) => {
+      const raw = rootStyle().getPropertyValue(name).trim();
+      const rgb = raw.replaceAll(",", " ").split(/\s+/).filter(Boolean).slice(0, 3).join(" ");
+      return `rgb(${rgb} / ${alpha})`;
+    };
+
+    const palette = () => ({
+      bg: cssRgb("--bg", 1),
+      bgSoft: cssRgb("--bg-soft", 0.78),
+      fg: cssRgb("--fg", 1),
+      muted: cssRgb("--muted", 1),
+      dim: cssRgb("--dim", 1),
+      rule: rootStyle().getPropertyValue("--rule").trim(),
+      ruleStrong: rootStyle().getPropertyValue("--rule-strong").trim(),
+      accent: cssRgb("--accent", 1),
+      accentSoft: cssRgb("--accent-soft", 1),
+      accentDim: cssRgb("--accent-dim", 1)
+    });
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const cursorEqual = (a, b) => a.segmentIndex === b.segmentIndex && a.graphemeIndex === b.graphemeIndex;
+    const textCompleteAt = (prepared, cursor) => layoutNextLineRange(prepared, cursor, Number.POSITIVE_INFINITY) === null;
+
+    const setSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = Math.max(320, Math.floor(rect.width));
+      height = Math.max(340, Math.floor(rect.height));
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      fontSize = width < 520 ? 11.2 : width < 760 ? 13.2 : 14.6;
+      lineHeight = Math.round(fontSize * 1.72);
+      font = `400 ${fontSize}px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`;
+      microFont = `500 ${Math.max(9, fontSize - 3.2)}px "JetBrains Mono", ui-monospace, monospace`;
+      labelFont = `600 ${Math.max(10, fontSize - 2.2)}px "JetBrains Mono", ui-monospace, monospace`;
+      titleFont = `500 ${Math.max(12, fontSize - 0.6)}px "JetBrains Mono", ui-monospace, monospace`;
+      preparedBands = TEXT_BANDS.map((band) => ({
+        ...band,
+        prepared: prepareWithSegments(band.text, font, { whiteSpace: "normal" })
+      }));
+
+      core.px = booted ? clamp(core.px, width * 0.22, width * 0.78) : width * core.xRatio;
+      core.py = booted ? clamp(core.py, height * 0.29, height * 0.72) : height * core.yRatio;
+      booted = true;
+      rebuildFlow();
+    };
+
+    const coreSize = () => {
+      const base = clamp(Math.min(width, height) * 0.092, width < 560 ? 34 : 44, width < 560 ? 54 : 66);
+      return {
+        core: base,
+        obstacleX: base * 1.62,
+        obstacleY: base * 1.12,
+        glow: base * 2.55
+      };
+    };
+
+    const stageBounds = () => ({
+      left: width < 560 ? 18 : 34,
+      right: width - (width < 560 ? 18 : 34),
+      top: width < 560 ? 58 : 70,
+      bottom: height - (width < 560 ? 64 : 78)
+    });
+
+    const bandBounds = (band) => {
+      const bounds = stageBounds();
+      const rows = width < 560 ? Math.min(4, band.rows ?? 5) : band.rows ?? 5;
+      const laneHeight = (rows - 1) * lineHeight;
+      const railWidth = width < 560 ? 0 : clamp(width * 0.16, 128, 166);
+      const centerY = clamp(height * band.y, bounds.top + laneHeight * 0.5 + lineHeight * 0.85, bounds.bottom - laneHeight * 0.5 - lineHeight * 0.35);
+      const firstBaseline = centerY - laneHeight * 0.5;
+      return {
+        ...bounds,
+        stageLeft: bounds.left,
+        left: bounds.left + railWidth,
+        right: bounds.right,
+        railWidth,
+        key: band.key,
+        label: band.label,
+        code: band.code,
+        tone: band.tone,
+        centerY,
+        firstBaseline,
+        lastBaseline: firstBaseline + laneHeight,
+        rows
+      };
+    };
+
+    const spansFromObstacles = (obstacles, bounds) => {
+      const minSpan = Math.max(72, fontSize * 6.4);
+      const clipped = obstacles
+        .map(([start, end]) => [clamp(start, bounds.left, bounds.right), clamp(end, bounds.left, bounds.right)])
+        .filter(([start, end]) => end > bounds.left && start < bounds.right && end - start > 1)
+        .sort((a, b) => a[0] - b[0]);
+
+      if (!clipped.length) return [[bounds.left, bounds.right]];
+
+      const merged = [];
+      clipped.forEach(([start, end]) => {
+        const last = merged[merged.length - 1];
+        if (!last || start > last[1] + 8) merged.push([start, end]);
+        else last[1] = Math.max(last[1], end);
+      });
+
+      const spans = [];
+      let cursorX = bounds.left;
+      merged.forEach(([start, end]) => {
+        if (start - cursorX > minSpan) spans.push([cursorX, start]);
+        cursorX = Math.max(cursorX, end);
+      });
+      if (bounds.right - cursorX > minSpan) spans.push([cursorX, bounds.right]);
+      return spans.length ? spans : [];
+    };
+
+    const routedSpansAt = (baselineY, bounds, band, time, useObstacles) => {
+      if (!useObstacles) return [[bounds.left, bounds.right]];
+
+      const obstacles = [];
+      const size = coreSize();
+      const addEllipseObstacle = (cx, cy, rx, ry, pad = 0) => {
+        const dy = (baselineY - cy) / ry;
+        if (Math.abs(dy) >= 1) return;
+        const half = Math.sqrt(1 - dy * dy) * rx + pad;
+        obstacles.push([cx - half, cx + half]);
+      };
+
+      addEllipseObstacle(core.px, core.py, size.obstacleX, size.obstacleY, width < 560 ? 10 : 17);
+
+      const orbit = ORBITS.find((item) => item.key === band.key);
+      if (orbit && !reducedMotion.matches) {
+        const body = orbitPosition(orbit, time);
+        addEllipseObstacle(body.x, body.y, body.radius * 1.85, body.radius * 1.28, width < 560 ? 5 : 7);
+      }
+
+      return spansFromObstacles(obstacles, bounds);
+    };
+
+    const buildBandLines = (band, bandIndex, bounds, time, useObstacles) => {
+      const lines = [];
+      let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+      let row = 0;
+      let complete = false;
+
+      for (let y = bounds.firstBaseline; y <= bounds.lastBaseline + 0.1; y += lineHeight) {
+        const spans = routedSpansAt(y, bounds, band, time, useObstacles);
+        for (const [x1, x2] of spans) {
+          const maxWidth = x2 - x1;
+          const range = layoutNextLineRange(band.prepared, cursor, maxWidth);
+          if (!range) {
+            complete = true;
+            break;
+          }
+
+          const line = materializeLineRange(band.prepared, range);
+          const size = coreSize();
+          const midX = x1 + Math.min(line.width, maxWidth) * 0.5;
+          const pressure = Math.max(0, 1 - Math.hypot((midX - core.px) / (size.obstacleX * 2.1), (y - core.py) / (size.obstacleY * 2.2)));
+          lines.push({
+            text: line.text,
+            x: x1,
+            y,
+            width: line.width,
+            pressure,
+            row,
+            bandIndex,
+            bandKey: band.key,
+            tone: band.tone
+          });
+
+          if (cursorEqual(cursor, range.end)) return { lines, complete: false };
+          cursor = range.end;
+          if (textCompleteAt(band.prepared, cursor)) {
+            complete = true;
+            break;
+          }
+        }
+        if (complete) break;
+        row += 1;
+      }
+
+      return { lines, complete: complete || textCompleteAt(band.prepared, cursor) };
+    };
+
+    const rebuildFlow = (time = performance.now()) => {
+      flowLines = [];
+      if (!preparedBands.length || !width || !height) return;
+
+      ctx.save();
+      ctx.font = font;
+      preparedBands.forEach((band, bandIndex) => {
+        const bounds = bandBounds(band);
+        const routed = buildBandLines(band, bandIndex, bounds, time, true);
+        const finalLines = routed.complete ? routed.lines : buildBandLines(band, bandIndex, bounds, time, false).lines;
+        flowLines.push(...finalLines);
+      });
+      ctx.restore();
+    };
+
+    const orbitPosition = (orbit, time) => {
+      const tilt = pointer.active ? clamp((pointer.x - width * 0.5) / width, -0.09, 0.09) : Math.sin(time * 0.00012) * 0.035;
+      const theta = orbit.phase + time * orbit.speed + core.spinBias;
+      const rx = width * orbit.rx;
+      const ry = height * orbit.ry;
+      const x = Math.cos(theta) * rx;
+      const y = Math.sin(theta) * ry;
+      const cos = Math.cos(tilt);
+      const sin = Math.sin(tilt);
+      const z = Math.sin(theta);
+      return {
+        ...orbit,
+        theta,
+        tilt,
+        x: core.px + x * cos - y * sin,
+        y: core.py + x * sin + y * cos,
+        z,
+        rx,
+        ry,
+        radius: orbit.radius * (0.92 + (z + 1) * 0.08)
+      };
+    };
+
+    const orbitPositions = (time) => ORBITS.map((orbit) => orbitPosition(orbit, time));
+
+    const drawBackground = (time, colors) => {
+      ctx.clearRect(0, 0, width, height);
+
+      const size = coreSize();
+      const gradient = ctx.createRadialGradient(core.px, core.py, 0, core.px, core.py, Math.max(width, height) * 0.72);
+      gradient.addColorStop(0, cssRgb("--accent", 0.11));
+      gradient.addColorStop(0.24, cssRgb("--accent", 0.045));
+      gradient.addColorStop(0.7, colors.bgSoft);
+      gradient.addColorStop(1, colors.bg);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.save();
+      ctx.strokeStyle = colors.rule;
+      ctx.lineWidth = 1;
+      const bounds = stageBounds();
+      ctx.globalAlpha = 0.18;
+      ctx.strokeRect(bounds.left - 0.5, bounds.top - 0.5, bounds.right - bounds.left + 1, bounds.bottom - bounds.top + 1);
+      preparedBands.forEach((band) => {
+        const lane = bandBounds(band);
+        const bandColor = band.tone === "accent" ? colors.accent : band.tone === "fg" ? colors.fg : colors.accentDim;
+        const laneTop = lane.firstBaseline - lineHeight * 0.72;
+        const laneBottom = lane.lastBaseline + lineHeight * 0.36;
+
+        ctx.strokeStyle = bandColor;
+        ctx.globalAlpha = band.tone === "accent" ? 0.16 : 0.1;
+        ctx.beginPath();
+        ctx.moveTo(lane.stageLeft, lane.centerY + 0.5);
+        ctx.lineTo(lane.right, lane.centerY + 0.5);
+        ctx.stroke();
+
+        ctx.globalAlpha = 0.045;
+        ctx.strokeRect(lane.left - 9.5, laneTop - 0.5, lane.right - lane.left + 10, laneBottom - laneTop + 1);
+
+        ctx.font = microFont;
+        ctx.textBaseline = "middle";
+        const label = `[ ${band.label} ]`;
+        const code = band.code ?? band.key;
+        if (lane.railWidth > 0) {
+          const labelX = lane.stageLeft + 8;
+          const labelY = lane.centerY - lineHeight * 0.28;
+          const labelWidth = Math.min(ctx.measureText(label).width, lane.railWidth - 18);
+          ctx.fillStyle = colors.bg;
+          ctx.globalAlpha = 0.74;
+          ctx.fillRect(labelX - 6, labelY - 11, labelWidth + 12, 22);
+          ctx.strokeStyle = bandColor;
+          ctx.globalAlpha = band.tone === "accent" ? 0.34 : 0.22;
+          ctx.strokeRect(labelX - 6.5, labelY - 11.5, labelWidth + 13, 23);
+          ctx.fillStyle = bandColor;
+          ctx.globalAlpha = band.tone === "accent" ? 0.88 : 0.68;
+          ctx.fillText(label, labelX, labelY);
+          ctx.fillStyle = colors.dim;
+          ctx.globalAlpha = 0.38;
+          ctx.fillText(code, labelX, labelY + lineHeight * 0.86);
+        } else {
+          ctx.fillStyle = colors.bg;
+          ctx.globalAlpha = 0.72;
+          ctx.fillRect(lane.left - 5, laneTop - lineHeight * 0.76, ctx.measureText(label).width + 10, 18);
+          ctx.fillStyle = bandColor;
+          ctx.globalAlpha = band.tone === "accent" ? 0.8 : 0.58;
+          ctx.fillText(label, lane.left, laneTop - lineHeight * 0.42);
+        }
+      });
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = cssRgb("--accent", 0.07);
+      ctx.lineWidth = 1;
+      const contourCount = 4;
+      for (let i = 1; i <= contourCount; i += 1) {
+        const phase = reducedMotion.matches ? 0 : Math.sin(time * 0.00018 + i) * 0.035;
+        ctx.globalAlpha = 0.07 - i * 0.007;
+        ctx.beginPath();
+        ctx.ellipse(core.px, core.py, size.core * (1.25 + i * 0.82 + phase), size.core * (0.72 + i * 0.43 + phase), 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    };
+
+    const drawFlowText = (time, colors) => {
+      ctx.save();
+      ctx.font = font;
+      ctx.textBaseline = "alphabetic";
+      flowLines.forEach((line) => {
+        const pulse = reducedMotion.matches ? 0 : Math.sin(time * 0.001 + line.row * 0.73 + line.bandIndex * 1.1) * 0.018;
+        const bandColor = line.tone === "accent" ? colors.accent : line.tone === "fg" ? colors.fg : colors.accentSoft;
+        const rowAlpha = line.row === 0 ? 0.84 : line.row === 1 ? 0.76 : 0.68;
+        ctx.fillStyle = line.row === 0 || line.pressure > 0.48 ? colors.fg : colors.muted;
+        ctx.globalAlpha = clamp(rowAlpha + line.pressure * 0.13 + pulse, 0.5, 0.92);
+        ctx.fillText(line.text, line.x, line.y);
+
+        if (line.pressure > 0.4) {
+          ctx.fillStyle = bandColor;
+          ctx.globalAlpha = 0.028 + line.pressure * 0.058;
+          ctx.fillText(line.text, line.x + 0.65, line.y + 0.12);
+        }
+      });
+      ctx.restore();
+    };
+
+    const drawOrbitLine = (orbit, time, colors) => {
+      const body = orbitPosition(orbit, time);
+      const primary = orbit.tone === "accent" ? colors.accent : orbit.tone === "fg" ? colors.fg : colors.accentDim;
+      ctx.save();
+      ctx.translate(core.px, core.py);
+      ctx.rotate(body.tilt);
+      ctx.strokeStyle = primary;
+      ctx.lineWidth = orbit.tone === "accent" ? 1.1 : 0.9;
+      ctx.globalAlpha = orbit.tone === "accent" ? 0.2 : 0.12;
+      ctx.setLineDash(orbit.tone === "muted" ? [4, 9] : []);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, body.rx, body.ry, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    const drawSatellite = (body, colors) => {
+      const primary = body.tone === "accent" ? colors.accent : body.tone === "fg" ? colors.fg : colors.accentSoft;
+      const visualRadius = body.radius * 0.72;
+      ctx.save();
+      ctx.globalAlpha = clamp(0.48 + body.z * 0.06, 0.34, 0.62);
+
+      const glow = ctx.createRadialGradient(body.x, body.y, 0, body.x, body.y, visualRadius * 3.2);
+      glow.addColorStop(0, body.tone === "accent" ? cssRgb("--accent", 0.2) : cssRgb("--fg", 0.11));
+      glow.addColorStop(1, "rgb(0 0 0 / 0)");
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(body.x, body.y, visualRadius * 3.1, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = colors.bg;
+      ctx.strokeStyle = primary;
+      ctx.lineWidth = body.z > 0 ? 1.25 : 0.9;
+      ctx.beginPath();
+      ctx.arc(body.x, body.y, visualRadius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = primary;
+      ctx.globalAlpha = body.z > 0 ? 0.7 : 0.48;
+      ctx.beginPath();
+      ctx.arc(body.x, body.y, visualRadius * 0.34, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.font = microFont;
+      ctx.textBaseline = "middle";
+      ctx.textAlign = "center";
+      ctx.fillStyle = primary;
+      ctx.globalAlpha = body.z > 0 ? 0.72 : 0.5;
+      ctx.fillText(body.key.slice(0, 1).toUpperCase(), body.x, body.y + 0.5);
+
+      ctx.strokeStyle = primary;
+      ctx.globalAlpha = body.z > 0 ? 0.16 : 0.09;
+      ctx.beginPath();
+      ctx.arc(body.x, body.y, visualRadius * 1.7, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    const drawOrbitTrails = (time, colors) => {
+      if (reducedMotion.matches) return;
+      ctx.save();
+      ORBITS.forEach((orbit) => {
+        const primary = orbit.tone === "accent" ? colors.accent : orbit.tone === "fg" ? colors.fg : colors.accentDim;
+        for (let i = 9; i >= 1; i -= 1) {
+          const body = orbitPosition(orbit, time - i * 760);
+          const alpha = (10 - i) / 10;
+          ctx.fillStyle = primary;
+          ctx.globalAlpha = (orbit.tone === "accent" ? 0.042 : 0.028) * alpha;
+          ctx.beginPath();
+          ctx.arc(body.x, body.y, Math.max(1, body.radius * (0.1 + alpha * 0.045)), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+      ctx.restore();
+    };
+
+    const drawOrbitScaffold = (time, colors) => {
+      ORBITS.forEach((orbit) => drawOrbitLine(orbit, time, colors));
+      drawOrbitTrails(time, colors);
+    };
+
+    const drawOrbitBodies = (time, colors) => {
+      orbitPositions(time)
+        .sort((a, b) => a.z - b.z)
+        .forEach((body) => drawSatellite(body, colors));
+    };
+
+    const drawCore = (time, colors) => {
+      const size = coreSize();
+      ctx.save();
+
+      const glow = ctx.createRadialGradient(core.px, core.py, 0, core.px, core.py, size.glow);
+      glow.addColorStop(0, cssRgb("--accent", hoverCore || dragging ? 0.36 : 0.24));
+      glow.addColorStop(0.35, cssRgb("--accent", 0.08));
+      glow.addColorStop(1, "rgb(0 0 0 / 0)");
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(core.px, core.py, size.glow, 0, Math.PI * 2);
+      ctx.fill();
+
+      const coreGradient = ctx.createRadialGradient(core.px - size.core * 0.3, core.py - size.core * 0.32, 0, core.px, core.py, size.core);
+      coreGradient.addColorStop(0, cssRgb("--fg", 0.88));
+      coreGradient.addColorStop(0.34, colors.accent);
+      coreGradient.addColorStop(0.78, cssRgb("--accent", 0.32));
+      coreGradient.addColorStop(1, cssRgb("--bg", 0.18));
+      ctx.fillStyle = coreGradient;
+      ctx.beginPath();
+      ctx.ellipse(core.px, core.py, size.core * 0.78, size.core * 0.68, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = colors.accent;
+      ctx.lineWidth = hoverCore || dragging ? 1.7 : 1.15;
+      ctx.globalAlpha = 0.95;
+      ctx.beginPath();
+      ctx.ellipse(core.px, core.py, size.core * 0.85, size.core * 0.74, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      if (!reducedMotion.matches) {
+        const phase = (time * 0.00022) % 1;
+        ctx.globalAlpha = (1 - phase) * 0.2;
+        ctx.beginPath();
+        ctx.ellipse(core.px, core.py, size.core * (1.1 + phase * 1.4), size.core * (0.72 + phase * 0.85), 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.font = microFont;
+      ctx.textBaseline = "middle";
+      ctx.textAlign = "center";
+      ctx.fillStyle = colors.bg;
+      ctx.globalAlpha = 0.68;
+      ctx.fillText("core", core.px, core.py + 0.5);
+      ctx.restore();
+    };
+
+    const drawTitle = (time, colors) => {
+      ctx.save();
+      ctx.font = titleFont;
+      ctx.textBaseline = "top";
+      ctx.fillStyle = colors.fg;
+      ctx.globalAlpha = 0.88;
+      ctx.fillText("constraint_gravity / orbital bands", 18, 18);
+      ctx.font = microFont;
+      ctx.fillStyle = colors.accent;
+      ctx.globalAlpha = 0.85;
+      const phase = reducedMotion.matches ? "stable" : `${Math.round((time * 0.013) % 360)}°`;
+      const right = `[ ${phase} · routed text ]`;
+      ctx.fillText(right, width - ctx.measureText(right).width - 18, 22);
+      ctx.restore();
+    };
+
+    const render = (time = performance.now()) => {
+      const colors = palette();
+      rebuildFlow(time);
+      drawBackground(time, colors);
+      drawOrbitScaffold(time, colors);
+      drawOrbitBodies(time, colors);
+      drawFlowText(time, colors);
+      drawCore(time, colors);
+      drawTitle(time, colors);
+
+      if (!reducedMotion.matches) raf = requestAnimationFrame(render);
+    };
+
+    const point = (event) => {
+      const rect = canvas.getBoundingClientRect();
+      return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    };
+
+    const hitCore = ({ x, y }) => {
+      const size = coreSize();
+      const dx = (x - core.px) / (size.core * 1.35);
+      const dy = (y - core.py) / (size.core * 1.08);
+      return dx * dx + dy * dy <= 1;
+    };
+
+    canvas.addEventListener("pointerdown", (event) => {
+      const p = point(event);
+      if (!hitCore(p)) return;
+      dragging = true;
+      pointer = { ...p, active: true };
+      core.dragDx = p.x - core.px;
+      core.dragDy = p.y - core.py;
+      try {
+        canvas.setPointerCapture(event.pointerId);
+      } catch {
+        // Synthetic pointer events in automated checks may not create a capture target.
+      }
+      canvas.classList.add("is-dragging");
+      rebuildFlow();
+      if (reducedMotion.matches) render(performance.now());
+    });
+
+    canvas.addEventListener("pointermove", (event) => {
+      const p = point(event);
+      pointer = { ...p, active: true };
+      if (dragging) {
+        core.px = clamp(p.x - core.dragDx, width * 0.22, width * 0.78);
+        core.py = clamp(p.y - core.dragDy, height * 0.29, height * 0.72);
+        core.spinBias += (event.movementX || 0) * 0.002;
+        rebuildFlow();
+        if (reducedMotion.matches) render(performance.now());
+        return;
+      }
+      hoverCore = hitCore(p);
+      canvas.classList.toggle("is-hovering", hoverCore);
+      if (reducedMotion.matches) render(performance.now());
+    });
+
+    const stopDrag = (event) => {
+      dragging = false;
+      canvas.classList.remove("is-dragging");
+      try {
+        if (event.pointerId && canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+      } catch {
+        // Synthetic pointer events in automated checks may not have capture state.
+      }
+      if (reducedMotion.matches) render(performance.now());
+    };
+
+    canvas.addEventListener("pointerup", stopDrag);
+    canvas.addEventListener("pointercancel", stopDrag);
+    canvas.addEventListener("pointerleave", () => {
+      pointer.active = false;
+      hoverCore = false;
+      canvas.classList.remove("is-hovering");
+      if (reducedMotion.matches) render(performance.now());
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      setSize();
+      cancelAnimationFrame(raf);
+      render(performance.now());
+    });
+    resizeObserver.observe(canvas);
+
+    const boot = async () => {
+      if (document.fonts?.ready) {
+        try { await document.fonts.ready; } catch {}
+      }
+      setSize();
+      render(performance.now());
+    };
+
+    reducedMotion.addEventListener?.("change", () => {
+      cancelAnimationFrame(raf);
+      rebuildFlow();
+      render(performance.now());
+    });
+
+    const themeObserver = new MutationObserver(() => {
+      if (reducedMotion.matches) render(performance.now());
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+    boot();
+  };
+
+  document.querySelectorAll("[data-constraint-atlas]").forEach(initAtlas);
+</script>
+
+<style>
+  .pretext-atlas-section {
+    margin-top: 1.75rem;
+  }
+
+  .constraint-atlas {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--rule-strong);
+    background:
+      radial-gradient(circle at 78% 18%, rgb(var(--accent) / 0.11), transparent 28rem),
+      radial-gradient(circle at 35% 78%, rgb(var(--fg) / 0.035), transparent 22rem),
+      linear-gradient(180deg, rgb(var(--bg-soft) / 0.78), rgb(var(--bg) / 0.18));
+    box-shadow:
+      inset 0 1px 0 rgb(var(--fg) / 0.08),
+      inset 0 -1px 0 rgb(var(--bg) / 0.5),
+      0 24px 100px rgb(0 0 0 / 0.24);
+  }
+
+  .constraint-atlas::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent, rgb(var(--accent) / 0.045), transparent),
+      repeating-linear-gradient(0deg, rgb(var(--fg) / 0.014) 0 1px, transparent 1px 5px);
+    opacity: 0.62;
+    mix-blend-mode: screen;
+  }
+
+  .constraint-atlas::after {
+    content: "";
+    position: absolute;
+    inset: -20% -10%;
+    pointer-events: none;
+    background: conic-gradient(from 140deg at 67% 48%, transparent, rgb(var(--accent) / 0.045), transparent 38%, rgb(var(--fg) / 0.025), transparent 64%);
+    opacity: 0.48;
+    filter: blur(18px);
+  }
+
+  .light .constraint-atlas::before,
+  .light .constraint-atlas::after {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+  }
+
+  .atlas-bar {
+    position: relative;
+    z-index: 1;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.72rem;
+    padding: 0.6rem 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    background: rgb(var(--bg-bar) / 0.82);
+    color: rgb(var(--muted));
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .atlas-led {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 18px rgb(var(--accent) / 0.65);
+    flex: 0 0 auto;
+  }
+
+  .atlas-fill {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    color: rgb(var(--dim));
+  }
+
+  .atlas-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(22rem, 0.72fr) minmax(0, 1.28fr);
+  }
+
+  .atlas-grid > * {
+    min-width: 0;
+  }
+
+  .atlas-copy {
+    padding: clamp(1.25rem, 3vw, 2.1rem);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.05rem;
+    background: linear-gradient(90deg, rgb(var(--bg) / 0.22), transparent);
+  }
+
+  .atlas-copy h2 {
+    max-width: 27ch;
+    margin-top: 0.85rem;
+    color: rgb(var(--fg));
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: clamp(1.35rem, 2.6vw, 2.08rem);
+    line-height: 1.28;
+    letter-spacing: -0.028em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .atlas-copy p {
+    max-width: 47ch;
+    color: rgb(var(--muted));
+    font-size: 0.92rem;
+    line-height: 1.76;
+  }
+
+  .atlas-command {
+    margin-top: 0.25rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.6ch;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.85rem 0;
+    color: rgb(var(--muted));
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    line-height: 1.65;
+  }
+
+  .atlas-command span:first-child {
+    color: rgb(var(--accent));
+  }
+
+  .atlas-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .atlas-signals li {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--rule);
+    color: rgb(var(--muted));
+    background: rgb(var(--bg) / 0.16);
+    padding: 0.22rem 0.55rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .atlas-signals li::before {
+    content: "#";
+    margin-right: 0.18rem;
+    color: rgb(var(--dim));
+  }
+
+  .atlas-stage-wrap {
+    position: relative;
+    height: clamp(31rem, 46vw, 35rem);
+    min-height: 31rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .atlas-stage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    touch-action: none;
+  }
+
+  .atlas-stage.is-hovering {
+    cursor: grab;
+  }
+
+  .atlas-stage.is-dragging {
+    cursor: grabbing;
+  }
+
+  .atlas-readout {
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.55rem;
+    pointer-events: none;
+    color: rgb(var(--muted));
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .atlas-readout span {
+    border: 1px solid var(--rule);
+    background: rgb(var(--bg) / 0.72);
+    padding: 0.26rem 0.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .atlas-noscript {
+    border-top: 1px solid var(--rule);
+    padding: 1rem;
+    color: rgb(var(--muted));
+  }
+
+  @media (max-width: 900px) {
+    .atlas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .atlas-copy {
+      border-right: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .atlas-copy h2 {
+      max-width: 31ch;
+    }
+
+    .atlas-stage-wrap {
+      height: 29rem;
+      min-height: 29rem;
+    }
+
+    .atlas-stage {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .pretext-atlas-section {
+      margin-top: 1rem;
+    }
+
+    .atlas-bar {
+      font-size: 0.56rem;
+      padding-inline: 0.65rem;
+    }
+
+    .atlas-copy {
+      padding: 1rem;
+    }
+
+    .atlas-copy h2 {
+      font-size: 1.22rem;
+    }
+
+    .atlas-copy p {
+      font-size: 0.86rem;
+    }
+
+    .atlas-command {
+      font-size: 0.64rem;
+    }
+
+    .atlas-stage-wrap {
+      height: 24rem;
+      min-height: 24rem;
+    }
+
+    .atlas-stage {
+      min-height: 0;
+    }
+
+    .atlas-readout {
+      align-items: flex-start;
+      flex-direction: column;
+      font-size: 0.54rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .constraint-atlas {
+      box-shadow: inset 0 1px 0 rgb(var(--fg) / 0.08);
+    }
+  }
+</style>

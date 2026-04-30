@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import PretextEvidenceField from "../components/PretextEvidenceField.astro";
 import projects from "../content/projects.json";
 import featured from "../content/featured.json";
 import research from "../content/research.json";
@@ -98,6 +99,8 @@ const notItems = [
         </div>
       </div>
     </section>
+
+    <PretextEvidenceField />
 
     {/* ═════════ DIVIDER ═════════ */}
     <div class="page-wrap">
