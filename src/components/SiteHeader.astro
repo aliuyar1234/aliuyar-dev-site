@@ -61,6 +61,16 @@ const pwdPath = currentPath === "/" ? "~" : `~${currentPath}`;
 
     <div class="flex items-center gap-2">
       <button
+        id="cmdk-open"
+        type="button"
+        class="focus-ring font-mono text-[0.72rem]"
+        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
+        aria-label="Open command palette"
+      >
+        <span aria-hidden="true">⌘K</span>
+      </button>
+
+      <button
         id="theme-toggle"
         type="button"
         class="focus-ring font-mono text-[0.72rem]"

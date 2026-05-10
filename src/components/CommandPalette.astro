@@ -1,0 +1,194 @@
+---
+// Command palette — Cmd+K / Ctrl+K to open, Escape to close.
+// Vanilla JS, no deps. Theme commands match SiteHeader's pattern (toggles `light` class on <html>).
+---
+
+<div
+  id="cmdk-root"
+  class="hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cmdk-label"
+  style="position: fixed; inset: 0; z-index: 100;"
+>
+  <div
+    id="cmdk-backdrop"
+    style="position: absolute; inset: 0; background: rgb(var(--bg) / 0.85); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
+  ></div>
+
+  <div
+    style="position: relative; display: flex; justify-content: center; padding-top: 30vh; padding-left: 1rem; padding-right: 1rem;"
+  >
+    <div
+      id="cmdk-card"
+      style="width: min(640px, 90vw); border: 1px solid var(--rule-strong); background: rgb(var(--bg)); box-shadow: 0 0 40px rgb(var(--accent) / 0.15);"
+    >
+      <label id="cmdk-label" class="sr-only" for="cmdk-input">Command palette</label>
+      <div
+        style="display: flex; align-items: center; gap: 0.6ch; padding: 0.85rem 1rem; border-bottom: 1px solid var(--rule);"
+      >
+        <span style="color: rgb(var(--accent)); font-family: inherit;">$</span>
+        <input
+          id="cmdk-input"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="type a command…"
+          class="font-mono"
+          style="flex: 1; background: transparent; border: 0; outline: none; color: rgb(var(--fg)); font-size: var(--text-base); padding: 0; caret-color: rgb(var(--accent));"
+        />
+        <span class="mono-xs" style="color: rgb(var(--dim));">esc</span>
+      </div>
+      <ul
+        id="cmdk-list"
+        role="listbox"
+        aria-label="Commands"
+        style="list-style: none; margin: 0; padding: 0.4rem 0; max-height: 50vh; overflow-y: auto;"
+      ></ul>
+      <div
+        style="display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 1rem; border-top: 1px solid var(--rule); color: rgb(var(--dim));"
+        class="mono-xs"
+      >
+        <span>↑↓ move · ↵ run · esc close</span>
+        <span id="cmdk-count">0 results</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.getElementById("cmdk-root");
+    const input = document.getElementById("cmdk-input");
+    const list = document.getElementById("cmdk-list");
+    const count = document.getElementById("cmdk-count");
+    const backdrop = document.getElementById("cmdk-backdrop");
+    if (!root || !input || !list || !count || !backdrop) return;
+
+    const setTheme = (next) => {
+      const html = document.documentElement;
+      html.classList.toggle("light", next === "light");
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      // Sync header label/aria if present
+      const btn = document.getElementById("theme-toggle");
+      const label = document.getElementById("theme-label");
+      if (btn) btn.setAttribute("aria-pressed", String(next === "dark"));
+      if (label) label.textContent = next === "dark" ? "DARK" : "LIGHT";
+    };
+
+    const navigate = (path) => {
+      window.location.href = path;
+    };
+
+    const commands = [
+      { cmd: ":home", desc: "go home", hint: "→", aliases: ["~", "home", "/"], run: () => navigate("/") },
+      { cmd: ":projects", desc: "view all projects", hint: "→", aliases: ["ls projects", "projects"], run: () => navigate("/projects") },
+      { cmd: ":research", desc: "research papers", hint: "→", aliases: ["cat research", "research"], run: () => navigate("/research") },
+      { cmd: ":services", desc: "what i can help with", hint: "→", aliases: ["services", "help"], run: () => navigate("/services") },
+      { cmd: ":contact", desc: "send email", hint: "→", aliases: ["mail", "contact", "email"], run: () => navigate("/contact") },
+      { cmd: ":articles", desc: "read articles", hint: "→", aliases: ["ls articles", "articles", "writing"], run: () => navigate("/articles") },
+      { cmd: "theme dark", desc: "switch to dark theme", hint: "◐", aliases: ["dark"], run: () => setTheme("dark") },
+      { cmd: "theme light", desc: "switch to light theme", hint: "◑", aliases: ["light"], run: () => setTheme("light") },
+      { cmd: "theme toggle", desc: "flip current theme", hint: "↻", aliases: ["toggle theme", "toggle"], run: () => {
+        const current = document.documentElement.classList.contains("light") ? "light" : "dark";
+        setTheme(current === "light" ? "dark" : "light");
+      } }
+    ];
+
+    let active = 0;
+    let filtered = commands.slice();
+
+    const render = () => {
+      list.innerHTML = "";
+      count.textContent = filtered.length + (filtered.length === 1 ? " result" : " results");
+      filtered.forEach((c, i) => {
+        const li = document.createElement("li");
+        li.setAttribute("role", "option");
+        li.setAttribute("aria-selected", String(i === active));
+        li.dataset.idx = String(i);
+        const isActive = i === active;
+        li.style.cssText =
+          "display: grid; grid-template-columns: minmax(10ch, auto) 1fr auto; gap: 1rem; align-items: baseline; padding: 0.55rem 1rem; cursor: pointer; transition: background-color 80ms linear, color 80ms linear;" +
+          (isActive
+            ? " background: rgb(var(--accent)); color: rgb(var(--bg));"
+            : "");
+        li.className = "font-mono";
+        const cmdSpan = document.createElement("span");
+        cmdSpan.textContent = c.cmd;
+        cmdSpan.style.cssText = "font-size: var(--text-sm); font-weight: 500;" + (isActive ? "" : " color: rgb(var(--accent));");
+        const descSpan = document.createElement("span");
+        descSpan.textContent = c.desc;
+        descSpan.style.cssText = "font-size: var(--text-sm);" + (isActive ? "" : " color: rgb(var(--muted));");
+        const hintSpan = document.createElement("span");
+        hintSpan.textContent = c.hint;
+        hintSpan.style.cssText = "font-size: var(--text-sm);" + (isActive ? "" : " color: rgb(var(--dim));");
+        li.appendChild(cmdSpan);
+        li.appendChild(descSpan);
+        li.appendChild(hintSpan);
+        li.addEventListener("mouseenter", () => { active = i; render(); });
+        li.addEventListener("click", () => { runActive(); });
+        list.appendChild(li);
+      });
+    };
+
+    const filter = () => {
+      const q = input.value.trim().toLowerCase();
+      if (!q) {
+        filtered = commands.slice();
+      } else {
+        filtered = commands.filter((c) => {
+          if (c.cmd.toLowerCase().includes(q)) return true;
+          if (c.desc.toLowerCase().includes(q)) return true;
+          return (c.aliases || []).some((a) => a.toLowerCase().includes(q));
+        });
+      }
+      active = 0;
+      render();
+    };
+
+    const runActive = () => {
+      const c = filtered[active];
+      if (!c) return;
+      close();
+      // Defer navigation so close paint completes first
+      setTimeout(() => c.run(), 0);
+    };
+
+    const open = () => {
+      root.classList.remove("hidden");
+      input.value = "";
+      filter();
+      // Focus after the element is visible
+      requestAnimationFrame(() => input.focus());
+    };
+
+    const close = () => {
+      root.classList.add("hidden");
+    };
+
+    document.addEventListener("keydown", (e) => {
+      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const modKey = isMac ? e.metaKey : e.ctrlKey;
+      if (modKey && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        if (root.classList.contains("hidden")) open(); else close();
+        return;
+      }
+      if (root.classList.contains("hidden")) return;
+      if (e.key === "Escape") { e.preventDefault(); close(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); if (filtered.length) { active = (active + 1) % filtered.length; render(); } }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (filtered.length) { active = (active - 1 + filtered.length) % filtered.length; render(); } }
+      else if (e.key === "Enter") { e.preventDefault(); runActive(); }
+    });
+
+    input.addEventListener("input", filter);
+    backdrop.addEventListener("click", close);
+
+    // Open via header button
+    const opener = document.getElementById("cmdk-open");
+    if (opener) opener.addEventListener("click", open);
+
+    // Initial population (in case opened externally)
+    render();
+  })();
+</script>
