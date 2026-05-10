@@ -7,7 +7,6 @@ import PretextEvidenceField from "../components/PretextEvidenceField.astro";
 import projects from "../content/projects.json";
 import featured from "../content/featured.json";
 import research from "../content/research.json";
-import caseStudies from "../content/case_studies.json";
 import writing from "../content/writing.json";
 import profile from "../content/profile.json";
 import { filterProductProjects } from "../utils/researchSplit";
@@ -46,14 +45,6 @@ const thinking = [
   "Evals should answer product questions, not decorate dashboards.",
   "Find the real constraint, then make the output simple enough to use."
 ];
-
-const notItems = [
-  "Not an AI hype guy.",
-  "Not a just-add-agents person.",
-  "Not pretending every problem needs a model.",
-  "Not an agency machine.",
-  "Not impressed by demos that cannot explain their own failures."
-];
 ---
 
 <BaseLayout
@@ -75,27 +66,22 @@ const notItems = [
             <dt>NAME</dt>
             <dd>Ali Uyar</dd>
             <dt>ROLE</dt>
-            <dd>AI Systems / Product</dd>
+            <dd>Applied AI Engineer · EU</dd>
             <dt>LOCUS</dt>
             <dd>{profile.location} · UTC+01</dd>
-            <dt>STATE</dt>
-            <dd><span class="accent">●</span> In a full-time role</dd>
           </dl>
         </div>
 
         <div class="mt-12">
-          <p class="prompt-plain mono-xs tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--accent));">objective</p>
-          <h1 class="hero-title mt-5">
+          <h1 class="hero-title">
             <span class="glyph">I work on problems</span><br />
-            that look simple until you get close.<br />
-            AI systems, product decisions, workflows, evaluation,<br />
-            governance, and the judgment that connects them.<span class="caret" aria-hidden="true"></span>
+            that look simple until you get close.<span class="caret" aria-hidden="true"></span>
           </h1>
         </div>
 
         <div class="mt-10 flex flex-wrap items-center gap-3">
           <a href="/projects" class="btn-accent">run projects</a>
-          <a href="/contact" class="btn">send email</a>
+          <a href="/contact" class="btn">start a thread</a>
         </div>
       </div>
     </section>
@@ -139,10 +125,10 @@ const notItems = [
           <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
             // the layer where the problem lives
           </p>
-          <p class="mt-5 text-[1rem] leading-[1.75]">
+          <p class="mt-5 text-base leading-[1.75]">
             I care about the layer where the problem actually lives.
           </p>
-          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+          <p class="mt-5 text-base leading-[1.75]" style="color: rgb(var(--muted));">
             The visible failure might be the model, the data, the workflow, the metric, the incentive, or the decision nobody wants to make. The work is finding the real constraint, then making the answer simple enough to use.
           </p>
         </div>
@@ -150,7 +136,7 @@ const notItems = [
           {thinking.map((item, i) => (
             <div class="flex gap-3" style="border-top: 1px solid var(--rule); padding-top: 0.85rem;">
               <span class="mono-xs tabnum" style="color: rgb(var(--accent));">{String(i + 1).padStart(2, "0")}</span>
-              <p class="font-mono text-[0.95rem] leading-[1.6]" style="color: rgb(var(--muted));">{item}</p>
+              <p class="font-mono text-base leading-[1.6]" style="color: rgb(var(--muted));">{item}</p>
             </div>
           ))}
         </div>
@@ -169,7 +155,7 @@ const notItems = [
         <h2 class="mt-4 font-mono text-[1.35rem] md:text-[1.7rem]" style="font-weight: 500; letter-spacing: -0.01em; line-height: 1.35;">
           <a class="link-accent" href={`/articles/${startHere.slug}`}>{startHere.title}</a>
         </h2>
-        <p class="mt-4 max-w-2xl text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">{startHere.summary}</p>
+        <p class="mt-4 max-w-2xl text-base leading-[1.75]" style="color: rgb(var(--muted));">{startHere.summary}</p>
       </article>
     </section>
 
@@ -204,7 +190,7 @@ const notItems = [
       </div>
     </section>
 
-    {/* ═════════ § 03 · PROJECTS ═════════ */}
+    {/* ═════════ § 05 · PROJECTS ═════════ */}
     <section class="page-wrap mt-20">
       <div class="section-head">
         <span class="section-num">§ 05</span>
@@ -216,44 +202,10 @@ const notItems = [
       </div>
     </section>
 
-    {/* ═════════ § 04 · OUTCOMES ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 06</span>
-        <span class="section-name">Outcomes</span>
-        <span class="section-meta">[ problem · build · result ]</span>
-      </div>
-      <div class="grid gap-6 md:grid-cols-3 md:gap-8">
-        {caseStudies.map((item, i) => (
-          <article class="reveal" style="border: 1px solid var(--rule); padding: 1.25rem;">
-            <p class="mono-xs tabnum" style="color: rgb(var(--accent));">case_{String(i + 1).padStart(2, "0")}</p>
-            <h3 class="mt-4 font-mono text-[1.05rem]" style="font-weight: 500; letter-spacing: -0.005em;">{item.title}</h3>
-            <dl class="mt-5 space-y-4 text-[0.88rem] leading-[1.7]">
-              <div>
-                <dt class="label">problem</dt>
-                <dd class="mt-1" style="color: rgb(var(--muted));">{item.problem}</dd>
-              </div>
-              <div>
-                <dt class="label">build</dt>
-                <dd class="mt-1" style="color: rgb(var(--muted));">{item.build}</dd>
-              </div>
-              <div>
-                <dt class="label">result</dt>
-                <dd class="mt-1" style="color: rgb(var(--muted));">{item.result}</dd>
-              </div>
-            </dl>
-            <a href={item.projectUrl} target="_blank" rel="noreferrer" class="mt-5 inline-flex link-accent mono-sm">
-              → {item.projectName}
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    {/* ═════════ § 05 · FOCUS ═════════ */}
+    {/* ═════════ § 06 · FOCUS ═════════ */}
     <section class="page-wrap mt-24">
       <div class="section-head">
-        <span class="section-num">§ 07</span>
+        <span class="section-num">§ 06</span>
         <span class="section-name">Focus</span>
         <span class="section-meta">[ how i work ]</span>
       </div>
@@ -262,10 +214,10 @@ const notItems = [
           <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
             // after the demo, in the weather
           </p>
-          <p class="mt-5 text-[1rem] leading-[1.75]">
+          <p class="mt-5 text-base leading-[1.75]">
             I care about the moment when an AI idea stops being exciting and starts becoming operational. What should it be trusted to do? Where should it fail closed? What evidence would make a decision defensible later?
           </p>
-          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
+          <p class="mt-5 text-base leading-[1.75]" style="color: rgb(var(--muted));">
             That usually sits between engineering, product, and delivery. I like clear questions, small loops, and work that leaves the system less mysterious than it was before.
           </p>
         </div>
@@ -284,31 +236,6 @@ const notItems = [
       </div>
     </section>
 
-    {/* ═════════ § 08 · NOT THIS ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 08</span>
-        <span class="section-name">What I am not</span>
-        <span class="section-meta">[ useful boundaries ]</span>
-      </div>
-      <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
-        <div class="md:col-span-5 measure">
-          <p class="text-[1rem] leading-[1.75]">
-            This is partly taste and partly self-defense. The AI space rewards confident nonsense too easily.
-          </p>
-          <p class="mt-5 text-[1rem] leading-[1.75]" style="color: rgb(var(--muted));">
-            I would rather be useful, precise, and occasionally annoying than sound important while making the system worse.
-          </p>
-        </div>
-        <div class="md:col-span-7 grid gap-3">
-          {notItems.map((item) => (
-            <p class="font-mono text-[0.95rem] leading-[1.6]" style="border-top: 1px solid var(--rule); padding-top: 0.85rem; color: rgb(var(--muted));">
-              <span class="accent">›</span> {item}
-            </p>
-          ))}
-        </div>
-      </div>
-    </section>
   </main>
 
   <SiteFooter />

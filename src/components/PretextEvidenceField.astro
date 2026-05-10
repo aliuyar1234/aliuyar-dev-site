@@ -10,7 +10,7 @@ const signals = [
 ---
 
 <section class="page-wrap pretext-atlas-section" aria-labelledby="constraint-atlas-title">
-  <div class="constraint-atlas reveal" data-constraint-atlas>
+  <div class="constraint-atlas" data-constraint-atlas>
     <div class="atlas-bar" aria-hidden="true">
       <span class="atlas-led"></span>
       <span>constraint_gravity.sys</span>
@@ -406,7 +406,7 @@ const signals = [
         const code = band.code ?? band.key;
         if (lane.railWidth > 0) {
           const labelX = lane.stageLeft + 8;
-          const labelY = lane.centerY - lineHeight * 0.28;
+          const labelY = lane.firstBaseline - lineHeight * 0.1;
           const labelWidth = Math.min(ctx.measureText(label).width, lane.railWidth - 18);
           ctx.fillStyle = colors.bg;
           ctx.globalAlpha = 0.74;
