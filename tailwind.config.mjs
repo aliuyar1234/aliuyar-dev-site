@@ -54,6 +54,14 @@ export default {
         micro: "0.08em",
         wide: "0.12em",
         mega: "0.2em"
+      },
+      fontSize: {
+        xs: "var(--text-xs)",
+        sm: "var(--text-sm)",
+        base: "var(--text-base)",
+        lg: "var(--text-lg)",
+        xl: "var(--text-xl)",
+        display: "var(--text-display)"
       }
     }
   },
