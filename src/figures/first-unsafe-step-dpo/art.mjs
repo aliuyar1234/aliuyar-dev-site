@@ -47,6 +47,6 @@ export function render() {
   const body = orderedItems(pose).map((item) => item.svg).join("");
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(body) });
   const stage = `<div class="iso-stage fs-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Film editing bench. Click, Space or the right arrow cranks to the next stop: a run's first unsafe step in the viewer, its cut and splice, then the pair card on its stem's pin; after the sweep, each held-out reel's HS-MR and Safe-KPI-SR. The left arrow steps back, dragging sideways cranks the film by hand, Home starts over and Escape resumes the tour.">${svg}<span class="fs-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 14", title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
   return { html };
 }

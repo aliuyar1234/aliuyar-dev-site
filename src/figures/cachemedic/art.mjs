@@ -114,7 +114,7 @@ export function render() {
   const s = STILL;
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(s) + hitsSvg()) });
   const stage = `<div class="iso-stage cm-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Transcription turntable. Click the selector or press T to pick a corruption type, click the severity knob or press E to step ε through 0, 0.08 and 0.16, click the cleaning arm or press B to lower or lift it, click the tonearm or press C to cue it. Escape resumes the tour.">${svg}<span class="cm-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 16", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   const { l1, l2 } = readoutOf({ type: s.type, eps: s.eps, brush: s.b > 0.5, cued: s.a > 0.5 });
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
   const pieces = l2.map(([text, muted]) => `<span${muted ? " data-mute" : ""}>${esc(text)}</span>`).join("");

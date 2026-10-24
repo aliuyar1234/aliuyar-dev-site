@@ -178,7 +178,6 @@ export function render() {
   const stage = `<div class="sc-stage" tabindex="0" role="group" aria-label="Key duplicating machine. 1, 2, 3 or the arrows set the lever to sparse, dense or steering; Space or Enter pulls the handle; P toggles the one-feature pruning bolt.">${svg}<span class="sc-sr" aria-live="polite"></span></div>`;
   const html = k
     .plateHtml({
-      fig: "Fig 8",
       title: "Key duplicating machine",
       hint: "Set lever · pull handle · prune",
       readout: "",

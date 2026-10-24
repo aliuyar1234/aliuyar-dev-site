@@ -12,7 +12,7 @@ import { minifyPaths } from "./minify.mjs";
 
 export const SLUG = "inside-the-multilingual-transformer";
 export const TITLE = "Transformer patch bay";
-export const HINT = "Click a socket, toggle, knob";
+export const HINT = "Click a socket · flip a toggle · turn the knob";
 
 export const LABEL =
   "A rack-mounted test bench. On the left a card cage holds twelve plug-in cards, one per encoder block. The test strip on each card's top edge has four sockets of different shapes for the attention output, post-attention, feed-forward and block output states, each with two small lamps, and each card's faceplate carries a window of four level bars, one per state. A patch cord runs from one socket to a sloped meter console with four encoding meters, two centre-zero meters and two small lamp grids. A three-position toggle on a switch box, cabled along the bench to the console, selects the encoder or both; a knob on the base of a small clear slice-stack brain model selects the listener cohort or all of them, and a cable carries the brain model's signal to the console.";
@@ -110,6 +110,6 @@ export function render({ expand = false } = {}) {
   const readout = tapReadout(pose.block, pose.state, pose.values);
   const aria = "Transformer patch bay. Arrow keys move the patch cord: left and right change the block, up and down the state. M switches the encoder, L steps the listener cohort through EN, FR, ZH and all; all shows the mean of the six cells.";
   const body = `<div class="iso-stage mt-stage" tabindex="0" role="group" aria-label="${aria}" aria-description="${tapText(pose.block, pose.state, pose.values)}" data-rig='${tables}'>${svg}<span class="mt-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 6", title: TITLE, hint: HINT, readout, keys: KEYS, caption: CAPTION, body });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout, keys: KEYS, caption: CAPTION, body });
   return { html };
 }

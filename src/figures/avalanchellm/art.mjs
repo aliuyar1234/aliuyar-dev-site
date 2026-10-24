@@ -55,7 +55,7 @@ export function render({ flat = false } = {}) {
   const [l1, l2] = readoutOf(REST);
   const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
   const html = k
-    .plateHtml({ fig: "Fig 20", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage })
+    .plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage })
     .replace(" data-readout></span>", ` data-readout><span class="av-l1">${esc(l1)}</span><span class="av-l2">${esc(l2)}</span></span>`);
   return { html };
 }

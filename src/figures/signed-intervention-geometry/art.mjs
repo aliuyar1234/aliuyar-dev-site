@@ -125,7 +125,7 @@ export function render() {
   const lines = readoutOf(GENES[0], "done");
   const lampOn = compactSvg(svg).replace('data-lamp="green"', 'data-lamp="green" data-on=""');
   const stage = `<div class="iso-stage sig-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Gene force table. Left and right arrows or keys 1 to 7 step through genes; Space, or a tap on the pin or the release knob, pulls or seats the centre pin; drag a pulley around the rim to set the string angle by hand; a tap elsewhere steps to the next gene.">${lampOn}<span class="sig-live" aria-live="polite"></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 12", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   html = html.replace(" data-readout></span>", ` data-readout>${lines.map((line, index) => `<span class="sig-l${index + 1}">${escape(line)}</span>`).join("")}</span>`);
   return { html };
 }

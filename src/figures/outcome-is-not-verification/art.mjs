@@ -78,7 +78,7 @@ export function render({ flat = false } = {}) {
   const state = restState();
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: bodyOf(state, { flat }) + hitAreas(state.levers.map((l) => l.stroke)) });
   const stage = `<div class="iso-stage oi-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Signal-box lever frame. Click a slot lever, or press 1 to 7, to pull it; click a world lever, or press C or D, to change the core or distractor input; click the commutator or press T to switch the scorer's supervision target; click the knob or press L to switch between arithmetic and logic, where slot lever 6 is collared; Escape resumes the tour.">${svg}<span class="oi-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 13", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   const lines = [stepLine(state.domain, state.lever, state.world), scorerLine(state.domain, state.target)];
   html = html.replace(" data-readout></span>", ` data-readout>${lines.map((line, i) => `<span class="oi-l${i + 1}">${escape(line)}</span>`).join("")}</span>`);
   return { html };

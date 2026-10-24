@@ -46,6 +46,6 @@ export function bodyOf({ flat = false } = {}) {
 export function render({ flat = false } = {}) {
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf({ flat })) });
   const stage = `<div class="iso-stage ria-stage" data-op="${REST.op}" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Cylinder proof press. Press 1 to 6 or click a tray compartment to pick an operator, Space or a click on the press to crank a proof, C or a click on the lever to canonicalize, Escape to resume the tour.">${svg}<span class="ria-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 21", title: TITLE, hint: HINT, readout: readoutOf(REST), keys: KEYS, caption: CAPTION, body: stage });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout: readoutOf(REST), keys: KEYS, caption: CAPTION, body: stage });
   return { html };
 }

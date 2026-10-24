@@ -1,13 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FailedClosed from "../components/FailedClosed";
 ---
 
 <BaseLayout title="Not found | Ali Uyar" description="Nothing is published at this address." noindex>
   <section class="wrap nf">
-    <FailedClosed client:visible />
-    <h1 class="h1">This request failed closed.</h1>
-    <p class="lede">Nothing is published at this address, so nothing is shown. The research and the writing are where the work is.</p>
+    <p class="small muted num">404</p>
+    <h1 class="h2">Page not found</h1>
+    <p class="lede">There is nothing at this address. The papers are under Research, the essays under Writing.</p>
     <div class="actions">
       <a class="btn" href="/research/">Research</a>
       <a class="link" href="/articles/">Writing</a>
@@ -16,5 +15,5 @@ import FailedClosed from "../components/FailedClosed";
 </BaseLayout>
 
 <style>
-  .nf { display: grid; gap: 28px; justify-items: start; padding-top: clamp(40px, 7vw, 104px); }
+  .nf { display: grid; gap: 24px; justify-items: start; padding-top: clamp(40px, 7vw, 104px); }
 </style>

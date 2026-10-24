@@ -71,8 +71,6 @@ const jsonLd = {
       </div>
     </header>
 
-    {fig && <div class="paper-figure"><FigureSlot slug={fig} label={paper.title} /></div>}
-
     <div class="paper-grid">
       <div class="paper-body">
         <section>
@@ -131,9 +129,11 @@ const jsonLd = {
       </aside>
     </div>
 
+    {fig && <div class="paper-figure"><FigureSlot slug={fig} label={paper.title} /></div>}
+
     {related.length > 0 && (
       <aside class="related" aria-labelledby="related-h">
-        <h2 class="h3" id="related-h">More on {theme.name.toLowerCase()}</h2>
+        <h2 class="h3" id="related-h">Related papers</h2>
         <ul>
           {related.map((p) => (
             <li><a href={`/research/${p.slug}/`}><span class="strong">{p.title}</span><span>{p.finding}</span></a></li>
@@ -153,6 +153,7 @@ const jsonLd = {
   .facts dd { margin: 2px 0 0; color: var(--strong); overflow-wrap: anywhere; }
 
   .paper-figure { margin-top: clamp(56px, 7vw, 96px); max-width: 52rem; }
+  .paper-figure :global(.iso-legend) { max-width: 68ch; }
 
   .paper-grid {
     display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 48px clamp(40px, 6vw, 96px);

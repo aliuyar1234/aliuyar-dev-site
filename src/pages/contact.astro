@@ -3,22 +3,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE } from "../lib/site";
 
 const reasons = [
-  "An AI workflow that has to become auditable, or has to fail closed when the evidence is missing.",
+  "A question about a paper, its data or its code.",
   "A research collaboration on evaluation, alignment or agent security.",
-  "A talk or a piece of writing on trusting AI systems in production.",
+  "A talk or a piece of writing on these subjects.",
 ];
 ---
 
-<BaseLayout title="Contact | Ali Uyar" description="Write to Ali Uyar about auditable AI systems, research collaborations on evaluation, alignment and agent security, or talks.">
+<BaseLayout title="Contact | Ali Uyar" description="Contact Ali Uyar about the research, a collaboration or a talk.">
   <section class="wrap contact">
     <h1 class="h1">Contact</h1>
     <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
     <div class="grid">
       <p class="lede">
-        I work full-time as Principal AI Engineer at {SITE.employer} in Vienna. Next to that I take on a few conversations a year, where trusting an AI decision is the hard part.
+        I'm a principal AI engineer in Vienna, currently at {SITE.employer}. Email is the best way to reach me.
       </p>
       <div>
-        <h2 class="label">Good reasons to write</h2>
+        <h2 class="label">Write about</h2>
         <ul class="reasons">{reasons.map((r) => <li>{r}</li>)}</ul>
         <p class="small muted">Code and papers: <a class="link" href={SITE.github} rel="me">github.com/aliuyar1234</a></p>
       </div>
@@ -30,8 +30,8 @@ const reasons = [
   .contact { display: grid; gap: 32px; padding-top: clamp(40px, 7vw, 104px); }
   .mail {
     justify-self: start; color: var(--strong);
-    font-size: clamp(1.75rem, 0.8rem + 4.2vw, 4.4rem); font-weight: 560; font-stretch: 112%; letter-spacing: -0.03em;
-    text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; text-decoration-color: var(--line-strong);
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); font-weight: 560; font-stretch: 104%; letter-spacing: -0.01em;
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: var(--line-strong);
     transition: text-decoration-color 0.25s var(--ease); overflow-wrap: anywhere;
   }
   .mail:hover { text-decoration-color: var(--strong); }

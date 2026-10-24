@@ -202,15 +202,12 @@ a { color: inherit; text-decoration: none; }
 
 /* Figure frame shared by every anatomy figure on the site */
 .fig .iso-figure { margin: 0; }
+/* Each page shows one plate, so its card is named by its title alone; hints read as plain instructions. */
+.iso .iso-plate-corner[data-corner="title"] { left: 0; right: auto; }
+.iso .iso-plate-corner[data-corner="hint"] { text-transform: none; letter-spacing: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
-/* Utilities used by the React Bits components */
 .whitespace-nowrap { white-space: nowrap; }
-.whitespace-pre { white-space: pre; }
-.relative { position: relative; }
-.inline-flex { display: inline-flex; }
-.items-center { align-items: center; }
-.select-none { user-select: none; }

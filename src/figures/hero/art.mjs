@@ -577,7 +577,6 @@ export function scene() {
     body: [`<defs><clipPath id="hero-slot"><path d="${slotClip}"/></clipPath></defs>`, ...back, `<g class="hero-line">${groups.join("")}</g>`, ...focusRings],
   });
   const html = k.plateHtml({
-    fig: "Fig 1",
     title: "Decision checkweigher",
     hint: "turn knob · tap · pull plug",
     readout: M.readoutOf(st),

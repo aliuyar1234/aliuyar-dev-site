@@ -6,8 +6,8 @@ import { METHODS, THEMES, byTheme, paperBySlug, papers } from "../../lib/papers"
 
 const groups = THEMES.map((t) => ({ ...t, items: byTheme(t.key) })).filter((g) => g.items.length);
 
-const title = `Research: ${papers.length} papers on AI alignment, security and evaluation | Ali Uyar`;
-const description = `${papers.length} papers by Ali Uyar on LLM judges, hidden-state verifiers, agent memory security, repairing frozen models and interpretability. Each with PDF, DOI and code.`;
+const title = "Research on AI evaluation, alignment and security | Ali Uyar";
+const description = "Papers by Ali Uyar on LLM judges, hidden-state verifiers, agent memory security, repairs to frozen models and interpretability, each with abstract, setup and PDF.";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -21,11 +21,11 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd} ogImage="/og/research.png">
   <header class="wrap page-head">
     <h1 class="h1">Research</h1>
     <p class="lede">
-      {papers.length} papers on one question: when can you trust what an AI system decided? Each one builds a way to check, from LLM judges and hidden-state verifiers to poisoned agent memory and repairs on frozen models.
+      Papers on the evaluation, alignment, security and interpretability of AI systems, and one study in cell biology. Each has a page with its abstract, setup, key result and PDF.
     </p>
     <nav class="themes small" aria-label="Themes">
       {groups.map((g) => (
@@ -50,7 +50,7 @@ const jsonLd = {
               <p class="models mono">{p.models.join(", ")}</p>
             </div>
             <div class="row-meta">
-              <p class="small muted num">{new Date(p.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}</p>
+              <p class="small muted">{new Date(p.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}</p>
               <PaperLinks paper={p} detail={false} />
             </div>
           </li>

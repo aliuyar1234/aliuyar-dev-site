@@ -91,6 +91,6 @@ export function bodyOf(pose = restPose(), { twins = true } = {}) {
 export function render() {
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf()) });
   const stage = `<div class="iso-stage su-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="ScrubID test manifold. The knob or the up and down arrows set the planted redundancy factor r to 1, 2, 4 or 8. Space, Enter or a click runs discovery, which sets each near-optimal faithful valve pattern in turn and reports RR, SSS and CC. Clicking a lever, or keys 0 to 7 and A, flips that valve between the supply and reference headers to test necessity. Home restores the full model; Escape resumes the tour.">${svg}<span class="su-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 17", title: TITLE, hint: HINT, readout: READOUT, keys: KEYS, caption: CAPTION, body: stage });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout: READOUT, keys: KEYS, caption: CAPTION, body: stage });
   return { html };
 }

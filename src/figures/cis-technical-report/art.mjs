@@ -12,7 +12,7 @@ const LABEL =
   "A laboratory glove box on a bench, a model of CIS. The sealed chamber is the offline sandbox. A challenger adapter cartridge enters through an antechamber: the outer door is clamped, the antechamber is evacuated and purged, and a handwheel on the chamber wall opens the inner door while it screws an interlock rod into a keeper on the outer door, so both doors are never open together. Four verifier boards hold one well per visible task (7, 8, 52 and 26), lit for the tasks the record on display passes; a locked compartment holds the 21 hidden tasks. A well that turns red is a regression, and the challenger goes back out. With none, a hatch opens under the champion's seat, the old champion drops into the chute, and the challenger takes the seat. Each decision prints a run record card into a sealed slot on the bench.";
 
 export const TITLE = "Glove box";
-export const HINT = "Load a challenger · tap latch · B baseline";
+export const HINT = "Load a challenger · tap the latch · B shows the baseline";
 
 export const KEYS = [
   { mark: "lit", label: "Challenger adapter cartridge (DoRA adapter on qwen2_5_coder_7b_instruct)" },
@@ -173,7 +173,7 @@ export function render() {
   const pose = restPose();
   const svg = k.figureSvg({ width: W.WIDTH, height: W.HEIGHT, label: LABEL, body: dressed(bodyOf(), pose) });
   const stage = `<div class="iso-stage cis-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Glove box. Press 1, 2 or 3 to load one of the three recorded challengers (iter-000149 promoted, iter-000150 and iter-000151 rolled back), Space for the next one, B to compare the baseline record, H to try the hidden-subset latch, Escape to resume the tour. Clicking the antechamber, the boards or the latch does the same.">${svg}<span class="cis-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 22", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   html = html.replace(" data-readout></span>", ` data-readout>${readoutHtml(pose.lines)}</span>`);
   // the site and the previews ship the same markup: path data shortened here, once
   return { html: minifyPaths(html) };

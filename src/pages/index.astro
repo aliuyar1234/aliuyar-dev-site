@@ -5,58 +5,65 @@ import Threads from "../components/bits/Threads";
 import FigureSlot from "../components/FigureSlot.astro";
 import PaperLinks from "../components/PaperLinks.astro";
 import { SITE, formatDate } from "../lib/site";
-import { THEMES, byTheme, featured, figureFor, paperBySlug, papers, themeOf } from "../lib/papers";
+import { figureFor, paperBySlug } from "../lib/papers";
 import writing from "../content/writing.json";
 
-const essays = ["the-demo-is-not-the-product", "designing-for-reversibility-in-high-speed-systems", "decision-architecture-in-complex-systems"]
+const essays = ["quiet-question-of-personhood", "decision-architecture-in-complex-systems", "designing-for-reversibility-in-high-speed-systems"]
   .map((slug) => writing.find((w) => w.slug === slug)!)
   .filter(Boolean);
 
-const order = ["criterion-fidelity-in-llm-judges", "selective-revocation-and-replay", "certipatch"];
-const selected = order.map((slug) => featured.find((p) => p.slug === slug)!).filter(Boolean);
-
-// The flagship: two papers on one fMRI corpus, asked in sequence. Numbers from the papers (see each plate's TRUTH.md).
+// Two papers on one fMRI corpus, asked in sequence (see each plate's TRUTH.md).
 const flagship = [
   {
     paper: paperBySlug("language-neutral-or-language-specific"),
-    question: "Which part of a sentence representation does the brain track?",
-    answer: "The part the three languages share. Each encoder state is split into a component built from the other two languages' translations and an orthogonal language-specific residual. Over the middle-late layers the shared component predicts the semantic regions better in all six model-by-language tests, by 0.019 to 0.061 in held-out Fisher z, and every test survives Holm correction.",
+    question: "Which part of a sentence representation predicts the brain better?",
+    answer: "The part the three languages share. Each sentence representation is split into a component the three languages have in common and a language-specific residual. In the middle-late layers the shared component predicts the brain's semantic regions better, in all six model-by-language tests and after correction for multiple comparisons.",
   },
   {
     paper: paperBySlug("inside-the-multilingual-transformer"),
-    question: "Where inside the transformer is that shared signal computed?",
-    answer: "On the attention side. Tapping 12 blocks at four states each, attention-side minus FFN-side Δz is positive for the semantic regions in all six encoder × cohort cells, where the pre-specified hypothesis predicted the FFN side. Of the 12 best taps, 9 are attention or post-attention states.",
+    question: "Which computations inside the transformer carry that shared signal?",
+    answer: "The attention side. Each of the 12 blocks is tapped at four points, and in every encoder and cohort the states around attention align with the semantic regions better than the feed-forward states, the opposite of what the pre-specified hypothesis predicted. Nine of the 12 best taps sit on the attention side.",
   },
 ];
 
-const propositions = [
+// The questions the papers work on, each answered only as far as its papers go.
+const questions = [
   {
-    n: "1", text: "Find the constraint.",
-    subs: [
-      ["1.1", "A model problem is often a data problem, a question problem or a trade-off nobody wants to make. The work happens at the layer where the outcome changes."],
-      ["1.2", "Do not fix a data problem with a prompt, an ownership problem with a dashboard, or a judgment problem with more automation."],
-    ],
+    question: "Does an LLM judge follow the criterion it was given?",
+    answer: "Accuracy alone cannot show it. A judge that follows its criterion changes its verdict when the criterion's meaning changes and keeps it when only the wording does; on a rubric task, both judges tested look accurate yet often miss the change in meaning. The same check applies to the answers being judged: formatting that keeps a question's meaning can still flip a model's answer.",
+    slugs: ["criterion-fidelity-in-llm-judges", "ria"],
   },
   {
-    n: "2", text: "Keep the evidence close.",
-    subs: [
-      ["2.1", "When a system routes a case, blocks an action or changes a workflow, it leaves something to inspect afterwards."],
-      ["2.2", "Evals answer product questions. A score that decides nothing is decoration."],
-    ],
+    question: "Does a right answer mean the reasoning was valid?",
+    answer: "A right final answer does not show that each step was valid. On structured arithmetic and logic problems, hidden states predict the final outcome well, but a verifier trained on outcomes does not check the steps; trained on whether each step is valid, it does better on the strictest step-level tests, most clearly on logic. In Qwen2.5-7B, hidden states also signal whether the context was enough to answer, separately from whether the answer was right.",
+    slugs: ["outcome-is-not-verification", "binary-evidence-sufficiency"],
   },
   {
-    n: "3", text: "Fail closed.",
-    subs: [["3.1", "Decide what a system is trusted to do before it does it. Without the evidence, it does nothing."]],
+    question: "When an agent games its metric, how do you train against the step where it goes wrong?",
+    answer: "Find the first step where the agent crosses the line, rewrite only that step into a minimal safe alternative and train on the contrast, then measure the effect on held-out tasks where the metric can be gamed.",
+    slugs: ["first-unsafe-step-dpo"],
   },
   {
-    n: "4", text: "Fix the test before the result.",
-    subs: [["4.1", "Acceptance rules are written down before the run, and whatever comes out gets reported."]],
+    question: "What does an agent carry forward after an attack, and how is it removed?",
+    answer: "A prompt injection written into memory keeps acting after the attack ends. Once the poisoned entries are known, selective replay removes everything that descended from them and replays only the writes they touched, so the attack stops while the agent keeps benign memory that a full reset would wipe.",
+    slugs: ["selective-revocation-and-replay"],
   },
   {
-    n: "5", text: "Cut the machinery.",
-    subs: [["5.1", "Complexity has to earn its place. Sometimes the right move is a model, sometimes cleaner data, sometimes no AI at all."]],
+    question: "How do you keep a self-improving model from locking in its own mistakes?",
+    answer: "Each paper takes one part of the loop. Test-time updates stay temporary and only distillation may persist; the distillation step is stress-tested with poisoned demonstrations; deterministic verifiers decide whether each new version is promoted or rolled back.",
+    slugs: ["discover-then-distill", "robust-discover-distill", "cis-technical-report"],
   },
-];
+  {
+    question: "Can a trained model's behavior be changed, and the change checked?",
+    answer: "A small patch on a frozen model can enforce a specification and come with an empirical certificate, bounded to a stated scope, that anyone can replay. An output format such as strict JSON can be split off as its own add-on to a shared adapter and still match an adapter trained for it directly. Function calling can be moved from a tuned model into an untuned one of the same size with added modules instead of full retraining.",
+    slugs: ["certipatch", "soar", "same-size-capability-transfer"],
+  },
+  {
+    question: "How much of an interpretability claim holds up against matched controls?",
+    answer: "Several different circuits can reproduce the same behavior, so reproducing it is not yet an explanation, and a strict acceptance rule checked against matched controls changes the verdict in every setting it was run on. Some effects do hold: a sparse map of what instruction tuning changed recovers part of the tuned behavior, and how activations spread across layers still shifts with gain when event rates are held fixed.",
+    slugs: ["scrubid", "what-survives-control-calibration", "surgical-post-training-diffing", "avalanchellm"],
+  },
+].map((q) => ({ ...q, papers: q.slugs.map(paperBySlug) }));
 
 const person = {
   "@context": "https://schema.org",
@@ -78,11 +85,10 @@ const person = {
 
   <section class="section wrap flagship" aria-labelledby="flagship">
     <header class="flag-head">
-      <p class="small muted">Flagship research</p>
-      <h2 class="h1" id="flagship">Reading multilingual transformers against the listening brain</h2>
+      <h2 class="h2" id="flagship">Reading multilingual transformers against the listening brain</h2>
       <p class="lede">
-        94 people heard Le Petit Prince in English, French or Chinese while fMRI recorded them. Two papers read the same story
-        through <span class="whitespace-nowrap">XLM-R-base</span> and the <span class="whitespace-nowrap">NLLB-200</span> encoder and fit their sentence states to the brain, region by region.
+        94 people heard <i>Le Petit Prince</i> in English, French or Chinese while fMRI recorded them. Two papers read the same story
+        through <span class="whitespace-nowrap">XLM-R-base</span> and the <span class="whitespace-nowrap">NLLB-200</span> encoder and use each sentence's representation to predict brain activity, region by region.
       </p>
     </header>
     <div class="flag-body">
@@ -100,54 +106,24 @@ const person = {
     </div>
   </section>
 
-  <section class="section wrap" aria-labelledby="selected">
+  <section class="section wrap" aria-labelledby="questions">
     <div class="section-head">
-      <h2 class="h2" id="selected">Selected research</h2>
-      <a class="link" href="/research/">All {papers.length} papers</a>
+      <h2 class="h2" id="questions">Questions I work on</h2>
     </div>
-    <ul class="featured">
-      {selected.map((p) => (
-        <li class="feature">
-          <p class="small muted">{themeOf(p.theme).name}</p>
-          <h3 class="h3"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
-          <p>{p.finding}</p>
-          <PaperLinks paper={p} />
+    <ul class="questions">
+      {questions.map((q) => (
+        <li class="q">
+          <h3 class="q-text">{q.question}</h3>
+          <div class="q-body">
+            <p>{q.answer}</p>
+            <p class="q-papers small">
+              {q.papers.map((p) => <a href={`/research/${p.slug}/`}>{p.short}</a>)}
+            </p>
+          </div>
         </li>
       ))}
     </ul>
-  </section>
-
-  <section class="section wrap" aria-labelledby="map">
-    <div class="section-head">
-      <h2 class="h2" id="map">The research program</h2>
-      <p class="muted">{papers.length} papers, {THEMES.length} lines of work. Each links to its abstract, data sheet, PDF and code.</p>
-    </div>
-    <div class="map">
-      {THEMES.map((t) => (
-        <div class="map-col">
-          <h3 class="map-head"><a href={`/research/#${t.key}`}>{t.name}</a><span class="muted num">{byTheme(t.key).length}</span></h3>
-          <ul>
-            {byTheme(t.key).map((p) => <li><a href={`/research/${p.slug}/`}>{p.short}</a></li>)}
-          </ul>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section wrap work" aria-labelledby="work">
-    <h2 class="h2" id="work">How I work</h2>
-    <ol class="props">
-      {propositions.map((p) => (
-        <li>
-          <p class="prop"><span class="pn num">{p.n}</span><span>{p.text}</span></p>
-          <ol>
-            {p.subs.map(([n, t]) => (
-              <li class="sub"><span class="pn num">{n}</span><span>{t}</span></li>
-            ))}
-          </ol>
-        </li>
-      ))}
-    </ol>
+    <p class="all"><a class="link" href="/research/">All papers, by line of work</a></p>
   </section>
 
   <section class="section wrap" aria-labelledby="writing">
@@ -168,9 +144,8 @@ const person = {
     </ul>
   </section>
 
-  <section class="section wrap closer" aria-labelledby="closer">
-    <h2 class="h2" id="closer">Write to me about the research, a collaboration or a talk.</h2>
-    <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  <section class="section wrap closer" aria-label="Contact">
+    <p class="lede">Questions about a paper, a collaboration or a talk: <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
   </section>
 </BaseLayout>
 
@@ -197,61 +172,33 @@ const person = {
   .flag-title a { transition: color 0.2s var(--ease); }
   .flag-title a:hover { color: var(--strong); }
 
-  .featured { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
-  .feature { display: grid; gap: 14px; align-content: start; padding-top: 22px; border-top: 1px solid var(--line); }
-  .feature h3 a { transition: opacity 0.2s; }
-  .feature h3 a:hover { opacity: 0.75; }
-
-  .map { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
-  .map-col { display: grid; align-content: start; gap: 14px; padding: 22px clamp(12px, 1.6vw, 22px) 26px 0; }
-  .map-col + .map-col { padding-left: clamp(12px, 1.6vw, 22px); border-left: 1px solid var(--line); }
-  .map-head { display: flex; justify-content: space-between; gap: 12px; font-size: 0.9375rem; font-weight: 580; line-height: 1.3; min-height: 2.6em; }
-  .map ul { display: grid; gap: 2px; }
-  .map li a { display: block; padding-block: 5px; color: var(--text); font-size: 0.9375rem; line-height: 1.35; transition: color 0.2s var(--ease); }
-  .map li a:hover { color: var(--strong); }
-
-  .work { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); }
-  .props { display: grid; gap: 36px; counter-reset: none; }
-  .prop, .sub { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 4px; }
-  .prop { color: var(--strong); font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.65rem); font-weight: 560; font-stretch: 106%; letter-spacing: -0.012em; line-height: 1.25; }
-  .prop .pn { font-size: 1rem; padding-top: 0.32em; }
-  .props ol { display: grid; gap: 10px; margin-top: 14px; }
-  .sub { max-width: 60ch; }
+  .questions { border-bottom: 1px solid var(--line); }
+  .q {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 16px clamp(28px, 5vw, 72px);
+    padding-block: 28px 32px;
+    border-top: 1px solid var(--line);
+  }
+  .q-text { font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem); font-weight: 560; font-stretch: 104%; letter-spacing: -0.01em; line-height: 1.28; max-width: 28ch; }
+  .q-body { display: grid; gap: 14px; max-width: 62ch; }
+  .q-papers { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .q-papers a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 0.22em; transition: color 0.2s var(--ease); }
+  .q-papers a:hover { color: var(--strong); }
+  .all { margin-top: 28px; }
   .pn { color: var(--muted); font-weight: 450; }
 
   .essays { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
   .essays a { display: grid; gap: 12px; padding-top: 22px; border-top: 1px solid var(--line); transition: border-color 0.25s var(--ease); }
   .essays a:hover { border-top-color: var(--strong); }
 
-  .closer { display: grid; gap: 28px; }
-  .closer h2 { max-width: 24ch; }
-  .mail {
-    justify-self: start;
-    color: var(--strong);
-    font-size: clamp(1.6rem, 0.9rem + 3.2vw, 3.6rem);
-    font-weight: 560;
-    font-stretch: 112%;
-    letter-spacing: -0.03em;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.16em;
-    text-decoration-color: var(--line-strong);
-    transition: text-decoration-color 0.25s var(--ease);
-  }
-  .mail:hover { text-decoration-color: var(--strong); }
-
-  @media (max-width: 1100px) {
-    .map { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .map-col:nth-child(4) { padding-left: 0; border-left: 0; }
-  }
   @media (max-width: 960px) {
-    .work, .flag-body { grid-template-columns: minmax(0, 1fr); }
+    .flag-body, .q { grid-template-columns: minmax(0, 1fr); }
     .flag-figure { position: static; order: -1; }
-    .featured, .essays { grid-template-columns: minmax(0, 1fr); }
+    .essays { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 640px) {
-    .map { grid-template-columns: minmax(0, 1fr); }
-    .map-col, .map-col + .map-col { padding-left: 0; border-left: 0; border-bottom: 1px solid var(--line); }
-    .map-head { min-height: 0; }
+    .flag-q { grid-template-columns: 1.6rem minmax(0, 1fr); }
+    .flag-text > p:not(.flag-q), .flag-text > h3, .flag-text > :global(.paper-links) { margin-left: 1.6rem; }
   }
 </style>

@@ -6,7 +6,7 @@ Personal site of Ali Uyar: research on AI alignment, security and evaluation, pl
 
 - Astro 5, static output, `trailingSlash: "always"` (Cloudflare serves pages as directories)
 - Plain CSS with tokens in `src/styles/global.css`; Mona Sans (variable weight and width), self-hosted via Fontsource
-- React only for two islands from React Bits: the hero background (`Threads`, raw WebGL2, started when the browser is idle) and the 404 split-flap
+- React only for one island from React Bits: the hero background (`Threads`, raw WebGL2, started when the browser is idle)
 - Anatomy figures: isometric SVG instruments built with the kit in `src/figures/kit/`
 
 ## Layout

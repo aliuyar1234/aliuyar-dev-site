@@ -63,6 +63,6 @@ export function render() {
   const pose = poseAt(STILL);
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(pose)) });
   const stage = `<div class="iso-stage dtd-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Fractional still for Discover-Then-Distill. Click, Space or Enter heats a held-out task through ${DATA.steps} steps of ${DATA.rollouts} rollouts; the right and left arrows step one TTT step; 1, 2 and 3 or the selector knob switch between base best-of-N, TTT and post-SDFT best-of-N; S or the still head puts the splitter on take-off and runs the consolidation; Escape resumes the tour.">${svg}<span class="dtd-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 18", title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
   return { html };
 }

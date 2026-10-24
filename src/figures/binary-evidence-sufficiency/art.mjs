@@ -66,7 +66,7 @@ export function render() {
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(build())) });
   const stage = `<div class="iso-stage bs-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Turret spectrophotometer. Left and right arrows index the turret through the four contexts, 1 to 4 pick a cell, up and down arrows set the read point, F steps the test subset, M lowers or lifts the title masks; click the turret, the drum, the detector box or the mask spider to do the same. Escape resumes the tour.">${svg}<span class="bs-sr" role="status" aria-live="polite" data-status></span></div>`;
   const html = k
-    .plateHtml({ fig: "Fig 11", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage })
+    .plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage })
     .replace(" data-readout></span>", ` data-readout>${readoutHtml(readoutOf(REST))}</span>`);
   if (!html.includes('class="bs-l1"')) throw new Error("readout slot not found in plateHtml markup");
   return { html };

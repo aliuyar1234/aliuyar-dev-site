@@ -37,25 +37,24 @@ export const THEMES: { key: ThemeKey; name: string; blurb: string }[] = [
   {
     key: "repair",
     name: "Repairing frozen models",
-    blurb: "Changing what a deployed model does without retraining it, and showing that the change holds.",
+    blurb: "Changing what a model does while its base weights stay frozen, and testing that the change holds.",
   },
   {
     key: "interpretability",
     name: "Inside the model",
-    blurb: "Probes, diffs and cascades: what the internals carry, and how much of the clean story survives a held-out test.",
+    blurb: "Probes, activation diffs, event cascades and brain encoding models: what the internals carry, tested on held-out data.",
   },
   {
     key: "beyond",
-    name: "Beyond language models",
-    blurb: "The same locked-analysis discipline, applied to cell biology.",
+    name: "Cell biology",
+    blurb: "The same locked analysis, applied to matched ORF and CRISPR Cell Painting profiles.",
   },
 ];
 
 export const papers = research as Paper[];
 
 export const themeOf = (key: ThemeKey) => THEMES.find((t) => t.key === key)!;
-export const byTheme = (key: ThemeKey) => papers.filter((p) => p.theme === key);
-export const featured = papers.filter((p) => p.featured);
+export const byTheme = (key: ThemeKey) => papers.filter((p) => p.theme === key).sort((a, b) => b.date.localeCompare(a.date));
 // Method families that recur across papers, curated from each paper's methods.
 export const METHODS: { name: string; slugs: string[] }[] = [
   { name: "Counterfactual tests", slugs: ["criterion-fidelity-in-llm-judges", "outcome-is-not-verification", "binary-evidence-sufficiency", "first-unsafe-step-dpo"] },

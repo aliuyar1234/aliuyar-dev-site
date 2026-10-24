@@ -15,7 +15,7 @@ const ISO_CSS = readFileSync(join(ROOT, "src/figures/kit/iso.css"), "utf8");
 
 const research = JSON.parse(readFileSync(join(ROOT, "src/content/research.json"), "utf8"));
 const writing = JSON.parse(readFileSync(join(ROOT, "src/content/writing.json"), "utf8"));
-const THEMES = { evaluation: "Evaluation and verification", agents: "Agent safety and security", repair: "Repairing frozen models", interpretability: "Inside the model", beyond: "Beyond language models" };
+const THEMES = { evaluation: "Evaluation and verification", agents: "Agent safety and security", repair: "Repairing frozen models", interpretability: "Inside the model", beyond: "Cell biology" };
 const FOLDERS = { "criterion-fidelity-in-llm-judges": "criterion-fidelity", "selective-revocation-and-replay": "selective-revocation" };
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -69,7 +69,7 @@ const fit = (title, figure) => {
 const jobs = [];
 const flagship = await figureSvg("language-neutral-or-language-specific");
 jobs.push({ out: "default.png", kicker: "Principal AI Engineer, Vienna", title: "Research on AI alignment, security and evaluation.", foot: "aliuyar.dev", figure: flagship });
-jobs.push({ out: "research.png", kicker: `${research.length} papers`, title: "Research on when an AI system's decisions can be trusted.", foot: "aliuyar.dev/research", figure: "" });
+jobs.push({ out: "research.png", kicker: "Research", title: "Papers on AI evaluation, alignment, security and interpretability.", foot: "aliuyar.dev/research", figure: "" });
 for (const p of research) {
   const figure = await figureSvg(FOLDERS[p.slug] ?? p.slug);
   jobs.push({ out: `research/${p.slug}.png`, kicker: THEMES[p.theme], title: p.title, foot: "aliuyar.dev/research", figure });

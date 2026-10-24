@@ -761,7 +761,6 @@ export function render({ order } = {}) {
   const row = Md.table[0];
   const stage = `<div class="ls-stage" tabindex="0" role="group" aria-label="Slice model. M switches the encoder, left and right arrows the listeners' language, up and down arrows the component, F or Space fans the plates." data-table='${JSON.stringify(Md.table)}'>${svg}<span class="ls-sr" role="status" aria-live="polite" data-status></span></div>`;
   const html = k.plateHtml({
-    fig: "Fig 5",
     title: "Acrylic slice model",
     hint: "Turn knobs · slide encoder · pull lever",
     readout: Pt.readoutOf(row),

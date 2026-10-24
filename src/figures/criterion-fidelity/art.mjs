@@ -81,7 +81,7 @@ export function render() {
   const svg = k.figureSvg({ width: W, height: H, label: LABEL, body: items.map((item) => item.svg) });
   const lines = readoutOf(JUDGES[REST.judge], STATIONS[REST.station]);
   const stage = `<div class="iso-stage cf-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Criterion balance. Left and right arrows or keys 1 to 3 swap the criterion card; up and down arrows turn the judge selector.">${compactSvg(svg)}<span class="cf-live" aria-live="polite"></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 2", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   html = html.replace(" data-readout></span>", ` data-readout>${lines.map((line, index) => `<span class="cf-l${index + 1}">${escape(line)}</span>`).join("")}</span>`);
   return { html };
 }

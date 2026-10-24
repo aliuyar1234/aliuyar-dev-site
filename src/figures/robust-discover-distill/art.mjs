@@ -97,7 +97,6 @@ export function render({ flat = false } = {}) {
   const stage = `<div class="iso-stage rdd-stage" tabindex="0" role="group" aria-label="Tablet press for distillation poisoning. T switches the threat between random and trigger, P steps the poison fraction, S drops or lifts the screen (format gate D1), A tensions the anchor spring (Anchor-KL D2), Enter turns the flywheel through 200 strokes.">${svg}</div><span class="rdd-sr" role="status" aria-live="polite" data-status></span>`;
   const lines = readoutOf(c);
   let html = k.plateHtml({
-    fig: "Fig 19",
     title: "Single-punch tablet press",
     hint: "Click a control · turn the flywheel",
     readout: "",

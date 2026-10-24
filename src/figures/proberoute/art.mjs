@@ -527,7 +527,7 @@ export function render({ flat = false, state = stateOf("final"), minify = true }
   const defs = FLAT ? "" : `<defs>${[...DEFS].map(([id, svg]) => `<g id="${id}">${svg}</g>`).join("")}</defs>`;
   const svg = k.figureSvg({ width: W.WIDTH, height: W.HEIGHT, label: LABEL, body: [defs, ...body] });
   const stage = `<div class="iso-stage pr-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="${ARIA}">${svg}<span class="pr-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const plate = k.plateHtml({ fig: "Fig 10", title: TITLE, hint: HINT, readout: "", keys: KEYS_LEGEND, caption: CAPTION, body: stage });
+  const plate = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS_LEGEND, caption: CAPTION, body: stage });
   const html = plate.replace(" data-readout></span>", ` data-readout>${readoutHtml(readoutOf(state))}</span>`);
   if (html === plate) throw new Error("readout slot not found in plateHtml markup");
   return { html: FLAT || !minify ? html : html.replace(/ d="([^"]*)"/g, (m, d) => ` d="${minifyD(d)}"`) };

@@ -73,7 +73,7 @@ export function render() {
   const pose = poseOf(REST);
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(pose, REST)) });
   const stage = `<div class="iso-stage so-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Overlay projector. J or Q folds that overlay leaf onto the base sheet and lifts the other first; P lifts both for the prompt-only control; R slides the direct-adapter sheet for the current overlay in or out; the up and down arrows turn the focus knob; Escape resumes the tour. Clicking a leaf, a reference sheet or the knob does the same.">${svg}<span class="so-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 7", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   html = html.replace(" data-readout></span>", ` data-readout>${readoutHtml(readoutOf(pose, REST))}</span>`);
   return { html };
 }

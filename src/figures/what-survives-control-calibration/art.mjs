@@ -80,7 +80,7 @@ export function render() {
   const pose = restPose(REST_GOAL);
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(pose)) });
   const stage = `<div class="iso-stage ws-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Vernier height gauge. Click the selector or press 1, 2 or 3 to pick the setting; click a stack or press the left and right arrows to slide the scriber to the frontier or the candidate; click the riser or press Space to swap the test and shift splits; Escape resumes the tour.">${svg}<span class="ws-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 15", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   html = html.replace(" data-readout></span>", ` data-readout>${readoutHtml(readoutOf(pose, REST_GOAL, true))}</span>`);
   return { html };
 }

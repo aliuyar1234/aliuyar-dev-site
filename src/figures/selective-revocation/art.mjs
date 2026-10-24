@@ -482,7 +482,6 @@ export function render({ flat: inline = false } = {}) {
   const stage = `<div class="iso-stage sr-stage" tabindex="0" role="slider" aria-valuemin="1" aria-valuemax="${METHODS.length}" aria-valuenow="1" aria-valuetext="${method.name}" aria-label="Recovery method for a card catalogue of persisted agent memory. Left and right arrows turn the method knob, space runs the recovery again, Escape returns to the compromised state." data-pull="${PULL_VECTOR.join(" ")}" data-key="${KEY_VECTOR.join(" ")}">${svg}</div><span class="sr-sr" role="status" aria-live="polite" data-status></span>`;
   const [l1, l2] = readoutAt(method, 0);
   let html = k.plateHtml({
-    fig: "Fig 3",
     title: "Card catalogue",
     hint: "Turn the knob · click to rerun",
     readout: "",

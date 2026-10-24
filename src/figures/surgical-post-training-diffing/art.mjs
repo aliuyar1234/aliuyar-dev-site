@@ -57,7 +57,7 @@ export function render({ flat = false } = {}) {
   const body = runs.map(([part, svg]) => (part ? `<g data-part="${part}" transform="${k.translateAlong(P, offsets[part] || [0, 0, 0])}">${svg}</g>` : svg)).join("");
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: compact(minifyPaths(body)) });
   const stage = `<div class="iso-stage spd-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="Blink comparator. Click or tap to step the insert slide; click the mirror head, or press Space or B, to hold and restart the blink; click a stage screw, or press X or Y, to turn plate A off or back on register; the arrows or 1 to 4 move the slide; R registers the plates; Escape resumes the tour.">${svg}<span class="spd-sr" role="status" aria-live="polite" data-status></span></div>`;
-  let html = k.plateHtml({ fig: "Fig 9", title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
+  let html = k.plateHtml({ title: TITLE, hint: HINT, readout: "", keys: KEYS, caption: CAPTION, body: stage });
   const lines = readoutOf(STILL);
   html = html.replace(" data-readout></span>", ` data-readout>${lines.map((line) => `<span>${escape(line)}</span>`).join("")}</span>`);
   return { html };

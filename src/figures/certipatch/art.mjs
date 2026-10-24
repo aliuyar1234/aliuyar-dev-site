@@ -86,6 +86,6 @@ export function render() {
   const pose = poseAt(STILL);
   const svg = k.figureSvg({ width: WIDTH, height: HEIGHT, label: LABEL, body: minifyPaths(bodyOf(pose)) });
   const stage = `<div class="iso-stage cp-stage" tabindex="0" role="group" aria-roledescription="interactive figure" aria-label="CertiPatch jig. Click, Space or the right arrow steps through probe, patch, each repair round, certify and replay; the left arrow steps back; clicking the patch or pressing T nudges a trim so replay fails; Home starts over; Escape resumes the tour.">${svg}<span class="cp-sr" role="status" aria-live="polite" data-status></span></div>`;
-  const html = k.plateHtml({ fig: "Fig 4", title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
+  const html = k.plateHtml({ title: TITLE, hint: HINT, readout: pose.readout, keys: KEYS, caption: CAPTION, body: stage });
   return { html };
 }
