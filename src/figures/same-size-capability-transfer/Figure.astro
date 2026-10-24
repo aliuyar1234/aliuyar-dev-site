@@ -1,0 +1,10 @@
+---
+import "./figure.css";
+import { render } from "./art.mjs";
+const { html } = render();
+---
+<div class="iso fig fig-same-size-capability-transfer" data-fig="same-size-capability-transfer"><Fragment set:html={html} /></div>
+<script>
+  import { mount } from "./live.js";
+  for (const el of document.querySelectorAll('[data-fig="same-size-capability-transfer"]')) mount(el);
+</script>

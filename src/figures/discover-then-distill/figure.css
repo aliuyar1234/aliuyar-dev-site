@@ -1,0 +1,49 @@
+/* Fig 18 · fractional still. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-discover-then-distill .dtd-stage{touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative}
+.fig-discover-then-distill .dtd-stage:focus{outline:none}
+.fig-discover-then-distill .dtd-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-discover-then-distill .dtd-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* the bowl of the mantle */
+.fig-discover-then-distill .dtd-void{fill:var(--anatomy-shade-0);stroke:none}
+
+/* the charge in the flask sits a tone below the glass */
+.fig-discover-then-distill .dtd-liq .iso-fill{fill:var(--anatomy-shade-1)}
+.fig-discover-then-distill .dtd-liq .iso-top{fill:var(--anatomy-shade-3)}
+
+/* the vapour is the one lit part: a body that glows inside the column */
+.fig-discover-then-distill .dtd-vapour .iso-fill{fill:color-mix(in srgb,var(--anatomy-lit) 14%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-vapour .iso-shade[data-shade="0"]{fill:color-mix(in srgb,var(--anatomy-lit) 10%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-vapour .iso-shade[data-shade="1"]{fill:color-mix(in srgb,var(--anatomy-lit) 14%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-vapour .iso-shade[data-shade="2"]{fill:color-mix(in srgb,var(--anatomy-lit) 19%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-vapour .iso-shade[data-shade="3"]{fill:color-mix(in srgb,var(--anatomy-lit) 25%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-vapour .iso-top{fill:color-mix(in srgb,var(--anatomy-lit) 32%,var(--anatomy-face))}
+
+/* the distillate in the receiver: the checkpoint, tinted from the glass so its level reads */
+.fig-discover-then-distill .dtd-dist .iso-fill{fill:color-mix(in srgb,var(--anatomy-hi) 16%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-dist .iso-shade[data-shade="0"]{fill:color-mix(in srgb,var(--anatomy-hi) 12%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-dist .iso-shade[data-shade="1"]{fill:color-mix(in srgb,var(--anatomy-hi) 16%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-dist .iso-shade[data-shade="2"]{fill:color-mix(in srgb,var(--anatomy-hi) 21%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-dist .iso-shade[data-shade="3"]{fill:color-mix(in srgb,var(--anatomy-hi) 27%,var(--anatomy-face))}
+.fig-discover-then-distill .dtd-dist .iso-top{fill:color-mix(in srgb,var(--anatomy-hi) 36%,var(--anatomy-face))}
+
+/* bubbles, drips, mercury and the take-off stream inside the glass */
+.fig-discover-then-distill .dtd-bubble{fill:none;stroke:var(--anatomy-mid);stroke-width:.5}
+.fig-discover-then-distill .dtd-drip{fill:var(--anatomy-hi);stroke:none}
+.fig-discover-then-distill .dtd-mbulb{fill:var(--anatomy-mid);stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight)}
+.fig-discover-then-distill .dtd-mercury{fill:none;stroke:var(--anatomy-hi);stroke-width:1.1px;stroke-linecap:round}
+.fig-discover-then-distill .dtd-film{fill:none;stroke:url(#dtd-sg);stroke-width:2.2px;stroke-linecap:round;opacity:.5}
+.fig-discover-then-distill .dtd-beads{fill:none;stroke:url(#dtd-sg);stroke-width:2.4px;stroke-linecap:round;stroke-dasharray:0 6}
+.fig-discover-then-distill .dtd-glint{opacity:.6}
+.fig-discover-then-distill .dtd-gl stop{stop-color:var(--anatomy-hi)}
+
+/* take-off lamp: colour only where colour is the subject */
+.fig-discover-then-distill .dtd-lamp .iso-top,.fig-discover-then-distill .dtd-lamp .iso-shade,.fig-discover-then-distill .dtd-lamp .iso-fill{transition:fill .3s var(--anatomy-ease)}
+.fig-discover-then-distill .dtd-lamp .iso-edge{transition:stroke .3s var(--anatomy-ease)}
+.fig-discover-then-distill .dtd-lamp[data-on="green"] .iso-top{fill:var(--anatomy-green)}
+.fig-discover-then-distill .dtd-lamp[data-on="green"] .iso-shade,.fig-discover-then-distill .dtd-lamp[data-on="green"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper))}
+.fig-discover-then-distill .dtd-lamp[data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-discover-then-distill .dtd-lamp .iso-top,.fig-discover-then-distill .dtd-lamp .iso-shade,.fig-discover-then-distill .dtd-lamp .iso-fill,.fig-discover-then-distill .dtd-lamp .iso-edge{transition:none}
+}

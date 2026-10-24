@@ -1,0 +1,31 @@
+.fig-surgical-post-training-diffing .spd-stage{position:relative;touch-action:pan-y;outline:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-surgical-post-training-diffing .spd-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-surgical-post-training-diffing .iso-plate{padding-bottom:88px}
+.fig-surgical-post-training-diffing .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-surgical-post-training-diffing [data-readout]>span{display:block}
+.fig-surgical-post-training-diffing [data-readout]>span:first-child{color:var(--anatomy-muted)}
+.fig-surgical-post-training-diffing .spd-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fig-surgical-post-training-diffing .iso-crease:not([data-tone]),.fig-surgical-post-training-diffing .iso-bevel:not([data-tone]){stroke:var(--anatomy-faint)}
+.fig-surgical-post-training-diffing .iso-edge:not([data-tone]){stroke:var(--anatomy-mid)}
+.fig-surgical-post-training-diffing .iso-dots:not([data-tone]) circle{opacity:.45}
+.fig-surgical-post-training-diffing .iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.fig-surgical-post-training-diffing .spd-glass .iso-fill{fill-opacity:.42}
+.fig-surgical-post-training-diffing .spd-glass .iso-top{fill-opacity:.34}
+.fig-surgical-post-training-diffing .spd-film .iso-fill,.fig-surgical-post-training-diffing .spd-film .iso-top{fill-opacity:.4}
+.fig-surgical-post-training-diffing .spd-mark{fill:var(--anatomy-lo);stroke:none}
+.fig-surgical-post-training-diffing .spd-card .iso-top{fill:var(--anatomy-lo);fill-opacity:.6}
+.fig-surgical-post-training-diffing .spd-diffuser .iso-fill{fill:var(--anatomy-lit-top)}
+.fig-surgical-post-training-diffing .spd-hole,.fig-surgical-post-training-diffing .spd-void{fill:var(--anatomy-shade-0);stroke:none}
+.fig-surgical-post-training-diffing [data-lamp] .iso-top,.fig-surgical-post-training-diffing [data-lamp] .iso-shade{transition:fill .35s var(--anatomy-ease)}
+.fig-surgical-post-training-diffing [data-lamp] .iso-edge{transition:stroke .35s var(--anatomy-ease)}
+.fig-surgical-post-training-diffing [data-lamp="green"][data-on] .iso-top,.fig-surgical-post-training-diffing [data-lamp="green"][data-on] .iso-shade,.fig-surgical-post-training-diffing [data-lamp="green"][data-on] .iso-fill{fill:var(--anatomy-green)}
+.fig-surgical-post-training-diffing [data-lamp="red"][data-on] .iso-top,.fig-surgical-post-training-diffing [data-lamp="red"][data-on] .iso-shade,.fig-surgical-post-training-diffing [data-lamp="red"][data-on] .iso-fill{fill:var(--anatomy-red)}
+.fig-surgical-post-training-diffing [data-lamp="green"][data-on] .iso-edge{stroke:var(--anatomy-green)}
+.fig-surgical-post-training-diffing [data-lamp="red"][data-on] .iso-edge{stroke:var(--anatomy-red)}
+@media (max-width:560px){
+  .fig-surgical-post-training-diffing .iso-plate{padding-bottom:118px}
+  .fig-surgical-post-training-diffing .iso-plate-corner[data-corner="hint"]{bottom:76px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-surgical-post-training-diffing [data-lamp] *{transition:none}
+}

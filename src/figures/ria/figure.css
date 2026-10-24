@@ -1,0 +1,36 @@
+/* Fig 21 · cylinder proof press. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-ria .ria-stage{touch-action:pan-y;-webkit-tap-highlight-color:transparent;position:relative}
+.fig-ria .ria-stage svg{cursor:pointer}
+.fig-ria .ria-stage:focus{outline:none}
+.fig-ria .ria-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-ria .ria-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-ria .ria-hit{fill:none;stroke:none;cursor:pointer;pointer-events:all}
+
+/* gate lamps, the voids of the gear's lightening holes, the printed proof */
+.fig-ria .ria-lamp{fill:var(--anatomy-green)}
+.fig-ria .ria-void{fill:var(--anatomy-shade-0)}
+.fig-ria .ria-ink{fill:var(--anatomy-mid)}
+.fig-ria .ria-mk{fill:var(--anatomy-lo)}
+.fig-ria .ria-mk-red{fill:var(--anatomy-red)}
+
+/* the forme: as an operator is picked its plain sorts lift out, its lit sorts hang a beat above their slots, then drop in */
+.fig-ria .ria-lit{opacity:0;transform:translateY(-7px);transition:opacity .3s var(--anatomy-ease),transform .4s var(--anatomy-ease)}
+.fig-ria .ria-plain{transition:opacity .3s var(--anatomy-ease) .25s}
+.fig-ria .ria-stage[data-op="O1"]:not([data-canon]) .ria-sw[data-op="O1"] .ria-lit,
+.fig-ria .ria-stage[data-op="O2"]:not([data-canon]) .ria-sw[data-op="O2"] .ria-lit,
+.fig-ria .ria-stage[data-op="O3"]:not([data-canon]) .ria-sw[data-op="O3"] .ria-lit,
+.fig-ria .ria-stage[data-op="O4"]:not([data-canon]) .ria-sw[data-op="O4"] .ria-lit,
+.fig-ria .ria-stage[data-op="O5"]:not([data-canon]) .ria-sw[data-op="O5"] .ria-lit{opacity:1;transform:none;transition:opacity .3s var(--anatomy-ease) .15s,transform .6s var(--anatomy-ease) .8s}
+.fig-ria .ria-stage[data-op="O1"]:not([data-canon]) .ria-sw[data-op="O1"] .ria-plain,
+.fig-ria .ria-stage[data-op="O2"]:not([data-canon]) .ria-sw[data-op="O2"] .ria-plain,
+.fig-ria .ria-stage[data-op="O3"]:not([data-canon]) .ria-sw[data-op="O3"] .ria-plain,
+.fig-ria .ria-stage[data-op="O4"]:not([data-canon]) .ria-sw[data-op="O4"] .ria-plain,
+.fig-ria .ria-stage[data-op="O5"]:not([data-canon]) .ria-sw[data-op="O5"] .ria-plain{opacity:0;transition-delay:0s}
+/* O6 resets the question rows from its soft break on */
+.fig-ria .ria-forme[data-layout="O6"],
+.fig-ria .ria-stage[data-op="O6"]:not([data-canon]) .ria-forme[data-layout="base"]{display:none}
+.fig-ria .ria-stage[data-op="O6"]:not([data-canon]) .ria-forme[data-layout="O6"]{display:inline}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-ria .ria-lit,.fig-ria .ria-plain{transition:none!important}
+}

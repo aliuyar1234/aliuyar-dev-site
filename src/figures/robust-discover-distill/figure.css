@@ -1,0 +1,34 @@
+.fig-robust-discover-distill .rdd-stage{position:relative;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-robust-discover-distill .rdd-stage:focus{outline:none}
+/* the ring goes round the whole card, inside its frame, so it never cuts the corner text */
+.fig-robust-discover-distill .iso-plate:has(.rdd-stage:focus-visible){outline:1px solid var(--anatomy-muted);outline-offset:-6px}
+.fig-robust-discover-distill .rdd-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-robust-discover-distill .rdd-void{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);vector-effect:non-scaling-stroke}
+.fig-robust-discover-distill .rdd-fill{fill:var(--anatomy-shade-1);stroke:none}
+.fig-robust-discover-distill .rdd-grain{fill:var(--anatomy-lo);stroke:none}
+.fig-robust-discover-distill .rdd-grain[data-state="random"]{fill:var(--anatomy-hi)}
+.fig-robust-discover-distill .rdd-grain[data-state="trigger"]{fill:var(--anatomy-paper);stroke:var(--anatomy-hi);stroke-width:.55px}
+.fig-robust-discover-distill .rdd-blur{fill:var(--anatomy-mid);stroke:none}
+.fig-robust-discover-distill .rdd-hand{fill:var(--anatomy-mid);stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight);stroke-linejoin:round}
+.fig-robust-discover-distill .rdd-needle{stroke-width:1.1px}
+.fig-robust-discover-distill .rdd-lens{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.fig-robust-discover-distill .rdd-lens[data-lamp="held"][data-on]{fill:var(--anatomy-red);stroke:var(--anatomy-red)}
+.fig-robust-discover-distill .rdd-lens[data-lamp="trigger"][data-on]{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-robust-discover-distill .rdd-hit{fill:transparent;stroke:none;cursor:pointer}
+.fig-robust-discover-distill .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-robust-discover-distill .rdd-l1,.fig-robust-discover-distill .rdd-l2,.fig-robust-discover-distill .rdd-l3{display:block}
+.fig-robust-discover-distill .rdd-l1,.fig-robust-discover-distill .rdd-l2{color:var(--anatomy-muted)}
+@media (max-width:640px){
+  .fig-robust-discover-distill .rdd-stage{overflow:hidden}
+  .fig-robust-discover-distill .iso-plate .rdd-stage .iso-svg{width:112%;margin:-2% -6% -1%}
+}
+@media (max-width:560px){
+  .fig-robust-discover-distill .iso-plate{padding-bottom:104px}
+  .fig-robust-discover-distill .iso-plate-corner[data-corner="hint"]{bottom:64px}
+}
+.fig-robust-discover-distill .rdd-ghost{fill:var(--anatomy-mid);stroke:none;pointer-events:none}
+.fig-robust-discover-distill .rdd-coil{stroke-width:1.1px}
+.fig-robust-discover-distill .rdd-grain,.fig-robust-discover-distill .rdd-lens{transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+/* the screen's flange is a ring: its hole stays open over the hopper's fill */
+.fig-robust-discover-distill .rdd-screen path{fill-rule:evenodd}
+.fig-robust-discover-distill .rdd-grain[data-held]{stroke-width:.8px}

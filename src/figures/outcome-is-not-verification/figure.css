@@ -1,0 +1,42 @@
+/* Fig 13 · Signal-box lever frame. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-outcome-is-not-verification{container-type:inline-size}
+.fig-outcome-is-not-verification .oi-stage{touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-outcome-is-not-verification .oi-stage:focus{outline:none}
+/* the focus ring goes round the card, inside its edge, so it never crosses the corner text */
+.fig-outcome-is-not-verification .iso-plate:has(.oi-stage:focus-visible){outline:1px solid var(--anatomy-muted);outline-offset:-5px}
+.fig-outcome-is-not-verification .oi-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-outcome-is-not-verification .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-outcome-is-not-verification .iso-plate-corner[data-corner="readout"] span{display:block}
+
+/* a narrow card (by its own width, not the viewport's): the two-line readout gets its own rows under the hint */
+@container (max-width:640px){
+  .fig-outcome-is-not-verification .iso-plate{padding-bottom:100px}
+  .fig-outcome-is-not-verification .iso-plate-corner[data-corner="hint"]{bottom:46px}
+  .fig-outcome-is-not-verification .iso-plate-corner[data-corner="readout"]{left:0;white-space:normal;font-size:10px}
+}
+
+/* instrument faces, drawn in the plane of the case front */
+.fig-outcome-is-not-verification .oi-bezel{fill:var(--anatomy-shade-2);stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight)}
+.fig-outcome-is-not-verification .oi-face{fill:var(--anatomy-face);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.fig-outcome-is-not-verification .oi-plate{fill:var(--anatomy-shade-3);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.fig-outcome-is-not-verification .oi-tick{fill:none;stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight);stroke-linecap:round}
+.fig-outcome-is-not-verification .oi-needle{fill:none;stroke:var(--anatomy-hi);stroke-width:1px;stroke-linecap:round}
+.fig-outcome-is-not-verification .oi-arm{fill:var(--anatomy-mid);stroke:var(--anatomy-hi);stroke-width:var(--anatomy-weight);stroke-linejoin:round}
+.fig-outcome-is-not-verification .oi-stripe{fill:none;stroke:var(--anatomy-face);stroke-width:.7px}
+.fig-outcome-is-not-verification .oi-post{fill:none;stroke:var(--anatomy-mid);stroke-width:1px;stroke-linecap:butt}
+.fig-outcome-is-not-verification .oi-pointer{fill:none;stroke:var(--anatomy-hi);stroke-width:1px;stroke-linecap:round}
+.fig-outcome-is-not-verification .oi-hub{fill:var(--anatomy-hi);stroke:none}
+.fig-outcome-is-not-verification .oi-pin{fill:var(--anatomy-mid);stroke:none}
+.fig-outcome-is-not-verification .oi-screw{fill:var(--anatomy-mid);stroke:none}
+
+/* flip lamps: colour only where colour is the subject */
+.fig-outcome-is-not-verification .oi-lamp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-outcome-is-not-verification .oi-lamp[data-on="green"]{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-outcome-is-not-verification .oi-lamp[data-on="red"]{fill:var(--anatomy-red);stroke:var(--anatomy-red)}
+
+/* pointer targets */
+.fig-outcome-is-not-verification .oi-hits path{fill:transparent;stroke:none;cursor:pointer;pointer-events:all}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-outcome-is-not-verification .oi-lamp{transition:none}
+}

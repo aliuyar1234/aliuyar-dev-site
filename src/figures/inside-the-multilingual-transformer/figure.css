@@ -1,0 +1,46 @@
+/* Fig 6 · transformer patch bay. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-inside-the-multilingual-transformer .mt-stage{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.fig-inside-the-multilingual-transformer .mt-stage:focus{outline:none}
+.fig-inside-the-multilingual-transformer .mt-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-inside-the-multilingual-transformer .mt-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* the well between the card rails (the socket bores and level windows sit in <use> symbols and take kit classes) */
+.fig-inside-the-multilingual-transformer .mt-well{fill:var(--anatomy-shade-0);stroke:none}
+
+/* meter faces: a pale scale plate, a confidence band, the planned-direction index */
+.fig-inside-the-multilingual-transformer .mt-scale{fill:var(--anatomy-top);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.fig-inside-the-multilingual-transformer .mt-band{fill:var(--anatomy-mid);stroke:none;opacity:.55}
+.fig-inside-the-multilingual-transformer .mt-index{fill:var(--anatomy-hi);stroke:none}
+.fig-inside-the-multilingual-transformer .mt-needle{stroke-width:.9px}
+
+/* the level bars on each faceplate, in the subject tone */
+.fig-inside-the-multilingual-transformer .mt-bar{fill:var(--anatomy-hi);stroke:none}
+
+/* winner lamps on the card strips: a dark lens in its bezel, lit in the subject tone */
+.fig-inside-the-multilingual-transformer .mt-lamp{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-inside-the-multilingual-transformer .mt-lamp[data-on]{fill:var(--anatomy-hi);stroke:var(--anatomy-hi)}
+
+/* lamp grids beside the contrast meters: colour only where colour is the subject; the selected cell's ring in the subject tone */
+.fig-inside-the-multilingual-transformer .mt-glamp{fill:var(--anatomy-shade-0);stroke:none}
+.fig-inside-the-multilingual-transformer .mt-glamp[data-on]{fill:var(--anatomy-green)}
+.fig-inside-the-multilingual-transformer .mt-gring{stroke:var(--anatomy-lo);transition:stroke .35s var(--anatomy-ease)}
+.fig-inside-the-multilingual-transformer .mt-gring[data-sel]{stroke:var(--anatomy-hi);stroke-width:1px}
+
+/* the brain model's plates are clear acrylic, so the plates below read through */
+.fig-inside-the-multilingual-transformer .mt-acrylic>.iso-fill{fill-opacity:.4}
+.fig-inside-the-multilingual-transformer .mt-acrylic>.iso-shade{fill-opacity:.5}
+.fig-inside-the-multilingual-transformer .mt-acrylic>.iso-top{fill-opacity:.12}
+
+/* sockets answer the pointer */
+.fig-inside-the-multilingual-transformer [data-socket]{cursor:pointer}
+.fig-inside-the-multilingual-transformer [data-switch]{cursor:pointer}
+
+@media (max-width:560px){
+  .fig-inside-the-multilingual-transformer .iso-plate-corner[data-corner="readout"]{letter-spacing:0}
+}
+@media (max-width:430px){
+  .fig-inside-the-multilingual-transformer .iso-plate-corner[data-corner="readout"]{font-size:9.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-inside-the-multilingual-transformer .mt-lamp,.fig-inside-the-multilingual-transformer .mt-gring{transition:none}
+}

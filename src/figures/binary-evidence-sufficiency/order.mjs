@@ -1,0 +1,2 @@
+// Painter's order, written by build.mjs from measured depth. Back to front.
+export const ORDER = ["stand.bench","stand.label","stand.ruler","lamp.case","comp.deck","det.post0","tray","lamp.chimney","mono.case","comp.floor","comp.lid","mono.port","mono.drum","mono.scale","mono.thumb","comp.wall-back","turret.hub","det.box","mono.index","comp.wall-left","comp.hinges","det.post1","det.conduit","det.lever","turret","beam","comp.wall-right","comp.wall-front","det.port","det.can","det.band0","det.can-mid","det.band1","det.can-end"];

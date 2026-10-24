@@ -1,0 +1,52 @@
+.fig-language-neutral-or-language-specific .ls-stage{position:relative;touch-action:pan-y}
+.fig-language-neutral-or-language-specific .ls-stage:focus{outline:none}
+.fig-language-neutral-or-language-specific .ls-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-language-neutral-or-language-specific .ls-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+.fig-language-neutral-or-language-specific [data-part="select"],
+.fig-language-neutral-or-language-specific [data-part="lang"],
+.fig-language-neutral-or-language-specific [data-part="slide"],
+.fig-language-neutral-or-language-specific [data-part="lever"]{cursor:pointer;outline:none;pointer-events:visiblePainted}
+/* only the four controls take the pointer, so a control behind a post or a mirror still answers */
+.fig-language-neutral-or-language-specific .ls-scene{pointer-events:none}
+.fig-language-neutral-or-language-specific [data-part="lever"][data-dragging]{cursor:grabbing}
+/* a focused control lights its own outline, nothing else */
+.fig-language-neutral-or-language-specific [data-part][tabindex]:focus-visible .iso-edge{stroke:var(--anatomy-lit)}
+
+/* acrylic plates: tinted and nearly opaque, so the plate below reads only as a faint ghost through the one above */
+.fig-language-neutral-or-language-specific .ls-acrylic>.iso-fill{fill-opacity:.84}
+.fig-language-neutral-or-language-specific .ls-acrylic>.iso-shade{fill-opacity:.9}
+.fig-language-neutral-or-language-specific .ls-acrylic>.iso-top{fill-opacity:.84}
+.fig-language-neutral-or-language-specific .ls-fam[data-fam="auditory"]{stroke-dasharray:.01 1.5;stroke-linecap:round;stroke-width:1.15px}
+.fig-language-neutral-or-language-specific .ls-midline{stroke-width:.6px}
+
+.fig-language-neutral-or-language-specific .ls-pin{fill:var(--anatomy-dot)}
+.fig-language-neutral-or-language-specific .ls-hubpin{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight);vector-effect:non-scaling-stroke}
+.fig-language-neutral-or-language-specific .ls-glass{fill:var(--anatomy-hi);fill-opacity:.07}
+/* beams: continuous lit runs; when a run lights, the light front travels along it from its source, step by step down the path */
+.fig-language-neutral-or-language-specific .ls-beam{stroke-width:1px;stroke-dasharray:1 1;stroke-dashoffset:0;opacity:1;transition:opacity 0s,stroke-dashoffset .32s linear calc(var(--step,0) * .11s)}
+.fig-language-neutral-or-language-specific .ls-ray .iso-dots{opacity:1;transition:opacity .2s var(--anatomy-ease) calc(var(--step,0) * .11s)}
+.fig-language-neutral-or-language-specific .ls-ray[data-off] .ls-beam{opacity:0;stroke-dashoffset:1;transition:opacity .3s var(--anatomy-ease),stroke-dashoffset 0s .3s}
+.fig-language-neutral-or-language-specific .ls-ray[data-off] .iso-dots{opacity:0;transition:opacity .3s var(--anatomy-ease)}
+.fig-language-neutral-or-language-specific .ls-paper{fill:var(--anatomy-face)}
+.fig-language-neutral-or-language-specific .ls-band{fill:var(--anatomy-faint);fill-opacity:.45}
+.fig-language-neutral-or-language-specific .ls-trace{stroke-width:.9px}
+.fig-language-neutral-or-language-specific .ls-dial{fill:var(--anatomy-face)}
+.fig-language-neutral-or-language-specific .ls-needle{stroke-width:.9px}
+.fig-language-neutral-or-language-specific .ls-cells [data-layer]{opacity:0;transition:opacity .7s var(--anatomy-ease)}
+.fig-language-neutral-or-language-specific .ls-cells [data-layer][data-show]{opacity:1}
+.fig-language-neutral-or-language-specific .ls-cells path{fill:var(--anatomy-lit)}
+.fig-language-neutral-or-language-specific .ls-cells [data-hollow]{fill:none;stroke:var(--anatomy-lit);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-opacity:.5}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="1"]{fill-opacity:0.24}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="2"]{fill-opacity:0.35}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="3"]{fill-opacity:0.46}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="4"]{fill-opacity:0.57}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="5"]{fill-opacity:0.68}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="6"]{fill-opacity:0.79}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="7"]{fill-opacity:0.90}
+.fig-language-neutral-or-language-specific .ls-cells [data-bin="8"]{fill-opacity:1.00}
+@media (prefers-reduced-motion:reduce){.fig-language-neutral-or-language-specific .ls-cells [data-layer],.fig-language-neutral-or-language-specific .ls-beam,.fig-language-neutral-or-language-specific .ls-ray .iso-dots,.fig-language-neutral-or-language-specific .ls-ray[data-off] .ls-beam,.fig-language-neutral-or-language-specific .ls-ray[data-off] .iso-dots{transition:none}}
+@media (max-width:640px){
+  .fig-language-neutral-or-language-specific .ls-stage{overflow:hidden}
+  .fig-language-neutral-or-language-specific .ls-stage>.iso-svg{width:114%;margin:-1% -7% -2%}
+}

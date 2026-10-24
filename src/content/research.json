@@ -319,7 +319,7 @@
     "tags": [
       "locked-pipeline",
       "robustness",
-      "negative-result"
+      "cell-painting"
     ]
   },
   {
@@ -584,7 +584,7 @@
     "tags": [
       "data-poisoning",
       "self-distillation",
-      "negative-result"
+      "robustness"
     ]
   },
   {

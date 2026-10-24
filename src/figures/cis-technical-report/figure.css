@@ -1,0 +1,97 @@
+/* Fig 22 · Glove box. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-cis-technical-report .cis-stage{position:relative;touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-cis-technical-report .cis-stage:focus{outline:none}
+.fig-cis-technical-report .cis-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-cis-technical-report .cis-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-cis-technical-report{--cis-paper:var(--anatomy-paper);--cis-top:var(--anatomy-top);--cis-s0:var(--anatomy-shade-0);--cis-s1:var(--anatomy-shade-1);--cis-s2:var(--anatomy-shade-2);--cis-s3:var(--anatomy-shade-3);--cis-mid:var(--anatomy-mid);--cis-face:var(--anatomy-face)}
+.fig-cis-technical-report .iso-plate{padding-bottom:84px}
+/* short slot classes for plain solids: the kit's fills, on the kit's tokens */
+.fig-cis-technical-report .cis-f{fill:var(--anatomy-paper);stroke:none}
+.fig-cis-technical-report .cis-t{fill:var(--anatomy-top);stroke:none}
+.fig-cis-technical-report .cis-s0{fill:var(--anatomy-shade-0);stroke:none}
+.fig-cis-technical-report .cis-s1{fill:var(--anatomy-shade-1);stroke:none}
+.fig-cis-technical-report .cis-s2{fill:var(--anatomy-shade-2);stroke:none}
+.fig-cis-technical-report .cis-s3{fill:var(--anatomy-shade-3);stroke:none}
+.fig-cis-technical-report :is(.cis-hi,.cis-mid,.cis-lo,.cis-faint){fill:none;stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.fig-cis-technical-report .cis-hi{stroke:var(--anatomy-hi)}
+.fig-cis-technical-report .cis-mid{stroke:var(--anatomy-mid)}
+.fig-cis-technical-report .cis-lo{stroke:var(--anatomy-lo)}
+.fig-cis-technical-report .cis-faint{stroke:var(--anatomy-faint)}
+.fig-cis-technical-report .cis-none{fill:none;stroke:none}
+/* live solids: slots by position (fill, four shades, top, crease, bevel, edge), tones from data-fs="edge crease" */
+.fig-cis-technical-report [data-fs]>*{fill:none;stroke:none}
+.fig-cis-technical-report [data-fs]>:nth-child(1){fill:var(--anatomy-paper);fill-rule:evenodd}
+/* a handwheel rim's fill carries its bore as a second ring, cut out so the hub and spokes show through */
+.fig-cis-technical-report .cis-ring .cis-f{fill-rule:evenodd}
+.fig-cis-technical-report [data-fs]>:nth-child(2){fill:var(--anatomy-shade-0)}
+.fig-cis-technical-report [data-fs]>:nth-child(3){fill:var(--anatomy-shade-1)}
+.fig-cis-technical-report [data-fs]>:nth-child(4){fill:var(--anatomy-shade-2)}
+.fig-cis-technical-report [data-fs]>:nth-child(5){fill:var(--anatomy-shade-3)}
+.fig-cis-technical-report [data-fs]>:nth-child(6){fill:var(--anatomy-top)}
+.fig-cis-technical-report [data-fs]>:nth-child(n+7){stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.fig-cis-technical-report [data-fs$=" faint"]>:is(:nth-child(7),:nth-child(8)){stroke:var(--anatomy-faint)}
+.fig-cis-technical-report [data-fs$=" none"]>:is(:nth-child(7),:nth-child(8)){stroke:none}
+.fig-cis-technical-report [data-fs^="mid "]>:nth-child(9){stroke:var(--anatomy-mid)}
+.fig-cis-technical-report [data-fs^="hi "]>:nth-child(9){stroke:var(--anatomy-hi)}
+/* screw dots drawn as one path of round-capped zero-length strokes per row, at the kit's dot tones */
+.fig-cis-technical-report .cis-dot{fill:none;stroke:var(--anatomy-dot);stroke-linecap:round;opacity:.32}
+.fig-cis-technical-report .cis-dot[data-tone="hi"]{opacity:.85}
+.fig-cis-technical-report .cis-dot[data-tone="mid"]{opacity:.45}
+.fig-cis-technical-report .cis-dot[data-tone="lo"]{opacity:.22}
+/* the readout: up to three lines of at most 40 characters, the last on the hint's baseline, as on the family's other plates */
+.fig-cis-technical-report .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-cis-technical-report .cis-l1,.fig-cis-technical-report .cis-l2,.fig-cis-technical-report .cis-l3{display:block}
+.fig-cis-technical-report .cis-l1{color:var(--anatomy-strong)}
+/* the last line sets solid (line-height 1, as the hint does), so its baseline sits on the hint's; the padding keeps the pitch */
+.fig-cis-technical-report :is(.cis-l3:not(:empty),.cis-l2:has(+.cis-l3:empty)){line-height:1;padding-top:2px}
+
+/* the cavity seen through the window: a darker ground in light (tokens mixed toward mid), the same tokens in dark */
+:root[data-theme="light"] .fig-cis-technical-report .cis-interior,.fig-cis-technical-report[data-theme="light"] .cis-interior{
+  --anatomy-paper:color-mix(in srgb,var(--cis-paper) 90%,var(--cis-mid));--anatomy-top:color-mix(in srgb,var(--cis-top) 93%,var(--cis-mid));--anatomy-face:color-mix(in srgb,var(--cis-face) 93%,var(--cis-mid));
+  --anatomy-shade-0:color-mix(in srgb,var(--cis-s0) 82%,var(--cis-mid));--anatomy-shade-1:color-mix(in srgb,var(--cis-s1) 84%,var(--cis-mid));
+  --anatomy-shade-2:color-mix(in srgb,var(--cis-s2) 86%,var(--cis-mid));--anatomy-shade-3:color-mix(in srgb,var(--cis-s3) 88%,var(--cis-mid))}
+.fig-cis-technical-report .cis-cav{stroke:none;fill:var(--anatomy-shade-1)}
+.fig-cis-technical-report .cis-cav[data-face="left"]{fill:var(--anatomy-shade-2)}
+.fig-cis-technical-report .cis-cav[data-face="floor"]{fill:var(--anatomy-shade-0)}
+.fig-cis-technical-report .cis-glass{fill:var(--anatomy-top);fill-opacity:.16;stroke:none}
+/* the chute's well: the opening, its back and left walls, and the hatch leaf once it hangs open in it */
+.fig-cis-technical-report :is(.cis-void,.cis-well :is(.cis-f,.cis-t,.cis-s0,.cis-s1,.cis-s2,.cis-s3),[data-part="leafSolid"][data-open]>:nth-child(-n+6)){fill:var(--anatomy-shade-0);stroke:none}
+:root[data-theme="light"] .fig-cis-technical-report :is(.cis-void,.cis-well :is(.cis-f,.cis-t,.cis-s0,.cis-s1,.cis-s2,.cis-s3),[data-part="leafSolid"][data-open]>:nth-child(-n+6)),.fig-cis-technical-report[data-theme="light"] :is(.cis-void,.cis-well :is(.cis-f,.cis-t,.cis-s0,.cis-s1,.cis-s2,.cis-s3),[data-part="leafSolid"][data-open]>:nth-child(-n+6)){fill:color-mix(in srgb,var(--anatomy-shade-0) 55%,var(--anatomy-mid))}
+.fig-cis-technical-report [data-part="leafSolid"]>:nth-child(-n+6){transition:fill .3s var(--anatomy-ease)}
+.fig-cis-technical-report .cis-dial{fill:var(--anatomy-top);stroke:none}
+.fig-cis-technical-report .cis-glassfill{fill:var(--anatomy-top);fill-opacity:.22;stroke:none}
+.fig-cis-technical-report .cis-oil .iso-fill,.fig-cis-technical-report .cis-oil .iso-shade,.fig-cis-technical-report .cis-oil .iso-top{fill:var(--anatomy-mid);fill-opacity:.55}
+.fig-cis-technical-report .cis-oilbend .tb-body,.fig-cis-technical-report .cis-oilbend .tb-shine,.fig-cis-technical-report .cis-oilbend .tb-shade{fill:var(--anatomy-mid);fill-opacity:.55}
+.fig-cis-technical-report .cis-bubbles circle{fill:var(--anatomy-top);opacity:1}
+
+/* the challenger: the champion's cartridge drawn with the lit tokens */
+.fig-cis-technical-report .cis-lit{--anatomy-paper:var(--anatomy-face);--anatomy-top:var(--anatomy-lit-top);--anatomy-shade-0:var(--anatomy-lit-shade);--anatomy-shade-1:var(--anatomy-lit-shade);--anatomy-shade-2:var(--anatomy-lit-shade);--anatomy-shade-3:var(--anatomy-lit-shade);--anatomy-hi:var(--anatomy-lit)}
+
+/* wells: dark recess, green when passed, red when regressed, a flash while the verifier passes over */
+.fig-cis-technical-report .cis-wells use{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:.4;transition:fill .28s var(--anatomy-ease),stroke .28s var(--anatomy-ease)}
+.fig-cis-technical-report .cis-wells use[data-s="on"]{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-cis-technical-report .cis-wells use[data-s="red"]{fill:var(--anatomy-red);stroke:var(--anatomy-red)}
+/* the scan: in dark a lit well; on paper a lit ring round a pale well, so a column being checked never reads as dead wells */
+.fig-cis-technical-report .cis-wells use[data-s="scan"]{fill:var(--anatomy-lit);stroke:var(--anatomy-lit);transition:none}
+:root[data-theme="light"] .fig-cis-technical-report .cis-wells use[data-s="scan"],.fig-cis-technical-report[data-theme="light"] .cis-wells use[data-s="scan"]{fill:var(--anatomy-top);stroke:var(--anatomy-lit);stroke-width:.7}
+
+/* lamps and the card's stamp */
+.fig-cis-technical-report .cis-lamp .iso-top,.fig-cis-technical-report .cis-lamp .iso-shade,.fig-cis-technical-report .cis-lamp .iso-fill{transition:fill .3s var(--anatomy-ease)}
+.fig-cis-technical-report .cis-lamp[data-on="green"] .iso-top,.fig-cis-technical-report .cis-lamp[data-on="green"] .iso-shade,.fig-cis-technical-report .cis-lamp[data-on="green"] .iso-fill{fill:var(--anatomy-green)}
+.fig-cis-technical-report .cis-lamp[data-on="red"] .iso-top,.fig-cis-technical-report .cis-lamp[data-on="red"] .iso-shade,.fig-cis-technical-report .cis-lamp[data-on="red"] .iso-fill{fill:var(--anatomy-red)}
+.fig-cis-technical-report .cis-stamp{fill:var(--anatomy-lo);stroke:none}
+.fig-cis-technical-report .cis-stamp[data-on="green"]{fill:var(--anatomy-green)}
+.fig-cis-technical-report .cis-stamp[data-on="red"]{fill:var(--anatomy-red)}
+.fig-cis-technical-report [data-hit]{cursor:pointer}
+
+/* phone width: the readout keeps the bottom corner and the hint sits above it */
+@media (max-width:560px){
+  .fig-cis-technical-report .iso-plate{padding-bottom:116px}
+  .fig-cis-technical-report .iso-plate-corner[data-corner="readout"]{bottom:0}
+  .fig-cis-technical-report .iso-plate-corner[data-corner="hint"]{bottom:58px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-cis-technical-report .cis-wells use,.fig-cis-technical-report .cis-lamp *{transition:none}
+}
+/* phone width: the hint keeps to one line inside the card (and wraps below that) */
+@media (max-width:560px){.fig-cis-technical-report .iso-plate-corner[data-corner="hint"]{letter-spacing:.06em;white-space:normal;right:0}}

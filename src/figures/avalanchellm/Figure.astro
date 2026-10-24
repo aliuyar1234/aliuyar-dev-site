@@ -1,0 +1,10 @@
+---
+import { render } from "./art.mjs";
+import "./figure.css";
+const { html } = render();
+---
+<div class="iso fig fig-avalanchellm" data-fig="avalanchellm"><Fragment set:html={html} /></div>
+<script>
+  import { mount } from "./live.js";
+  for (const el of document.querySelectorAll('[data-fig="avalanchellm"]')) mount(el);
+</script>

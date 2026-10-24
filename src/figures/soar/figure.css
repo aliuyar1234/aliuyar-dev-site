@@ -1,0 +1,42 @@
+/* Fig 7 · Overlay projector. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-soar .so-stage{position:relative;touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-soar .so-stage:focus{outline:none}
+.fig-soar .so-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-soar .so-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-soar .iso-plate{padding-bottom:72px}
+.fig-soar .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-soar .so-l1,.fig-soar .so-l2{display:block}
+.fig-soar .so-l1{color:var(--anatomy-strong)}
+
+/* glass, films and openings */
+.fig-soar .so-glass{fill:var(--anatomy-shade-1);stroke:none}
+.fig-soar .so-film{fill:var(--anatomy-top);fill-opacity:.38;stroke:none}
+.fig-soar .so-sheet{fill-opacity:.5}
+.fig-soar .so-ref{fill:var(--anatomy-shade-2);fill-opacity:1}
+.fig-soar .so-bore{fill:var(--anatomy-shade-0);stroke:none}
+.fig-soar .so-leaf .iso-shade[data-slot="side"]{fill:var(--anatomy-shade-1)}
+.fig-soar .so-leaf[data-lit] .iso-shade[data-slot="side"]{fill:var(--anatomy-lit-shade)}
+
+/* comparison lamps: colour only where colour is the subject, and only on the lens; the dome keeps its shading */
+.fig-soar [data-lamp] .iso-shade,.fig-soar [data-lamp] .iso-fill,.fig-soar [data-lamp] .iso-edge{transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-soar [data-lamp][data-on] .iso-solid>.iso-fill{fill:var(--so-lamp)}
+.fig-soar [data-lamp][data-on] .iso-shade[data-shade="0"]{--so-tone:color-mix(in srgb,var(--so-lamp) 72%,var(--anatomy-shade-0))}
+.fig-soar [data-lamp][data-on] .iso-shade[data-shade="1"]{--so-tone:color-mix(in srgb,var(--so-lamp) 82%,var(--anatomy-shade-1))}
+.fig-soar [data-lamp][data-on] .iso-shade[data-shade="2"]{--so-tone:color-mix(in srgb,var(--so-lamp) 90%,var(--anatomy-shade-2))}
+.fig-soar [data-lamp][data-on] .iso-shade[data-shade="3"]{--so-tone:color-mix(in srgb,var(--so-lamp) 70%,var(--anatomy-top))}
+.fig-soar [data-lamp][data-on] .iso-solid>.iso-shade{fill:var(--so-tone);stroke:var(--so-tone)}
+.fig-soar [data-lamp][data-on] .iso-solid>.iso-edge{stroke:var(--so-lamp)}
+.fig-soar [data-lamp][data-on="green"]{--so-lamp:var(--anatomy-green)}
+.fig-soar [data-lamp][data-on="red"]{--so-lamp:var(--anatomy-red)}
+
+.fig-soar [data-part="leafJ"],.fig-soar [data-part="leafQ"],.fig-soar [data-part^="ref"],.fig-soar [data-part="carriage"]{cursor:pointer}
+
+/* the two-line readout and the hint need about 610 px side by side: stack them by the card's own width */
+.fig-soar .iso-figure{container-type:inline-size}
+@container (max-width:640px){
+  .fig-soar .iso-plate{padding-bottom:100px}
+  .fig-soar .iso-plate-corner[data-corner="hint"]{bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-soar [data-lamp] *{transition:none}
+}

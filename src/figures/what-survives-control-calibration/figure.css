@@ -1,0 +1,26 @@
+/* Fig 15 · Vernier height gauge. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-what-survives-control-calibration .ws-stage{position:relative;touch-action:pan-y;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.fig-what-survives-control-calibration .ws-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-what-survives-control-calibration .ws-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-what-survives-control-calibration .iso-plate{padding-bottom:84px}
+.fig-what-survives-control-calibration .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-what-survives-control-calibration .ws-l1,.fig-what-survives-control-calibration .ws-l2,.fig-what-survives-control-calibration .ws-l3{display:block}
+.fig-what-survives-control-calibration .ws-l1,.fig-what-survives-control-calibration .ws-l2{color:var(--anatomy-muted)}
+
+/* slot recesses in the case insert read as openings */
+.fig-what-survives-control-calibration .ws-slot{fill:var(--anatomy-shade-0);stroke:var(--anatomy-faint);stroke-width:var(--anatomy-weight);stroke-linejoin:round}
+
+/* the candidate's residual block for each setting; one shows at a time, swapped while the scriber is clear (no cross-fade) */
+.fig-what-survives-control-calibration [data-variant][data-off]{opacity:0}
+
+/* a block lifts out of its slot when the setting logs its cell as unevaluable */
+.fig-what-survives-control-calibration [data-slot],.fig-what-survives-control-calibration [data-bin]{transition:opacity .5s var(--anatomy-ease),transform .5s var(--anatomy-ease)}
+.fig-what-survives-control-calibration [data-slot][data-out],.fig-what-survives-control-calibration [data-bin][data-out]{opacity:0;transform:translateY(-3px)}
+
+@media (max-width:560px){
+  .fig-what-survives-control-calibration .iso-plate{padding-bottom:116px}
+  .fig-what-survives-control-calibration .iso-plate-corner[data-corner="hint"]{bottom:64px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-what-survives-control-calibration [data-slot],.fig-what-survives-control-calibration [data-bin]{transition:none}
+}

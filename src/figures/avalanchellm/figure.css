@@ -1,0 +1,21 @@
+/* Fig 20 · event cascade hodoscope. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-avalanchellm .av-stage{touch-action:pan-y;cursor:ew-resize;-webkit-tap-highlight-color:transparent}
+.fig-avalanchellm .av-stage:focus{outline:none}
+.fig-avalanchellm .av-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-avalanchellm .av-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* lamps: the one lit part; each lens fades in and out as a window latches. The panel under them takes the tap */
+.fig-avalanchellm .av-lamp{fill:var(--anatomy-lit);stroke:var(--anatomy-lit);stroke-width:.4px;vector-effect:non-scaling-stroke}
+.fig-avalanchellm .av-lamps{pointer-events:none}
+.fig-avalanchellm .av-slot,.fig-avalanchellm .av-pointer,.fig-avalanchellm .av-needle{stroke-width:1.1px}
+.fig-avalanchellm .av-ref{stroke-width:.8px}
+.fig-avalanchellm [data-hit]{cursor:pointer}
+
+/* two-line readout: the condition, then what is measured for it */
+.fig-avalanchellm .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-avalanchellm .av-l1,.fig-avalanchellm .av-l2{display:block;white-space:nowrap}
+.fig-avalanchellm .av-l1{color:var(--anatomy-muted)}
+@media (max-width:560px){
+  .fig-avalanchellm .iso-plate{padding-bottom:90px}
+  .fig-avalanchellm .iso-plate-corner[data-corner="hint"]{bottom:38px}
+}

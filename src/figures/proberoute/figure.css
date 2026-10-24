@@ -1,0 +1,28 @@
+/* Fig 10 cord switchboard: every colour is an --anatomy-* token, so the site theme drives both modes. */
+.fig-proberoute .pr-stage{position:relative;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-proberoute .pr-stage:focus{outline:none}
+.fig-proberoute .pr-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-proberoute .pr-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-proberoute .pr-hit{fill:var(--anatomy-paper);fill-opacity:0;stroke:var(--anatomy-paper);stroke-opacity:0;stroke-width:0;cursor:pointer;pointer-events:all}
+@media (pointer:coarse){.fig-proberoute .pr-hit{stroke-width:14px;stroke-linejoin:round}}
+.fig-proberoute .pr-hole{fill:var(--anatomy-shade-0);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.fig-proberoute .pr-strand{fill:none;stroke:var(--anatomy-mid);stroke-width:1.1px;stroke-linejoin:round}
+.fig-proberoute .pr-lever{transition:transform .25s var(--anatomy-ease)}
+.fig-proberoute .pr-key[data-hover] .pr-lever{transform:translateY(-1.6px)}
+.fig-proberoute .pr-cord path{fill:none;vector-effect:none;stroke-linejoin:round;stroke-linecap:butt}
+.fig-proberoute .pr-cord-edge{stroke:var(--anatomy-hi)}
+.fig-proberoute .pr-cord[data-lit] .pr-cord-edge{stroke:var(--anatomy-lit)}
+.fig-proberoute .pr-cord-body{stroke:var(--anatomy-shade-2)}
+.fig-proberoute .pr-digits{fill:var(--anatomy-hi);font-family:var(--anatomy-mono)}
+/* a lit lamp on paper keeps a pale core, so it reads as light and not as a hole */
+:root[data-theme="light"] .fig-proberoute,.fig-proberoute[data-theme="light"]{--pr-core:var(--anatomy-paper)}
+/* the readout: what is on the board, then the paper's numbers for it */
+.fig-proberoute .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-proberoute .pr-l1,.fig-proberoute .pr-l2{display:block;white-space:nowrap}
+.fig-proberoute .pr-l1{color:var(--anatomy-muted)}
+/* narrow cards: the hint moves above the two-line readout */
+@media (max-width:560px){
+  .fig-proberoute .iso-plate{padding-bottom:90px}
+  .fig-proberoute .iso-plate-corner[data-corner="hint"]{bottom:38px}
+}
+@media (prefers-reduced-motion:reduce){.fig-proberoute .pr-lever{transition:none}}

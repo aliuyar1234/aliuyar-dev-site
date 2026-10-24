@@ -1,0 +1,38 @@
+/* Fig 11 · turret spectrophotometer. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-binary-evidence-sufficiency .bs-stage{position:relative;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-binary-evidence-sufficiency .bs-stage:focus{outline:none}
+.fig-binary-evidence-sufficiency .bs-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-binary-evidence-sufficiency .bs-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-binary-evidence-sufficiency .bs-hit{fill:var(--anatomy-paper);fill-opacity:0;stroke:none;cursor:pointer;pointer-events:all}
+
+/* openings: the lid's cavity, the tray pit, bores and the lens faces */
+.fig-binary-evidence-sufficiency .bs-cavity{fill:var(--anatomy-shade-1);stroke:none}
+.fig-binary-evidence-sufficiency .bs-floor{fill:var(--anatomy-shade-2);stroke:none}
+.fig-binary-evidence-sufficiency .bs-bore{fill:var(--anatomy-shade-0);stroke:none}
+.fig-binary-evidence-sufficiency .bs-lens{fill:var(--anatomy-shade-1);stroke:none}
+
+/* the beam: a shutter closes it while the turret indexes and opens it once a cuvette sits in the detent */
+.fig-binary-evidence-sufficiency [data-beam]{opacity:0;transition:opacity .3s var(--anatomy-ease)}
+.fig-binary-evidence-sufficiency [data-beam][data-on]{opacity:1}
+
+/* target lamps: colour only where colour is the subject */
+.fig-binary-evidence-sufficiency [data-lamp] .iso-top,.fig-binary-evidence-sufficiency [data-lamp] .iso-shade,.fig-binary-evidence-sufficiency [data-lamp] .iso-fill{transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-binary-evidence-sufficiency [data-lamp] .iso-edge{transition:stroke .35s var(--anatomy-ease)}
+.fig-binary-evidence-sufficiency [data-lamp][data-on="red"] .iso-top,.fig-binary-evidence-sufficiency [data-lamp][data-on="red"] .iso-shade,.fig-binary-evidence-sufficiency [data-lamp][data-on="red"] .iso-fill{fill:var(--anatomy-red)}
+.fig-binary-evidence-sufficiency [data-lamp][data-on="green"] .iso-top,.fig-binary-evidence-sufficiency [data-lamp][data-on="green"] .iso-shade,.fig-binary-evidence-sufficiency [data-lamp][data-on="green"] .iso-fill{fill:var(--anatomy-green)}
+.fig-binary-evidence-sufficiency [data-lamp][data-on="red"] .iso-edge{stroke:var(--anatomy-red)}
+.fig-binary-evidence-sufficiency [data-lamp][data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+
+/* the readout: the measured quantity with its scope, then the cell in the beam */
+.fig-binary-evidence-sufficiency .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-binary-evidence-sufficiency .bs-l1,.fig-binary-evidence-sufficiency .bs-l2{display:block;white-space:nowrap}
+.fig-binary-evidence-sufficiency .bs-l2{color:var(--anatomy-muted)}
+/* narrow cards: the hint moves above the two-line readout */
+@media (max-width:560px){
+  .fig-binary-evidence-sufficiency .iso-plate{padding-bottom:90px}
+  .fig-binary-evidence-sufficiency .iso-plate-corner[data-corner="hint"]{bottom:38px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-binary-evidence-sufficiency [data-beam],.fig-binary-evidence-sufficiency [data-lamp] .iso-top,.fig-binary-evidence-sufficiency [data-lamp] .iso-shade,.fig-binary-evidence-sufficiency [data-lamp] .iso-fill,.fig-binary-evidence-sufficiency [data-lamp] .iso-edge{transition:none}
+}

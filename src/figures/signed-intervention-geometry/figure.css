@@ -1,0 +1,23 @@
+.fig-signed-intervention-geometry .sig-stage{position:relative;touch-action:pan-y;outline:none;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+.fig-signed-intervention-geometry .sig-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-signed-intervention-geometry .sig-stage[data-over="pulley"]{cursor:grab}
+.fig-signed-intervention-geometry .sig-stage[data-drag]{cursor:grabbing}
+.fig-signed-intervention-geometry .sig-shadow{filter:blur(3px);transform:none;opacity:calc(var(--anatomy-halo-opacity) * .55)}
+.fig-signed-intervention-geometry .iso-plate{padding-bottom:72px}
+.fig-signed-intervention-geometry .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-signed-intervention-geometry .sig-l1,.fig-signed-intervention-geometry .sig-l2{display:block}
+.fig-signed-intervention-geometry .sig-l1{color:var(--anatomy-muted)}
+.fig-signed-intervention-geometry .sig-live{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fig-signed-intervention-geometry .sig-window{fill:var(--anatomy-shade-0);stroke:none}
+.fig-signed-intervention-geometry .sig-digits{fill:var(--anatomy-hi);letter-spacing:.32em}
+.fig-signed-intervention-geometry [data-lamp] .iso-top,.fig-signed-intervention-geometry [data-lamp] .iso-shade{transition:fill .35s var(--anatomy-ease)}
+.fig-signed-intervention-geometry [data-lamp] .iso-edge{transition:stroke .35s var(--anatomy-ease)}
+.fig-signed-intervention-geometry [data-lamp="green"][data-on] .iso-top,.fig-signed-intervention-geometry [data-lamp="green"][data-on] .iso-shade{fill:var(--anatomy-green)}
+.fig-signed-intervention-geometry [data-lamp="green"][data-on] .iso-edge{stroke:var(--anatomy-green)}
+@media (max-width:560px){
+  .fig-signed-intervention-geometry .iso-plate{padding-bottom:100px}
+  .fig-signed-intervention-geometry .iso-plate-corner[data-corner="hint"]{bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-signed-intervention-geometry [data-lamp] *,.fig-signed-intervention-geometry [data-item] *{transition:none}
+}

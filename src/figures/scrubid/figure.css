@@ -1,0 +1,25 @@
+/* Fig 17 · ScrubID test manifold. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-scrubid .su-stage{position:relative;touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-scrubid .su-stage:focus{outline:none}
+.fig-scrubid .su-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-scrubid .su-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* the rotameter tube: a glass wall you see the float through */
+.fig-scrubid .su-glass-fill{fill:var(--anatomy-shade-1);fill-opacity:.55;stroke:none}
+.fig-scrubid .su-shine{stroke:var(--anatomy-faint);stroke-width:1.6px;opacity:.8}
+
+/* status lamps: colour only where colour is the subject */
+.fig-scrubid [data-lamp] .iso-top,.fig-scrubid [data-lamp] .iso-shade,.fig-scrubid [data-lamp] .iso-fill{transition:fill .3s var(--anatomy-ease),stroke .3s var(--anatomy-ease)}
+.fig-scrubid [data-lamp][data-on="red"] .iso-top{fill:var(--anatomy-red);stroke:var(--anatomy-red)}
+.fig-scrubid [data-lamp][data-on="green"] .iso-top{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-scrubid [data-lamp][data-on="red"] .iso-shade,.fig-scrubid [data-lamp][data-on="red"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-red) 70%,var(--anatomy-paper));stroke:color-mix(in srgb,var(--anatomy-red) 70%,var(--anatomy-paper))}
+.fig-scrubid [data-lamp][data-on="green"] .iso-shade,.fig-scrubid [data-lamp][data-on="green"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper));stroke:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper))}
+.fig-scrubid [data-lamp][data-on="red"] .iso-edge{stroke:var(--anatomy-red)}
+.fig-scrubid [data-lamp][data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-scrubid [data-lamp] .iso-top,.fig-scrubid [data-lamp] .iso-shade,.fig-scrubid [data-lamp] .iso-fill{transition:none}
+}
+
+/* a lever under the pointer */
+.fig-scrubid [data-lever][data-hot] .iso-edge{stroke-width:calc(var(--anatomy-weight) * 2)}

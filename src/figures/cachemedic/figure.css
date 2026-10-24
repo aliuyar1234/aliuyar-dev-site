@@ -1,0 +1,31 @@
+/* Fig 16 · transcription turntable. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-cachemedic .cm-stage{touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-cachemedic .cm-stage:focus{outline:none}
+.fig-cachemedic .cm-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-cachemedic .cm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-cachemedic .cm-hits path{fill:transparent;stroke:none;cursor:pointer}
+/* the four defect rings: the pressed groove bright and fine, the restored groove back on its ring with a heavier stroke */
+.fig-cachemedic .cm-bad{stroke-width:1.05px}
+.fig-cachemedic .cm-fixed{stroke-width:1.7px}
+.fig-cachemedic .cm-cue{stroke-width:1.2px}
+.fig-cachemedic .cm-dots path{fill:none;stroke:var(--anatomy-dot);stroke-width:1.25px;stroke-linecap:round}
+.fig-cachemedic .cm-l2 [data-mute]{color:var(--anatomy-muted)}
+.fig-cachemedic .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-cachemedic .cm-l1,.fig-cachemedic .cm-l2{display:block;white-space:nowrap}
+.fig-cachemedic .cm-l1{color:var(--anatomy-muted)}
+/* the pilot lamp: green while the stylus reads the groove; colour only where colour is the status */
+.fig-cachemedic [data-lamp] .iso-top,.fig-cachemedic [data-lamp] .iso-shade,.fig-cachemedic [data-lamp] .iso-fill,.fig-cachemedic [data-lamp] .iso-edge{transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-cachemedic [data-lamp][data-on="green"] .iso-top{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-cachemedic [data-lamp][data-on="green"] .iso-shade,.fig-cachemedic [data-lamp][data-on="green"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper));stroke:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper))}
+.fig-cachemedic [data-lamp][data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+@media (prefers-reduced-motion:reduce){.fig-cachemedic [data-lamp] .iso-top,.fig-cachemedic [data-lamp] .iso-shade,.fig-cachemedic [data-lamp] .iso-fill,.fig-cachemedic [data-lamp] .iso-edge{transition:none}}
+/* narrow cards: the drawing uses the full width, and the hint moves above the two-line readout */
+@media (max-width:640px){
+  .fig-cachemedic .iso-plate{overflow:hidden}
+  .fig-cachemedic .iso-plate .cm-stage .iso-svg{width:110%;margin:-4% -5% -2%;overflow:visible}
+}
+@media (max-width:560px){
+  .fig-cachemedic .iso-plate{padding-bottom:90px}
+  .fig-cachemedic .iso-plate-corner[data-corner="readout"]{font-size:9.5px}
+  .fig-cachemedic .iso-plate-corner[data-corner="hint"]{bottom:38px}
+}

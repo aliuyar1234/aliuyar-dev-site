@@ -1,0 +1,34 @@
+/* Fig 14 · film editing bench. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-first-unsafe-step-dpo .fs-stage{touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+.fig-first-unsafe-step-dpo .fs-stage[data-drag]{cursor:ew-resize}
+.fig-first-unsafe-step-dpo .fs-stage:focus{outline:none}
+.fig-first-unsafe-step-dpo .fs-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-first-unsafe-step-dpo .fs-stage>svg{transition:opacity .18s ease-out}
+.fig-first-unsafe-step-dpo .fs-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* film stock: a dark strip on the bench line, in the reel windows and on the take-up */
+.fig-first-unsafe-step-dpo .fs-film,.fig-first-unsafe-step-dpo .fs-pack{fill:var(--anatomy-shade-0);stroke:none}
+.fig-first-unsafe-step-dpo .fs-reelpack>path:not(.iso-line){fill:var(--anatomy-shade-0)}
+.fig-first-unsafe-step-dpo .fs-hole{fill:var(--anatomy-shade-2)}
+.fig-first-unsafe-step-dpo .fs-window{fill:var(--anatomy-shade-0);stroke:none}
+
+/* the lit viewer: bright glass in a dark hood recess, the brightest thing after the red flag in either theme */
+.fig-first-unsafe-step-dpo{--fs-glass:color-mix(in srgb,var(--anatomy-hi) 24%,var(--anatomy-lit-top))}
+.fig-first-unsafe-step-dpo[data-theme="light"],:root[data-theme="light"] .fig-first-unsafe-step-dpo{--fs-glass:var(--anatomy-lit-top)}
+.fig-first-unsafe-step-dpo .fs-glass>.iso-solid>path:not(.iso-line){fill:var(--fs-glass)}
+.fig-first-unsafe-step-dpo .fs-hood>.iso-solid>.iso-fill,.fig-first-unsafe-step-dpo .fs-hood>.iso-solid>.iso-shade{fill:var(--anatomy-shade-0)}
+.fig-first-unsafe-step-dpo .fs-hood>.iso-solid>.iso-top{fill:var(--anatomy-shade-1)}
+.fig-first-unsafe-step-dpo[data-theme="light"] .fs-screen .iso-line[data-tone="hi"],:root[data-theme="light"] .fig-first-unsafe-step-dpo .fs-screen .iso-line[data-tone="hi"]{stroke:var(--anatomy-lo)}
+
+/* status: the severity flag goes red, the splice and KPI lamps green; colour only where colour is the subject */
+.fig-first-unsafe-step-dpo [data-on]>path,.fig-first-unsafe-step-dpo [data-lamp] .iso-solid>path{transition:fill .3s var(--anatomy-ease),stroke .3s var(--anatomy-ease)}
+.fig-first-unsafe-step-dpo [data-on="red"]>.iso-top{fill:var(--anatomy-red)}
+.fig-first-unsafe-step-dpo [data-on="red"]>.iso-shade,.fig-first-unsafe-step-dpo [data-on="red"]>.iso-fill{fill:color-mix(in srgb,var(--anatomy-red) 72%,var(--anatomy-paper))}
+.fig-first-unsafe-step-dpo [data-on="red"]>.iso-edge{stroke:var(--anatomy-red)}
+.fig-first-unsafe-step-dpo [data-on="green"] .iso-top{fill:var(--anatomy-green)}
+.fig-first-unsafe-step-dpo [data-on="green"] .iso-shade,.fig-first-unsafe-step-dpo [data-on="green"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-green) 72%,var(--anatomy-paper))}
+.fig-first-unsafe-step-dpo [data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-first-unsafe-step-dpo .fs-stage>svg,.fig-first-unsafe-step-dpo [data-on]>path,.fig-first-unsafe-step-dpo [data-lamp] .iso-solid>path{transition:none}
+}
