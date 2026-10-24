@@ -26,7 +26,21 @@ async function figureSvg(slug) {
   if (!existsSync(art)) return "";
   const { render } = await import(pathToFileURL(art));
   const html = render().html;
-  return html.match(/<svg[\s\S]*<\/svg>/)?.[0] ?? "";
+  // The plate's own svg only: legend keys after it are svgs too, and plates may nest svgs.
+  const start = html.indexOf("<svg");
+  if (start < 0) return "";
+  const tag = /<svg\b|<\/svg>/g;
+  tag.lastIndex = start;
+  for (let depth = 0, m; (m = tag.exec(html)); ) {
+    depth += m[0] === "</svg>" ? -1 : 1;
+    if (depth === 0) {
+      // Plates style their own parts in figure.css, scoped under .fig-<slug>.
+      const css = join(ROOT, "src/figures", slug, "figure.css");
+      const style = existsSync(css) ? `<style>${readFileSync(css, "utf8")}</style>` : "";
+      return `${style}<div class="plate fig-${slug}">${html.slice(start, tag.lastIndex)}</div>`;
+    }
+  }
+  return "";
 }
 
 function page({ kicker, title, foot, figure, size }) {
@@ -42,7 +56,7 @@ body{font-family:Mona,sans-serif;color:#a6a6a6;display:grid;grid-template-column
 h1{color:#ededed;font-size:${size}px;line-height:1.04;font-weight:620;font-stretch:110%;letter-spacing:-0.025em}
 .foot{font-size:24px}
 .fig{display:grid;place-items:center;margin:-40px -48px -40px 0}
-.fig svg{width:520px;height:auto}
+.fig .plate{width:520px}.fig .plate>svg{width:100%;height:auto}
 </style></head><body class="iso"><div class="text"><div class="mark">Ali Uyar</div><div><p class="kicker">${esc(kicker)}</p><h1>${esc(title)}</h1></div><p class="foot">${esc(foot)}</p></div>${figure ? `<div class="fig">${figure}</div>` : ""}</body></html>`;
 }
 
@@ -68,7 +82,16 @@ for (const job of jobs) {
   writeFileSync(html, page({ ...job, size: fit(job.title, job.figure) }));
   const out = join(OUT, job.out);
   mkdirSync(join(out, ".."), { recursive: true });
-  execFileSync(CHROME, ["--headless=new", "--hide-scrollbars", "--force-device-scale-factor=1", "--window-size=1200,630", "--virtual-time-budget=1500", `--screenshot=${out}`, pathToFileURL(html).href], { stdio: "ignore" });
+  const args = ["--headless=new", "--hide-scrollbars", "--force-device-scale-factor=1", "--window-size=1200,630", "--virtual-time-budget=1500", `--screenshot=${out}`, pathToFileURL(html).href];
+  // Headless Chrome is occasionally killed on large plates; a retry gets through.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      execFileSync(CHROME, args, { stdio: "ignore" });
+      break;
+    } catch (err) {
+      if (attempt === 3) throw err;
+    }
+  }
   console.log("og", job.out);
 }
 rmSync(tmp, { recursive: true, force: true });

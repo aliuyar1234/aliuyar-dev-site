@@ -4,7 +4,7 @@ import HeroTitle from "../components/HeroTitle";
 import FigureSlot from "../components/FigureSlot.astro";
 import PaperLinks from "../components/PaperLinks.astro";
 import { SITE, formatDate } from "../lib/site";
-import { THEMES, byTheme, featured, figureFor, papers, themeOf } from "../lib/papers";
+import { THEMES, byTheme, featured, figureFor, paperBySlug, papers, themeOf } from "../lib/papers";
 import writing from "../content/writing.json";
 
 const essays = ["the-demo-is-not-the-product", "designing-for-reversibility-in-high-speed-systems", "decision-architecture-in-complex-systems"]
@@ -13,6 +13,20 @@ const essays = ["the-demo-is-not-the-product", "designing-for-reversibility-in-h
 
 const order = ["criterion-fidelity-in-llm-judges", "selective-revocation-and-replay", "certipatch"];
 const selected = order.map((slug) => featured.find((p) => p.slug === slug)!).filter(Boolean);
+
+// The flagship: two papers on one fMRI corpus, asked in sequence. Numbers from the papers (see each plate's TRUTH.md).
+const flagship = [
+  {
+    paper: paperBySlug("language-neutral-or-language-specific"),
+    question: "Which part of a sentence representation does the brain track?",
+    answer: "The part the three languages share. Each encoder state is split into a component built from the other two languages' translations and an orthogonal language-specific residual. Over the middle-late layers the shared component predicts the semantic regions better in all six model-by-language tests, by 0.019 to 0.061 in held-out Fisher z, and every test survives Holm correction.",
+  },
+  {
+    paper: paperBySlug("inside-the-multilingual-transformer"),
+    question: "Where inside the transformer is that shared signal computed?",
+    answer: "On the attention side. Tapping 12 blocks at four states each, attention-side minus FFN-side Δz is positive for the semantic regions in all six encoder × cohort cells, where the pre-specified hypothesis predicted the FFN side. Of the 12 best taps, 9 are attention or post-attention states.",
+  },
+];
 
 const propositions = [
   {
@@ -74,6 +88,30 @@ const person = {
     <div class="hero-figure">
       <FigureSlot slug="hero" label="A checkweigher for AI decisions" />
     </div>
+  </section>
+
+  <section class="section wrap flagship" aria-labelledby="flagship">
+    <header class="flag-head">
+      <p class="small muted">Flagship research</p>
+      <h2 class="h1" id="flagship">Reading multilingual transformers against the listening brain</h2>
+      <p class="lede">
+        94 people heard Le Petit Prince in English, French or Chinese while fMRI recorded them. Two papers read the same story
+        through <span class="whitespace-nowrap">XLM-R-base</span> and the <span class="whitespace-nowrap">NLLB-200</span> encoder and fit their sentence states to the brain, region by region.
+      </p>
+    </header>
+    <ol class="flag-rows">
+      {flagship.map(({ paper, question, answer }, i) => (
+        <li class="flag-row">
+          <div class="flag-text">
+            <p class="flag-q"><span class="pn num">{i + 1}</span><span>{question}</span></p>
+            <p>{answer}</p>
+            <h3 class="flag-title"><a href={`/research/${paper.slug}/`}>{paper.title}</a></h3>
+            <PaperLinks paper={paper} />
+          </div>
+          <div class="flag-figure"><FigureSlot slug={figureFor(paper)!} label={paper.title} /></div>
+        </li>
+      ))}
+    </ol>
   </section>
 
   <section class="section wrap" aria-labelledby="selected">
@@ -157,7 +195,26 @@ const person = {
 <style>
   /* On the home page the plates show as cards only; legend and caption live on each paper page. */
   .hero :global(.iso-legend), .hero :global(.iso-caption),
+  .flag-figure :global(.iso-legend), .flag-figure :global(.iso-caption),
   .feature-figure :global(.iso-legend), .feature-figure :global(.iso-caption) { display: none; }
+
+  .flagship { display: grid; gap: clamp(48px, 7vw, 96px); }
+  .flag-head { display: grid; gap: 24px; max-width: 52rem; }
+  .flag-head .lede { max-width: 52ch; }
+  .flag-rows { display: grid; gap: clamp(72px, 9vw, 128px); }
+  .flag-row {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(28px, 5vw, 72px);
+    align-items: start;
+  }
+  .flag-text { display: grid; gap: 18px; position: sticky; top: 48px; max-width: 42ch; }
+  .flag-q { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); color: var(--strong); font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.65rem); font-weight: 560; font-stretch: 106%; letter-spacing: -0.012em; line-height: 1.25; }
+  .flag-q .pn { font-size: 1rem; padding-top: 0.32em; }
+  .flag-text > p:not(.flag-q), .flag-text > h3, .flag-text > :global(.paper-links) { margin-left: 2.4rem; }
+  .flag-title { font-size: 0.9375rem; font-weight: 520; line-height: 1.4; color: var(--muted); }
+  .flag-title a { transition: color 0.2s var(--ease); }
+  .flag-title a:hover { color: var(--strong); }
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -225,7 +282,8 @@ const person = {
     .map-col:nth-child(4) { padding-left: 0; border-left: 0; }
   }
   @media (max-width: 960px) {
-    .hero, .feature, .work { grid-template-columns: minmax(0, 1fr); }
+    .hero, .feature, .work, .flag-row { grid-template-columns: minmax(0, 1fr); }
+    .flag-text { position: static; }
     .feature.flip .feature-figure { order: 0; }
     .essays { grid-template-columns: minmax(0, 1fr); }
   }

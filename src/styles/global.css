@@ -43,11 +43,13 @@
   --anatomy-page: var(--bg);
   --anatomy-card: var(--surface);
   --anatomy-mono: var(--mono);
+  /* the site's muted tone: corner labels, legends and captions meet AA contrast in both themes */
+  --anatomy-muted: var(--muted);
 }
 :root[data-theme="light"] .iso {
   --anatomy-page: var(--bg);
   --anatomy-card: var(--surface);
-  --anatomy-text: #57575a; --anatomy-strong: #18181a; --anatomy-muted: #8c8c90;
+  --anatomy-text: #57575a; --anatomy-strong: #18181a; --anatomy-muted: var(--muted);
   --anatomy-paper: #fbfbfa; --anatomy-face: #ffffff; --anatomy-top: #ffffff;
   --anatomy-shade-0: #dcdcd9; --anatomy-shade-1: #e5e5e2; --anatomy-shade-2: #ededea; --anatomy-shade-3: #f4f4f1;
   --anatomy-lit-top: #ffffff; --anatomy-lit-shade: #eeeeeb;
