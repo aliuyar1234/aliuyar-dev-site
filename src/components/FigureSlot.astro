@@ -2,8 +2,10 @@
 // Renders an anatomy figure from src/figures/<slug>/Figure.astro when it exists.
 interface Props { slug: string; label?: string }
 const { slug, label = slug } = Astro.props;
-const figures = import.meta.glob<{ default: any }>("../figures/*/Figure.astro", { eager: true });
-const Figure = figures[`../figures/${slug}/Figure.astro`]?.default;
+// Lazy glob: a page imports only its own plate (markup, CSS and script).
+const figures = import.meta.glob<{ default: any }>("../figures/*/Figure.astro");
+const load = figures[`../figures/${slug}/Figure.astro`];
+const Figure = load ? (await load()).default : undefined;
 ---
 
 {Figure ? <Figure /> : <div class="figure-pending" role="img" aria-label={label}><span class="mono">{label}</span></div>}

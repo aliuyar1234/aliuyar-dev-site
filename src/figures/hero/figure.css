@@ -1,0 +1,35 @@
+.fig-hero .hero-stage{touch-action:pan-y;cursor:pointer}
+.fig-hero .hero-stage:focus{outline:none}
+.fig-hero .hero-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-hero .hero-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-hero [data-part="knob"]{cursor:ew-resize}
+.fig-hero [data-part="knob"][data-turning]{cursor:grabbing}
+.fig-hero [data-part="knob"],.fig-hero [data-part="plug"]{outline:none}
+.fig-hero .hero-focus{fill:none;stroke:var(--anatomy-muted);stroke-width:1px;vector-effect:non-scaling-stroke;opacity:0;pointer-events:none}
+.fig-hero:has([data-part="knob"]:focus-visible) [data-for="knob"],.fig-hero:has([data-part="plug"]:focus-visible) [data-for="plug"]{opacity:1}
+
+.fig-hero .hero-dark{fill:var(--anatomy-shade-0)}
+.fig-hero .hero-glass{fill:var(--anatomy-shade-0)}
+.fig-hero .hero-paper{fill:var(--anatomy-face)}
+.fig-hero .hero-ink{fill:var(--anatomy-hi)}
+.fig-hero .hero-pip{fill:var(--anatomy-hi)}
+
+.fig-hero .hero-clear>.iso-fill,.fig-hero .hero-clear>.iso-shade,.fig-hero .hero-clear>.iso-top{fill-opacity:.3}
+.fig-hero .hero-lit>.iso-edge{transition:stroke .25s var(--anatomy-ease)}
+.fig-hero .hero-lit>.iso-fill,.fig-hero .hero-lit>.iso-top{transition:fill .25s var(--anatomy-ease)}
+
+.fig-hero .hero-led{fill:var(--anatomy-lo);transition:fill .25s var(--anatomy-ease)}
+.fig-hero .hero-led[data-on]{fill:var(--anatomy-lit)}
+.fig-hero .hero-eye circle,.fig-hero .hero-led-dot circle{fill:var(--anatomy-lo);transition:fill .2s var(--anatomy-ease)}
+.fig-hero .hero-eye[data-on] circle,.fig-hero .hero-led-dot[data-on] circle{fill:var(--anatomy-lit)}
+
+.fig-hero .hero-digit{fill:var(--anatomy-hi);font-family:var(--anatomy-mono);font-variant-numeric:tabular-nums}
+.fig-hero .hero-cell{fill:var(--anatomy-faint);transition:fill .2s var(--anatomy-ease)}
+.fig-hero .hero-cell[data-on]{fill:var(--anatomy-hi)}
+.fig-hero .hero-gate{fill:none;stroke:var(--anatomy-hi);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-linecap:round}
+
+.fig-hero .hero-glow{pointer-events:none}
+.fig-hero [data-glow="green"] .hero-lens{fill:color-mix(in srgb,var(--anatomy-green) 34%,transparent)}
+.fig-hero [data-glow="red"] .hero-lens{fill:color-mix(in srgb,var(--anatomy-red) 38%,transparent)}
+.fig-hero [data-glow="green"] .hero-core{fill:var(--anatomy-green);opacity:.7}
+.fig-hero [data-glow="red"] .hero-core{fill:var(--anatomy-red);opacity:.75}

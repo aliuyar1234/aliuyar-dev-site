@@ -155,6 +155,9 @@ const person = {
 </BaseLayout>
 
 <style>
+  /* On the home page the plates show as cards only; legend and caption live on each paper page. */
+  .hero :global(.iso-legend), .hero :global(.iso-caption),
+  .feature-figure :global(.iso-legend), .feature-figure :global(.iso-caption) { display: none; }
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);

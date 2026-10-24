@@ -1,0 +1,32 @@
+/* Fig 4 · CertiPatch jig. Every rule is scoped; every colour is an --anatomy-* token. */
+.fig-certipatch .cp-stage{touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-certipatch .cp-stage:focus{outline:none}
+.fig-certipatch .cp-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.fig-certipatch .cp-stage>svg{transition:opacity .18s ease-out}
+.fig-certipatch .cp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* bores, the stacker pit and punched holes read as openings */
+.fig-certipatch .cp-bore{fill:var(--anatomy-shade-0);stroke:none}
+.fig-certipatch .cp-hole{fill:var(--anatomy-shade-0);stroke:var(--anatomy-mid);stroke-width:var(--anatomy-weight);vector-effect:non-scaling-stroke}
+.fig-certipatch .cp-wall{stroke:none}
+.fig-certipatch [data-row]{transition:opacity .12s linear}
+
+/* witness lacquer across each trim pointer and its housing */
+.fig-certipatch .cp-stripe{stroke-width:1.7px;transition:opacity .3s linear}
+
+/* the card is the lit subject once its first field is punched; a blank reads like the stack it came from */
+.fig-certipatch .cp-card>path{transition:fill .4s var(--anatomy-ease),stroke .4s var(--anatomy-ease)}
+.fig-certipatch .cp-card[data-lit]>.cp-corner{stroke:var(--anatomy-lit)}
+
+/* status lamps: colour only where colour is the subject */
+.fig-certipatch [data-lamp] .iso-top,.fig-certipatch [data-lamp] .iso-shade,.fig-certipatch [data-lamp] .iso-fill{transition:fill .35s var(--anatomy-ease),stroke .35s var(--anatomy-ease)}
+.fig-certipatch [data-lamp][data-on="red"] .iso-top{fill:var(--anatomy-red);stroke:var(--anatomy-red)}
+.fig-certipatch [data-lamp][data-on="green"] .iso-top{fill:var(--anatomy-green);stroke:var(--anatomy-green)}
+.fig-certipatch [data-lamp][data-on="red"] .iso-shade,.fig-certipatch [data-lamp][data-on="red"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-red) 70%,var(--anatomy-paper));stroke:color-mix(in srgb,var(--anatomy-red) 70%,var(--anatomy-paper))}
+.fig-certipatch [data-lamp][data-on="green"] .iso-shade,.fig-certipatch [data-lamp][data-on="green"] .iso-fill{fill:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper));stroke:color-mix(in srgb,var(--anatomy-green) 70%,var(--anatomy-paper))}
+.fig-certipatch [data-lamp][data-on="red"] .iso-edge{stroke:var(--anatomy-red)}
+.fig-certipatch [data-lamp][data-on="green"] .iso-edge{stroke:var(--anatomy-green)}
+
+@media (prefers-reduced-motion:reduce){
+  .fig-certipatch .cp-stage>svg,.fig-certipatch [data-row],.fig-certipatch .cp-stripe,.fig-certipatch .cp-card>path,.fig-certipatch [data-lamp] .iso-top,.fig-certipatch [data-lamp] .iso-shade,.fig-certipatch [data-lamp] .iso-fill{transition:none}
+}

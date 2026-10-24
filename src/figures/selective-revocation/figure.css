@@ -1,0 +1,22 @@
+.fig-selective-revocation .sr-stage{position:relative;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.fig-selective-revocation .sr-stage:focus{outline:none}
+.fig-selective-revocation .sr-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-selective-revocation .sr-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.fig-selective-revocation .sr-lamp{fill:var(--anatomy-red)}
+.fig-selective-revocation .sr-lamp[data-state="pass"]{fill:var(--anatomy-green)}
+.fig-selective-revocation{--sr-top:var(--anatomy-top);--sr-s0:var(--anatomy-shade-0);--sr-s1:var(--anatomy-shade-1);--sr-s2:var(--anatomy-shade-2);--sr-s3:var(--anatomy-shade-3)}
+.fig-selective-revocation .sr-tint{--anatomy-top:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-top));--anatomy-shade-0:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-s0));--anatomy-shade-1:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-s1));--anatomy-shade-2:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-s2));--anatomy-shade-3:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-s3));--anatomy-paper:color-mix(in srgb,var(--anatomy-mid) 60%,var(--sr-s1))}
+.fig-selective-revocation .iso-swatch[data-mark="flat"] path{fill:color-mix(in srgb,var(--anatomy-mid) 60%,var(--anatomy-top))}
+.fig-selective-revocation .sr-needle{stroke-width:1.1px}
+.fig-selective-revocation .sr-knob,.fig-selective-revocation .sr-drawer{cursor:pointer}
+.fig-selective-revocation .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-selective-revocation .sr-l1,.fig-selective-revocation .sr-l2{display:block}
+.fig-selective-revocation .sr-l1{color:var(--anatomy-muted)}
+@media (max-width:640px){
+  .fig-selective-revocation .sr-stage{overflow:hidden}
+  .fig-selective-revocation .iso-plate .sr-stage .iso-svg{width:114%;margin:-3% -7% -2%}
+}
+@media (max-width:560px){
+  .fig-selective-revocation .iso-plate{padding-bottom:88px}
+  .fig-selective-revocation .iso-plate-corner[data-corner="hint"]{bottom:36px}
+}

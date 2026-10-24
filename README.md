@@ -21,7 +21,7 @@ public/papers/              paper PDFs
 public/og/                  generated Open Graph images
 ```
 
-A paper gets a figure by adding `src/figures/<slug>/Figure.astro` and an entry in `FIGURES` in `src/lib/papers.ts` (and `scripts/og.mjs`).
+A paper gets its plate by adding `src/figures/<paper slug>/Figure.astro`; the paper page and its OG image pick it up automatically.
 
 ## Commands
 

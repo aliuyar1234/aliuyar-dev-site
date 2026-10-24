@@ -1,0 +1,27 @@
+.fig-criterion-fidelity .cf-stage{position:relative;touch-action:pan-y;outline:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fig-criterion-fidelity .cf-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:-2px}
+.fig-criterion-fidelity .iso-plate{padding-bottom:72px}
+.fig-criterion-fidelity .iso-plate-corner[data-corner="readout"]{text-align:right;line-height:1.5}
+.fig-criterion-fidelity .cf-l1,.fig-criterion-fidelity .cf-l2,.fig-criterion-fidelity .cf-l3{display:block}
+.fig-criterion-fidelity .cf-l1{color:var(--anatomy-muted)}
+.fig-criterion-fidelity .cf-live{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fig-criterion-fidelity .cf-cavity{fill:var(--anatomy-shade-0);stroke:none}
+.fig-criterion-fidelity .iso-crease:not([data-tone]){stroke:var(--anatomy-faint)}
+.fig-criterion-fidelity [data-part^="card-"] .iso-fill,.fig-criterion-fidelity [data-part^="card-"] .iso-top,.fig-criterion-fidelity [data-part^="card-"] .iso-shade{transition:fill .3s var(--anatomy-ease)}
+.fig-criterion-fidelity [data-part^="card-"] .iso-edge{transition:stroke .3s var(--anatomy-ease)}
+.fig-criterion-fidelity [data-part^="float-"]:not([data-on]) .iso-edge{stroke:var(--anatomy-mid)}
+.fig-criterion-fidelity [data-part^="stack-"][data-on] .iso-edge{stroke:var(--anatomy-hi)}
+.fig-criterion-fidelity [data-part^="mark-"][data-on] circle{opacity:.85}
+.fig-criterion-fidelity [data-lamp] .iso-top,.fig-criterion-fidelity [data-lamp] .iso-shade{transition:fill .35s var(--anatomy-ease)}
+.fig-criterion-fidelity [data-lamp] .iso-edge{transition:stroke .35s var(--anatomy-ease)}
+.fig-criterion-fidelity [data-lamp="green"][data-on] .iso-top,.fig-criterion-fidelity [data-lamp="green"][data-on] .iso-shade{fill:var(--anatomy-green)}
+.fig-criterion-fidelity [data-lamp="red"][data-on] .iso-top,.fig-criterion-fidelity [data-lamp="red"][data-on] .iso-shade{fill:var(--anatomy-red)}
+.fig-criterion-fidelity [data-lamp="green"][data-on] .iso-edge{stroke:var(--anatomy-green)}
+.fig-criterion-fidelity [data-lamp="red"][data-on] .iso-edge{stroke:var(--anatomy-red)}
+@media (max-width:560px){
+  .fig-criterion-fidelity .iso-plate{padding-bottom:100px}
+  .fig-criterion-fidelity .iso-plate-corner[data-corner="hint"]{bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig-criterion-fidelity [data-lamp] *,.fig-criterion-fidelity [data-part^="card-"] *{transition:none}
+}
