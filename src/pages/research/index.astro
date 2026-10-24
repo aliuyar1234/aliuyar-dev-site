@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PaperLinks from "../../components/PaperLinks.astro";
 import { SITE } from "../../lib/site";
-import { THEMES, byTheme, papers } from "../../lib/papers";
+import { METHODS, THEMES, byTheme, paperBySlug, papers } from "../../lib/papers";
 
 const groups = THEMES.map((t) => ({ ...t, items: byTheme(t.key) })).filter((g) => g.items.length);
 
@@ -31,6 +31,7 @@ const jsonLd = {
       {groups.map((g) => (
         <a href={`#${g.key}`}><span>{g.name}</span><span class="muted num">{g.items.length}</span></a>
       ))}
+      <a href="#methods"><span>Methods</span><span class="muted num">{METHODS.length}</span></a>
     </nav>
   </header>
 
@@ -46,6 +47,7 @@ const jsonLd = {
             <div class="row-main">
               <h3 class="row-title"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
               <p>{p.finding}</p>
+              <p class="models mono">{p.models.join(", ")}</p>
             </div>
             <div class="row-meta">
               <p class="small muted num">{new Date(p.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}</p>
@@ -56,6 +58,23 @@ const jsonLd = {
       </ol>
     </section>
   ))}
+
+  <section class="wrap group" id="methods" aria-labelledby="methods-h">
+    <div class="group-head">
+      <h2 class="h2" id="methods-h">Methods</h2>
+      <p class="muted">The same instruments recur across the lines of work. Each family links to the papers that use it.</p>
+    </div>
+    <dl class="methods">
+      {METHODS.map((m) => (
+        <div class="method">
+          <dt>{m.name}<span class="muted num">{m.slugs.length}</span></dt>
+          <dd>
+            <ul>{m.slugs.map(paperBySlug).map((p) => <li><a href={`/research/${p.slug}/`}>{p.short}</a></li>)}</ul>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
 </BaseLayout>
 
 <style>
@@ -83,8 +102,22 @@ const jsonLd = {
   .row-title a { transition: opacity 0.2s; }
   .row-title a:hover { opacity: 0.72; }
   .row-meta { display: grid; gap: 4px; align-content: start; }
+  .models { font-size: 0.75rem; line-height: 1.6; color: var(--muted); }
+
+  .methods { border-top: 1px solid var(--line); }
+  .method {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 10px clamp(28px, 5vw, 72px);
+    padding-block: 18px; border-bottom: 1px solid var(--line);
+  }
+  .method dt { display: flex; justify-content: space-between; gap: 16px; color: var(--strong); font-weight: 560; max-width: 26rem; }
+  .method ul { display: flex; flex-wrap: wrap; gap: 6px; }
+  .method li a {
+    display: inline-block; padding: 3px 10px; border: 1px solid var(--line); border-radius: 3px;
+    font-size: 0.875rem; color: var(--text); transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+  .method li a:hover { border-color: var(--strong); color: var(--strong); }
 
   @media (max-width: 860px) {
-    .group-head, .row { grid-template-columns: minmax(0, 1fr); }
+    .group-head, .row, .method { grid-template-columns: minmax(0, 1fr); }
   }
 </style>

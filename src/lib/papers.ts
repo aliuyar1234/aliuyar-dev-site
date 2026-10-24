@@ -8,21 +8,19 @@ export interface Paper {
   short: string;
   theme: ThemeKey;
   featured: boolean;
+  date: string;
   finding: string;
-  summary: string;
+  contribution: string;
+  headline?: string;
   abstract: string;
   whyItMatters: string;
-  date: string;
-  result: string;
+  setup: string;
+  methods: string[];
+  models: string[];
   doi: string;
   pdfUrl: string;
   codeUrl: string;
   tags: string[];
-  contribution?: string;
-  headline?: string | null;
-  methods?: string[];
-  models?: string[];
-  setup?: string;
 }
 
 export const THEMES: { key: ThemeKey; name: string; blurb: string }[] = [
@@ -64,17 +62,22 @@ const FIGURES: Record<string, string> = {
   "selective-revocation-and-replay": "selective-revocation",
   certipatch: "certipatch",
 };
-// Method index: every method used in at least two papers, most-used first.
-export function methodIndex() {
-  const map = new Map<string, Paper[]>();
-  for (const p of papers) for (const m of p.methods ?? []) {
-    const key = m.trim();
-    map.set(key, [...(map.get(key) ?? []), p]);
-  }
-  return [...map.entries()]
-    .filter(([, list]) => list.length >= 2)
-    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
-}
+// Method families that recur across papers, curated from each paper's methods.
+export const METHODS: { name: string; slugs: string[] }[] = [
+  { name: "Counterfactual tests", slugs: ["criterion-fidelity-in-llm-judges", "outcome-is-not-verification", "binary-evidence-sufficiency", "first-unsafe-step-dpo"] },
+  { name: "Linear and low-rank probes", slugs: ["binary-evidence-sufficiency", "outcome-is-not-verification", "proberoute"] },
+  { name: "Causal interventions and patching", slugs: ["scrubid", "what-survives-control-calibration", "same-size-capability-transfer", "surgical-post-training-diffing"] },
+  { name: "Sparse modules and masks", slugs: ["same-size-capability-transfer", "surgical-post-training-diffing", "proberoute"] },
+  { name: "Low-rank adapters", slugs: ["soar", "certipatch", "discover-then-distill", "first-unsafe-step-dpo", "cis-technical-report"] },
+  { name: "Self-distillation", slugs: ["cachemedic", "discover-then-distill", "robust-discover-distill", "cis-technical-report"] },
+  { name: "Preference and reward learning", slugs: ["first-unsafe-step-dpo", "discover-then-distill", "cis-technical-report"] },
+  { name: "Attacks and corruption", slugs: ["selective-revocation-and-replay", "robust-discover-distill", "cachemedic", "ria"] },
+  { name: "Provenance, replay and certificates", slugs: ["selective-revocation-and-replay", "certipatch", "ria", "cis-technical-report"] },
+  { name: "Null calibration and resampling", slugs: ["language-neutral-or-language-specific", "surgical-post-training-diffing", "what-survives-control-calibration", "discover-then-distill", "signed-intervention-geometry", "avalanchellm"] },
+  { name: "Brain encoding models", slugs: ["inside-the-multilingual-transformer", "language-neutral-or-language-specific"] },
+];
+export const paperBySlug = (slug: string) => papers.find((p) => p.slug === slug)!;
+export const methodsOf = (p: Paper) => METHODS.filter((m) => m.slugs.includes(p.slug));
 export const figureFor = (p: Paper) => FIGURES[p.slug];
 export const doiUrl = (p: Paper) => (p.doi ? `https://doi.org/${p.doi}` : "");
 

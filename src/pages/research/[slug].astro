@@ -15,8 +15,13 @@ const related = byTheme(paper.theme).filter((p) => p.slug !== paper.slug).slice(
 const fig = figureFor(paper);
 const url = `${SITE.url}/research/${paper.slug}/`;
 const pdf = new URL(paper.pdfUrl, SITE.url).toString();
-const abstract = paper.abstract || paper.summary;
 const bib = bibtex(paper);
+// Abstract paragraphs are separated by blank lines; "• " lines form a list.
+const abstract = paper.abstract.split(/\n\s*\n/).map((block) => {
+  const lines = block.split("\n");
+  const items = lines.filter((l) => l.startsWith("• ")).map((l) => l.slice(2));
+  return { lead: lines.filter((l) => !l.startsWith("• ")).join(" "), items };
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -25,7 +30,7 @@ const jsonLd = {
   headline: paper.title.length > 110 ? paper.title.slice(0, 107) + "..." : paper.title,
   name: paper.title,
   url,
-  abstract,
+  abstract: paper.abstract,
   datePublished: paper.date,
   author: { "@type": "Person", "@id": SITE.personId, name: SITE.name },
   publisher: paper.doi ? { "@type": "Organization", name: "Zenodo" } : { "@id": SITE.personId },
@@ -54,7 +59,7 @@ const jsonLd = {
     <header class="paper-head">
       <p class="small"><a class="link" href="/research/">Research</a> <span class="muted">/ {theme.name}</span></p>
       <h1 class="paper-title">{paper.title}</h1>
-      <p class="lede">{paper.finding}</p>
+      <p class="lede">{paper.contribution}</p>
       <dl class="facts small">
         <div><dt>Published</dt><dd>{formatDate(paper.date)}</dd></div>
         <div><dt>Author</dt><dd>Ali Uyar</dd></div>
@@ -72,7 +77,14 @@ const jsonLd = {
       <div class="paper-body">
         <section>
           <h2 class="label">Abstract</h2>
-          <p class="abstract">{abstract}</p>
+          <div class="abstract">
+            {abstract.map((b) => (
+              <>
+                {b.lead && <p>{b.lead}</p>}
+                {b.items.length > 0 && <ul>{b.items.map((i) => <li>{i}</li>)}</ul>}
+              </>
+            ))}
+          </div>
         </section>
         <section>
           <h2 class="label">Why it matters</h2>
@@ -156,10 +168,11 @@ const jsonLd = {
   .chips.mono li { font-family: var(--mono); font-size: 0.75rem; }
   .paper-body section { display: grid; gap: 14px; }
   .label { font-size: 0.9375rem; font-weight: 560; color: var(--strong); letter-spacing: 0; }
-  .abstract { font-size: 1.125rem; line-height: 1.7; }
+  .abstract { display: grid; gap: 1em; font-size: 1.125rem; line-height: 1.7; }
+  .abstract ul { display: grid; gap: 0.5em; padding-left: 1.2em; list-style: disc; }
   .cite-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
   .bib {
-    margin: 0; padding: 18px 20px; overflow-x: auto;
+    margin: 0; padding: 18px 20px; white-space: pre-wrap; overflow-wrap: anywhere;
     background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
     color: var(--text); line-height: 1.6;
   }
@@ -173,7 +186,7 @@ const jsonLd = {
 
   @media (max-width: 960px) {
     .paper-grid { grid-template-columns: minmax(0, 1fr); }
-    .sheet { position: static; }
+    .sheet { position: static; order: -1; }
   }
   @media (max-width: 860px) { .related ul { grid-template-columns: minmax(0, 1fr); } }
 </style>
