@@ -60,13 +60,13 @@
     "title": "Selective Revocation and Replay: Post-Compromise Recovery of Explicit Persisted State in Memory-Augmented LLM Agents",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18967061",
+    "doi": "10.5281/zenodo.18967060",
     "abstract": "A recovery method for poisoned agent memory. Instead of wiping everything, it tracks where bad state came from, revokes descendants, and replays only the parts that need repair.",
     "whyItMatters": "Agent memory is useful until it carries attacker garbage forward. This gives operators a cleaner option than 'delete everything and hope'.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18967061",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18967060",
     "pdfUrl": "/papers/selective-revocation-and-replay-post-compromise-recovery-of-explicit-persisted-state.pdf",
     "codeUrl": "https://github.com/aliuyar1234/selective-revocation-replay",
     "tags": [
@@ -79,13 +79,13 @@
     "title": "Same-Size Capability Transfer Reveals a Performance-Localization Tradeoff in Deterministic Function Calling",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.19226753",
+    "doi": "10.5281/zenodo.19226752",
     "abstract": "A locked testbed for moving function-calling behavior between same-family models. Sparse transfer worked, but the dense module still won the main metric, which is exactly the kind of inconvenient result worth knowing.",
     "whyItMatters": "It gives model-editing claims a deterministic check instead of a nice story and a few cherry-picked examples.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19226753",
+    "paperUrl": "https://doi.org/10.5281/zenodo.19226752",
     "pdfUrl": "/papers/same-size-capability-transfer-reveals-a-performance-localization-tradeoff-in-deterministic-function-calling.pdf",
     "codeUrl": "https://github.com/aliuyar1234/sparse-capability-transplants",
     "tags": [
@@ -98,13 +98,13 @@
     "title": "Surgical Post-Training Diffing: Partial Recovery Without Clean Small-Mask Separation",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.19347477",
+    "doi": "10.5281/zenodo.19347476",
     "abstract": "A paired diffing study of Gemma post-training. It recovered some capability signal, but the clean small-mask story did not really survive contact with held-out evaluation.",
     "whyItMatters": "A useful reminder that 'we found the circuit' and 'we found something that generalizes' are not the same sentence.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19347477",
+    "paperUrl": "https://doi.org/10.5281/zenodo.19347476",
     "pdfUrl": "/papers/surgical-post-training-diffing-partial-recovery-without-clean-small-mask-separation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/surgical-posttraining-diffing",
     "tags": [
@@ -117,13 +117,13 @@
     "title": "ProbeRoute: Probes as Routing Priors for Frozen-Backbone Multi-Token Prediction",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.19022709",
+    "doi": "10.5281/zenodo.19022708",
     "abstract": "A cheap probe pass is used to initialize routing for multi-token prediction on a frozen backbone. The aim is better speculative drafting without making the adaptation recipe bigger and messier.",
     "whyItMatters": "If you can get a better route from a small offline probe, you should not need to unfreeze half the model just to test the idea.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19022709",
+    "paperUrl": "https://doi.org/10.5281/zenodo.19022708",
     "pdfUrl": "/papers/proberoute-probes-as-routing-priors-for-frozen-backbone-multi-token-prediction.pdf",
     "codeUrl": "https://github.com/aliuyar1234/proberoute",
     "tags": [
@@ -136,13 +136,13 @@
     "title": "When Accuracy Hides Path Dependence: Criterion Fidelity in LLM Judges",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.19332783",
+    "doi": "10.5281/zenodo.19332782",
     "abstract": "This paper tests whether LLM judges follow the actual criterion or just react to how the criterion is worded. Accuracy can look fine while the judge is still path-dependent in a way you would not want in production.",
     "whyItMatters": "Good judge pipelines need to survive paraphrase and counterfactual checks. Otherwise the reviewer is grading the wording, not the work.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19332783",
+    "paperUrl": "https://doi.org/10.5281/zenodo.19332782",
     "pdfUrl": "/papers/when-accuracy-hides-path-dependence-criterion-fidelity-in-llm-judges.pdf",
     "codeUrl": "https://github.com/aliuyar1234/criterion-fidelity-llm-judges",
     "tags": [
@@ -155,13 +155,13 @@
     "title": "Binary Evidence Sufficiency Dissociation in Reasoning-Model Hidden States",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18921977",
+    "doi": "10.5281/zenodo.18921976",
     "abstract": "A probe study asking whether reasoning models carry an internal signal for 'I have enough evidence now.' That signal appears separable from just getting the final answer right.",
     "whyItMatters": "For retrieval and agent systems, knowing when the model has enough evidence may matter more than another confident-looking answer.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18921977",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18921976",
     "pdfUrl": "/papers/binary-evidence-sufficiency-dissociation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/binary-evidence-sufficiency-dissociation",
     "tags": [
@@ -250,13 +250,13 @@
     "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18669268",
+    "doi": "10.5281/zenodo.18669267",
     "abstract": "A reproducible way to corrupt, diagnose, and repair KV-cache failures using distillation. The goal is to turn weird serving instability into something you can actually test.",
     "whyItMatters": "Serving failures are easier to fix when they are repeatable. This makes that repeatability part of the workflow.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18669268",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18669267",
     "pdfUrl": "/papers/cachemedic-robust-kv-cache-stabilization-via-self-distillation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/cachemedicpp-research",
     "tags": [
@@ -288,13 +288,13 @@
     "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18330420",
+    "doi": "10.5281/zenodo.18330419",
     "abstract": "An audit method for checking whether interpretability claims are actually identifiable from the evidence. Pretty plots are not enough.",
     "whyItMatters": "It raises the bar for interpretability claims by asking what can be independently checked.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18330420",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18330419",
     "pdfUrl": "/papers/scrubid-identifiability-aware-auditing-for-mechanistic-interpretability.pdf",
     "codeUrl": "https://github.com/aliuyar1234/ScrubID",
     "tags": [
@@ -307,13 +307,13 @@
     "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18634022",
+    "doi": "10.5281/zenodo.18634021",
     "abstract": "A compute-matched pipeline that separates short-term adaptation from durable improvement. The boring question matters: did we improve the model, or just help it survive the test?",
     "whyItMatters": "It helps teams avoid mistaking temporary adaptation for a real tuning win.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18634022",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18634021",
     "pdfUrl": "/papers/discover-then-distill-separating-test-time-adaptation-from-self-distillation-consolidation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/discover-then-distill-paper",
     "tags": [
@@ -345,13 +345,13 @@
     "title": "AvalancheLLM: Token-Layer Activation Event Cascades in LLMs under Gain Scaling",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18435925",
+    "doi": "10.5281/zenodo.18435924",
     "abstract": "A controlled study of activation cascades under gain changes. It looks for instability patterns in the model before they show up as weird behavior downstream.",
     "whyItMatters": "If a model becomes brittle under small scaling changes, you want to find out in a lab, not from users.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18435925",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18435924",
     "pdfUrl": "/papers/avalanchellm-token-layer-activation-event-cascades-in-llms-under-gain-scaling.pdf",
     "codeUrl": "https://github.com/aliuyar1234/AvalancheLLM",
     "tags": [
@@ -364,13 +364,13 @@
     "title": "RIA: Retokenization Invariance Atlas",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18682875",
+    "doi": "10.5281/zenodo.18682874",
     "abstract": "A deterministic audit for cases where semantically identical prompt formatting still changes the answer. Newline roulette is not a reliability strategy.",
     "whyItMatters": "It gives teams evidence about whether formatting changes are harmless or quietly changing outcomes.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18682875",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18682874",
     "pdfUrl": "/papers/ria-retokenization-invariance-atlas.pdf",
     "codeUrl": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
     "tags": [
@@ -383,13 +383,13 @@
     "title": "CIS Technical Report",
     "venue": "Research",
     "year": 2026,
-    "doi": "10.5281/zenodo.18234776",
+    "doi": "10.5281/zenodo.18234775",
     "abstract": "A practical reliability report for AI systems: deterministic checks, evidence gates, and implementation notes for teams that have to ship the thing, not just demo it.",
     "whyItMatters": "It turns the reliability philosophy into something a delivery team can actually adopt.",
     "authors": [
       "Ali Uyar"
     ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18234776",
+    "paperUrl": "https://doi.org/10.5281/zenodo.18234775",
     "pdfUrl": "/papers/cis-technical-report.pdf",
     "codeUrl": "https://github.com/aliuyar1234/cis-technical-report",
     "tags": [
