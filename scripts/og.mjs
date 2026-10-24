@@ -67,8 +67,8 @@ const fit = (title, figure) => {
 };
 
 const jobs = [];
-const hero = await figureSvg("hero");
-jobs.push({ out: "default.png", kicker: "AI alignment, security and evaluation", title: "I make AI decisions auditable.", foot: "aliuyar.dev", figure: hero });
+const flagship = await figureSvg("language-neutral-or-language-specific");
+jobs.push({ out: "default.png", kicker: "Principal AI Engineer, Vienna", title: "Research on AI alignment, security and evaluation.", foot: "aliuyar.dev", figure: flagship });
 jobs.push({ out: "research.png", kicker: `${research.length} papers`, title: "Research on when an AI system's decisions can be trusted.", foot: "aliuyar.dev/research", figure: "" });
 for (const p of research) {
   const figure = await figureSvg(FOLDERS[p.slug] ?? p.slug);

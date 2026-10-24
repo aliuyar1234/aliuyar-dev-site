@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HeroTitle from "../components/HeroTitle";
+import Hero from "../components/Hero.astro";
+import Threads from "../components/bits/Threads";
 import FigureSlot from "../components/FigureSlot.astro";
 import PaperLinks from "../components/PaperLinks.astro";
 import { SITE, formatDate } from "../lib/site";
@@ -73,22 +74,7 @@ const person = {
 ---
 
 <BaseLayout title={SITE.title} jsonLd={person}>
-  <section class="hero wrap">
-    <div class="hero-copy">
-      <HeroTitle client:media="(hover: hover) and (pointer: fine)" text="I make AI decisions auditable." />
-      <p class="lede">
-        AI lead in Vienna, building with AI for eight years. At {SITE.employer} I put agents to work on real decisions.
-        My research builds the instruments that check them: {papers.length} papers on alignment, security, evaluation and interpretability.
-      </p>
-      <div class="actions">
-        <a class="btn" href="/research/">Read the research</a>
-        <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>
-      </div>
-    </div>
-    <div class="hero-figure">
-      <FigureSlot slug="hero" label="A checkweigher for AI decisions" />
-    </div>
-  </section>
+  <Hero><Threads slot="field" client:idle /></Hero>
 
   <section class="section wrap flagship" aria-labelledby="flagship">
     <header class="flag-head">
@@ -183,14 +169,13 @@ const person = {
   </section>
 
   <section class="section wrap closer" aria-labelledby="closer">
-    <h2 class="h1" id="closer">If an AI decision has to hold up afterwards, write to me.</h2>
+    <h2 class="h2" id="closer">Write to me about the research, a collaboration or a talk.</h2>
     <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
   </section>
 </BaseLayout>
 
 <style>
-  /* On the home page the plates show as cards only; legend and caption live on each paper page. */
-  .hero :global(.iso-legend), .hero :global(.iso-caption),
+  /* On the home page the plate shows as a card only; legend and caption live on the paper page. */
   .flag-figure :global(.iso-legend), .flag-figure :global(.iso-caption) { display: none; }
 
   .flagship { display: grid; gap: clamp(48px, 7vw, 96px); }
@@ -211,16 +196,6 @@ const person = {
   .flag-title { font-size: 0.9375rem; font-weight: 520; line-height: 1.4; color: var(--muted); }
   .flag-title a { transition: color 0.2s var(--ease); }
   .flag-title a:hover { color: var(--strong); }
-  .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(32px, 5vw, 72px);
-    align-items: center;
-    padding-top: clamp(28px, 5vw, 72px);
-  }
-  .hero-copy { display: grid; gap: 28px; }
-  .hero-copy :global(.hero-title) { font-size: clamp(2.7rem, 0.9rem + 4.4vw, 5.5rem); }
-  .hero-copy .actions { margin-top: 8px; }
 
   .featured { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
   .feature { display: grid; gap: 14px; align-content: start; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -249,7 +224,7 @@ const person = {
   .essays a:hover { border-top-color: var(--strong); }
 
   .closer { display: grid; gap: 28px; }
-  .closer h2 { max-width: 18ch; }
+  .closer h2 { max-width: 24ch; }
   .mail {
     justify-self: start;
     color: var(--strong);
@@ -270,7 +245,7 @@ const person = {
     .map-col:nth-child(4) { padding-left: 0; border-left: 0; }
   }
   @media (max-width: 960px) {
-    .hero, .work, .flag-body { grid-template-columns: minmax(0, 1fr); }
+    .work, .flag-body { grid-template-columns: minmax(0, 1fr); }
     .flag-figure { position: static; order: -1; }
     .featured, .essays { grid-template-columns: minmax(0, 1fr); }
   }
