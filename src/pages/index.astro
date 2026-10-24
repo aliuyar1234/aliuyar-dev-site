@@ -99,19 +99,19 @@ const person = {
         through <span class="whitespace-nowrap">XLM-R-base</span> and the <span class="whitespace-nowrap">NLLB-200</span> encoder and fit their sentence states to the brain, region by region.
       </p>
     </header>
-    <ol class="flag-rows">
-      {flagship.map(({ paper, question, answer }, i) => (
-        <li class="flag-row">
-          <div class="flag-text">
+    <div class="flag-body">
+      <ol class="flag-qs">
+        {flagship.map(({ paper, question, answer }, i) => (
+          <li class="flag-text">
             <p class="flag-q"><span class="pn num">{i + 1}</span><span>{question}</span></p>
             <p>{answer}</p>
             <h3 class="flag-title"><a href={`/research/${paper.slug}/`}>{paper.title}</a></h3>
             <PaperLinks paper={paper} />
-          </div>
-          <div class="flag-figure"><FigureSlot slug={figureFor(paper)!} label={paper.title} /></div>
-        </li>
-      ))}
-    </ol>
+          </li>
+        ))}
+      </ol>
+      <div class="flag-figure"><FigureSlot slug={figureFor(flagship[0].paper)!} label={flagship[0].paper.title} /></div>
+    </div>
   </section>
 
   <section class="section wrap" aria-labelledby="selected">
@@ -119,20 +119,16 @@ const person = {
       <h2 class="h2" id="selected">Selected research</h2>
       <a class="link" href="/research/">All {papers.length} papers</a>
     </div>
-    <ol class="featured">
-      {selected.map((p, i) => (
-        <li class:list={["feature", { flip: i % 2 === 1 }]}>
-          <div class="feature-figure"><FigureSlot slug={figureFor(p)!} label={p.title} /></div>
-          <div class="feature-text">
-            <p class="small muted">{themeOf(p.theme).name}</p>
-            <h3 class="h3"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
-            <p>{p.finding}</p>
-            <p class="why">{p.whyItMatters}</p>
-            <PaperLinks paper={p} />
-          </div>
+    <ul class="featured">
+      {selected.map((p) => (
+        <li class="feature">
+          <p class="small muted">{themeOf(p.theme).name}</p>
+          <h3 class="h3"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
+          <p>{p.finding}</p>
+          <PaperLinks paper={p} />
         </li>
       ))}
-    </ol>
+    </ul>
   </section>
 
   <section class="section wrap" aria-labelledby="map">
@@ -195,20 +191,20 @@ const person = {
 <style>
   /* On the home page the plates show as cards only; legend and caption live on each paper page. */
   .hero :global(.iso-legend), .hero :global(.iso-caption),
-  .flag-figure :global(.iso-legend), .flag-figure :global(.iso-caption),
-  .feature-figure :global(.iso-legend), .feature-figure :global(.iso-caption) { display: none; }
+  .flag-figure :global(.iso-legend), .flag-figure :global(.iso-caption) { display: none; }
 
   .flagship { display: grid; gap: clamp(48px, 7vw, 96px); }
   .flag-head { display: grid; gap: 24px; max-width: 52rem; }
   .flag-head .lede { max-width: 52ch; }
-  .flag-rows { display: grid; gap: clamp(72px, 9vw, 128px); }
-  .flag-row {
+  .flag-body {
     display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    gap: clamp(28px, 5vw, 72px);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 5vw, 72px);
     align-items: start;
   }
-  .flag-text { display: grid; gap: 18px; position: sticky; top: 48px; max-width: 42ch; }
+  .flag-qs { display: grid; gap: clamp(48px, 6vw, 72px); }
+  .flag-text { display: grid; gap: 18px; max-width: 44ch; }
+  .flag-figure { position: sticky; top: 48px; }
   .flag-q { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); color: var(--strong); font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.65rem); font-weight: 560; font-stretch: 106%; letter-spacing: -0.012em; line-height: 1.25; }
   .flag-q .pn { font-size: 1rem; padding-top: 0.32em; }
   .flag-text > p:not(.flag-q), .flag-text > h3, .flag-text > :global(.paper-links) { margin-left: 2.4rem; }
@@ -226,18 +222,10 @@ const person = {
   .hero-copy :global(.hero-title) { font-size: clamp(2.7rem, 0.9rem + 4.4vw, 5.5rem); }
   .hero-copy .actions { margin-top: 8px; }
 
-  .featured { display: grid; gap: clamp(72px, 10vw, 140px); }
-  .feature {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: clamp(28px, 5vw, 72px);
-    align-items: center;
-  }
-  .feature.flip .feature-figure { order: 2; }
-  .feature-text { display: grid; gap: 16px; align-content: start; max-width: 46ch; }
-  .feature-text h3 a { transition: opacity 0.2s; }
-  .feature-text h3 a:hover { opacity: 0.75; }
-  .feature-text .why { color: var(--muted); }
+  .featured { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+  .feature { display: grid; gap: 14px; align-content: start; padding-top: 22px; border-top: 1px solid var(--line); }
+  .feature h3 a { transition: opacity 0.2s; }
+  .feature h3 a:hover { opacity: 0.75; }
 
   .map { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
   .map-col { display: grid; align-content: start; gap: 14px; padding: 22px clamp(12px, 1.6vw, 22px) 26px 0; }
@@ -282,10 +270,9 @@ const person = {
     .map-col:nth-child(4) { padding-left: 0; border-left: 0; }
   }
   @media (max-width: 960px) {
-    .hero, .feature, .work, .flag-row { grid-template-columns: minmax(0, 1fr); }
-    .flag-text { position: static; }
-    .feature.flip .feature-figure { order: 0; }
-    .essays { grid-template-columns: minmax(0, 1fr); }
+    .hero, .work, .flag-body { grid-template-columns: minmax(0, 1fr); }
+    .flag-figure { position: static; order: -1; }
+    .featured, .essays { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 640px) {
     .map { grid-template-columns: minmax(0, 1fr); }
