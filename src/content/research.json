@@ -323,6 +323,25 @@
     ]
   },
   {
+    "title": "Robust Discover→Distill Under Poisoned Distillation Data",
+    "venue": "Research",
+    "year": 2026,
+    "doi": "",
+    "abstract": "I isolated the distillation step of a Discover→Distill loop and fed it corrupted and trigger-poisoned demonstrations on a small synthetic benchmark. A simple format gate did nothing, because the bad examples were still syntactically valid, and a small Anchor-KL penalty helped a little under heavy random corruption, but only in a two-seed comparison with overlapping error bars. The trigger backdoor never took hold in any condition, so that is a null result, not a security guarantee.",
+    "whyItMatters": "If a self-improving model learns from its own archive of demonstrations, that archive is an attack surface, and cheap filters that only check format will not catch plausible-but-wrong data. This is a small, honest starting point for testing that, not proof that any defense holds.",
+    "authors": [
+      "Ali Uyar"
+    ],
+    "paperUrl": "https://github.com/aliuyar1234/robust-discover-distill-poisoning",
+    "pdfUrl": "/papers/robust-discover-distill-under-poisoned-distillation-data.pdf",
+    "codeUrl": "https://github.com/aliuyar1234/robust-discover-distill-poisoning",
+    "tags": [
+      "data-poisoning",
+      "self-distillation",
+      "negative-result"
+    ]
+  },
+  {
     "title": "AvalancheLLM: Token-Layer Activation Event Cascades in LLMs under Gain Scaling",
     "venue": "Research",
     "year": 2026,
