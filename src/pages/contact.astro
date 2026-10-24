@@ -1,96 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import profile from "../content/profile.json";
+import { SITE } from "../lib/site";
 
-const primaryEmail = "contact@aliuyar.dev";
+const reasons = [
+  "An AI workflow that has to become auditable, or has to fail closed when the evidence is missing.",
+  "A research collaboration on evaluation, alignment or agent security.",
+  "A talk or a piece of writing on trusting AI systems in production.",
+];
 ---
 
-<BaseLayout title="ali uyar // contact" canonicalPath="/contact" description="Contact Ali Uyar about AI systems, product judgment, research notes, or a real problem that is easier to explain rough than polished.">
-  <SiteHeader />
-  <main id="main" class="page-wrap py-14 md:py-20">
-
-    <section class="reveal">
-      <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
-        mail -s "hello" contact@aliuyar.dev
+<BaseLayout title="Contact | Ali Uyar" description="Write to Ali Uyar about auditable AI systems, research collaborations on evaluation, alignment and agent security, or talks.">
+  <section class="wrap contact">
+    <h1 class="h1">Contact</h1>
+    <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    <div class="grid">
+      <p class="lede">
+        I work full-time as AI lead at {SITE.employer} in Vienna. Next to that I take on a few conversations a year, where trusting an AI decision is the hard part.
       </p>
-      <h1 class="page-title mt-6">open a thread<span class="caret" aria-hidden="true"></span></h1>
-      <p class="mt-5 max-w-2xl copy-pretty" style="color: rgb(var(--muted)); line-height: 1.75;">
-        No need for a polished pitch. Tell me what you are building, what feels stuck, and what you are trying to decide.
-      </p>
-    </section>
-
-    <div class="divider-ascii mt-12" aria-hidden="true">
-      ════════════════════════════════════════════════════════════════════════════
-    </div>
-
-    <section class="mt-10 grid gap-12 md:grid-cols-12 md:gap-14">
-      <div class="md:col-span-7">
-        <p class="label">[ primary address ]</p>
-        <a
-          class="font-mono mt-5 inline-block link-accent"
-          style="font-size: clamp(1.5rem, 4.5vw, 2.6rem); letter-spacing: -0.01em; line-height: 1.2;"
-          href={`mailto:${primaryEmail}`}
-        >
-          {primaryEmail}
-        </a>
-        <p class="mt-6 max-w-xl text-[0.98rem] leading-[1.75]" style="color: rgb(var(--muted));">
-          A rough note is enough. What are you building? Where is it getting weird? What decision do you not want to make by vibe?
-        </p>
-
-        <div class="mt-10 pt-6" style="border-top: 1px solid var(--rule);">
-          <p class="label">[ elsewhere ]</p>
-          <ul class="mt-4 space-y-2 mono-sm">
-            <li><a class="link-muted" href={profile.github} target="_blank" rel="noreferrer">→ github.com/aliuyar1234</a></li>
-            <li><a class="link-muted" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">→ cv.en.pdf</a></li>
-            <li><a class="link-muted" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">→ cv.de.pdf</a></li>
-          </ul>
-        </div>
+      <div>
+        <h2 class="label">Good reasons to write</h2>
+        <ul class="reasons">{reasons.map((r) => <li>{r}</li>)}</ul>
+        <p class="small muted">Code and papers: <a class="link" href={SITE.github} rel="me">github.com/aliuyar1234</a></p>
       </div>
-
-      <aside class="md:col-span-5">
-        <div style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
-          <p class="label">[ best for ]</p>
-          <ul class="mt-4 space-y-4 font-mono text-[0.9rem] leading-[1.7]">
-            <li class="flex gap-3">
-              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">i.</span>
-              <span style="color: rgb(var(--muted));">AI systems that look good in demos but need sharper reliability, eval, or architecture decisions.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">ii.</span>
-              <span style="color: rgb(var(--muted));">Product work where technical depth matters, but so does knowing when to stop adding complexity.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="mono-xs tabnum" style="color: rgb(var(--accent)); padding-top: 0.25rem;">iii.</span>
-              <span style="color: rgb(var(--muted));">Research notes, writing, or collaboration questions with an actual shared problem behind them.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="mt-6" style="border: 1px solid var(--rule); padding: 1.25rem;">
-          <p class="label">[ locus ]</p>
-          <dl class="kv mt-3">
-            <dt>PLACE</dt>
-            <dd>{profile.location}</dd>
-            <dt>TZ</dt>
-            <dd class="tabnum"><span class="accent">●</span> UTC+01 Europe/Vienna</dd>
-            <dt>STATE</dt>
-            <dd>In a full-time role</dd>
-          </dl>
-        </div>
-      </aside>
-    </section>
-
-    <section id="cv" class="mt-20 pt-6" style="border-top: 1px solid var(--rule);">
-      <p class="comment max-w-3xl text-base leading-[1.75]">
-        my CV is available in
-        <a class="link" href="/CV_AliUyar_English.pdf" target="_blank" rel="noopener noreferrer">English</a>
-        and
-        <a class="link" href="/CV_AliUyar_German.pdf" target="_blank" rel="noopener noreferrer">German</a>.
-        I am currently in a full-time role, so I am not pretending to be an agency. Research notes, writing, and genuinely interesting collaboration questions are still welcome.
-      </p>
-    </section>
-  </main>
-  <SiteFooter />
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .contact { display: grid; gap: 32px; padding-top: clamp(40px, 7vw, 104px); }
+  .mail {
+    justify-self: start; color: var(--strong);
+    font-size: clamp(1.75rem, 0.8rem + 4.2vw, 4.4rem); font-weight: 560; font-stretch: 112%; letter-spacing: -0.03em;
+    text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; text-decoration-color: var(--line-strong);
+    transition: text-decoration-color 0.25s var(--ease); overflow-wrap: anywhere;
+  }
+  .mail:hover { text-decoration-color: var(--strong); }
+  .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(28px, 5vw, 72px); margin-top: clamp(32px, 5vw, 64px); }
+  .label { font-size: 0.9375rem; font-weight: 560; margin-bottom: 14px; }
+  .reasons { display: grid; gap: 0; margin-bottom: 28px; }
+  .reasons li { padding-block: 16px; border-top: 1px solid var(--line); max-width: 58ch; }
+  .reasons li:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

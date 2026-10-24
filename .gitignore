@@ -2,3 +2,7 @@ node_modules
 /dist
 .astro
 AGENTS.md
+
+# anatomy figure previews and shots
+src/figures/*/preview/
+src/figures/*/shots/

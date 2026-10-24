@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PaperLinks from "../../components/PaperLinks.astro";
+import { SITE } from "../../lib/site";
+import { THEMES, byTheme, papers } from "../../lib/papers";
+
+const groups = THEMES.map((t) => ({ ...t, items: byTheme(t.key) })).filter((g) => g.items.length);
+
+const title = `Research: ${papers.length} papers on AI alignment, security and evaluation | Ali Uyar`;
+const description = `${papers.length} papers by Ali Uyar on LLM judges, hidden-state verifiers, agent memory security, repairing frozen models and interpretability. Each with PDF, DOI and code.`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Research",
+  url: `${SITE.url}/research/`,
+  author: { "@id": SITE.personId },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: papers.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE.url}/research/${p.slug}/`, name: p.title })),
+  },
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <header class="wrap page-head">
+    <h1 class="h1">Research</h1>
+    <p class="lede">
+      {papers.length} papers on one question: when can you trust what an AI system decided? Each one builds a way to check, from LLM judges and hidden-state verifiers to poisoned agent memory and repairs on frozen models.
+    </p>
+    <nav class="themes small" aria-label="Themes">
+      {groups.map((g) => (
+        <a href={`#${g.key}`}><span>{g.name}</span><span class="muted num">{g.items.length}</span></a>
+      ))}
+    </nav>
+  </header>
+
+  {groups.map((g) => (
+    <section class="wrap group" id={g.key} aria-labelledby={`${g.key}-h`}>
+      <div class="group-head">
+        <h2 class="h2" id={`${g.key}-h`}>{g.name}</h2>
+        <p class="muted">{g.blurb}</p>
+      </div>
+      <ol class="rows">
+        {g.items.map((p) => (
+          <li class="row">
+            <div class="row-main">
+              <h3 class="row-title"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
+              <p>{p.finding}</p>
+            </div>
+            <div class="row-meta">
+              <p class="small muted num">{new Date(p.date).toLocaleDateString("en-GB", { month: "short", year: "numeric" })}</p>
+              <PaperLinks paper={p} detail={false} />
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .page-head { display: grid; gap: 28px; padding-top: clamp(40px, 7vw, 104px); }
+  .page-head .lede { max-width: 54ch; }
+  .themes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .themes a {
+    display: inline-flex; gap: 10px; align-items: baseline;
+    padding: 8px 14px; border: 1px solid var(--line); border-radius: 3px; color: var(--strong);
+    transition: border-color 0.2s var(--ease);
+  }
+  .themes a:hover { border-color: var(--strong); }
+
+  .group { margin-top: clamp(88px, 11vw, 150px); scroll-margin-top: 24px; }
+  .group-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 12px clamp(28px, 5vw, 72px); align-items: baseline; margin-bottom: 28px; }
+  .group-head p { max-width: 52ch; }
+
+  .row {
+    display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 12px clamp(24px, 4vw, 64px);
+    padding-block: 26px; border-top: 1px solid var(--line);
+  }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .row-main { display: grid; gap: 8px; max-width: 72ch; }
+  .row-title { font-size: 1.125rem; font-weight: 580; font-stretch: 102%; line-height: 1.35; letter-spacing: -0.005em; }
+  .row-title a { transition: opacity 0.2s; }
+  .row-title a:hover { opacity: 0.72; }
+  .row-meta { display: grid; gap: 4px; align-content: start; }
+
+  @media (max-width: 860px) {
+    .group-head, .row { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

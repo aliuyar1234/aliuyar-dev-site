@@ -23,27 +23,6 @@
 /apple-touch-icon.png
   Cache-Control: public, max-age=3600, must-revalidate
 
-/favicon-v2.ico
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/favicon-v2.svg
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/favicon-v2-32x32.png
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/apple-touch-icon-v2.png
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/og-default.svg
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/CV_AliUyar_English.pdf
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/CV_AliUyar_German.pdf
-  Cache-Control: public, max-age=86400, must-revalidate
-
 /papers/*
   Cache-Control: public, max-age=86400, must-revalidate
 
@@ -55,3 +34,9 @@
 
 /sitemap-*.xml
   Cache-Control: public, max-age=0, must-revalidate
+
+/og/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/rss.xml
+  Cache-Control: public, max-age=3600, must-revalidate

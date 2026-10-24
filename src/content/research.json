@@ -1,15 +1,17 @@
 [
   {
+    "slug": "inside-the-multilingual-transformer",
     "title": "Inside the Multilingual Transformer: Computational Neuroanatomy of Shared and Language-Specific Brain Alignment",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19185601",
-    "abstract": "I looked inside multilingual encoders and compared their internal signals against multilingual fMRI data. The interesting part: the shared cross-language alignment seems to come more from attention-side computations than the usual 'semantic FFN' story.",
+    "short": "Multilingual neuroanatomy",
+    "theme": "interpretability",
+    "featured": false,
+    "finding": "Against multilingual fMRI, the shared cross-language alignment of multilingual encoders tracks attention-side computation more than the feed-forward layers usually credited with meaning.",
+    "summary": "I looked inside multilingual encoders and compared their internal signals against multilingual fMRI data. The interesting part: the shared cross-language alignment seems to come more from attention-side computations than the usual 'semantic FFN' story.",
+    "abstract": "",
     "whyItMatters": "A single benchmark score does not tell you what part of the model is doing the work. This gives multilingual model builders a more inspectable target.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19185601",
+    "date": "2026-03-23",
+    "result": "",
+    "doi": "10.5281/zenodo.19185601",
     "pdfUrl": "/papers/inside-the-multilingual-transformer-computational-neuroanatomy.pdf",
     "codeUrl": "https://github.com/aliuyar1234/multilingual-transformer-neuroanatomy",
     "tags": [
@@ -19,16 +21,18 @@
     ]
   },
   {
+    "slug": "language-neutral-or-language-specific",
     "title": "Language-Neutral or Language-Specific? Disentangling Multilingual LLM Subspaces with Naturalistic fMRI",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19185476",
-    "abstract": "This paper separates shared multilingual structure from language-specific leftovers in XLM-R and NLLB-200 using naturalistic fMRI data. Less 'does it work?', more 'what kind of representation is it using?'.",
+    "short": "Language-neutral subspaces",
+    "theme": "interpretability",
+    "featured": false,
+    "finding": "Separates shared multilingual structure from language-specific residue in XLM-R and NLLB-200, with naturalistic fMRI as the reference.",
+    "summary": "This paper separates shared multilingual structure from language-specific leftovers in XLM-R and NLLB-200 using naturalistic fMRI data. Less 'does it work?', more 'what kind of representation is it using?'.",
+    "abstract": "",
     "whyItMatters": "Useful when you want to audit whether a multilingual encoder is carrying meaning across languages or just getting good at language-specific residue.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19185476",
+    "date": "2026-03-23",
+    "result": "",
+    "doi": "10.5281/zenodo.19185476",
     "pdfUrl": "/papers/language-neutral-or-language-specific-disentangling-multilingual-llm-subspaces.pdf",
     "codeUrl": "https://github.com/aliuyar1234/language-neutral-or-language-specific",
     "tags": [
@@ -38,16 +42,18 @@
     ]
   },
   {
+    "slug": "soar",
     "title": "SOAR: Recovering Operational Overlays from Shared Semantics in Frozen Language Models",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19313240",
-    "abstract": "A method for adding operational behaviors like strict JSON or exact quotation on top of a frozen model without retraining the whole thing. The goal is to make output contracts reusable and testable.",
+    "short": "SOAR",
+    "theme": "repair",
+    "featured": false,
+    "finding": "Adds operational behaviours such as strict JSON or exact quotation to a frozen model as small overlays that can be tested on their own.",
+    "summary": "A method for adding operational behaviors like strict JSON or exact quotation on top of a frozen model without retraining the whole thing. The goal is to make output contracts reusable and testable.",
+    "abstract": "",
     "whyItMatters": "Teams keep needing small, boring behavior guarantees from large models. This treats those guarantees as something you can isolate, ship, and audit.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19313240",
+    "date": "2026-03-29",
+    "result": "",
+    "doi": "10.5281/zenodo.19313240",
     "pdfUrl": "/papers/overlay-algebra-causal-composition-of-operational-behaviors-in-frozen-language-models.pdf",
     "codeUrl": "https://github.com/aliuyar1234/overlay-algebra",
     "tags": [
@@ -57,16 +63,18 @@
     ]
   },
   {
+    "slug": "selective-revocation-and-replay",
     "title": "Selective Revocation and Replay: Post-Compromise Recovery of Explicit Persisted State in Memory-Augmented LLM Agents",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18967060",
-    "abstract": "A recovery method for poisoned agent memory. Instead of wiping everything, it tracks where bad state came from, revokes descendants, and replays only the parts that need repair.",
+    "short": "Selective Revocation and Replay",
+    "theme": "agents",
+    "featured": true,
+    "finding": "Recovers a compromised agent's memory by tracing where poisoned state came from, revoking what descended from it and replaying only what needs repair.",
+    "summary": "A recovery method for poisoned agent memory. Instead of wiping everything, it tracks where bad state came from, revokes descendants, and replays only the parts that need repair.",
+    "abstract": "",
     "whyItMatters": "Agent memory is useful until it carries attacker garbage forward. This gives operators a cleaner option than 'delete everything and hope'.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18967060",
+    "date": "2026-03-11",
+    "result": "",
+    "doi": "10.5281/zenodo.18967060",
     "pdfUrl": "/papers/selective-revocation-and-replay-post-compromise-recovery-of-explicit-persisted-state.pdf",
     "codeUrl": "https://github.com/aliuyar1234/selective-revocation-replay",
     "tags": [
@@ -76,16 +84,18 @@
     ]
   },
   {
+    "slug": "same-size-capability-transfer",
     "title": "Same-Size Capability Transfer Reveals a Performance-Localization Tradeoff in Deterministic Function Calling",
-    "venue": "Research",
-    "year": 2026,
+    "short": "Same-size capability transfer",
+    "theme": "repair",
+    "featured": false,
+    "finding": "A locked testbed for moving function-calling ability between same-size models, which measures the trade-off between raw performance and how localized the transferred capability is.",
+    "summary": "A locked testbed for moving function-calling behaviour between same-family models. It compares sparse transfer against a dense module on a deterministic metric.",
+    "abstract": "",
+    "whyItMatters": "It gives model-editing claims a deterministic check instead of a few cherry-picked examples.",
+    "date": "2026-03-25",
+    "result": "",
     "doi": "10.5281/zenodo.19226752",
-    "abstract": "A locked testbed for moving function-calling behavior between same-family models. Sparse transfer worked, but the dense module still won the main metric, which is exactly the kind of inconvenient result worth knowing.",
-    "whyItMatters": "It gives model-editing claims a deterministic check instead of a nice story and a few cherry-picked examples.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19226752",
     "pdfUrl": "/papers/same-size-capability-transfer-reveals-a-performance-localization-tradeoff-in-deterministic-function-calling.pdf",
     "codeUrl": "https://github.com/aliuyar1234/sparse-capability-transplants",
     "tags": [
@@ -95,16 +105,18 @@
     ]
   },
   {
+    "slug": "surgical-post-training-diffing",
     "title": "Surgical Post-Training Diffing: Partial Recovery Without Clean Small-Mask Separation",
-    "venue": "Research",
-    "year": 2026,
+    "short": "Surgical post-training diffing",
+    "theme": "interpretability",
+    "featured": false,
+    "finding": "Paired diffing of Gemma post-training that localizes part of the capability signal in sparse weight changes and tests it on held-out evaluation.",
+    "summary": "A paired diffing study of Gemma post-training. It recovers part of the capability signal from sparse differences and checks it against held-out evaluation.",
+    "abstract": "",
+    "whyItMatters": "It separates 'we found the circuit' from 'we found something that generalizes', with a held-out test for each.",
+    "date": "2026-03-31",
+    "result": "",
     "doi": "10.5281/zenodo.19347476",
-    "abstract": "A paired diffing study of Gemma post-training. It recovered some capability signal, but the clean small-mask story did not really survive contact with held-out evaluation.",
-    "whyItMatters": "A useful reminder that 'we found the circuit' and 'we found something that generalizes' are not the same sentence.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19347476",
     "pdfUrl": "/papers/surgical-post-training-diffing-partial-recovery-without-clean-small-mask-separation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/surgical-posttraining-diffing",
     "tags": [
@@ -114,16 +126,18 @@
     ]
   },
   {
+    "slug": "proberoute",
     "title": "ProbeRoute: Probes as Routing Priors for Frozen-Backbone Multi-Token Prediction",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19022708",
-    "abstract": "A cheap probe pass is used to initialize routing for multi-token prediction on a frozen backbone. The aim is better speculative drafting without making the adaptation recipe bigger and messier.",
+    "short": "ProbeRoute",
+    "theme": "repair",
+    "featured": false,
+    "finding": "A cheap offline probe pass initialises routing for multi-token prediction on a frozen backbone, for better speculative drafting with the same recipe.",
+    "summary": "A cheap probe pass is used to initialize routing for multi-token prediction on a frozen backbone. The aim is better speculative drafting without making the adaptation recipe bigger and messier.",
+    "abstract": "",
     "whyItMatters": "If you can get a better route from a small offline probe, you should not need to unfreeze half the model just to test the idea.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19022708",
+    "date": "2026-03-14",
+    "result": "",
+    "doi": "10.5281/zenodo.19022708",
     "pdfUrl": "/papers/proberoute-probes-as-routing-priors-for-frozen-backbone-multi-token-prediction.pdf",
     "codeUrl": "https://github.com/aliuyar1234/proberoute",
     "tags": [
@@ -133,16 +147,18 @@
     ]
   },
   {
+    "slug": "criterion-fidelity-in-llm-judges",
     "title": "When Accuracy Hides Path Dependence: Criterion Fidelity in LLM Judges",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.19332782",
-    "abstract": "This paper tests whether LLM judges follow the actual criterion or just react to how the criterion is worded. Accuracy can look fine while the judge is still path-dependent in a way you would not want in production.",
+    "short": "Criterion fidelity in LLM judges",
+    "theme": "evaluation",
+    "featured": true,
+    "finding": "LLM judges can score accurately while reacting to how a criterion is worded instead of what it asks. Paraphrase and counterfactual checks expose it.",
+    "summary": "This paper tests whether LLM judges follow the actual criterion or just react to how the criterion is worded. Accuracy can look fine while the judge is still path-dependent in a way you would not want in production.",
+    "abstract": "",
     "whyItMatters": "Good judge pipelines need to survive paraphrase and counterfactual checks. Otherwise the reviewer is grading the wording, not the work.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19332782",
+    "date": "2026-03-30",
+    "result": "",
+    "doi": "10.5281/zenodo.19332782",
     "pdfUrl": "/papers/when-accuracy-hides-path-dependence-criterion-fidelity-in-llm-judges.pdf",
     "codeUrl": "https://github.com/aliuyar1234/criterion-fidelity-llm-judges",
     "tags": [
@@ -152,16 +168,18 @@
     ]
   },
   {
+    "slug": "binary-evidence-sufficiency",
     "title": "Binary Evidence Sufficiency Dissociation in Reasoning-Model Hidden States",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18921976",
-    "abstract": "A probe study asking whether reasoning models carry an internal signal for 'I have enough evidence now.' That signal appears separable from just getting the final answer right.",
+    "short": "Evidence sufficiency in hidden states",
+    "theme": "interpretability",
+    "featured": false,
+    "finding": "Reasoning models carry an internal signal for having enough evidence, separable from getting the final answer right.",
+    "summary": "A probe study asking whether reasoning models carry an internal signal for 'I have enough evidence now.' That signal appears separable from just getting the final answer right.",
+    "abstract": "",
     "whyItMatters": "For retrieval and agent systems, knowing when the model has enough evidence may matter more than another confident-looking answer.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18921976",
+    "date": "2026-03-09",
+    "result": "",
+    "doi": "10.5281/zenodo.18921976",
     "pdfUrl": "/papers/binary-evidence-sufficiency-dissociation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/binary-evidence-sufficiency-dissociation",
     "tags": [
@@ -171,16 +189,18 @@
     ]
   },
   {
+    "slug": "signed-intervention-geometry",
     "title": "Structured Yet Fragile: Signed Intervention Geometry of Matched ORF and CRISPR Cell Painting Profiles",
-    "venue": "Research",
-    "year": 2026,
+    "short": "Signed intervention geometry",
+    "theme": "beyond",
+    "featured": false,
+    "finding": "A locked analysis of matched ORF and CRISPR Cell Painting profiles that maps the signed geometry of genetic interventions and tests how far it holds under stricter checks.",
+    "summary": "A locked analysis of matched ORF and CRISPR Cell Painting profiles. It measures the signed geometry of the interventions and how well it supports retrieval under strict checks.",
+    "abstract": "",
+    "whyItMatters": "Locked analyses show which biological claims hold when analytic flexibility is taken away.",
+    "date": "2026-03-23",
+    "result": "",
     "doi": "10.5281/zenodo.19185214",
-    "abstract": "A locked analysis of matched ORF and CRISPR Cell Painting profiles. The structure is real, but fragile, and the retrieval utility disappears under stricter checks.",
-    "whyItMatters": "Negative results like this are useful. They tell you which biological claims still hold when analytic flexibility is taken away.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.19185214",
     "pdfUrl": "/papers/structured-yet-fragile-signed-intervention-geometry-of-matched-orf-and-crispr-cell-painting-profiles.pdf",
     "codeUrl": "https://github.com/aliuyar1234/signed-intervention-geometry-cell-painting",
     "tags": [
@@ -190,16 +210,18 @@
     ]
   },
   {
+    "slug": "outcome-is-not-verification",
     "title": "Outcome Is Not Verification: Auditing Hidden-State Verifiers with Counterfactual Local Validity",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "",
-    "abstract": "An audit of hidden-state verifiers that separates 'the final answer was right' from 'the process was locally valid.' Those are easy to blur and dangerous to confuse.",
+    "short": "Outcome Is Not Verification",
+    "theme": "evaluation",
+    "featured": false,
+    "finding": "Audits hidden-state verifiers by separating a correct final answer from a locally valid process, with counterfactual tests.",
+    "summary": "An audit of hidden-state verifiers that separates 'the final answer was right' from 'the process was locally valid.' Those are easy to blur and dangerous to confuse.",
+    "abstract": "",
     "whyItMatters": "If a verifier is just reading outcome signals, it should not be sold as process verification. This paper gives teams a way to check that.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "",
+    "date": "2026-01-01",
+    "result": "",
+    "doi": "",
     "pdfUrl": "/papers/outcome-is-not-verification-auditing-hidden-state-verifiers-counterfactual-local-validity.pdf",
     "codeUrl": "",
     "tags": [
@@ -209,16 +231,18 @@
     ]
   },
   {
+    "slug": "first-unsafe-step-dpo",
     "title": "First-Unsafe-Step Counterfactual DPO for KPI-Gaming in Autonomous LLM Agents: Held-Out Evaluation Under a Capability-Safety Bottleneck",
-    "venue": "Research",
-    "year": 2026,
+    "short": "First-unsafe-step DPO",
+    "theme": "agents",
+    "featured": false,
+    "finding": "Finds the first unsafe step in an agent's trajectory, rewrites it safely and trains on the contrast, then measures the effect on held-out KPI-gaming tasks.",
+    "summary": "A held-out agent-safety study: find the first unsafe step, rewrite it safely, and train on that contrast with preference optimization.",
+    "abstract": "",
+    "whyItMatters": "It shows where preference training for agent safety gets its leverage, and what the base model's own behaviour limits.",
+    "date": "2026-01-01",
+    "result": "",
     "doi": "",
-    "abstract": "A held-out agent-safety study that finds the first unsafe step, rewrites it safely, and trains on that contrast. The catch: preference training is limited by what the base model can even produce on-policy.",
-    "whyItMatters": "It is a practical warning for agent safety work: better labels do not magically fix a weak behavioral horizon.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "",
     "pdfUrl": "/papers/first-unsafe-step-counterfactual-dpo-for-kpi-gaming-in-autonomous-llm-agents.pdf",
     "codeUrl": "",
     "tags": [
@@ -228,16 +252,18 @@
     ]
   },
   {
+    "slug": "what-survives-control-calibration",
     "title": "What Survives Control Calibration? A Full-Scope Negative Result for a Locked Minimum-Description Acceptance Criterion",
-    "venue": "Research",
-    "year": 2026,
+    "short": "Control calibration for causal abstraction",
+    "theme": "evaluation",
+    "featured": false,
+    "finding": "A locked, full-scope test of a minimum-description acceptance rule for causal abstractions, calibrated against controls before any claim is made.",
+    "summary": "A locked causal-abstraction acceptance rule, applied across the full scope of tested settings and calibrated against controls.",
+    "abstract": "",
+    "whyItMatters": "Interpretability needs clear acceptance rules fixed in advance. This one sets the bar and reports exactly what clears it.",
+    "date": "2026-01-01",
+    "result": "",
     "doi": "",
-    "abstract": "A full-scope negative result for a locked causal-abstraction acceptance rule. Across the tested settings, no proposed abstraction class earned certification.",
-    "whyItMatters": "This is the kind of failure report interpretability needs more of: clear rules, no post-hoc rescue, and boundaries on what can be claimed.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "",
     "pdfUrl": "/papers/what-survives-control-calibration-full-scope-negative-result-locked-mdl-acceptance.pdf",
     "codeUrl": "",
     "tags": [
@@ -247,16 +273,18 @@
     ]
   },
   {
+    "slug": "cachemedic",
     "title": "CacheMedic++: Robust KV-Cache Stabilization via Self-Distillation",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18669267",
-    "abstract": "A reproducible way to corrupt, diagnose, and repair KV-cache failures using distillation. The goal is to turn weird serving instability into something you can actually test.",
+    "short": "CacheMedic++",
+    "theme": "repair",
+    "featured": false,
+    "finding": "Corrupts, diagnoses and repairs KV-cache failures reproducibly with self-distillation, so serving instability becomes something you can test.",
+    "summary": "A reproducible way to corrupt, diagnose, and repair KV-cache failures using distillation. The goal is to turn weird serving instability into something you can actually test.",
+    "abstract": "",
     "whyItMatters": "Serving failures are easier to fix when they are repeatable. This makes that repeatability part of the workflow.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18669267",
+    "date": "2026-02-17",
+    "result": "",
+    "doi": "10.5281/zenodo.18669267",
     "pdfUrl": "/papers/cachemedic-robust-kv-cache-stabilization-via-self-distillation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/cachemedicpp-research",
     "tags": [
@@ -266,16 +294,18 @@
     ]
   },
   {
+    "slug": "certipatch",
     "title": "CertiPatch: Specification Repair for Frozen Language Models with Replayable Empirical Certificates",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18541322",
-    "abstract": "A repair workflow for frozen models that finds counterexamples, patches the behavior, and leaves behind replayable certificates.",
+    "short": "CertiPatch",
+    "theme": "repair",
+    "featured": true,
+    "finding": "Repairs a frozen model against its specification: find counterexamples, patch the behaviour, and leave certificates anyone can replay.",
+    "summary": "A repair workflow for frozen models that finds counterexamples, patches the behavior, and leaves behind replayable certificates.",
+    "abstract": "",
     "whyItMatters": "Model repair should not be a vibes-based sign-off. This turns it into something teams can rerun and inspect.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18541322",
+    "date": "2026-02-09",
+    "result": "",
+    "doi": "10.5281/zenodo.18541322",
     "pdfUrl": "/papers/certipatch-specification-repair-for-frozen-language-models-with-replayable-empirical-certificates.pdf",
     "codeUrl": "https://github.com/aliuyar1234/certipatch",
     "tags": [
@@ -285,16 +315,18 @@
     ]
   },
   {
+    "slug": "scrubid",
     "title": "ScrubID: Identifiability-Aware Auditing for Mechanistic Interpretability",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18330419",
-    "abstract": "An audit method for checking whether interpretability claims are actually identifiable from the evidence. Pretty plots are not enough.",
+    "short": "ScrubID",
+    "theme": "evaluation",
+    "featured": false,
+    "finding": "Checks whether a mechanistic interpretability claim is identifiable from the evidence before anyone accepts it.",
+    "summary": "An audit method for checking whether interpretability claims are actually identifiable from the evidence. Pretty plots are not enough.",
+    "abstract": "",
     "whyItMatters": "It raises the bar for interpretability claims by asking what can be independently checked.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18330419",
+    "date": "2026-01-21",
+    "result": "",
+    "doi": "10.5281/zenodo.18330419",
     "pdfUrl": "/papers/scrubid-identifiability-aware-auditing-for-mechanistic-interpretability.pdf",
     "codeUrl": "https://github.com/aliuyar1234/ScrubID",
     "tags": [
@@ -304,16 +336,18 @@
     ]
   },
   {
+    "slug": "discover-then-distill",
     "title": "Discover-Then-Distill: Separating Test-Time Adaptation from Self-Distillation Consolidation",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18634021",
-    "abstract": "A compute-matched pipeline that separates short-term adaptation from durable improvement. The boring question matters: did we improve the model, or just help it survive the test?",
+    "short": "Discover-Then-Distill",
+    "theme": "repair",
+    "featured": false,
+    "finding": "A compute-matched pipeline that separates short-term test-time adaptation from durable improvement through self-distillation.",
+    "summary": "A compute-matched pipeline that separates short-term adaptation from durable improvement. The boring question matters: did we improve the model, or just help it survive the test?",
+    "abstract": "",
     "whyItMatters": "It helps teams avoid mistaking temporary adaptation for a real tuning win.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18634021",
+    "date": "2026-02-13",
+    "result": "",
+    "doi": "10.5281/zenodo.18634021",
     "pdfUrl": "/papers/discover-then-distill-separating-test-time-adaptation-from-self-distillation-consolidation.pdf",
     "codeUrl": "https://github.com/aliuyar1234/discover-then-distill-paper",
     "tags": [
@@ -323,16 +357,18 @@
     ]
   },
   {
+    "slug": "robust-discover-distill",
     "title": "Robust Discover→Distill Under Poisoned Distillation Data",
-    "venue": "Research",
-    "year": 2026,
+    "short": "Robust Discover→Distill",
+    "theme": "agents",
+    "featured": false,
+    "finding": "Stress-tests the distillation step of a self-improving loop with corrupted and trigger-poisoned demonstrations, and measures which cheap defences hold.",
+    "summary": "I isolated the distillation step of a Discover→Distill loop and fed it corrupted and trigger-poisoned demonstrations on a controlled synthetic benchmark, then measured a format gate and an Anchor-KL penalty as defences.",
+    "abstract": "",
+    "whyItMatters": "A self-improving model that learns from its own archive of demonstrations has an attack surface in that archive. This sets up a reproducible way to test defences for it.",
+    "date": "2026-01-01",
+    "result": "",
     "doi": "",
-    "abstract": "I isolated the distillation step of a Discover→Distill loop and fed it corrupted and trigger-poisoned demonstrations on a small synthetic benchmark. A simple format gate did nothing, because the bad examples were still syntactically valid, and a small Anchor-KL penalty helped a little under heavy random corruption, but only in a two-seed comparison with overlapping error bars. The trigger backdoor never took hold in any condition, so that is a null result, not a security guarantee.",
-    "whyItMatters": "If a self-improving model learns from its own archive of demonstrations, that archive is an attack surface, and cheap filters that only check format will not catch plausible-but-wrong data. This is a small, honest starting point for testing that, not proof that any defense holds.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://github.com/aliuyar1234/robust-discover-distill-poisoning",
     "pdfUrl": "/papers/robust-discover-distill-under-poisoned-distillation-data.pdf",
     "codeUrl": "https://github.com/aliuyar1234/robust-discover-distill-poisoning",
     "tags": [
@@ -342,16 +378,18 @@
     ]
   },
   {
+    "slug": "avalanchellm",
     "title": "AvalancheLLM: Token-Layer Activation Event Cascades in LLMs under Gain Scaling",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18435924",
-    "abstract": "A controlled study of activation cascades under gain changes. It looks for instability patterns in the model before they show up as weird behavior downstream.",
+    "short": "AvalancheLLM",
+    "theme": "interpretability",
+    "featured": false,
+    "finding": "Maps token-layer activation cascades under gain scaling, to find instability inside the model before it shows up as behaviour.",
+    "summary": "A controlled study of activation cascades under gain changes. It looks for instability patterns in the model before they show up as weird behavior downstream.",
+    "abstract": "",
     "whyItMatters": "If a model becomes brittle under small scaling changes, you want to find out in a lab, not from users.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18435924",
+    "date": "2026-01-30",
+    "result": "",
+    "doi": "10.5281/zenodo.18435924",
     "pdfUrl": "/papers/avalanchellm-token-layer-activation-event-cascades-in-llms-under-gain-scaling.pdf",
     "codeUrl": "https://github.com/aliuyar1234/AvalancheLLM",
     "tags": [
@@ -361,16 +399,18 @@
     ]
   },
   {
+    "slug": "ria",
     "title": "RIA: Retokenization Invariance Atlas",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18682874",
-    "abstract": "A deterministic audit for cases where semantically identical prompt formatting still changes the answer. Newline roulette is not a reliability strategy.",
+    "short": "RIA: Retokenization Invariance Atlas",
+    "theme": "evaluation",
+    "featured": false,
+    "finding": "A deterministic audit of formatting changes that keep a prompt's meaning and still change the answer.",
+    "summary": "A deterministic audit for cases where semantically identical prompt formatting still changes the answer. Newline roulette is not a reliability strategy.",
+    "abstract": "",
     "whyItMatters": "It gives teams evidence about whether formatting changes are harmless or quietly changing outcomes.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18682874",
+    "date": "2026-02-18",
+    "result": "",
+    "doi": "10.5281/zenodo.18682874",
     "pdfUrl": "/papers/ria-retokenization-invariance-atlas.pdf",
     "codeUrl": "https://github.com/aliuyar1234/retokenization-invariance-atlas",
     "tags": [
@@ -380,16 +420,18 @@
     ]
   },
   {
+    "slug": "cis-technical-report",
     "title": "CIS Technical Report",
-    "venue": "Research",
-    "year": 2026,
-    "doi": "10.5281/zenodo.18234775",
-    "abstract": "A practical reliability report for AI systems: deterministic checks, evidence gates, and implementation notes for teams that have to ship the thing, not just demo it.",
+    "short": "CIS technical report",
+    "theme": "evaluation",
+    "featured": false,
+    "finding": "Deterministic checks, evidence gates and implementation notes for teams that have to ship AI systems.",
+    "summary": "A practical reliability report for AI systems: deterministic checks, evidence gates, and implementation notes for teams that have to ship the thing, not just demo it.",
+    "abstract": "",
     "whyItMatters": "It turns the reliability philosophy into something a delivery team can actually adopt.",
-    "authors": [
-      "Ali Uyar"
-    ],
-    "paperUrl": "https://doi.org/10.5281/zenodo.18234775",
+    "date": "2026-01-13",
+    "result": "",
+    "doi": "10.5281/zenodo.18234775",
     "pdfUrl": "/papers/cis-technical-report.pdf",
     "codeUrl": "https://github.com/aliuyar1234/cis-technical-report",
     "tags": [

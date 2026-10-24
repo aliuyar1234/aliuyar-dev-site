@@ -1,0 +1,29 @@
+---
+interface Props { text: string; label: string }
+const { text, label } = Astro.props;
+---
+
+<button class="copy small" type="button" data-copy={text} data-label={label}>{label}</button>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("button[data-copy]")) {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+        button.textContent = "Copied";
+      } catch {
+        button.textContent = "Select and copy";
+      }
+      setTimeout(() => (button.textContent = button.dataset.label ?? ""), 1800);
+    });
+  }
+</script>
+
+<style>
+  .copy {
+    border: 1px solid var(--line); background: none; color: var(--strong);
+    font: inherit; font-size: 0.875rem; padding: 6px 12px; border-radius: 3px; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .copy:hover { border-color: var(--strong); }
+</style>

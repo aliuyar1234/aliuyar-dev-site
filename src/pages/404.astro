@@ -1,34 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
+import FailedClosed from "../components/FailedClosed";
 ---
 
-<BaseLayout title="ali uyar // 404" canonicalPath="/404" description="The page you requested could not be found.">
-  <SiteHeader />
-  <main id="main" class="page-wrap flex min-h-[70vh] flex-col items-start justify-center py-14">
-
-    <p class="prompt mono-sm tabnum" style="text-transform: uppercase; letter-spacing: 0.12em; color: rgb(var(--muted));">
-      cat $(pwd)
-    </p>
-
-    <h1 class="mt-6 font-mono" style="font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.1; font-weight: 500;">
-      Error 404<span class="caret" aria-hidden="true"></span>
-    </h1>
-
-    <p class="mt-6 max-w-xl text-base leading-[1.75]" style="color: rgb(var(--muted));">
-      // the requested page does not exist, or it has moved. if you arrived from an old link, the index is the best place to start.
-    </p>
-
-    <pre class="mt-8 mono-sm" style="color: rgb(var(--dim));">
-  $ stat /requested-page
-  stat: cannot statx '/requested-page': No such file or directory
-  $ exit</pre>
-
-    <div class="mt-10 flex flex-wrap items-center gap-3">
-      <a href="/" class="btn-accent">cd ~</a>
-      <a href="/research" class="btn">ls /research</a>
+<BaseLayout title="Not found | Ali Uyar" description="Nothing is published at this address." noindex>
+  <section class="wrap nf">
+    <FailedClosed client:visible />
+    <h1 class="h1">This request failed closed.</h1>
+    <p class="lede">Nothing is published at this address, so nothing is shown. The research and the writing are where the work is.</p>
+    <div class="actions">
+      <a class="btn" href="/research/">Research</a>
+      <a class="link" href="/articles/">Writing</a>
     </div>
-  </main>
-  <SiteFooter />
+  </section>
 </BaseLayout>
+
+<style>
+  .nf { display: grid; gap: 28px; justify-items: start; padding-top: clamp(40px, 7vw, 104px); }
+</style>

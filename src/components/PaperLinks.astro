@@ -1,0 +1,17 @@
+---
+import { doiUrl, type Paper } from "../lib/papers";
+interface Props { paper: Paper; detail?: boolean }
+const { paper, detail = true } = Astro.props;
+---
+
+<p class="paper-links small">
+  {detail && <a class="link" href={`/research/${paper.slug}/`}>Details</a>}
+  <a class="link" href={paper.pdfUrl}>PDF</a>
+  {paper.doi && <a class="link" href={doiUrl(paper)}>DOI</a>}
+  {paper.codeUrl && <a class="link" href={paper.codeUrl}>Code</a>}
+</p>
+
+<style>
+  .paper-links { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .paper-links a { padding-block: 6px; }
+</style>

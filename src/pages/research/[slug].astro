@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FigureSlot from "../../components/FigureSlot.astro";
+import CopyButton from "../../components/CopyButton.astro";
+import { SITE, formatDate } from "../../lib/site";
+import { bibtex, byTheme, doiUrl, figureFor, papers, themeOf, type Paper } from "../../lib/papers";
+
+export function getStaticPaths() {
+  return papers.map((paper) => ({ params: { slug: paper.slug }, props: { paper } }));
+}
+
+const { paper } = Astro.props as { paper: Paper };
+const theme = themeOf(paper.theme);
+const related = byTheme(paper.theme).filter((p) => p.slug !== paper.slug).slice(0, 3);
+const fig = figureFor(paper);
+const url = `${SITE.url}/research/${paper.slug}/`;
+const pdf = new URL(paper.pdfUrl, SITE.url).toString();
+const abstract = paper.abstract || paper.summary;
+const bib = bibtex(paper);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "@id": `${url}#paper`,
+  headline: paper.title.length > 110 ? paper.title.slice(0, 107) + "..." : paper.title,
+  name: paper.title,
+  url,
+  abstract,
+  datePublished: paper.date,
+  author: { "@type": "Person", "@id": SITE.personId, name: SITE.name },
+  publisher: paper.doi ? { "@type": "Organization", name: "Zenodo" } : { "@id": SITE.personId },
+  ...(paper.doi ? { identifier: { "@type": "PropertyValue", propertyID: "DOI", value: paper.doi }, sameAs: doiUrl(paper) } : {}),
+  encoding: { "@type": "MediaObject", contentUrl: pdf, encodingFormat: "application/pdf" },
+  ...(paper.codeUrl ? { isBasedOn: paper.codeUrl } : {}),
+  keywords: paper.tags.join(", "),
+  about: theme.name,
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout title={`${paper.title} | Ali Uyar`} description={paper.finding} jsonLd={jsonLd} ogType="article" publishedTime={paper.date} ogImage={`/og/research/${paper.slug}.png`}>
+  <Fragment slot="head">
+    <meta name="citation_title" content={paper.title} />
+    <meta name="citation_author" content="Uyar, Ali" />
+    <meta name="citation_publication_date" content={paper.date.replaceAll("-", "/")} />
+    <meta name="citation_pdf_url" content={pdf} />
+    <meta name="citation_abstract_html_url" content={url} />
+    {paper.doi && <meta name="citation_doi" content={paper.doi} />}
+    {paper.doi && <meta name="citation_publisher" content="Zenodo" />}
+    <meta name="citation_language" content="en" />
+  </Fragment>
+
+  <article class="wrap paper">
+    <header class="paper-head">
+      <p class="small"><a class="link" href="/research/">Research</a> <span class="muted">/ {theme.name}</span></p>
+      <h1 class="paper-title">{paper.title}</h1>
+      <p class="lede">{paper.finding}</p>
+      <dl class="facts small">
+        <div><dt>Published</dt><dd>{formatDate(paper.date)}</dd></div>
+        <div><dt>Author</dt><dd>Ali Uyar</dd></div>
+        {paper.doi && <div><dt>DOI</dt><dd><a class="link" href={doiUrl(paper)}>{paper.doi}</a></dd></div>}
+        {paper.codeUrl && <div><dt>Code</dt><dd><a class="link" href={paper.codeUrl}>{paper.codeUrl.replace("https://github.com/", "github.com/")}</a></dd></div>}
+      </dl>
+      <div class="actions">
+        <a class="btn" href={paper.pdfUrl}>Read the paper (PDF)</a>
+      </div>
+    </header>
+
+    {fig && <div class="paper-figure"><FigureSlot slug={fig} label={paper.title} /></div>}
+
+    <div class="paper-grid">
+      <div class="paper-body">
+        <section>
+          <h2 class="label">Abstract</h2>
+          <p class="abstract">{abstract}</p>
+        </section>
+        <section>
+          <h2 class="label">Why it matters</h2>
+          <p>{paper.whyItMatters}</p>
+        </section>
+        <section>
+          <div class="cite-head">
+            <h2 class="label">Cite</h2>
+            <CopyButton text={bib} label="Copy BibTeX" />
+          </div>
+          <pre class="bib mono"><code>{bib}</code></pre>
+        </section>
+      </div>
+
+      <aside class="sheet small" aria-label="Paper data">
+        {paper.headline && (
+          <div class="sheet-block">
+            <h2 class="label">Key result</h2>
+            <p class="strong">{paper.headline}</p>
+          </div>
+        )}
+        {paper.setup && (
+          <div class="sheet-block">
+            <h2 class="label">Setup</h2>
+            <p>{paper.setup}</p>
+          </div>
+        )}
+        {paper.methods?.length ? (
+          <div class="sheet-block">
+            <h2 class="label">Methods</h2>
+            <ul class="chips">{paper.methods.map((m) => <li>{m}</li>)}</ul>
+          </div>
+        ) : null}
+        {paper.models?.length ? (
+          <div class="sheet-block">
+            <h2 class="label">Models and data</h2>
+            <ul class="chips mono">{paper.models.map((m) => <li>{m}</li>)}</ul>
+          </div>
+        ) : null}
+        <div class="sheet-block">
+          <h2 class="label">Theme</h2>
+          <p><a class="link" href={`/research/#${paper.theme}`}>{theme.name}</a></p>
+        </div>
+      </aside>
+    </div>
+
+    {related.length > 0 && (
+      <aside class="related" aria-labelledby="related-h">
+        <h2 class="h3" id="related-h">More on {theme.name.toLowerCase()}</h2>
+        <ul>
+          {related.map((p) => (
+            <li><a href={`/research/${p.slug}/`}><span class="strong">{p.title}</span><span>{p.finding}</span></a></li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .paper-head { display: grid; gap: 26px; padding-top: clamp(36px, 6vw, 88px); max-width: 60rem; }
+  .paper-title { font-size: clamp(2rem, 1.2rem + 2.6vw, 3.3rem); font-weight: 610; font-stretch: 106%; line-height: 1.06; letter-spacing: -0.025em; }
+  .paper-head .lede { max-width: 56ch; }
+  .facts { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 0; }
+  .facts dt { color: var(--muted); }
+  .facts dd { margin: 2px 0 0; color: var(--strong); overflow-wrap: anywhere; }
+
+  .paper-figure { margin-top: clamp(56px, 7vw, 96px); max-width: 52rem; }
+
+  .paper-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 48px clamp(40px, 6vw, 96px);
+    margin-top: clamp(56px, 7vw, 96px); align-items: start;
+  }
+  .paper-body { display: grid; gap: 48px; max-width: var(--measure); }
+  .sheet { display: grid; gap: 0; border-top: 1px solid var(--line); position: sticky; top: 24px; }
+  .sheet-block { display: grid; gap: 8px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+  .sheet .label { font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
+  .sheet .strong { font-size: 0.9375rem; line-height: 1.5; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips li { padding: 3px 9px; border: 1px solid var(--line); border-radius: 3px; color: var(--strong); }
+  .chips.mono li { font-family: var(--mono); font-size: 0.75rem; }
+  .paper-body section { display: grid; gap: 14px; }
+  .label { font-size: 0.9375rem; font-weight: 560; color: var(--strong); letter-spacing: 0; }
+  .abstract { font-size: 1.125rem; line-height: 1.7; }
+  .cite-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .bib {
+    margin: 0; padding: 18px 20px; overflow-x: auto;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    color: var(--text); line-height: 1.6;
+  }
+
+  .related { margin-top: var(--section); display: grid; gap: 24px; }
+  .related ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+  .related a { display: grid; gap: 10px; padding-top: 20px; border-top: 1px solid var(--line); transition: border-color 0.25s var(--ease); }
+  .related a:hover { border-top-color: var(--strong); }
+  .related .strong { font-weight: 560; line-height: 1.35; }
+  .related a span:last-child { color: var(--muted); font-size: 0.9375rem; }
+
+  @media (max-width: 960px) {
+    .paper-grid { grid-template-columns: minmax(0, 1fr); }
+    .sheet { position: static; }
+  }
+  @media (max-width: 860px) { .related ul { grid-template-columns: minmax(0, 1fr); } }
+</style>

@@ -1,3 +1,0 @@
-Place your CV files in this folder as:
-- CV_AliUyar_English.pdf
-- CV_AliUyar_German.pdf

@@ -1,221 +1,234 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import PretextEvidenceField from "../components/PretextEvidenceField.astro";
-import research from "../content/research.json";
+import HeroTitle from "../components/HeroTitle";
+import FigureSlot from "../components/FigureSlot.astro";
+import PaperLinks from "../components/PaperLinks.astro";
+import { SITE, formatDate } from "../lib/site";
+import { THEMES, byTheme, featured, figureFor, papers, themeOf } from "../lib/papers";
 import writing from "../content/writing.json";
-import profile from "../content/profile.json";
 
-const topResearch = research.slice(0, 3);
-const startHere = writing.find((post) => post.slug === "the-first-answer-is-usually-not-the-real-one") || writing[0];
+const essays = ["the-demo-is-not-the-product", "designing-for-reversibility-in-high-speed-systems", "decision-architecture-in-complex-systems"]
+  .map((slug) => writing.find((w) => w.slug === slug)!)
+  .filter(Boolean);
 
-const principles = [
+const order = ["criterion-fidelity-in-llm-judges", "selective-revocation-and-replay", "certipatch"];
+const selected = order.map((slug) => featured.find((p) => p.slug === slug)!).filter(Boolean);
+
+const propositions = [
   {
-    k: "01",
-    t: "Find the constraint",
-    b: "A model problem may be a data problem. A dashboard problem may be a question problem. A strategy problem may be an avoided tradeoff. I like getting to the layer where the work actually changes."
+    n: "1", text: "Find the constraint.",
+    subs: [
+      ["1.1", "A model problem is often a data problem, a question problem or a trade-off nobody wants to make. The work happens at the layer where the outcome changes."],
+      ["1.2", "Do not fix a data problem with a prompt, an ownership problem with a dashboard, or a judgment problem with more automation."],
+    ],
   },
   {
-    k: "02",
-    t: "Keep the evidence close",
-    b: "If a system makes a claim, routes a case, blocks an action, or changes a workflow, there should be something to inspect afterwards. Otherwise people are guessing politely."
+    n: "2", text: "Keep the evidence close.",
+    subs: [
+      ["2.1", "When a system routes a case, blocks an action or changes a workflow, it leaves something to inspect afterwards."],
+      ["2.2", "Evals answer product questions. A score that decides nothing is decoration."],
+    ],
   },
   {
-    k: "03",
-    t: "Cut the machinery",
-    b: "Complexity has to earn its place. Sometimes the right move is a model, sometimes cleaner data, sometimes a better decision loop, and sometimes not adding AI at all."
-  }
+    n: "3", text: "Fail closed.",
+    subs: [["3.1", "Decide what a system is trusted to do before it does it. Without the evidence, it does nothing."]],
+  },
+  {
+    n: "4", text: "Fix the test before the result.",
+    subs: [["4.1", "Acceptance rules are written down before the run, and whatever comes out gets reported."]],
+  },
+  {
+    n: "5", text: "Cut the machinery.",
+    subs: [["5.1", "Complexity has to earn its place. Sometimes the right move is a model, sometimes cleaner data, sometimes no AI at all."]],
+  },
 ];
 
-const thinking = [
-  "The first answer is useful, but it is often incomplete.",
-  "Do not fix a data problem with a prompt.",
-  "Do not fix an ownership problem with a dashboard.",
-  "Do not fix a judgment problem by adding more automation.",
-  "Evals should answer product questions, not decorate dashboards.",
-  "Find the real constraint, then make the output simple enough to use."
-];
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": SITE.personId,
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  email: `mailto:${SITE.email}`,
+  jobTitle: SITE.jobTitle,
+  worksFor: { "@type": "Organization", name: SITE.employer },
+  address: { "@type": "PostalAddress", addressLocality: "Vienna", addressCountry: "AT" },
+  knowsAbout: ["AI alignment", "AI security", "LLM evaluation", "Mechanistic interpretability", "AI agent safety", "LLM judges"],
+  sameAs: [SITE.github],
+};
 ---
 
-<BaseLayout
-  title="ali uyar // ai systems & technical product"
-  canonicalPath="/"
-  description="AI systems, product decisions, workflows, evaluation, governance, and the judgment that connects them."
->
-  <SiteHeader />
-
-  <main id="main">
-    {/* ═════════ HERO / boot sequence ═════════ */}
-    <section class="page-wrap pt-12 md:pt-16 pb-14">
-      <div class="reveal-stagger">
-        <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">// initialising …</p>
-        <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">// session ok</p>
-
-        <div class="mt-10">
-          <dl class="kv max-w-xl">
-            <dt>NAME</dt>
-            <dd>Ali Uyar</dd>
-            <dt>ROLE</dt>
-            <dd>Applied AI Engineer · EU</dd>
-            <dt>LOCUS</dt>
-            <dd>{profile.location} · UTC+01</dd>
-          </dl>
-        </div>
-
-        <div class="mt-12">
-          <h1 class="hero-title">
-            <span class="glyph">I work on problems</span><br />
-            that look simple until you get close.<span class="caret" aria-hidden="true"></span>
-          </h1>
-        </div>
-
-        <div class="mt-10 flex flex-wrap items-center gap-3">
-          <a href="/research" class="btn-accent">read research</a>
-          <a href="/contact" class="btn">start a thread</a>
-        </div>
-      </div>
-    </section>
-
-    <PretextEvidenceField />
-
-    {/* ═════════ DIVIDER ═════════ */}
-    <div class="page-wrap">
-      <div class="divider-ascii" aria-hidden="true">
-        ════════════════════════════════════════════════════════════════════════════
+<BaseLayout title={SITE.title} jsonLd={person}>
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <HeroTitle client:media="(hover: hover) and (pointer: fine)" text="I make AI decisions auditable." />
+      <p class="lede">
+        AI lead in Vienna, building with AI for eight years. At {SITE.employer} I put agents to work on real decisions.
+        My research builds the instruments that check them: {papers.length} papers on alignment, security, evaluation and interpretability.
+      </p>
+      <div class="actions">
+        <a class="btn" href="/research/">Read the research</a>
+        <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </div>
     </div>
+    <div class="hero-figure">
+      <FigureSlot slug="hero" label="A checkweigher for AI decisions" />
+    </div>
+  </section>
 
-    {/* ═════════ § 01 · PRINCIPLES ═════════ */}
-    <section class="page-wrap mt-14">
-      <div class="section-head">
-        <span class="section-num">§ 01</span>
-        <span class="section-name">Principles</span>
-        <span class="section-meta">[ 03 · invariant ]</span>
-      </div>
-      <div class="grid gap-8 md:grid-cols-3 md:gap-10 reveal">
-        {principles.map((p) => (
-          <article>
-            <p class="mono-xs tabnum" style="color: rgb(var(--accent));">{p.k}/03</p>
-            <h3 class="mt-3 font-mono text-[1.02rem]" style="font-weight: 500; letter-spacing: -0.005em;">{p.t}</h3>
-            <p class="mt-3 text-[0.92rem] leading-[1.7]" style="color: rgb(var(--muted));">{p.b}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    {/* ═════════ § 02 · HOW I THINK ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 02</span>
-        <span class="section-name">How I think</span>
-        <span class="section-meta">[ operating notes ]</span>
-      </div>
-      <div class="grid gap-8 md:grid-cols-12 md:gap-12 reveal">
-        <div class="md:col-span-5 measure">
-          <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
-            // the layer where the problem lives
-          </p>
-          <p class="mt-5 text-base leading-[1.75]">
-            I care about the layer where the problem actually lives.
-          </p>
-          <p class="mt-5 text-base leading-[1.75]" style="color: rgb(var(--muted));">
-            The visible failure might be the model, the data, the workflow, the metric, the incentive, or the decision nobody wants to make. The work is finding the real constraint, then making the answer simple enough to use.
-          </p>
-        </div>
-        <div class="md:col-span-7 grid gap-3">
-          {thinking.map((item, i) => (
-            <div class="flex gap-3" style="border-top: 1px solid var(--rule); padding-top: 0.85rem;">
-              <span class="mono-xs tabnum" style="color: rgb(var(--accent));">{String(i + 1).padStart(2, "0")}</span>
-              <p class="font-mono text-base leading-[1.6]" style="color: rgb(var(--muted));">{item}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ═════════ § 03 · START HERE ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 03</span>
-        <span class="section-name">Start here</span>
-        <a href={`/articles/${startHere.slug}`} class="section-meta link-muted">[ read article → ]</a>
-      </div>
-      <article class="reveal" style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
-        <p class="label">[ flagship note ]</p>
-        <h2 class="mt-4 font-mono text-[1.35rem] md:text-[1.7rem]" style="font-weight: 500; letter-spacing: -0.01em; line-height: 1.35;">
-          <a class="link-accent" href={`/articles/${startHere.slug}`}>{startHere.title}</a>
-        </h2>
-        <p class="mt-4 max-w-2xl text-base leading-[1.75]" style="color: rgb(var(--muted));">{startHere.summary}</p>
-      </article>
-    </section>
-
-    {/* ═════════ § 04 · RESEARCH ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 04</span>
-        <span class="section-name">Research</span>
-        <a href="/research" class="section-meta link-muted">[ all papers → ]</a>
-      </div>
-      <div>
-        {topResearch.map((paper, i) => (
-          <article class="row reveal">
-            <div class="idx">№ {String(i + 1).padStart(2, "0")}</div>
-            <div>
-              <h3 class="title">
-                <a class="link-accent" href={paper.pdfUrl || paper.paperUrl} target="_blank" rel="noreferrer">
-                  {paper.title}.pdf
-                </a>
-              </h3>
-              <p class="desc">{paper.whyItMatters || paper.abstract}</p>
-              <div class="mt-3 flex flex-wrap gap-1.5">
-                {(paper.tags || []).map((tag) => <span class="tag">{tag}</span>)}
-              </div>
-            </div>
-            <div class="meta">
-              <div>{paper.year}</div>
-              <div class="mt-1">{paper.venue}</div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    {/* ═════════ § 05 · FOCUS ═════════ */}
-    <section class="page-wrap mt-24">
-      <div class="section-head">
-        <span class="section-num">§ 05</span>
-        <span class="section-name">Focus</span>
-        <span class="section-meta">[ how i work ]</span>
-      </div>
-      <div class="grid gap-10 md:grid-cols-12 md:gap-12">
-        <div class="md:col-span-7 measure">
-          <p class="mono-xs comment" style="text-transform: none; letter-spacing: 0;">
-            // after the demo, in the weather
-          </p>
-          <p class="mt-5 text-base leading-[1.75]">
-            I care about the moment when an AI idea stops being exciting and starts becoming operational. What should it be trusted to do? Where should it fail closed? What evidence would make a decision defensible later?
-          </p>
-          <p class="mt-5 text-base leading-[1.75]" style="color: rgb(var(--muted));">
-            That usually sits between engineering, product, and delivery. I like clear questions, small loops, and work that leaves the system less mysterious than it was before.
-          </p>
-        </div>
-        <aside class="md:col-span-5">
-          <div style="border: 1px solid var(--rule-strong); padding: 1.5rem;">
-            <p class="label">[ if this seems relevant ]</p>
-            <h3 class="mt-3 font-mono text-[1.05rem]" style="font-weight: 500; line-height: 1.5;">
-              Send the rough version. Context beats polish.
-            </h3>
-            <p class="mt-4 text-[0.9rem] leading-[1.7]" style="color: rgb(var(--muted));">
-              Tell me what you are building, what feels stuck, and what decision you are trying to make.
-            </p>
-            <a href="/contact" class="btn-accent mt-6">open thread</a>
+  <section class="section wrap" aria-labelledby="selected">
+    <div class="section-head">
+      <h2 class="h2" id="selected">Selected research</h2>
+      <a class="link" href="/research/">All {papers.length} papers</a>
+    </div>
+    <ol class="featured">
+      {selected.map((p, i) => (
+        <li class:list={["feature", { flip: i % 2 === 1 }]}>
+          <div class="feature-figure"><FigureSlot slug={figureFor(p)!} label={p.title} /></div>
+          <div class="feature-text">
+            <p class="small muted">{themeOf(p.theme).name}</p>
+            <h3 class="h3"><a href={`/research/${p.slug}/`}>{p.title}</a></h3>
+            <p>{p.finding}</p>
+            <p class="why">{p.whyItMatters}</p>
+            <PaperLinks paper={p} />
           </div>
-        </aside>
-      </div>
-    </section>
+        </li>
+      ))}
+    </ol>
+  </section>
 
-  </main>
+  <section class="section wrap" aria-labelledby="map">
+    <div class="section-head">
+      <h2 class="h2" id="map">The research program</h2>
+      <p class="muted">{papers.length} papers, {THEMES.length} lines of work. Each links to its abstract, data sheet, PDF and code.</p>
+    </div>
+    <div class="map">
+      {THEMES.map((t) => (
+        <div class="map-col">
+          <h3 class="map-head"><a href={`/research/#${t.key}`}>{t.name}</a><span class="muted num">{byTheme(t.key).length}</span></h3>
+          <ul>
+            {byTheme(t.key).map((p) => <li><a href={`/research/${p.slug}/`}>{p.short}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
 
-  <SiteFooter />
+  <section class="section wrap work" aria-labelledby="work">
+    <h2 class="h2" id="work">How I work</h2>
+    <ol class="props">
+      {propositions.map((p) => (
+        <li>
+          <p class="prop"><span class="pn num">{p.n}</span><span>{p.text}</span></p>
+          <ol>
+            {p.subs.map(([n, t]) => (
+              <li class="sub"><span class="pn num">{n}</span><span>{t}</span></li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section wrap" aria-labelledby="writing">
+    <div class="section-head">
+      <h2 class="h2" id="writing">Writing</h2>
+      <a class="link" href="/articles/">All essays</a>
+    </div>
+    <ul class="essays">
+      {essays.map((e) => (
+        <li>
+          <a href={`/articles/${e.slug}/`}>
+            <h3 class="h3">{e.title}</h3>
+            <p>{e.summary}</p>
+            <p class="small muted">{formatDate(e.date)}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap closer" aria-labelledby="closer">
+    <h2 class="h1" id="closer">If an AI decision has to hold up afterwards, write to me.</h2>
+    <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+    padding-top: clamp(28px, 5vw, 72px);
+  }
+  .hero-copy { display: grid; gap: 28px; }
+  .hero-copy :global(.hero-title) { font-size: clamp(2.7rem, 0.9rem + 4.4vw, 5.5rem); }
+  .hero-copy .actions { margin-top: 8px; }
+
+  .featured { display: grid; gap: clamp(72px, 10vw, 140px); }
+  .feature {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(28px, 5vw, 72px);
+    align-items: center;
+  }
+  .feature.flip .feature-figure { order: 2; }
+  .feature-text { display: grid; gap: 16px; align-content: start; max-width: 46ch; }
+  .feature-text h3 a { transition: opacity 0.2s; }
+  .feature-text h3 a:hover { opacity: 0.75; }
+  .feature-text .why { color: var(--muted); }
+
+  .map { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+  .map-col { display: grid; align-content: start; gap: 14px; padding: 22px clamp(12px, 1.6vw, 22px) 26px 0; }
+  .map-col + .map-col { padding-left: clamp(12px, 1.6vw, 22px); border-left: 1px solid var(--line); }
+  .map-head { display: flex; justify-content: space-between; gap: 12px; font-size: 0.9375rem; font-weight: 580; line-height: 1.3; min-height: 2.6em; }
+  .map ul { display: grid; gap: 2px; }
+  .map li a { display: block; padding-block: 5px; color: var(--text); font-size: 0.9375rem; line-height: 1.35; transition: color 0.2s var(--ease); }
+  .map li a:hover { color: var(--strong); }
+
+  .work { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); }
+  .props { display: grid; gap: 36px; counter-reset: none; }
+  .prop, .sub { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 4px; }
+  .prop { color: var(--strong); font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.65rem); font-weight: 560; font-stretch: 106%; letter-spacing: -0.012em; line-height: 1.25; }
+  .prop .pn { font-size: 1rem; padding-top: 0.32em; }
+  .props ol { display: grid; gap: 10px; margin-top: 14px; }
+  .sub { max-width: 60ch; }
+  .pn { color: var(--muted); font-weight: 450; }
+
+  .essays { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+  .essays a { display: grid; gap: 12px; padding-top: 22px; border-top: 1px solid var(--line); transition: border-color 0.25s var(--ease); }
+  .essays a:hover { border-top-color: var(--strong); }
+
+  .closer { display: grid; gap: 28px; }
+  .closer h2 { max-width: 18ch; }
+  .mail {
+    justify-self: start;
+    color: var(--strong);
+    font-size: clamp(1.6rem, 0.9rem + 3.2vw, 3.6rem);
+    font-weight: 560;
+    font-stretch: 112%;
+    letter-spacing: -0.03em;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.16em;
+    text-decoration-color: var(--line-strong);
+    transition: text-decoration-color 0.25s var(--ease);
+  }
+  .mail:hover { text-decoration-color: var(--strong); }
+
+  @media (max-width: 1100px) {
+    .map { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .map-col:nth-child(4) { padding-left: 0; border-left: 0; }
+  }
+  @media (max-width: 960px) {
+    .hero, .feature, .work { grid-template-columns: minmax(0, 1fr); }
+    .feature.flip .feature-figure { order: 0; }
+    .essays { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .map { grid-template-columns: minmax(0, 1fr); }
+    .map-col, .map-col + .map-col { padding-left: 0; border-left: 0; border-bottom: 1px solid var(--line); }
+    .map-head { min-height: 0; }
+  }
+</style>

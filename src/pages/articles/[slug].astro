@@ -1,218 +1,55 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SiteHeader from "../../components/SiteHeader.astro";
-import SiteFooter from "../../components/SiteFooter.astro";
-import writing from "../../content/writing.json";
-
-interface BlogPost {
-  title: string;
-  date: string;
-  summary: string;
-  slug: string;
-  content?: string[];
-  tags?: string[];
-  readMinutes?: number;
-}
-
-type ContentBlock =
-  | { kind: "heading"; text: string }
-  | { kind: "paragraph"; text: string }
-  | { kind: "list"; items: string[] };
+import { SITE, formatDate } from "../../lib/site";
+import { blocks, essays, readMinutes, words, type Essay } from "../../lib/essays";
 
 export function getStaticPaths() {
-  return [...(writing as BlogPost[])]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .map((post) => ({
-      params: { slug: post.slug },
-      props: { post }
-    }));
+  return essays.map((essay) => ({ params: { slug: essay.slug }, props: { essay } }));
 }
 
-const { post } = Astro.props as { post: BlogPost };
-const rawContent = post.content && post.content.length > 0 ? post.content : [post.summary];
-const contentBlocks: ContentBlock[] = [];
-let listBuffer: string[] = [];
-let paragraphBuffer: string[] = [];
-
-const flushParagraph = () => {
-  if (paragraphBuffer.length === 0) return;
-  contentBlocks.push({ kind: "paragraph", text: paragraphBuffer.join(" ") });
-  paragraphBuffer = [];
-};
-
-const flushList = () => {
-  if (listBuffer.length === 0) return;
-  contentBlocks.push({ kind: "list", items: listBuffer });
-  listBuffer = [];
-};
-
-for (const rawLine of rawContent) {
-  const line = rawLine.trim();
-  if (!line) {
-    flushParagraph();
-    flushList();
-    continue;
-  }
-
-  if (line.startsWith("## ")) {
-    flushParagraph();
-    flushList();
-    contentBlocks.push({ kind: "heading", text: line.slice(3).trim() });
-    continue;
-  }
-
-  if (line.startsWith("- ")) {
-    flushParagraph();
-    listBuffer.push(line.slice(2).trim());
-    continue;
-  }
-
-  flushList();
-  paragraphBuffer.push(line);
-}
-
-flushParagraph();
-flushList();
-
-const formatDate = (date: string) => {
-  const d = new Date(date);
-  return d.toLocaleDateString("en-GB", { year: "numeric", month: "2-digit", day: "2-digit" }).replace(/\//g, ".");
-};
-
-const articleUrl = `https://aliuyar.dev/articles/${post.slug}`;
-const copyArticleText = [post.title, "", post.summary, "", `URL: ${articleUrl}`, "", ...rawContent].join("\n");
-
-const articleJsonLd = {
+const { essay } = Astro.props as { essay: Essay };
+const index = essays.findIndex((e) => e.slug === essay.slug);
+const next = essays[(index + 1) % essays.length];
+const url = `${SITE.url}/articles/${essay.slug}/`;
+const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: post.title,
-  datePublished: new Date(post.date).toISOString(),
-  description: post.summary,
-  url: articleUrl,
-  isPartOf: {
-    "@type": "Blog",
-    name: "Ali Uyar Articles",
-    url: "https://aliuyar.dev/articles"
-  }
+  headline: essay.title,
+  description: essay.summary,
+  datePublished: essay.date,
+  url,
+  mainEntityOfPage: url,
+  author: { "@type": "Person", "@id": SITE.personId, name: SITE.name },
+  publisher: { "@id": SITE.personId },
+  image: `${SITE.url}/og/articles/${essay.slug}.png`,
+  wordCount: words(essay),
+  keywords: essay.tags.join(", "),
 };
 ---
 
-<BaseLayout
-  title={`ali uyar // ${post.title}`}
-  canonicalPath={`/articles/${post.slug}`}
-  description={post.summary}
-  jsonLd={articleJsonLd}
->
-  <SiteHeader />
-  <main id="main" class="page-wrap py-14 md:py-16">
-    <div class="flex flex-wrap items-center justify-between gap-3 pb-4" style="border-bottom: 1px solid var(--rule);">
-      <a href="/articles" class="link-muted mono-sm">← cd ../articles</a>
-      <button
-        id="copy-article-button"
-        type="button"
-        class="focus-ring inline-flex items-center gap-2 mono-xs"
-        style="color: rgb(var(--muted));"
-      >
-        <span>[</span><span>copy article</span><span>]</span>
-      </button>
-      <span id="copy-article-status" class="sr-only" aria-live="polite"></span>
+<BaseLayout title={`${essay.title} | Ali Uyar`} description={essay.summary} ogType="article" publishedTime={essay.date} jsonLd={jsonLd} ogImage={`/og/articles/${essay.slug}.png`}>
+  <article class="wrap essay">
+    <header>
+      <p class="small"><a class="link" href="/articles/">Writing</a></p>
+      <h1 class="h1">{essay.title}</h1>
+      <p class="small muted num">{formatDate(essay.date)}<span class="sep" aria-hidden="true"></span>{readMinutes(essay)} min read</p>
+    </header>
+    <div class="prose">
+      {blocks(essay).map((b) =>
+        b.kind === "h2" ? <h2>{b.text}</h2> : b.kind === "ul" ? <ul>{b.items.map((i) => <li>{i}</li>)}</ul> : <p>{b.text}</p>
+      )}
     </div>
-    <pre id="copy-article-source" class="hidden">{copyArticleText}</pre>
-
-    <article class="mx-auto mt-10 max-w-[46rem]">
-      <header>
-        <p class="article-meta">
-          {formatDate(post.date)}
-          {post.readMinutes ? ` · ~${post.readMinutes} min` : ""}
-        </p>
-        <h1 class="mt-6 font-mono" style="font-size: clamp(1.75rem, 4.5vw, 2.6rem); line-height: 1.25; font-weight: 500; letter-spacing: -0.01em;">
-          {post.title}<span class="caret" aria-hidden="true"></span>
-        </h1>
-        <p class="article-summary">{post.summary}</p>
-
-        {(post.tags || []).length > 0 && (
-          <div class="mt-7 flex flex-wrap gap-1.5">
-            {(post.tags || []).map((tag) => <span class="tag">{tag}</span>)}
-          </div>
-        )}
-      </header>
-
-      <div class="article-prose">
-        {contentBlocks.map((block) => {
-          if (block.kind === "heading") {
-            return <h2>{block.text}</h2>;
-          }
-
-          if (block.kind === "list") {
-            return (
-              <ul class="article-list">
-                {block.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            );
-          }
-
-          return <p>{block.text}</p>;
-        })}
-      </div>
-
-      <div class="divider-ascii mt-16" aria-hidden="true">
-        ─── // end ─────────────────────────────────────────────
-      </div>
-
-      <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-        <a href="/articles" class="link-muted mono-sm">← all articles</a>
-        <a href="/contact" class="link-muted mono-sm">write to me →</a>
-      </div>
-    </article>
-  </main>
-  <SiteFooter />
+    <footer class="essay-foot">
+      <p class="small muted">Next essay</p>
+      <a class="h3" href={`/articles/${next.slug}/`}>{next.title}</a>
+    </footer>
+  </article>
 </BaseLayout>
 
-<script is:inline>
-  (() => {
-    const button = document.getElementById("copy-article-button");
-    const source = document.getElementById("copy-article-source");
-    const status = document.getElementById("copy-article-status");
-    if (!button || !source) return;
-
-    const labelSpan = button.querySelectorAll("span")[1];
-    const originalLabel = (labelSpan && labelSpan.textContent?.trim()) || "copy article";
-
-    const setStatus = (message) => { if (status) status.textContent = message; };
-
-    const fallbackCopy = (text) => {
-      const area = document.createElement("textarea");
-      area.value = text;
-      area.setAttribute("readonly", "true");
-      area.style.position = "fixed";
-      area.style.left = "-9999px";
-      document.body.appendChild(area);
-      area.select();
-      let ok = false;
-      try { ok = document.execCommand("copy"); } catch { ok = false; }
-      document.body.removeChild(area);
-      return ok;
-    };
-
-    const copyToClipboard = async (text) => {
-      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
-        try { await navigator.clipboard.writeText(text); return true; }
-        catch { return fallbackCopy(text); }
-      }
-      return fallbackCopy(text);
-    };
-
-    button.addEventListener("click", async () => {
-      const text = source.textContent?.trim();
-      if (!text) return;
-      const ok = await copyToClipboard(text);
-      if (labelSpan) labelSpan.textContent = ok ? "copied" : "copy failed";
-      setStatus(ok ? "article copied to clipboard" : "failed to copy article");
-      window.setTimeout(() => {
-        if (labelSpan) labelSpan.textContent = originalLabel;
-      }, 1800);
-    });
-  })();
-</script>
+<style>
+  .essay header { display: grid; gap: 22px; padding-top: clamp(40px, 7vw, 104px); max-width: 52rem; margin-bottom: clamp(48px, 6vw, 80px); }
+  .sep { display: inline-block; width: 18px; }
+  .essay-foot { display: grid; gap: 10px; margin-top: var(--section); padding-top: 28px; border-top: 1px solid var(--line); max-width: var(--measure); }
+  .essay-foot a { transition: opacity 0.2s; }
+  .essay-foot a:hover { opacity: 0.72; }
+</style>

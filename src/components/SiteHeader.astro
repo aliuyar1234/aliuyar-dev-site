@@ -1,178 +1,31 @@
 ---
 const links = [
-  { href: "/", label: "~" },
-  { href: "/research", label: "research" },
-  { href: "/articles", label: "articles" },
-  { href: "/services", label: "help" },
-  { href: "/contact", label: "contact" }
+  { href: "/research/", label: "Research" },
+  { href: "/articles/", label: "Writing" },
+  { href: "/contact/", label: "Contact" },
 ];
-
-const currentPathRaw = Astro.url.pathname || "/";
-const currentPath = currentPathRaw === "/" ? "/" : currentPathRaw.replace(/\/+$/, "");
-
-const normalizeHref = (href: string) => {
-  const path = href.split("#")[0] || "/";
-  return path === "/" ? "/" : path.replace(/\/+$/, "");
-};
-
-const isActiveLink = (href: string) => currentPath === normalizeHref(href);
-const pwdPath = currentPath === "/" ? "~" : `~${currentPath}`;
+const path = Astro.url.pathname;
+const current = (href: string) => (path === href || path.startsWith(href) ? "page" : undefined);
 ---
 
-{/* STATUS BAR */}
-<div class="statusbar" role="presentation">
-  <div class="inner">
-    <span class="chunk">
-      <span class="led" aria-hidden="true"></span>
-      <span>READY</span>
-      <span class="sep">·</span>
-      <span>aliuyar.dev</span>
-      <span class="sep">·</span>
-      <span>v 2026.I</span>
-    </span>
-    <span class="chunk">
-      <span class="tabnum" id="clock-utc">—— UTC+01</span>
-      <span class="sep">·</span>
-      <span>VIENNA</span>
-      <span class="sep hidden md:inline">·</span>
-      <span class="hidden md:inline">SESSION 01</span>
-    </span>
-  </div>
-</div>
-
-{/* PRIMARY HEADER */}
-<header class="sticky top-0 z-50" style="background: rgb(var(--bg) / 0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule);">
-  <div class="page-wrap flex items-center justify-between py-3.5" aria-label="Main">
-    <a class="focus-ring inline-flex items-baseline gap-2" href="/" aria-label="Home">
-      <span class="accent font-mono text-[0.82rem]">user@aliuyar.dev</span>
-      <span class="font-mono text-[0.82rem] dim">:</span>
-      <span class="font-mono text-[0.82rem]">{pwdPath}</span>
-      <span class="font-mono text-[0.82rem] dim">$</span>
-    </a>
-
-    <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
-      {links.map((link) => (
-        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
-          <span>{link.label}</span>
-        </a>
-      ))}
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/">Ali Uyar</a>
+    <nav class="nav" aria-label="Main">
+      {links.map((l) => <a href={l.href} aria-current={current(l.href)}>{l.label}</a>)}
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme" data-theme-toggle>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke-linejoin="round" /></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M5.3 18.7l1.5-1.5M17.2 6.8l1.5-1.5" stroke-linecap="round" /></svg>
+      </button>
     </nav>
-
-    <div class="flex items-center gap-2">
-      <button
-        id="cmdk-open"
-        type="button"
-        class="focus-ring font-mono text-[0.72rem]"
-        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
-        aria-label="Open command palette"
-      >
-        <span aria-hidden="true">⌘K</span>
-      </button>
-
-      <button
-        id="theme-toggle"
-        type="button"
-        class="focus-ring font-mono text-[0.72rem]"
-        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
-        aria-label="Toggle color theme"
-        aria-pressed="false"
-      >
-        <span id="theme-label">DARK</span>
-      </button>
-
-      <button
-        id="mobile-menu-toggle"
-        type="button"
-        class="focus-ring md:hidden font-mono text-[0.72rem]"
-        style="color: rgb(var(--muted)); padding: 0.35rem 0.7rem; border: 1px solid var(--rule); text-transform: uppercase; letter-spacing: 0.12em;"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span class="menu-word">MENU</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="mobile-menu" class="hidden md:hidden" style="border-top: 1px solid var(--rule);">
-    <div class="page-wrap flex flex-col gap-1 py-4">
-      {links.map((link) => (
-        <a class="nav-link focus-ring" href={link.href} aria-current={isActiveLink(link.href) ? "page" : undefined}>
-          <span>{link.label}</span>
-        </a>
-      ))}
-    </div>
   </div>
 </header>
 
-<script is:inline>
-  // Clock — UTC+01
-  (() => {
-    const el = document.getElementById("clock-utc");
-    if (!el) return;
-    const tick = () => {
-      const now = new Date();
-      // Vienna time (UTC+1 in standard, +2 in DST). Use built-in.
-      const h = now.toLocaleTimeString("en-GB", { timeZone: "Europe/Vienna", hour: "2-digit", minute: "2-digit", hour12: false });
-      el.textContent = `${h} UTC+01`;
-    };
-    tick();
-    setInterval(tick, 30 * 1000);
-  })();
-
-  // Theme
-  (() => {
-    const button = document.getElementById("theme-toggle");
-    if (!button) return;
-
-    const key = "theme";
-    const root = document.documentElement;
-    const label = document.getElementById("theme-label");
-    const getTheme = () => (root.classList.contains("light") ? "light" : "dark");
-
-    const update = () => {
-      const t = getTheme();
-      button.setAttribute("aria-pressed", String(t === "dark"));
-      if (label) label.textContent = t === "dark" ? "DARK" : "LIGHT";
-    };
-
-    button.addEventListener("click", () => {
-      const next = getTheme() === "dark" ? "light" : "dark";
-      root.classList.toggle("light", next === "light");
-      try { localStorage.setItem(key, next); } catch {}
-      update();
-    });
-
-    update();
-  })();
-
-  // Mobile menu
-  (() => {
-    const menu = document.getElementById("mobile-menu");
-    const toggle = document.getElementById("mobile-menu-toggle");
-    if (!menu || !toggle) return;
-    const word = toggle.querySelector(".menu-word");
-
-    const closeMenu = () => {
-      menu.classList.add("hidden");
-      toggle.setAttribute("aria-expanded", "false");
-      if (word) word.textContent = "MENU";
-    };
-
-    toggle.addEventListener("click", () => {
-      const isOpen = !menu.classList.contains("hidden");
-      if (isOpen) { closeMenu(); return; }
-      menu.classList.remove("hidden");
-      toggle.setAttribute("aria-expanded", "true");
-      if (word) word.textContent = "CLOSE";
-    });
-
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => closeMenu());
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeMenu();
-    });
-  })();
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  button?.addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch {}
+  });
 </script>
