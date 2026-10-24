@@ -2,20 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import PretextEvidenceField from "../components/PretextEvidenceField.astro";
-import projects from "../content/projects.json";
-import featured from "../content/featured.json";
 import research from "../content/research.json";
 import writing from "../content/writing.json";
 import profile from "../content/profile.json";
-import { filterProductProjects } from "../utils/researchSplit";
 
-const featuredNames = new Set(featured.map((item) => item.name));
-const nonResearchProjects = filterProductProjects(projects, research);
-const featuredProjects = nonResearchProjects.filter((p) => featuredNames.has(p.name)).slice(0, 5);
-const fallbackProjects = nonResearchProjects.slice(0, 5);
-const cards = featuredProjects.length > 0 ? featuredProjects : fallbackProjects;
 const topResearch = research.slice(0, 3);
 const startHere = writing.find((post) => post.slug === "the-first-answer-is-usually-not-the-real-one") || writing[0];
 
@@ -80,7 +71,7 @@ const thinking = [
         </div>
 
         <div class="mt-10 flex flex-wrap items-center gap-3">
-          <a href="/projects" class="btn-accent">run projects</a>
+          <a href="/research" class="btn-accent">read research</a>
           <a href="/contact" class="btn">start a thread</a>
         </div>
       </div>
@@ -190,22 +181,10 @@ const thinking = [
       </div>
     </section>
 
-    {/* ═════════ § 05 · PROJECTS ═════════ */}
-    <section class="page-wrap mt-20">
-      <div class="section-head">
-        <span class="section-num">§ 05</span>
-        <span class="section-name">Selected projects</span>
-        <a href="/projects" class="section-meta link-muted">[ ls /projects → ]</a>
-      </div>
-      <div>
-        {cards.map((project, i) => <ProjectCard project={project} index={i} />)}
-      </div>
-    </section>
-
-    {/* ═════════ § 06 · FOCUS ═════════ */}
+    {/* ═════════ § 05 · FOCUS ═════════ */}
     <section class="page-wrap mt-24">
       <div class="section-head">
-        <span class="section-num">§ 06</span>
+        <span class="section-num">§ 05</span>
         <span class="section-name">Focus</span>
         <span class="section-meta">[ how i work ]</span>
       </div>

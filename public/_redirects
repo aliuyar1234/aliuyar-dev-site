@@ -3,3 +3,5 @@
 /blog/* /articles/:splat 301
 /writing /articles/ 301
 /writing/ /articles/ 301
+/projects /research 301
+/projects/ /research 301

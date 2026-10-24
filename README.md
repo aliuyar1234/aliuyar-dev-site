@@ -6,7 +6,6 @@ Minimal, fast, and maintainable personal site built with Astro + Tailwind for `a
 
 - Astro (static output)
 - Tailwind CSS
-- Build-time GitHub project sync via `gh`
 
 ## Local Development
 
@@ -33,31 +32,6 @@ npm run build
 ```bash
 npm run preview
 ```
-
-## Regenerate Projects List
-
-The site reads projects from `src/content/projects.json`.
-
-To regenerate from GitHub:
-
-```bash
-npm run sync:projects
-```
-
-This script uses GitHub CLI under the hood and is equivalent to:
-
-```bash
-gh repo list aliuyar1234 --limit 200 --visibility public --json name,description,stargazerCount,url,updatedAt,primaryLanguage,homepageUrl,repositoryTopics,isFork,isPrivate,diskUsage
-```
-
-Filtering + sorting behavior:
-
-- Excludes forks (`isFork`)
-- Includes only public repositories (`--visibility public` + `isPrivate !== true`)
-- Excludes empty repos (`diskUsage <= 0`)
-- Sorts by `stargazerCount` descending, then `updatedAt` descending
-
-Manual featured overrides live in `src/content/featured.json`.
 
 ## Sync Research PDFs Automatically
 
