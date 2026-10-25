@@ -65,22 +65,27 @@ const questions = [
   },
 ].map((q) => ({ ...q, papers: q.slugs.map(paperBySlug) }));
 
-const person = {
+// The home page is the profile page Google reads for the person.
+const profile = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": SITE.personId,
-  name: SITE.name,
+  "@type": "ProfilePage",
   url: `${SITE.url}/`,
-  email: `mailto:${SITE.email}`,
-  jobTitle: SITE.jobTitle,
-  worksFor: { "@type": "Organization", name: SITE.employer },
-  address: { "@type": "PostalAddress", addressLocality: "Vienna", addressCountry: "AT" },
-  knowsAbout: ["AI alignment", "AI security", "LLM evaluation", "Mechanistic interpretability", "AI agent safety", "LLM judges"],
-  sameAs: [SITE.github],
+  mainEntity: {
+    "@type": "Person",
+    "@id": SITE.personId,
+    name: SITE.name,
+    url: `${SITE.url}/`,
+    email: `mailto:${SITE.email}`,
+    jobTitle: SITE.jobTitle,
+    worksFor: { "@type": "Organization", name: SITE.employer },
+    address: { "@type": "PostalAddress", addressLocality: "Vienna", addressCountry: "AT" },
+    knowsAbout: ["AI alignment", "AI security", "LLM evaluation", "Mechanistic interpretability", "AI agent safety", "LLM judges"],
+    sameAs: [SITE.github],
+  },
 };
 ---
 
-<BaseLayout title={SITE.title} jsonLd={person}>
+<BaseLayout title={SITE.title} jsonLd={profile}>
   <Hero><Threads slot="field" client:idle /></Hero>
 
   <section class="section wrap flagship" aria-labelledby="flagship">

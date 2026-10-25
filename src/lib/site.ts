@@ -6,7 +6,7 @@ export const SITE = {
   location: "Vienna, Austria",
   jobTitle: "Principal AI Engineer",
   employer: "Giesswein",
-  title: "Ali Uyar: AI alignment, security and evaluation",
+  title: "Ali Uyar: AI research and engineering in alignment, security and evaluation",
   description:
     "Ali Uyar is a principal AI engineer in Vienna working on the evaluation, alignment, security and interpretability of AI systems. Papers with abstracts, data sheets and PDFs, and essays.",
   personId: "https://aliuyar.dev/#ali",
