@@ -9,3 +9,9 @@
 /help /contact/ 301
 /help/ /contact/ 301
 /research.html /research/ 301
+/cv / 301
+/cv/ / 301
+/articles/model-demo-to-product-signal /articles/the-demo-is-not-the-product/ 301
+/articles/model-demo-to-product-signal/ /articles/the-demo-is-not-the-product/ 301
+/articles/reliable-ai-systems /articles/ 301
+/articles/reliable-ai-systems/ /articles/ 301
