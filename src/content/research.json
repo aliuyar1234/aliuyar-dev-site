@@ -348,7 +348,7 @@
     ],
     "doi": "",
     "pdfUrl": "/papers/outcome-is-not-verification-auditing-hidden-state-verifiers-counterfactual-local-validity.pdf",
-    "codeUrl": "",
+    "codeUrl": "https://github.com/aliuyar1234/outcome-is-not-verification",
     "tags": [
       "hidden-state-verifiers",
       "process-verification",
@@ -380,7 +380,7 @@
     ],
     "doi": "",
     "pdfUrl": "/papers/first-unsafe-step-counterfactual-dpo-for-kpi-gaming-in-autonomous-llm-agents.pdf",
-    "codeUrl": "",
+    "codeUrl": "https://github.com/aliuyar1234/first-unsafe-step-counterfactual-dpo",
     "tags": [
       "agent-safety",
       "preference-optimization",
@@ -412,7 +412,7 @@
     ],
     "doi": "",
     "pdfUrl": "/papers/what-survives-control-calibration-full-scope-negative-result-locked-mdl-acceptance.pdf",
-    "codeUrl": "",
+    "codeUrl": "https://github.com/aliuyar1234/mdca-build-pack",
     "tags": [
       "mechanistic-interpretability",
       "acceptance-criteria",
