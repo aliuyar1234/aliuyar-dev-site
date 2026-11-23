@@ -8,7 +8,7 @@ import { SITE, formatDate } from "../lib/site";
 import { figureFor, paperBySlug } from "../lib/papers";
 import writing from "../content/writing.json";
 
-const essays = ["quiet-question-of-personhood", "decision-architecture-in-complex-systems", "designing-for-reversibility-in-high-speed-systems"]
+const essays = ["the-demo-is-not-the-product", "quiet-question-of-personhood", "designing-for-reversibility-in-high-speed-systems"]
   .map((slug) => writing.find((w) => w.slug === slug)!)
   .filter(Boolean);
 

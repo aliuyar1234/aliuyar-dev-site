@@ -22,7 +22,7 @@
 /* narrow cards: the drawing uses the full width, and the hint moves above the two-line readout */
 @media (max-width:640px){
   .fig-cachemedic .iso-plate{overflow:hidden}
-  .fig-cachemedic .iso-plate .cm-stage .iso-svg{width:110%;margin:-4% -5% -2%;overflow:visible}
+  .fig-cachemedic .iso-plate .cm-stage .iso-svg{width:110%;max-width:none;margin:-4% -5% -2%;overflow:visible}
 }
 @media (max-width:560px){
   .fig-cachemedic .iso-plate{padding-bottom:90px}

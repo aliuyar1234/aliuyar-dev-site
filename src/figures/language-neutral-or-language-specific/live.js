@@ -1,6 +1,6 @@
 // Fig 5 live layer: the knobs pick a model, a language and a component; the lever fans the plates on their lazy tongs.
 // It writes attributes on the parts the build drew; the numbers come from the table the build wrote into the stage.
-import { axisVector } from "../kit/iso-kit.mjs";
+import { axisVector, iso } from "../kit/iso-kit.mjs";
 import { P, G_FAN, plateZ, pitchOf, SLIDE_LIFT, BED_DIR, CHART } from "./world.mjs";
 import * as Pt from "./parts.mjs";
 
@@ -42,7 +42,7 @@ export function mount(root) {
     const part = (name) => g.querySelector(`[data-part="${name}"]`);
     return { side, back: part("tong-back"), front: part("tong-front"), feet: part("tong-feet"), ends: part("tong-ends"), pins: part("tong-pins") };
   });
-  const lever = { el: q('[data-part="lever"]'), arm: q('[data-part="lever-arm"]'), ball: q('[data-part="lever-ball"]') };
+  const lever = { el: q('[data-part="lever"]'), arm: q('[data-part="lever-arm"]'), ball: q('[data-part="lever-ball"]'), ring: q('[data-part="lever-ring"]') };
   const selector = { el: q('[data-part="select"]'), pointer: q('[data-part="select-pointer"]') };
   const lang = { el: q('[data-part="lang"]'), pointer: q('[data-part="lang-pointer"]') };
   const slide = { el: q('[data-part="slide"]'), move: q('[data-move="slide"]') };
@@ -150,6 +150,11 @@ export function mount(root) {
     const lv = Pt.leverOf(Pt.leverAngle(fan));
     Pt.writeSolid(lever.arm, lv.arm);
     Pt.writeSolid(lever.ball, lv.ball);
+    if (lever.ring) {
+      const tipPt = iso(lv.tip, P);
+      lever.ring.setAttribute("cx", String(fix(tipPt[0])));
+      lever.ring.setAttribute("cy", String(fix(tipPt[1])));
+    }
   }
   const K = Math.hypot(...axisVector(P, [0, 0, 1])) / Math.cos(Math.PI / 6);
 
@@ -247,6 +252,8 @@ export function mount(root) {
       if (performance.now() - touched < IDLE) return schedule();
       TOUR[tourStep % TOUR.length](want);
       tourStep++;
+      // clear any prior user-action announcement so the live region never contradicts the tour state
+      if (status && status.textContent) status.textContent = "";
       apply();
     }, wait);
   }
@@ -334,15 +341,16 @@ export function mount(root) {
   on(lever.el, "pointerup", release);
   on(lever.el, "pointercancel", release);
   on(stage, "pointerdown", touch);
-  // a click near a small control counts as a click on it (the knobs are a few px across on a phone)
+  // a click near a small control counts as a click on it (measure from the visual body so hit padding doesn't bias neighbors)
   on(stage, "click", (e) => {
     let best = null;
     for (const [el, name] of clicks) {
-      const r = el.getBoundingClientRect();
+      const body = el.querySelector(".iso-solid") || el;
+      const r = body.getBoundingClientRect();
       const dx = Math.max(r.left - e.clientX, 0, e.clientX - r.right);
       const dy = Math.max(r.top - e.clientY, 0, e.clientY - r.bottom);
       const d = Math.hypot(dx, dy);
-      if (d < 18 && (!best || d < best.d)) best = { d, name };
+      if (d < 22 && (!best || d < best.d)) best = { d, name };
     }
     if (best) run(best.name);
   });

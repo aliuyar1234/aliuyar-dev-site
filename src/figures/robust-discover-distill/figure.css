@@ -20,7 +20,7 @@
 .fig-robust-discover-distill .rdd-l1,.fig-robust-discover-distill .rdd-l2{color:var(--anatomy-muted)}
 @media (max-width:640px){
   .fig-robust-discover-distill .rdd-stage{overflow:hidden}
-  .fig-robust-discover-distill .iso-plate .rdd-stage .iso-svg{width:112%;margin:-2% -6% -1%}
+  .fig-robust-discover-distill .iso-plate .rdd-stage .iso-svg{width:112%;max-width:none;margin:-2% -6% -1%}
 }
 @media (max-width:560px){
   .fig-robust-discover-distill .iso-plate{padding-bottom:104px}

@@ -223,9 +223,14 @@ export function scene() {
       return path3([p(SELECT.r + 1.2), p(SELECT.r + 2.9)]);
     });
     disc("rack.select-dial", sf, 0, 0.9, SELECT.r + 3.4, { tone: "lo" }, { extra: Ln(dialTicks.join(""), { tone: "mid" }) });
+    const sc = at([SELECT.x, baseY1 + 2.5, SELECT.z]);
     const pointer = `<path class="iso-line" data-tone="hi" data-part="select-pointer" d="${Pt.selectorPointer(Pt.SELECT_ANGLES[0])}"/>`;
-    turned("rack.select-knob", sf, [[0.9, SELECT.r], [3.6, SELECT.r], [4.4, SELECT.r - 0.9], [4.6, SELECT.r - 1.5]], { tone: "mid" }, {
-      extra: Ln(G.ribsOf(sf, 1.1, 3.4, SELECT.r, 30, P, { least: 0.15 }), { tone: "lo" }) + pointer,
+    turned("rack.select-knob", sf, [[0.9, SELECT.r], [3.6, SELECT.r], [4.4, SELECT.r - 0.9], [4.6, SELECT.r - 1.5]], { tone: "hi" }, {
+      extra:
+        `<circle class="ls-hit" cx="${f2(sc[0])}" cy="${f2(sc[1])}" r="26"/>` +
+        `<circle class="ls-ring" cx="${f2(sc[0])}" cy="${f2(sc[1])}" r="11.5"/>` +
+        Ln(G.ribsOf(sf, 1.1, 3.4, SELECT.r, 30, P, { least: 0.15 }), { tone: "lo" }) +
+        pointer,
       attrs: ` data-part="select" tabindex="0" role="button" aria-label="Component selector: shared, specific, shared minus specific"`,
     });
     // the two fibre ports on the left face, SPECIFIC and SHARED
@@ -365,9 +370,28 @@ export function scene() {
     const bush = (x) => S(k.cylinder(x, SLIDE_Y, 2.0, SL.z0 + 6, 9, P, 12), { tone: "mid" }) + S(k.cylinder(x, SLIDE_Y, 1.0, SL.z0 + 15, 2.4, P, 8), { tone: "mid", crease: "none" });
     const arms = RODS.map((x, j) => S(k.slabOf(planOf([j ? SL.x1 : x + 1.7, SLIDE_Y - 0.8], [j ? x - 1.7 : SL.x0, SLIDE_Y + 0.8], 0), SL.z0 + 8, 5, P, 2), { tone: "mid" })).join("");
     const kx = (SL.x0 + SL.x1) / 2;
-    const knob = S(k.cylinder(kx, SLIDE_Y, 2.0, SL.z1, 3.6, P, 18), { tone: "mid" }) + Ln(k.knurl(kx, SLIDE_Y, 2.0, SL.z1 + 0.5, SL.z1 + 3.1, 18, P), { tone: "lo" });
+    const sk = at([kx, SLIDE_Y, SL.z1 + 2]);
+    const sPoly = [
+      [SL.x0 - 2, SLIDE_Y, SL.z0 - 1],
+      [SL.x1 + 2, SLIDE_Y, SL.z0 - 1],
+      [SL.x1 + 2, SLIDE_Y, SL.z1 + 5],
+      [SL.x0 - 2, SLIDE_Y, SL.z1 + 5],
+    ]
+      .map(at)
+      .map(([a, b]) => `${f2(a)},${f2(b)}`)
+      .join(" ");
+    const knob = S(k.cylinder(kx, SLIDE_Y, 2.0, SL.z1, 3.6, P, 18), { tone: "hi" }) + Ln(k.knurl(kx, SLIDE_Y, 2.0, SL.z1 + 0.5, SL.z1 + 3.1, 18, P), { tone: "lo" });
     const rods = RODS.map((x) => S(k.cylinder(x, SLIDE_Y, 1.0, BB.z1 + 2.4, 49 - BB.z1 - 2.4, P, 10), { tone: "mid", crease: "none" })).join("");
-    const svg = arms + bush(RODS[0]) + S(k.slabOf(frame, SL.z0, SL.z1 - SL.z0, P, 2, 0.4), { tone: "mid" }) + `<path class="ls-glass" d="${roundWin}${squareWin}"/>` + Ln(roundWin + squareWin, { tone: "mid" }) + knob + bush(RODS[1]);
+    const svg =
+      `<polygon class="ls-hit" points="${sPoly}"/>` +
+      arms +
+      bush(RODS[0]) +
+      S(k.slabOf(frame, SL.z0, SL.z1 - SL.z0, P, 2, 0.4), { tone: "hi" }) +
+      `<path class="ls-glass" d="${roundWin}${squareWin}"/>` +
+      Ln(roundWin + squareWin, { tone: "mid" }) +
+      knob +
+      `<circle class="ls-ring" cx="${f2(sk[0])}" cy="${f2(sk[1])}" r="9"/>` +
+      bush(RODS[1]);
     const shapes = [
       record(A.slab(frame, SL.z0, SL.z1 - SL.z0 + SLIDE_LIFT, { name: "slide.frame" }, 2)),
       record(A.cylinder(kx, SLIDE_Y, 2.0, SL.z1 + SLIDE_LIFT, 3.6, { name: "slide.knob", owner: "slide.frame" })),
@@ -463,8 +487,14 @@ export function scene() {
       return k.lineOnTop([L.x + Math.sin(a) * (L.dial - 1.7), L.y - Math.cos(a) * (L.dial - 1.7)], [L.x + Math.sin(a) * L.dial, L.y - Math.cos(a) * L.dial], L.z1 + 0.8, P);
     });
     cyl("switch.dial", L.x, L.y, L.dial, L.z1, L.z1 + 0.8, { tone: "lo" }, { extra: Ln(dialTicks.join(""), { tone: "mid" }) });
-    cyl("switch.knob", L.x, L.y, L.r, L.z1 + 0.8, L.z1 + 4.2, { tone: "mid" }, {
-      extra: Ln(k.knurl(L.x, L.y, L.r, L.z1 + 1.1, L.z1 + 3.9, 22, P), { tone: "lo" }) + `<path class="iso-line" data-tone="hi" data-part="lang-pointer" data-free="end" d="${Pt.langPointer(Pt.LANG_ANGLES[0])}"/>` + Dots([at([L.x, L.y, L.z1 + 4.2])], { size: 0.55, tone: "hi" }),
+    const lc = at([L.x, L.y, L.z1 + 2.5]);
+    cyl("switch.knob", L.x, L.y, L.r, L.z1 + 0.8, L.z1 + 4.2, { tone: "hi" }, {
+      extra:
+        `<circle class="ls-hit" cx="${f2(lc[0] + 2)}" cy="${f2(lc[1] + 2)}" r="18"/>` +
+        `<circle class="ls-ring" cx="${f2(lc[0])}" cy="${f2(lc[1])}" r="9.5"/>` +
+        Ln(k.knurl(L.x, L.y, L.r, L.z1 + 1.1, L.z1 + 3.9, 22, P), { tone: "lo" }) +
+        `<path class="iso-line" data-tone="hi" data-part="lang-pointer" data-free="end" d="${Pt.langPointer(Pt.LANG_ANGLES[0])}"/>` +
+        Dots([at([L.x, L.y, L.z1 + 4.2])], { size: 0.55, tone: "hi" }),
       attrs: ` data-part="lang" tabindex="0" role="button" aria-label="Language switch: EN, FR, ZH"`,
     });
   }
@@ -676,7 +706,21 @@ function plateSvg(i) {
 
 function leverSvg() {
   const lv = Pt.leverOf(Pt.leverAngle(1));
-  return `<g data-part="lever" tabindex="0" role="button" aria-label="Fan lever">${Pt.fixedSolid(lv.arm, { tone: "mid", name: "lever-arm" })}${Pt.fixedSolid(lv.ball, { tone: "hi", crease: "faint", name: "lever-ball" })}${Dots([at([Pt.LEVER_X + Pt.LEVER_ARM + 0.02, LEVER.y, LEVER.z])], { size: 0.5, tone: "hi" })}</g>`;
+  const lv0 = Pt.leverOf(Pt.leverAngle(0));
+  const lt = at(lv.tip);
+  const lt0 = at(lv0.tip);
+  const lp = at([Pt.LEVER_X, LEVER.y, LEVER.z]);
+  const hx = (lp[0] + lt[0] + lt0[0]) / 3;
+  const hy = (lp[1] + lt[1] + lt0[1]) / 3;
+  return (
+    `<g data-part="lever" tabindex="0" role="button" aria-label="Fan lever">` +
+    `<circle class="ls-hit" cx="${f2(hx)}" cy="${f2(hy)}" r="28"/>` +
+    Pt.fixedSolid(lv.arm, { tone: "hi", name: "lever-arm" }) +
+    Pt.fixedSolid(lv.ball, { tone: "hi", crease: "faint", name: "lever-ball" }) +
+    `<circle class="ls-ring" data-part="lever-ring" cx="${f2(lt[0])}" cy="${f2(lt[1])}" r="8"/>` +
+    Dots([at([Pt.LEVER_X + Pt.LEVER_ARM + 0.02, LEVER.y, LEVER.z])], { size: 0.5, tone: "hi" }) +
+    `</g>`
+  );
 }
 
 export function build({ settle = false, order = ORDER } = {}) {

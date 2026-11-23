@@ -14,7 +14,7 @@
 .fig-selective-revocation .sr-l1{color:var(--anatomy-muted)}
 @media (max-width:640px){
   .fig-selective-revocation .sr-stage{overflow:hidden}
-  .fig-selective-revocation .iso-plate .sr-stage .iso-svg{width:114%;margin:-3% -7% -2%}
+  .fig-selective-revocation .iso-plate .sr-stage .iso-svg{width:114%;max-width:none;margin:-3% -7% -2%}
 }
 @media (max-width:560px){
   .fig-selective-revocation .iso-plate{padding-bottom:88px}
